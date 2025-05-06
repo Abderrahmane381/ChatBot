@@ -1,0 +1,898 @@
+Titre,Contenu
+Smart Plant Monitoring System,"Smart Plant Monitoring System
+Hello
+Mar 29, 2025
+•
+2346 views
+•
+1 respects
+•
+Components and supplies
+1
+Arduino Uno R3
+1
+DHT11 sensor
+1
+Green LED
+1
+40 colored female-female jumper wires
+1
+Blue LED
+1
+Breadboard 100x160
+1
+5 Volt Red LED
+1
+40 colored male-male jumper wires
+1
+SSD1306 OLED Display
+1
+soil moisture sensor
+Tools and machines
+1
+Arduino IDE
+Apps and platforms
+1
+Arduino IDE
+Project description
+Code
+Arduino Uno R3 - Smart Plant Monitoring System
+//
+1
+#include
+<
+Wire
+.
+h
+>
+2
+#include
+<
+Adafruit_GFX
+.
+h
+>
+3
+#include
+<
+Adafruit_SSD1306
+.
+h
+>
+4
+#include
+<
+DHT
+.
+h
+>
+5
+6
+// OLED Configuration (I2C: SDA=A4, SCL=A5)
+7
+#define
+SCREEN_WIDTH
+128
+8
+#define
+SCREEN_HEIGHT
+64
+9
+Adafruit_SSD1306
+display
+(
+SCREEN_WIDTH
+,
+SCREEN_HEIGHT
+,
+&
+Wire
+,
+-
+1
+)
+;
+10
+11
+// Pin Definitions
+12
+#define
+SOIL_MOISTURE_PIN
+A0
+// Soil Moisture Sensor
+13
+#define
+DHT_PIN
+2
+// DHT11 Sensor
+14
+#define
+DHT_TYPE
+DHT11
+// DHT11 Sensor Type
+15
+#define
+BUZZER_PIN
+6
+// Buzzer
+16
+17
+// Tri-Color LED (Common Anode)
+18
+#define
+RED_LED
+3
+// CO1 - Red
+19
+#define
+GREEN_LED
+4
+// CO2 - Green
+20
+#define
+BLUE_LED
+5
+// CO3 - Blue
+21
+22
+// Initialize DHT Sensor
+23
+DHT
+dht
+(
+DHT_PIN
+,
+DHT_TYPE
+)
+;
+24
+25
+void
+setup
+(
+)
+{
+26
+Serial
+.
+begin
+(
+115200
+)
+;
+27
+dht
+.
+begin
+(
+)
+;
+28
+29
+pinMode
+(
+SOIL_MOISTURE_PIN
+,
+INPUT
+)
+;
+30
+pinMode
+(
+BUZZER_PIN
+,
+OUTPUT
+)
+;
+31
+pinMode
+(
+RED_LED
+,
+OUTPUT
+)
+;
+32
+pinMode
+(
+GREEN_LED
+,
+OUTPUT
+)
+;
+33
+pinMode
+(
+BLUE_LED
+,
+OUTPUT
+)
+;
+34
+35
+// Initialize OLED Display
+36
+if
+(
+!
+display
+.
+begin
+(
+SSD1306_SWITCHCAPVCC
+,
+0x3C
+)
+)
+{
+37
+Serial
+.
+println
+(
+""OLED Display not found!""
+)
+;
+38
+while
+(
+1
+)
+;
+39
+}
+40
+display
+.
+clearDisplay
+(
+)
+;
+41
+Serial
+.
+println
+(
+""System Initialized!""
+)
+;
+42
+}
+43
+44
+// Function to set LED color
+45
+void
+setColor
+(
+bool red
+,
+bool green
+,
+bool blue
+)
+{
+46
+digitalWrite
+(
+RED_LED
+,
+red
+?
+LOW
+:
+HIGH
+)
+;
+47
+digitalWrite
+(
+GREEN_LED
+,
+green
+?
+LOW
+:
+HIGH
+)
+;
+48
+digitalWrite
+(
+BLUE_LED
+,
+blue
+?
+LOW
+:
+HIGH
+)
+;
+49
+}
+50
+51
+void
+loop
+(
+)
+{
+52
+// Read Raw Soil Moisture Value
+53
+int moistureValue
+=
+analogRead
+(
+SOIL_MOISTURE_PIN
+)
+;
+54
+Serial
+.
+print
+(
+""Raw Moisture Value: ""
+)
+;
+55
+Serial
+.
+println
+(
+moistureValue
+)
+;
+56
+57
+// Adjust Mapping Based on Real Readings
+58
+int moisturePercentage
+=
+map
+(
+moistureValue
+,
+300
+,
+900
+,
+0
+,
+100
+)
+;
+59
+moisturePercentage
+=
+constrain
+(
+moisturePercentage
+,
+0
+,
+100
+)
+;
+60
+61
+// Read Temperature & Humidity
+62
+float temperature
+=
+dht
+.
+readTemperature
+(
+)
+;
+63
+float humidity
+=
+dht
+.
+readHumidity
+(
+)
+;
+64
+65
+// Check if DHT11 gives valid data
+66
+if
+(
+isnan
+(
+temperature
+)
+||
+isnan
+(
+humidity
+)
+)
+{
+67
+Serial
+.
+println
+(
+""DHT11 Sensor Not Found!""
+)
+;
+68
+display
+.
+clearDisplay
+(
+)
+;
+69
+display
+.
+setTextSize
+(
+1
+)
+;
+70
+display
+.
+setTextColor
+(
+WHITE
+)
+;
+71
+display
+.
+setCursor
+(
+10
+,
+20
+)
+;
+72
+display
+.
+print
+(
+""DHT11 Not Found!""
+)
+;
+73
+display
+.
+display
+(
+)
+;
+74
+delay
+(
+2000
+)
+;
+75
+return
+;
+76
+}
+77
+78
+// Print values in Serial Monitor
+79
+Serial
+.
+print
+(
+""Moisture: ""
+)
+;
+Serial
+.
+print
+(
+moisturePercentage
+)
+;
+Serial
+.
+println
+(
+""%""
+)
+;
+80
+Serial
+.
+print
+(
+""Temperature: ""
+)
+;
+Serial
+.
+print
+(
+temperature
+)
+;
+Serial
+.
+println
+(
+"" °C""
+)
+;
+81
+Serial
+.
+print
+(
+""Humidity: ""
+)
+;
+Serial
+.
+print
+(
+humidity
+)
+;
+Serial
+.
+println
+(
+"" %""
+)
+;
+82
+83
+// Display Sensor Data on OLED
+84
+display
+.
+clearDisplay
+(
+)
+;
+85
+display
+.
+setTextSize
+(
+1
+)
+;
+86
+display
+.
+setTextColor
+(
+WHITE
+)
+;
+87
+display
+.
+setCursor
+(
+10
+,
+10
+)
+;
+88
+display
+.
+print
+(
+""Moisture: ""
+)
+;
+display
+.
+print
+(
+moisturePercentage
+)
+;
+display
+.
+println
+(
+""%""
+)
+;
+89
+display
+.
+setCursor
+(
+10
+,
+30
+)
+;
+90
+display
+.
+print
+(
+""Temp: ""
+)
+;
+display
+.
+print
+(
+temperature
+)
+;
+display
+.
+println
+(
+""C""
+)
+;
+91
+display
+.
+setCursor
+(
+10
+,
+50
+)
+;
+92
+display
+.
+print
+(
+""Humidity: ""
+)
+;
+display
+.
+print
+(
+humidity
+)
+;
+display
+.
+println
+(
+""%""
+)
+;
+93
+display
+.
+display
+(
+)
+;
+94
+95
+// LED & Buzzer Alerts
+96
+if
+(
+moisturePercentage
+<
+30
+||
+temperature
+>
+30.0
+||
+temperature
+<
+20.0
+)
+{
+97
+setColor
+(
+1
+,
+0
+,
+0
+)
+;
+// 🔴 Red (Critical Condition)
+98
+digitalWrite
+(
+BUZZER_PIN
+,
+HIGH
+)
+;
+99
+}
+else
+if
+(
+moisturePercentage
+<
+40
+)
+{
+100
+setColor
+(
+0
+,
+0
+,
+1
+)
+;
+// 🔵 Blue (Warning Condition)
+101
+digitalWrite
+(
+BUZZER_PIN
+,
+LOW
+)
+;
+102
+}
+else
+{
+103
+setColor
+(
+0
+,
+1
+,
+0
+)
+;
+// 🟢 Green (Normal Condition)
+104
+digitalWrite
+(
+BUZZER_PIN
+,
+LOW
+)
+;
+105
+}
+106
+107
+delay
+(
+2000
+)
+;
+// Refresh every 2 seconds
+108
+}
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include <DHT.h>
+
+// OLED Configuration (I2C: SDA=A4, SCL=A5)
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+// Pin Definitions
+#define SOIL_MOISTURE_PIN A0   // Soil Moisture Sensor
+#define DHT_PIN 2              // DHT11 Sensor
+#define DHT_TYPE DHT11         // DHT11 Sensor Type
+#define BUZZER_PIN 6           // Buzzer
+
+// Tri-Color LED (Common Anode)
+#define RED_LED 3              // CO1 - Red
+#define GREEN_LED 4            // CO2 - Green
+#define BLUE_LED 5             // CO3 - Blue
+
+// Initialize DHT Sensor
+DHT dht(DHT_PIN, DHT_TYPE);
+
+void setup() {
+    Serial.begin(115200);
+    dht.begin();
+
+    pinMode(SOIL_MOISTURE_PIN, INPUT);
+    pinMode(BUZZER_PIN, OUTPUT);
+    pinMode(RED_LED, OUTPUT);
+    pinMode(GREEN_LED, OUTPUT);
+    pinMode(BLUE_LED, OUTPUT);
+
+    // Initialize OLED Display
+    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+        Serial.println(""OLED Display not found!"");
+        while (1);
+    }
+    display.clearDisplay();
+    Serial.println(""System Initialized!"");
+}
+
+// Function to set LED color
+void setColor(bool red, bool green, bool blue) {
+    digitalWrite(RED_LED, red ? LOW : HIGH);
+    digitalWrite(GREEN_LED, green ? LOW : HIGH);
+    digitalWrite(BLUE_LED, blue ? LOW : HIGH);
+}
+
+void loop() {
+    // Read Raw Soil Moisture Value
+    int moistureValue = analogRead(SOIL_MOISTURE_PIN);
+    Serial.print(""Raw Moisture Value: "");
+    Serial.println(moistureValue);
+
+    // Adjust Mapping Based on Real Readings
+    int moisturePercentage = map(moistureValue, 300, 900, 0, 100);
+    moisturePercentage = constrain(moisturePercentage, 0, 100);
+
+    // Read Temperature & Humidity
+    float temperature = dht.readTemperature();
+    float humidity = dht.readHumidity();
+
+    // Check if DHT11 gives valid data
+    if (isnan(temperature) || isnan(humidity)) {
+        Serial.println(""DHT11 Sensor Not Found!"");
+        display.clearDisplay();
+        display.setTextSize(1);
+        display.setTextColor(WHITE);
+        display.setCursor(10, 20);
+        display.print(""DHT11 Not Found!"");
+        display.display();
+        delay(2000);
+        return;
+    }
+
+    // Print values in Serial Monitor
+    Serial.print(""Moisture: ""); Serial.print(moisturePercentage); Serial.println(""%"");
+    Serial.print(""Temperature: ""); Serial.print(temperature); Serial.println("" °C"");
+    Serial.print(""Humidity: ""); Serial.print(humidity); Serial.println("" %"");
+
+    // Display Sensor Data on OLED
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    display.setCursor(10, 10);
+    display.print(""Moisture: ""); display.print(moisturePercentage); display.println(""%"");
+    display.setCursor(10, 30);
+    display.print(""Temp: ""); display.print(temperature); display.println(""C"");
+    display.setCursor(10, 50);
+    display.print(""Humidity: ""); display.print(humidity); display.println(""%"");
+    display.display();
+
+    // LED & Buzzer Alerts
+    if (moisturePercentage < 30 || temperature > 30.0 || temperature < 20.0) {
+        setColor(1, 0, 0);  // 🔴 Red (Critical Condition)
+        digitalWrite(BUZZER_PIN, HIGH);
+    } else if (moisturePercentage < 40) {
+        setColor(0, 0, 1);  // 🔵 Blue (Warning Condition)
+        digitalWrite(BUZZER_PIN, LOW);
+    } else {
+        setColor(0, 1, 0);  // 🟢 Green (Normal Condition)
+        digitalWrite(BUZZER_PIN, LOW);
+    }
+
+    delay(2000);  // Refresh every 2 seconds
+}
+Comments
+Only logged in users can leave comments
+login
+opulentcook
+0 Followers
+•
+0 Projects
+FOLLOW
+0"

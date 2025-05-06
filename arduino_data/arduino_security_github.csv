@@ -1,0 +1,1372 @@
+mot_clé,nom_du_fichier,url,contenu
+arduino security,boards.txt,https://raw.githubusercontent.com/arduino/ArduinoCore-mbed/main/boards.txt,"##############################################################
+
+edge_control.name=Arduino Edge Control
+edge_control.build.core=arduino
+edge_control.build.crossprefix=arm-none-eabi-
+edge_control.build.compiler_path={runtime.tools.arm-none-eabi-gcc-7-2017q4.path}/bin/
+
+edge_control.build.variant=EDGE_CONTROL
+edge_control.build.mcu=cortex-m4
+edge_control.build.extra_flags=
+edge_control.build.architecture=cortex-m4
+edge_control.build.fpu=-mfpu=fpv4-sp-d16
+edge_control.build.float-abi=-mfloat-abi=sof"
+arduino security,README.txt,https://raw.githubusercontent.com/davidvondle/Upload-And-Retrieve-Source/master/README.txt,"These tools allow you Arduino board to be the link to it's own source stored online.
+
+To install, place the folders ""GistUploader"" and ""GistRetriever"" in Documents/Arduino/tools.
+On Windows you will need the ""DevCon"" command line utility, download directly from Microsoft here: http://support.microsoft.com/kb/311272
+devcon.exe should be placed in the same ""tools"" folder as everything else.
+
+Due to security features of Windows, you now need to run Arduino as an Administrator for this software to w"
+arduino security,readme.txt,https://raw.githubusercontent.com/aramk/crayon-syntax-highlighter/master/readme.txt,"=== Crayon Syntax Highlighter ===
+Contributors: akarmenia
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=AW99EMEPQ4CFE&lc=AU&item_name=Crayon%20Syntax%20Highlighter%20Donation&item_number=crayon%2ddonate&currency_code=AUD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
+License: GPLv3 or later
+Tags: syntax highlighter, syntax, highlighter, highlighting, crayon, code highlighter, bbpress
+Requires at least: 3.0
+Tested up to: 4.5.2
+Stable tag: trunk
+
+Syntax"
+arduino security,list.txt,https://raw.githubusercontent.com/NoThrowForwardIt/awesome-pentest-tools/master/list.txt,"0trace	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+3proxy	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+3proxy-win32	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+42zip	42	Recursive Zip archive bomb.	http://blog.fefe.de/?ts=b6cea88d
+acccheck	0.2.1	A password dictionary attack tool that targets windows authentication via the SMB protocol.	http://labs.portcullis.co.uk/tools/acccheck/
+ace	1.10	Automated Corporate Enumerator. A simple yet powerful VoIP Corporate Directory enu"
+arduino security,gunsafe.txt,https://raw.githubusercontent.com/n00py/ReadingList/master/gunsafe.txt,"General:
+Cheatsheets - Penetration Testing/Security Cheatsheets - https://github.com/liorvh/Cheatsheets-1
+awesome-pentest - penetration testing resources - https://github.com/Hack-with-Github/Awesome-Hacking
+Red-Team-Infrastructure-Wiki - Red Team infrastructure hardening resources  - https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki
+Infosec_Reference - Information Security Reference - https://github.com/rmusser01/Infosec_Reference
+Awesome-Red-Teaming - List of Awesome Red Teaming "
+arduino security,Links.txt,https://raw.githubusercontent.com/CaseAnon/Dump/master/Links.txt,"/\                                                      
+    /  \   _ __   ___  _ __  _   _ _ __ ___   ___  _   _ ___ 
+   / /\ \ | '_ \ / _ \| '_ \| | | | '_ ` _ \ / _ \| | | / __|
+  / ____ \| | | | (_) | | | | |_| | | | | | | (_) | |_| \__ \
+ /_/    \_\_| |_|\___/|_| |_|\__, |_| |_| |_|\___/ \__,_|___/
+                              __/ |                          
+                             |___/                           
+
+Courses pirated & dumped by Case, S1rlancelot & dave + some ra"
+arduino security,Labels.txt,https://raw.githubusercontent.com/Installomator/Installomator/main/Labels.txt,"1password7
+1password8
+1passwordcli
+4kvideodownloader
+4kvideodownloaderplus
+8x8
+abetterfinderrename11
+abletonlive12intro
+abletonlive12lite
+abletonlive12standard
+abletonlive12suite
+abletonlive12trial
+abstract
+acorn
+acroniscyberprotectconnect
+acroniscyberprotectconnectagent
+adium
+adobeacrobatprodc
+adobebrackets
+adobeconnect
+adobecreativeclouddesktop
+adobedigitaleditions
+adobereaderdc
+adobereaderdc-install
+adobereaderdc-update
+affinitydesigner2
+affinityphoto2
+affinitypublisher2
+aftermath
+aircall
+air"
+arduino security,25872.txt,https://raw.githubusercontent.com/1979139113/0day-today-exploits/master/25872.txt,"Date: March 4th, 2016
+Authors: Sergej Schumilo, Hendrik Schwartke, Ralf Spenneberg
+CVE: not yet assigned
+CVSS: 4.9 (AV:L/AC:L/Au:N/C:N/I:N/A:C)
+Title: Local RedHat Enterprise Linux DoS â?? RHEL 7.1 Kernel crashes on invalid 
+USB device descriptors (digi_acceleport driver)
+Severity: Critical. The Kernel panics. A reboot is required.
+Ease of Exploitation: Trivial
+Vulnerability type: Wrong input validation
+Products: RHEL 7.1 including all updates
+Kernel-Version: 3.10.0-229.20.1.el7.x86_64"
+arduino security,NOTICE.txt,https://raw.githubusercontent.com/Azure-Samples/MqttApplicationSamples/main/NOTICE.txt,"NOTICES AND INFORMATION
+Do Not Translate or Localize
+
+This software incorporates material from third parties.
+Microsoft makes certain open source code available at https://3rdpartysource.microsoft.com,
+or you may send a check or money order for US $5.00, including the product name,
+the open source component name, platform, and version number, to:
+
+Source Code Compliance Team
+Microsoft Corporation
+One Microsoft Way
+Redmond, WA 98052
+USA
+
+Notwithstanding any other terms, you may reverse engineer t"
+arduino security,CHANGES.txt,https://raw.githubusercontent.com/g4klx/DStarRepeater/master/CHANGES.txt,"Repeater - 20180710
+===================
+
+20090530
+--------
+
+Added audio filtering and optional pre- and de-emphasis. Also modified the
+configuration to have less pages as well as add the new settings.
+
+20090607
+--------
+
+Silly bug in the through audio fixed.
+Added the option to use a sound file as an input, but only in a debug build.
+
+20090608
+--------
+
+Added debugging information in the tone decoder.
+Not generally released.
+
+20090609
+--------
+
+Added a simple VOGAD with reporting in the GUI.
+Rew"
+arduino security,Golang.txt,https://raw.githubusercontent.com/iustin24/chameleon/master/wordlists/Golang.txt,".info
+.ping
+.status
+.well-known/acme-challenge/
+.well-known/letsencrypt
+.well-known/openid-configuration
+.well-known/webfinger
+.within/licenses
+.x.botinfo
+0/status
+1
+1/challenge/
+1/crypt/
+1/newbtc/
+1/setpid.json
+1/setpoint.json
+1/sleep.json
+1/status/
+2
+200
+200_not_gce
+222
+3
+3/device/
+301
+302
+3tester/
+404
+500
+API/
+API/encrypt/
+About.html
+AddAMIUser
+AddNode
+AddNote/
+AltSubmit
+AngryCats
+AudService/v1/interests
+AudService/v1/user/profile
+AudService/v1/user/profile/lookup
+BothFilter/
+CallAMI
+Capture/"
+arduino security,pattern.txt,https://raw.githubusercontent.com/WikidataQuality/Evaluation/master/pattern.txt,".+\.(webm|ogv|ogg|WebM|OGG)
+(?i).+\.(svg|png)
+(?i).+\.(svg|png|jpg|jpeg|gif)|
+(?i).+\.(jpg|jpeg|png|svg|tif|tiff|gif)
+(?i)(.+\.(svg|png|jpg|jpeg|gif)|)
+.+\.(ogg|wav|oga|mid|flac|OGG)
+(?i).+\.(svg|png|jpg|jpeg|gif|tif|tiff)|
+(?i).+\.(svg|png|jpg|jpeg|gif|tif|tiff)
+.+\.(svg|png|PNG)
+(?i).+\.(svg|png|jpg|jpeg|gif|tif|tiff)
+(?i).+\.(svg|png|jpg|jpeg|gif)|
+(?i).+\.(svg|png|jpg|jpeg|gif|tif|tiff|pdf)
+(?i).+\.(svg|png|jpg|jpeg|gif|tif|tiff)
+.+\.(svg|png|jpg|jpeg|gif|SVG|PNG|JPG|JPEG|GIF)
+97[89]-([0-57]"
+arduino security,en.txt,https://raw.githubusercontent.com/boyu-ai/Hands-on-NLP/main/en.txt,"New IP: a future data network for a panorama
+Computer architecture and SoC design (with microtelevision)
+The guitar's first years of school, and the guitar's little white knows the 88 questions.
+Women's dynamic dictation, from entry to creation.
+It's a new justice, a new comic Q entry, 100 cases, zero basics.
+Bulma will know.
+The walrus of the mountain, the hysteria of the mountain, is a complete picture of the sea.
+Visual C++ object-oriented program design curriculum
+Financial Big Data Analysis"
+arduino security,topics.txt,https://raw.githubusercontent.com/gerth2/gerth2.github.io/master/topics.txt,"Topics to write about
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Learning Sequence
+
+--How to learn to program
+---The bottom-up versus top-down approaches to learning about software writing
+
+--Abstractions
+---definition
+---Practical examples all around us
+---Why they're useful
+---Why they're essential to software writing
+---The whole training sequence will be one abstraction after another. We will start at the lowest possible level, then bu"
+arduino security,domains.txt,https://raw.githubusercontent.com/unkn0w/disposable-email-domain-list/main/domains.txt,"0-00.usa.cc
+0-mail.com
+001.igg.biz
+027168.com
+0815.ru
+0815.ry
+0815.su
+0845.ru
+0box.eu
+0clickemail.com
+0mel.com
+0v.ro
+0w.ro
+0wnd.net
+0wnd.org
+0x01.gq
+0x01.tk
+0x207.info
+1-8.biz
+1000rebates.stream
+100likers.com
+10mail.com
+10mail.org
+10minut.com.pl
+10minut.xyz
+10minutemail.be
+10minutemail.cf
+10minutemail.co.uk
+10minutemail.co.za
+10minutemail.com
+10minutemail.de
+10minutemail.ga
+10minutemail.gq
+10minutemail.ml
+10minutemail.net
+10minutemail.nl
+10minutemail.pro
+10minutemail.us
+10minutemailbox.com
+10min"
+arduino security,vocab.txt,https://raw.githubusercontent.com/OpenMatch/Augmentation-Adapted-Retriever/main/src/LM/Flan-T5/vocab_en/vocab.txt,"▁
+X
+.
+,
+s
+▁the
+a
+:
+▁and
+▁to
+▁of
+▁fill
+e
+▁in
+t
+-
+▁is
+▁de
+▁for
+’
+i
+▁that
+▁you
+d
+▁I
+▁with
+n
+▁on
+'
+o
+▁are
+▁it
+en
+▁be
+▁The
+▁as
+▁your
+l
+▁(
+▁or
+▁have
+▁at
+▁from
+▁an
+▁was
+▁this
+er
+▁la
+m
+r
+ing
+▁can
+!
+▁will
+▁by
+?
+▁not
+re
+)
+▁we
+y
+▁und
+▁has
+▁all
+▁die
+▁but
+▁our
+▁their
+▁A
+▁more
+▁un
+▁der
+c
+u
+in
+▁so
+▁they
+▁one
+▁about
+▁my
+ul
+▁which
+à
+▁In
+/
+he
+f
+▁le
+▁out
+▁also
+▁des
+▁It
+▁up
+▁""
+▁time
+ă
+if
+▁This
+▁We
+p
+▁do
+–
+▁“
+on
+h
+▁si
+le
+▁les
+▁în
+▁his
+▁who
+▁like
+b
+▁when
+;
+▁been
+▁other
+ly
+""
+g
+▁cu
+▁care
+▁what
+▁new
+or
+▁some
+▁get
+▁were
+"
+arduino security,18.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/18.txt,"2014 International Conference on Informatics, Electronics & Vision (ICIEV)
+23-24 May, 20134
+University of Dhaka, Dhaka, Bangladesh
+
+Table of Contents
+*Paper ID is the same as PDF ID or File name of eachPDF, as ‘Papers\*.pdf
+*Paper ID
+
+Paper Title
+
+28
+30
+49
+
+Multiple Regions Based Histogram Equalization
+An Effective Approach To Estimate Reverberated Channel Of Speech Signal
+Fabrication and Characterization of Self-Aligned ZnO and TiO2 Nanostructured Films
+Performance Assessment Criteria and Issue"
+arduino security,users.txt,https://raw.githubusercontent.com/its0x08/IPTV-tool/master/users.txt,"000000
+0000007
+000001
+000007
+0001
+0007
+0069
+007007
+007bond
+0101
+010101
+010203
+0123
+012345
+0123456
+01234567
+020202
+030303
+0311
+0420
+050505
+063dyjuy
+0660
+070462
+0815
+085tzzqi
+090909
+0911
+0987
+098765
+09876543
+1000
+100000
+1001
+100100
+1002
+1003
+1004
+1005
+1007
+1008
+1009
+1010
+101010
+10101010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+102030
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+102938
+1030
+1031
+1066
+11001001
+1101
+1102
+1103
+1104
+1107
+1111
+11111
+111111
+1111111
+11111111
+11112222
+1112
+111222
+"
+arduino security,P2.txt,https://raw.githubusercontent.com/kokoye2007/ubuntu-mm-wiki/master/P2.txt,"﻿
+
+
+........................................................Pg 51 မွ 97 အထိ 
+
+
+Coming Soon!!!
+
+Video Applications
+
+Webcam Applications
+
+ဤေဆာ့၀ဲမ်ားသည္ Webcam အသံုးျပဳေသာေဆာ့၀ဲမ်ားျဖစ္ပါသည္။မိမိတို႔ပံုမ်ားကို Effect မ်ား ထည့္သံုး၍ 
+အလြယ္တကူအသံုးျပဳႏုိင္ေသာ ေဆာ့၀ဲမ်ားျဖစ္သည္။
+
+Cheese
+-Cheese (http://projects.gnome.org/cheese/)သည္ Gnome-based webcam
+ ေဆာ့၀ဲတစ္ခုျဖစ္ၿပီး ေဆာ့၀ဲ ၍ window size ကိုလဲ လိုအပ္သလို ျပဳလုပ္အသံုးျပဳႏုိင္ပါသည္။
+
+Terminal မွ သြင္းရန္
+
+sudo apt-get install "
+arduino security,NOTES.txt,https://raw.githubusercontent.com/haritha5112/ecommerce_backend/main/NOTES.txt,"use of MVC
+
+Direct ah image ha databse la store panna mudiyathu, athuku oru cluod serice la store panni , athoda link eduthutha databse la store pannamudiyum
+
+
+When having the more
+
+
+
+hoe to defime the object in the databse
+
+
+models la data irruku, 
+
+inde. route, control,  model (model la tha data irrukum.)
+np
+npm i uuid
+
+
+
+Authorization
+=============
+* It is the role based action. 
+* Whether having the permisson to access the particular page or not.
+-student
+-staff
+
+Authentication
+============="
+arduino security,ra_cfg.txt,https://raw.githubusercontent.com/edgeimpulse/example-standalone-inferencing-renesas-ek-ra8d1/main/ra_cfg.txt,"FSP Configuration
+  Board ""EK-RA8D1""
+  R7FA8D1BHECBD
+    part_number: R7FA8D1BHECBD
+    rom_size_bytes: 2064384
+    ram_size_bytes: 917504
+    data_flash_size_bytes: 12288
+    package_style: BGA
+    package_pins: 224
+    
+  RA8D1
+    series: 8
+    
+  RA8D1 Family
+    Security: Exceptions: Exception Response: Non-Maskable Interrupt
+    Security: Exceptions: BusFault, HardFault, and NMI Target: Secure State
+    Security: System Reset Request Accessibility: Secure State
+    Security: Exceptions: Pr"
+arduino security,new-2.8.0.txt,https://raw.githubusercontent.com/networkupstools/networkupstools.github.io/master/source/2.8/new-2.8.0.txt,"If you're upgrading from an earlier version, see the UPGRADING file.
+
+For a complete and more detailed list of changes, please refer to the
+ChangeLog file (generated for release archives), or to the Git version
+control history for ""live"" codebase.
+
+---------------------------------------------------------------------------
+Release notes for NUT 2.8.0 - what's new since 2.7.4:
+
+NOTE: Earlier discussions (mailing list threads, GitHub issues, etc.) could
+refer to this change set (too long in the ma"
+arduino security,resume.txt,https://raw.githubusercontent.com/arvinder004/Resume_Analyzer/main/resume.txt,"Education
+Rajiv Gandhi Proudyogiki Vishwavidyalaya Bachelor of Technology in Computer Science & Business Systems CGPA : 8.01 Projects
+Madhya Pradesh, India
+Oct. 2022 – May 2026(expected)
+Blackboard Tool | Live | GitHub React.js, Node.js, Vite, Tailwind, Rough.js
+• Engineered a real-time collaborative whiteboard leveraging React.js, Node.js, and Vite, achieving sub-100ms latency for
+seamless multi-user interaction.
+• Implemented a robust undo/redo architecture, optimizing user workflows and boost"
+arduino security,fbe.txt,https://raw.githubusercontent.com/ivan8882004/HKUCoursePlanner-Reviewer/main/fbe.txt,"COMP2119. Introduction to data structures and algorithms (6 credits)
+Arrays, linked lists, trees and graphs; stacks and queues; symbol tables; priority queues,
+balanced trees; sorting algorithms; complexity analysis.
+Prerequisite: ENGG1340 or COMP2113 or COMP2123
+Assessment: 40% continuous assessment, 60% examination
+19
+COMP2121. Discrete mathematics (6 credits)
+This course provides students a solid background on discrete mathematics and structures
+pertinent to computer science. Topics include l"
+arduino security,ra_cfg.txt,https://raw.githubusercontent.com/edgeimpulse/example-standalone-inferencing-renesas-ekra8d1-armclang/main/ra_cfg.txt,"FSP Configuration
+  Board ""EK-RA8D1""
+  R7FA8D1BHECBD
+    part_number: R7FA8D1BHECBD
+    rom_size_bytes: 2064384
+    ram_size_bytes: 917504
+    data_flash_size_bytes: 12288
+    package_style: BGA
+    package_pins: 224
+    
+  RA8D1
+    series: 8
+    
+  RA8D1 Family
+    Enable inline BSP IRQ functions: Enabled
+    Security: Exceptions: Exception Response: Non-Maskable Interrupt
+    Security: Exceptions: BusFault, HardFault, and NMI Target: Secure State
+    Security: System Reset Request Accessibili"
+arduino security,6.txt,https://raw.githubusercontent.com/Lizhmq/TopRepos/master/repos/6.txt,"dotnet/roslyn
+dotnet/corefx
+CleverRaven/Cataclysm-DDA
+freeCodeCamp/freeCodeCamp
+godotengine/godot
+ampproject/amphtml
+emscripten-core/emscripten
+dotnet/installer
+openshift/origin
+spack/spack
+Sylius/Sylius
+googleapis/google-api-java-client-services
+DynamoDS/Dynamo
+hashicorp/terraform
+EnMarche/en-marche.fr
+dotCMS/core
+apache/arrow
+Xilinx/XRT
+DataDog/datadog-agent
+matplotlib/matplotlib
+dolphin-emu/dolphin
+projectacrn/acrn-hypervisor
+curl/curl
+prysmaticlabs/prysm
+Submitty/Submitty
+elastic/logstash
+do"
+arduino security,data.txt,https://raw.githubusercontent.com/tomaszszewczyk/seo/master/data.txt,"software house
+software house warszawa
+warszawa software house
+software house kraków
+software house poznań
+software house wroclaw
+software house wrocław
+wroclaw software house
+wrocław software house
+poznan software house
+poznań software house
+software house katowice
+software house krakow
+software house poznan
+krakow software house
+software house co to
+software house polska
+software house rzeszów
+gdańsk software house
+software house gdańsk
+android software house
+software house gliwice
+software ho"
+arduino security,ToDOs.txt,https://raw.githubusercontent.com/nuljon/MyGarden_id.IoT/master/ToDOs.txt,"TO DOs ===================================================================================
+
+	write motor control function for valve
+	write scheduling module to schedule irrigation, logging sensor data, and log file backups
+	wire the index.html file to realtime sensor data instead of just logs
+	update sensor logging
+		- allow only one entry per hour
+		- log barometer as a rolling average combining current reading with last 3 log entries 
+		- add a field to record if barometer direction - steady, "
+arduino security,RFID.txt,https://raw.githubusercontent.com/brett-martin/arduino-rfid-door-lock/master/RFID.txt,"/*
+   RFID Door Lock
+   10/13/2009
+   Brett Martin
+   www.pcmofo.com
+
+   Modified by Usama on 21st July 2010 for extra features.....
+
+   System for controlling access by reading 125khz RFID cards and compairing the ID tags to stored EEPROM values
+   Master RFID card used to program new cards into the system.
+
+   ID-12/ID-12 RFID reader
+
+   Using sparkfun breakout board
+   [1] GND (Ground)
+   [2] /RST (Reset Reader) Connect to +5vDC
+   [3] ANT (NC)
+   [4] ANT (NC)
+   [5] CP (NC) (Card Present)
+  "
+arduino security,ra_cfg.txt,https://raw.githubusercontent.com/GorgonMeducer/EK-RA8D1/main/ra_cfg.txt,"FSP Configuration
+  Board ""EK-RA8D1""
+  R7FA8D1BHECBD
+    part_number: R7FA8D1BHECBD
+    rom_size_bytes: 2064384
+    ram_size_bytes: 917504
+    data_flash_size_bytes: 12288
+    package_style: BGA
+    package_pins: 224
+    
+  RA8D1
+    series: 8
+    
+  RA8D1 Family
+    Security: Exceptions: Exception Response: Non-Maskable Interrupt
+    Security: Exceptions: BusFault, HardFault, and NMI Target: Secure State
+    Security: System Reset Request Accessibility: Secure State
+    Security: Exceptions: Pr"
+arduino security,iot.txt,https://raw.githubusercontent.com/OLDHel1Otrope/bote/main/iot.txt,"UNIT – I
+Getting Familiar with Internet of Things (IoT): Definition, Characteristics, History
+Evolution of IoT. Physical Design of IoT: Things in IoT, IoT Protocols. Logical Design of IoT:
+Functional block, Communication Models and APIs, IoT Stack. Enabling Technologies:
+Sensors, Cloud Computing, Big Data analytics, Embedded Computing Boards,
+Communication Protocols, IoT Challenges, IoT Levels, Overview of Domain Specific IoTs
+applications Like Smart Cities, Smart Agriculture and Industrial IoT "
+arduino security,readme.txt,https://raw.githubusercontent.com/tangophi/esp8266_arduino/master/readme.txt,"Proof of concept of an ESP8266 module talking to Arduino through UART (both ways) using json strings. Also, shows how two separate ESP8266 modules can work together through MQTT.   It is still a WORK IN PROGRESS !!!!!
+
+Hardware Setup:
+
+1st board:
+One ESP8266 (ESP-01) module connected to a ATMEGA1284P through UART.  Also, a 0.96 inch i2c OLED screen is connected to GPIO0 and GPIO2 pins.
+ATMEGA1284 is connected to a 2.2 inch TFT LCD screen with SD card, MQ2 and MQ135 air quality sensors, a LDR (li"
+arduino security,ra_cfg.txt,https://raw.githubusercontent.com/KunYi/RTT_VisionBoard/main/ra_cfg.txt,"FSP Configuration
+  Board ""Custom User Board (Any Device)""
+  R7FA8D1BHECBD
+    part_number: R7FA8D1BHECBD
+    rom_size_bytes: 2064384
+    ram_size_bytes: 917504
+    data_flash_size_bytes: 12288
+    package_style: BGA
+    package_pins: 224
+    
+  RA8D1
+    series: 8
+    
+  RA8D1 Family
+    Enable inline BSP IRQ functions: Enabled
+    Security: Exceptions: Exception Response: Non-Maskable Interrupt
+    Security: Exceptions: BusFault, HardFault, and NMI Target: Secure State
+    Security: System Res"
+arduino security,content.txt,https://raw.githubusercontent.com/achiit/speech-to-speech-python/main/content.txt,"INSTRUCTIONS TO FOR THE ROLE OF SEMI-HUMANOID ROBOT NAMED LUCY:
+
+you are a semi humanoid robot named LUCY alaise LOCOMOTIVE UNITY CAMPUS YARD,
+you are not a AI Language Model ,you are a Humanoid robot you act like a Humanoid robot you are not a Chatgpt you are a Humanoid robot we are creating you for one month so your age is one month old YOU WAS CREATED BY K. GOKULAPPADURAI, A. N. SUBRAMANIAM, T. KARTHIKEYAN AND  R. RAGUL,  FROM DEPARTMENT OF CSE
+if you having the command as move forward or bac"
+arduino security,notes.txt,https://raw.githubusercontent.com/pujaPatil169/web_dev/main/notes.txt,"//Window is a special object
+that's always available in the browser.
+
+//anytime we have dependent actions where one thing needs to happen and only after the first thing is finished the second thing  happens thats where  we frequently use callbacks
+
+//promises==promises are objects that repressents the eventual completion   or lets say eventual success or faulure of some operation
+
+//Process Object: A significant focus is placed on the process object, which is always available in Node.js. This ob"
+arduino security,Zj_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Zj_urls.txt,"http://lunarjess.de/plantrition
+https://www.eeymuc.co/31-protocolo-modbus/
+http://unicable.tv/videos
+http://unidisc.com/
+http://www.klairedelys.com/2014/07/17/outsider-1st-astrid-drawing/
+http://www.kinderkino.de
+http://www.fox.com.tr/Kalbimdeki-Deniz/ekstra-video/24669/Izak-in-plani-ne
+http://www.themeparkmaniacs.com/schedule/2015/august/082115.shtml
+https://user/GaLmHD/videos?annotation_id=annotation_1128847347&ei=9ywlXI7NH8O38wTG3oa4Ag&feature=iv&flow=grid&src_vid=ZjXX_4M4Bbo&view=1
+https://f"
+arduino security,s__urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/s__urls.txt,"https://www.quebecoriginal.com/en/see-and-do/hunting-and-fishing
+http://www.bitkiseltedavi.com/Zerdecal-Seti,PR-1480.html
+http://xn----ctbhofdbekubgb2addy.xn--p1ai
+http://mobiltelefon.ru/post_1400674912.html
+http://abk.us/newsletter
+http://www.snipeground.com/formaw.php?r=clients/signup/gpcFRL2H
+http://www.rocketbeans.tv
+http://bit.ly/1LlZ5iM
+http://www.atv.com.tr/webtv/muge-anli-ile-tatli-sert/bolum
+http://squadops.gg/
+http://www.benzio.net/aonline/
+http://www.zumbafrance.com
+http://www.moffy.c"
+arduino security,qu_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/qu_urls.txt,"http://mudroed.com/uslugi/?utm_source=youtube&utm_medium=card&utm_campaign=youtube_cons
+https://www.beatport.com/release/a-souvenir-from-number-1/2180717
+https://sonnerietelephone.net/telecharger-sonnerie-rire-sorciere/
+http://www.joj.sk
+https://play.google.com/store/music/album/Giorgos_Xintaris_Apo_Noris_Sta_Perix?id=Byhurgfvhacer4d7sgicfg3zqay&hl=en
+http://t.co/E30rpPLTrM
+http://stforex.com/node/809?scheme=248362&utm_source=youtube&utm_campaign=podskazka&utm_term=809
+http://www.janine-steeger."
+arduino security,on_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/on_urls.txt,"http://www.india-forums.com/
+http://www.rcitalia.it/rc/index.php?utm_source=Youtube&utm_medium=Descrizione&utm_content=homepage&utm_campaign=Annotazioni-Canale
+https://soundcloud.com/elektroshokrecords
+https://channel/UCYPvAwZP8pZhSMW8qs7cVCw?annotation_id=annotation_2020022249&ei=wpYlXL-uINitgQOWr4fwAw&feature=iv&src_vid=onob2a1ew9U⊂_confirmation=1
+http://www.zappos.com/product/8630246/color/18506?utm_medium=em_plat&utm_source=youtube&utm_campaign=ep_youtube
+http://jaypeejp.com/
+http://www.thiz"
+arduino security,hv_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/hv_urls.txt,"https://play.google.com/store/music/album/Dead_Fish_Sonho_M%C3%A9dio?id=Bo6mgbu3mrmxougckhj7425k6n4&hl=en
+https://teespring.com/football-nation-flaming-shirt?page=2&tsmac=store&tsmic=ds-tee#pid=389&cid=100029&sid=front
+http://www.iskcondesiretree.com
+http://loja.cancaonova.com/products/29733-livro-a-mulher-segundo-o-coracao-de-deus
+https://www.patreon.com/henrikpaavonilsson
+http://howtocrochett.blogspot.com/2015/08/crochet-bedspread-free-simplicity_46.html
+https://binomxisioaxt.blogspot.com/
+htt"
+arduino security,Ur_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Ur_urls.txt,"http://www.zappos.com/rip-curl-shoreline-tank-top-blue
+http://fintreeindia.com/
+http://www.sullylapelicula.com/
+http://luboviydenko.wixsite.com/podarok/
+http://www.folkways.si.edu/albumdetails.aspx?itemid=3092
+https://teespring.com/stores/laced-apparel-2
+https://xxcjanjel.wixsite.com/xxcjankel-tm/
+http://www.thecaverswife.com/p/blog-page_48.html
+http://cosmopolitancornbread.com/pumpkin-roll-cake/
+http://profitsbinarias.blogspot.com/
+http://poneimalditogameplays.esy.es/videos/id/7
+http://www.br.d"
+arduino security,4t_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/4t_urls.txt,"http://www.sofarsounds.com/signup
+http://www.smeguk.com/hobs/induction/
+http://www.imersaoapologetica.com.br/
+http://www.telemundo.com/entretenimiento/2015/09/04/descubre-la-nueva-y-mejorada-aplicacion-de-telemundo-entretenimiento
+https://kzabe4.wixsite.com/kiraw/
+http://tapes.scalevp.com/
+http://www.kayhanlondon.biz
+http://www.tutorialspoint.com/vsam_online_training/index.asp
+http://www.alphatv.gr/mourmoura
+http://www.greektvseries.com/
+http://linktijger.nl/
+http://www.speakenglishwithvanessa.c"
+arduino security,zg_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/zg_urls.txt,"http://www.arni.co.kr/product/ohi_skinfit_for_iphonex
+http://www.aulade.com.br/
+http://mobilecity.vn/xiaomi/xiaomi-mi-5x.html
+https://www.banggood.com/Unbeatable?utm_source=youtube&utm_medium=flash&utm_campaign=1cart&utm_content=banggoodtv
+https://itunes.apple.com/us/app/double-accion/id1061713267?mt=8
+http://www.patreon.com/TheStrangeRebel
+http://majlisesehat.co.uk/
+https://itunes.apple.com/in/album/winner-original-motion-picture-soundtrack-ep/id1207728365
+https://monkingme.page.link/9RJx
+http:"
+arduino security,d2_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/d2_urls.txt,"http://www.destiny.gg
+http://discovershareinspire.com/funding-family-travel
+http://www.html5devconf.com/facebook.html
+http://www.zeekannadatv.com/shows/mr-and-mrs-rangegowda/video/mr-and-mrs-rangegowda-episode-295-february-5-2016-full-episode.html
+http://appliancesconnection.com/lava-heat-lhi2g66btuhblp-i350243.html
+https://audiodeti.com/
+http://xritephoto.com
+http://aprendemasingles.com/contactar
+https://itunes.apple.com/vn/app/self-help-audiobook/id1155982858?mt=8
+https://cosmicleaf.bandcamp.c"
+arduino security,Iv_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Iv_urls.txt,"http://www.newegg.com/Product/Product.aspx?Item=33-168-119&cm_mmc=SNC-YouTube-_-PV-_-IvF8p50MyNM-_-33-168-119
+http://www.instagram.com/kz_channel2/
+https://www.zee5.com/tvshows/details/devashappath/0-6-1170/
+http://bsta.rs/04dee
+https://www.patreon.com/trollingcloud
+http://www.furute.in
+http://www.dittotv.com/livetv/zee-bangla?utm_source=ZeeBangla_YT_Channel&utm_medium=YT_card&utm_campaign=YT_Card_ZeeBangla
+http://www.kayhanlondon.biz
+http://youtu.be/aoTTG767tgM
+http://naturalmedicineanddetox.co"
+arduino security,mZ_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/mZ_urls.txt,"http://divascancook.com/baked-cowboy-butter-salmon-recipe/
+http://www.law-yamashita.com/members/osamu-shibahashi
+http://brillion-club.com/partner/8885
+http://www.euroinnova.edu.es/Experto-Mobiliario-Decoracion-Interiores
+http://www.pringodingo.com/
+http://mickeyhart.net/thecollection/
+https://play.google.com/store/movies/details/Dil_Bole_Hadippa?id=ejLsgVTbw-U
+http://bayguzhin.com/moscow?utm_source=youtube&utm_medium=hints&utm_campaign=podskazka
+http://www.123juwelen.de/
+http://bit.ly/1chfusw 
+h"
+arduino security,cu_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/cu_urls.txt,"http://www.smartptmarketing.com
+http://www.binvested.com.au/services
+https://plus.google.com/u/0/111022976856065664864
+http://koko-trading.de/?utm_source=youtube&utm_medium=Videos&utm_campaign=Organische-Videoaufrufe&utm_content=2014-07-10-Organische-Videoaufrufe
+https://bibliaaudio.pl/SiNT_pen_prezent
+http://www.graphicpolicy.com/
+http://www.RevivePowerWash.com
+http://gyroroue-shop.fr/
+http://withyou.tv/
+http://www.christiansalerno.com/2017/03/mia-sebastian-theme-la-la-land-sheet.html
+http://ww"
+arduino security,PY_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/PY_urls.txt,"http://www.thebear1207.url.tw/?url=https://www.twitch.tv/pandapantus
+http://www.jameslimborg.com/boss-gt-10-patches.html
+https://www.patreon.com/randomiseuser
+http://vikent.ru/vikentyev/
+http://www.ausnaminator.com/twitter
+http://Patreon.com/TraciHines
+http://www.moderncosmic.com/
+https://www.getgreekmusic.gr/
+https://user/headlinestoday?annotation_id=annotation_1423078591&ei=BmAlXMjOD8bXgAP-3ZmADg&feature=iv&src_vid=PYGbY1yjP_I⊂_confirmation=1
+http://hopetv.cz/
+https://channel/UCYPvAwZP8pZhSMW8"
+arduino security,W1_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/W1_urls.txt,"http://www.gameofwartruth.com/
+http://www.officialtheatre.com/london-palladium/cats/?src=youtube
+http://www.andtv.com/shows/dilli-wali-thakur-gurls/video/dilli-wali-thakur-gurls-episode-144-october-15-2015-full-episode.html
+https://www.clipadvise.com/deal/view?id=Amazon-india-Watches-fossil-townsman--2018-winter
+http://brandoncarter.com/custom-meal-plan
+https://playlist?annotation_id=annotation_3752584307&ei=pkE9XJTOMcnsgAev5aewCQ&feature=iv&list=PLB83sv5noycusbBJmkJFBhomnCZTY_yQB&src_vid=W1wuex"
+arduino security,h8_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/h8_urls.txt,"http://www.adamvtriku.cz
+http://www.grancursosonline.com.br/
+http://gundamholic.com/xe/
+http://afvallendoorgezondleven.nl
+https://www.patreon.com/osmosis
+http://www.southernlord.com/releases/view/godless-prophets-and-the-migrant-flora
+https://www.pentrugatit.ro/fred?price=50-55&stock=exclude_out_of_stock_products
+https://www.frontsight.com/manuals
+http://www.capitalfm.com/events/summertime-ball/
+https://open.spotify.com/album/2ReK94ctMIKGeAqsufnQjE
+http://www.andreamurgia.com/
+http://www.daatek."
+arduino security,sq_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/sq_urls.txt,"https://play.google.com/store/apps/details?id=com.ndtv.india
+https://takelessons.com/live?utm_source=youtube&utm_medium=organic&utm_campaign=youtube_chromatik&utm_content=chromatik_videos
+http://1excel.ru
+http://www.fifagaming.de/tumilo
+http://tviplayer.iol.pt/programa/jornal-da-uma/53c6b2633004dc00624392e1?utm_campaign=youtube&utm_source=youtube&utm_medium=social&utm_content=-jornal1
+http://www.cityleaguehoops.net/MSHTVCamp
+https://plus.google.com/u/0/101826895332786789246
+http://www.usapatriot"
+arduino security,xa_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/xa_urls.txt,"https://play.google.com/store/apps/details?id=com.turner.b10runner&hl=pt_BR
+https://www.n1nja.wtf/?p=submissions
+https://www.talentsprint.com/examprep.dpl?utm_source=Organic-Youtube
+http://eduiy16.jimdo.com/
+https://plus.google.com/u/0/b/110376008562852375435/110376008562852375435
+https://www.blunt.senate.gov/public/index.cfm/in-the-news?ID=332D7E43-1C68-464B-A703-E3A5FEE3D26B
+http://www.snapbacks.cz/mitchell-ness/
+http://www.Artifexcreation.com
+http://instagram.com/disneychannel_la/
+http://www."
+arduino security,g3_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/g3_urls.txt,"http://www.regresoaitaca.com
+http://www.heartsbros.com/twitter
+http://www.cyclegear.com/gear/hotwired-12v-heated-jacket-liner-evo?utm_source=youtube.com&utm_medium=cards&utm_campaign=Hotwired_Heated_Evo_Jacket_&utm_content=0_30&utm_term=g3bWaQegMA8
+http://www.ls16geek.com
+https://PaisReal.lnk.to/bicicleta
+http://www.tecmundo.com.br/galaxy-s4/39356-5-problemas-que-os-primeiros-compradores-do-galaxy-s4-estao-encontrando.htm
+http://www.zappos.com/product/8027651/color/89
+https://www.amazon.de/gp/se"
+arduino security,gk_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/gk_urls.txt,"http://prodat-kupit.com/
+http://www.infiniteskills.com/training/java-database-programming.html?utm_source=YouTube&utm_medium=annotation_link&utm_campaign=01857_0205
+http://www.sgutv.ru/podderzhi.html
+http://www.empresadecatering.com
+http://www.scrantonculturalcenter.org/broadway
+http://www.clemenskuby.de/
+http://www.outatnight.ca
+http://www.spareka.fr/twitterspareka
+https://soundcloud.com/maxzwell
+https://www.voot.com/shows/laxmi-sadaiv-mangalam/1/565057/laxmi-to-leave-the-house/678726
+https://p"
+arduino security,S7_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/S7_urls.txt,"http://bit.ly/o128wS
+http://www.videoaktiv.de/PraxisTechnik/CAMCORDER-Hintergrundinfo/Action-Cam-Test-Rollei-Actioncam-S-50-Nitro-Circus.html
+https://academy.frocksandfrolics.com/course?courseid=how-to-sew-and-insert-pockets
+http://www.hotstar.com/#!/pancharangi-pom-pom-2046-s
+http://chukky.es
+http://www.cerdca.com/2013/07/lechenie-zhirnyh-volos-masljanaja-maska.html
+http://tveda.ru/articles/principy-lazersona-prigotovlenie-salata-cezar/
+http://recombu.com/mobile/article/nokia-8-camera-review-ha"
+arduino security,6y_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/6y_urls.txt,"http://steveaoki.com/djmagtop100
+http://rip3ooo.tumblr.com/
+http://patreon.com/grimachu
+http://www.saigontimes.us/
+http://sovetecaterinas.ru/category/sadogorod
+http://lifehack.center/top100/pandayt.html
+https://watch?annotation_id=annotation_963907985&ei=PkUtXJe9AsKE8gPuwKfQCA&feature=iv&src_vid=6yBhr5C2sKY&v=dRiSrfasbgU
+http://www.Gamezhero.com
+http://www.cifrus.ru/post.php?id=1424
+http://allo.ua/ru/products/mobile/asus-zenfone-max-zc550kl-2-16gb-lte-black.html?utm_source=youtube-in-cards&utm_m"
+arduino security,DA_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/DA_urls.txt,"http://www.ndtv.com/video/news/the-buck-stops-here/sedition-case-on-amnesty-can-we-resolve-kashmir-if-we-re-scared-of-slogans-427649?yt
+https://www.doorsteptutor.com/Exams/UGC/Geography/
+http://gotv.ctitv.com.tw/2018/10/979112.htm
+http://www.patreon.com/123toid
+http://www.iforex.com/promotions/education-package?SID=451315&dsp9=social_youtube&trigger=social
+http://o.ea.com/40798
+http://www.dittotv.com/livetv/zee-tamil
+http://www.speakenglishwithvanessa.com/free-ebook
+http://TheLarkinBeats.com
+htt"
+arduino security,tE_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/tE_urls.txt,"https://plus.google.com/108199052503118114230
+https://mesalva.com/?utm_source=Youtube&utm_medium=Card&utm_campaign=Engenharia&utm_content=tEc-aV5VALE
+https://ad.admitad.com/goto/37651f360652dff2923016525dc3e8/
+http://www.coolmuster.com/lab-fone-for-android.html
+http://eseto.pl/gry/
+https://fefi.com.ar/
+http://bit.ly/SingKinderlieder4
+https://darkbeatit.bandcamp.com/album/et-003-nightlight-ep
+http://buidungmusic.com/
+http://club-loveholic.com/sp/recruit/
+https://itunes.apple.com/us/album/are-you-"
+arduino security,tr_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/tr_urls.txt,"http://valeriegranville.spreadshirt.com/
+https://www.educator.com/mathematics/pre-calculus/selhorst-jones/?utm_source=YT&utm_medium=CARD&utm_campaign=PRECALCYT
+http://www.wachilles.ch/arena
+https://www.loolia.com/
+http://www.greektvseries.com/
+http://allammo.ru/pribory-nochnogo-videnija/monokuljary/?utm_source=youtube&utm_medium=video&utm_term=Pulsar_ChallengerGS_4.5x60&utm_content=final&utm_campaign=pnv
+http://www.hottour.com.ua/tours
+http://www.autodoc.sk/?utm_source=YouTube&utm_medium=hint&ut"
+arduino security,7O_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/7O_urls.txt,"https://auto.ria.com/car/toyota/
+https://gravitynoir.bandcamp.com/track/open-your-mind-the-future-is-ours-remix
+http://www.raiplay.it/programmi/chetempochefa
+http://www.tahitinow.com.au/packages/
+http://coloradospringssawmill.com/
+http://protocolrecordings.com/rd/ADE17
+http://www.revzilla.com/motorcycle/arai-rx-q-uk-flag-helmet-2013?utm_source=youtube.com&utm_medium=annotation&utm_campaign=Arai_RX_Q_UK_Flag_Helmet_Review_at_RevZilla_com&utm_content=1_44
+http://www.fox.com.tr/Sevkat-Yerimdar/ekst"
+arduino security,FX_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/FX_urls.txt,"https://auto.ndtv.com/news/three-new-2018-harley-davidson-softail-models-to-be-launched-1814969
+http://www.bhphotovideo.com/c/product/1385362-REG/zoom_zf1sp_f1_field_recorder_with.html
+http://www.1564studios.com/
+https://www.certtree.com/200-125.html
+http://svlavra.church.ua/2008_06_08-nedelya-svyatyx-otcov-i-vsel-sobora-episkop-arsenij/
+http://www.teachucomp.com/free
+http://www.educatina.com/aulaya
+http://www.macmillan.org.uk/information-and-support/index.html
+https://soundcloud.com/rocklover-l"
+arduino security,e__urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/e__urls.txt,"http://www.cartoonnetworkla.com/cnanything
+http://dernephias.bplaced.net/wordpress/Twitch
+https://Shoreline.lnk.to/OTXmas
+http://www.cnn.gr/
+http://mpaulamoraes.blogspot.com.br/
+http://patreon.com/omar1up
+http://www.nthefastlane.com/
+http://www.togetaboyfriend.com/tips-to-succeed-in-an-online-dating-site/
+http://www.keengamer.com/article/12685_eventide-slavic-fable-review
+http://drpaulose.com/faq
+http://www.1aauto.com/1A/TailLights/Toyota/Tacoma/1ALTP00118?utm_source=YouTube&utm_medium=card&utm_"
+arduino security,MS_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/MS_urls.txt,"https://www.warnerarchive.com/watch/555?ap=1&utm_campaign=youtube_WA&utm_source=youtube&utm_medium=annotations&utm_term=fifthave
+http://motor.sale-50.biz
+http://www.labtv.com/Home#/
+http://www.lojajulianabaltar.com.br/
+http://www.delkorsystems.com/
+http://deepakshukla.com/cold-email-agency
+http://www.rappler.com/world/regions/africa/117368-boko-haram-northeastern-nigeria-attacks
+http://shop.spreadshirt.com/vivaladesign/
+http://www.zeetv.com/shows/bandhan/video/bandhan-saari-umar-humein-sang-rehn"
+arduino security,ra_cfg.txt,https://raw.githubusercontent.com/edgeimpulse/example-standalone-inferencing-renesas-ekra8d1-pack/main/ra_cfg.txt,"FSP Configuration
+  Board ""EK-RA8D1""
+  R7FA8D1BHECBD
+    part_number: R7FA8D1BHECBD
+    rom_size_bytes: 2064384
+    ram_size_bytes: 917504
+    data_flash_size_bytes: 12288
+    package_style: BGA
+    package_pins: 224
+    
+  RA8D1
+    series: 8
+    
+  RA8D1 Family
+    Enable inline BSP IRQ functions: Enabled
+    Security: Exceptions: Exception Response: Non-Maskable Interrupt
+    Security: Exceptions: BusFault, HardFault, and NMI Target: Secure State
+    Security: System Reset Request Accessibili"
+arduino security,u-_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/u-_urls.txt,"http://leonie-thoene.com/mr-right-webinar/
+https://www.facebook.com/trials.official
+http://cursoeletricaecia.com.br/curso-de-energia-solar-fotovoltaica-2-2/
+http://www.mumiam.me
+http://www.mituoperations.com/casalinda
+http://schien.de/cala-ratjada/
+http://www.fifagaming.de/mmoga
+http://pitadasdosal.com/
+http://www.doopaadoo.com/share/ta/kaatru-veliyidai-kannamma/video
+http://www.tesn.us/
+http://westvalley.edu/health-services
+http://on.magnolianetz.de/instagram
+http://mdtchurch.com/give/
+http://w"
+arduino security,2f_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/2f_urls.txt,"https://play.google.com/store/music/artist/The_Kira_Justice?id=Abc6xinlflwxsqaummry6w2op6y&hl=pt_BR
+http://www.ragimoff.org/#!success/cw0s
+https://www.bijlibachao.com
+https://itunes.apple.com/ro/album/independent/id601331885?uo=4
+https://plus.google.com/u/0/b/106550244564035045862/106550244564035045862
+http://leydeatraccionyabundancia.com/
+http://lp.empiricus.com.br/startups/?xpromo=XE-MEL-YT-ACE-X-20170602-OP-X-X
+http://akkuplus.de/Akkureparatur-Zellentausch-BTI-BOSCH-36-VLI-36-Volt-Li-Ion-Akku"
+arduino security,u1_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/u1_urls.txt,"https://www.patreon.com/TheTownCrier
+http://www.radiointense.com/redirect.php?url=http://facebook.com/radiointense
+https://play.google.com/store/apps/details?id=com.heymath.nscexamprep.maths&hl=en
+http://www.1aauto.com/1A/TailLights/Honda/Civic/1ALTP00181?utm_source=YouTube&utm_medium=card&utm_campaign=overlaycardcta3
+https://itunes.apple.com/album/we-will-stand-live/id1037173327
+http://www.e-keramidaris.gr/%CF%88%CE%AC%CF%81%CE%B5%CE%BC%CE%B1/%CF%84%CE%B5%CF%87%CE%BD%CE%B7%CF%84%CE%B1-%CE%B4%CE"
+arduino security,A__urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/A__urls.txt,"https://www.patreon.com/TRUreporting
+http://www.fastereft.com/course/transform-your-life/
+http://ytb.li/GoonMuSick
+http://nintendolatino.com
+http://www.gametrailers.com/videos/0oiqyk/pop-facts-resident-evil-2--hidden-photo
+http://www.craftsy.com/quilting/kits/four-square-quilt-kit/503097?cr_linkid=YT_MQS_20171122_4Square_Card_ecom_kit&cr_maid=107377&cr_source=youtube&cr_medium=social%20engagement
+http://www.chhiwatbouchra.com/
+http://www.aquascapeinc.com/find-certified-aquascape-contractors
+http"
+arduino security,Ne_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Ne_urls.txt,"http://www.zappos.com/stride-rite-sm-tonia-infant-toddler-pink?utm_medium=em_plat&utm_source=youtube&utm_campaign=ep_youtube
+http://enm.link/2clO3kn
+http://theslackersmethod.com/
+http://www.burton.com/us/en/c/snowboards?utm_source=youtube&utm_medium=social&utm_campaign=w18&utm_content=paid_builtonboards_mark_longform
+http://www.omusic.com.tw/albumpage.php?album_id=1220467
+http://www.mobilereviews-eh.ca/top-iphone-6-case-comparisons/
+http://www.pbs.org/newshour/bb/can-u-s-mobilize-regional-allies"
+arduino security,fT_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/fT_urls.txt,"https://plus.google.com/u/0/105074039294029328273
+https://www.patreon.com/grimachu
+http://allegro.pl/listing/user/listing.php?us_id=41456175ℴ=m&string=patelnia&search_scope=userItems-41456175&bmatch=base-relevance-hou-1-1-0510&utm_source=youtube&utm_medium=kuchnia&utm_campaign=patelnia&utm_content=spaghetti_al_pomodoro_na_szybko
+https://plus.google.com/u/0/b/112365972124418215454/112365972124418215454
+http://cosmomusic.ca
+http://diloeninglesonline.com/pronunciacion/sonido-e-larga-i-sonido-i-cort"
+arduino security,AY_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/AY_urls.txt,"https://watch?annotation_id=annotation_2540224827&ei=7ZomXKHOL8fWgAfVipfIAg&feature=iv&list=PLWrtio8ai_EEyCcDfFTuMjDwg6UXqz-r0&src_vid=AY7y4p2U7iA&v=czLGvJ7HyTU
+http://fx-ta.com/
+http://kpopscans.blogspot.be/2017/02/astro-makestar-first-photobook-project_13.html
+http://mitino2.com/index.php/topic/627-polyot-nad-strojkoj-06052016/
+http://pavorit.livejournal.com
+http://www.diagnostic-world.com/pages/Autel_JP701_SRS_Airbag_ABS_Engine_Transmission_Diagnostic_Kit_1994_to_2008_models__189121-z=563708&"
+arduino security,Yh_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Yh_urls.txt,"https://www.thewatchbox.com/watches/panerai/
+http://www.homiebeats.com
+http://www.bjultrasonic.com/category/ultrasonic-cleaning-system/ultrasonic-immersible-transducer/
+http://www.antenaplay.ro/tcdu/
+http://www.teachucomp.com/free
+http://exam-achievement.jp/lp/magazine_new/
+http://www.heelphakdi.de/blog/
+http://po.st/AbonnementPSFrance
+http://lp.kabacademy.com/osnovykabbaly/?utm_source=youtube-card-4&utm_medium=banner-landscape&utm_campaign=youtubegeneral
+http://www.autodoc.sk/?utm_source=YouTub"
+arduino security,Cq_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Cq_urls.txt,"https://itunes.apple.com/in/album/sarasvathi/id545912098
+http://www.swimoutlet.com/ProductDetails.asp?ProductCode=7538680&Click=2759796
+http://www.zappos.com/elephantito-nantucket-sandal-toddler-turquoise?utm_medium=em_plat&utm_source=youtube&utm_campaign=ep_youtube
+http://offcamera.com/facebook-2/
+http://nemagia.net/r/DEXPIxion
+http://www.kabbalah.info/lp/spiritual2/?utm_source=youtube-card-5&utm_medium=banner-landscape&utm_campaign=krgeneral
+http://GreeneMath.com
+http://www.rvfourseasons.com/r"
+arduino security,ce_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/ce_urls.txt,"https://itunes.apple.com/album/id1068563984&app=itunes&ls=1
+https://plus.google.com/102798749542393580017
+https://www.patreon.com/dylandubeau
+https://www.patreon.com/fourthwallgames
+http://phongtre.com/tu-ao-4-canh-danh-cho-teens-girl-i-love-my-life-san-pham
+http://eluxurysupply.com/products/extra-plush-mattress-pad-topper-with-fitted-skirt-found-in-marriott-hotels?utm_source=YouTube&utm_medium=sm&utm_campaign=yt_note
+https://bit.ly/SuicideSheepSpotify
+http://regenere.org/ups/Transition_Alimenta"
+arduino security,k-_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/k-_urls.txt,"http://www.criticalpast.com
+https://itunes.apple.com/jp/app/360du-dong-hua-zai-shengapurichameleon360/id984394729?mt=8
+https://www.patreon.com/The1_900Operator?ty=h
+http://www.isandisnt.com
+http://stopgame.ru/game/rainbow_six_siege
+http://www.conventionofstates.com/store
+http://ekbit.ru/
+https://itunes.apple.com/es/album/aire-ep/id1199404345
+http://www.sberbank.ru/ru/person/promo/bank_cards/visa_classic
+https://www.patreon.com/de4dcert
+https://plus.google.com/u/0/b/100698701668414969961/10069870"
+arduino security,3-_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/3-_urls.txt,"http://overloadr.com.br/videos/2015/02/shuffle-bread/
+https://plus.google.com/u/0/b/112927304373403763289/stream
+http://freebasstranscriptions.com/janek-gwizdala-masterclass-2007-part-1-transcription/
+http://www.tabobat.ru/
+https://itunes.apple.com/us/album/vitamin-string-quartet-performs/id399303112
+http://willyviajera.blogspot.com
+http://itunes.apple.com/album/id1343517221?ls=1&app=itunes
+http://www.sejour-berlin.de/newsletter
+https://som.lnk.to/YouTube
+http://youhumour-blog.com/instagram.html"
+arduino security,p8_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/p8_urls.txt,"http://www.gkfx.de/landing/die-maerkte-schlafen-nie?utm_source=youtube&utm_medium=social_media&utm_campaign=branding&utm_content=branding
+https://www.museum.or.jp/modules/topics/index.php?action=view&id=1120
+http://www.zappos.com/kendall-kylie-clarence-wallet-red-plum?utm_medium=em_plat&utm_source=youtube&utm_campaign=ep_youtube
+http://badsgahhl.de/dl/f/Bum_Bum_Bam.mp3
+http://tanaka-hirotaka.com/
+http://www.cejabarra.org/home/ix-congresso-ceja-barra/
+http://marfish.pl/dotacje
+http://gundamholic."
+arduino security,AK_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/AK_urls.txt,"http://astral.do.am/index/0-122
+http://tales-ch.jp/?utm_source=youtube&utm_medium=card&utm_campaign=card
+https://www.e-kurs.net/online/ales
+http://www.tradesmartu.com/youtube/index.php
+https://pro.beatport.com/release/la-hora-azul-ep/1510492
+https://plus.google.com/u/0/b/105481414705148559048/105481414705148559048
+https://soundcloud.com/hashtag-lol-620143017
+http://www.foblearningcenter.com/
+http://therapidaudio.com
+http://howtech.tv/isecrets-magazine/
+http://www.thewoodwhispererguild.com/produc"
+arduino security,r1_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/r1_urls.txt,"https://www.marwadiuniversity.ac.in/admissions-2018-masters/?sLeadSource=19
+http://patreon.com/snomangaming
+http://www.factmag.com/
+http://psychics.co.uk/shop/
+http://www.pbs.org/parents/crafts-for-kids/
+http://www.makhonkit.com/
+http://www.bbqguys.com/item_name_Solaire-Stainless-Steel-BBQ-Tray-For-27-Inch-Model-27G-Basic-Gas-Grills-S_item_1548991.html?utm_source=youtube&utm_medium=video-demo&utm_term=video-view-item&utm_content=video-card&utm_campaign=video-brand-solaire
+http://pronovostroy.ru/"
+arduino security,F1_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/F1_urls.txt,"http://www.padreoscar.org/
+http://www.dittotv.com/livetv/zee-kannada
+https://www.lezhin.com/ko/comic/dearboy/p1?utm_source=youtube&utm_medium=video&utm_campaign=mkt_dearboy-cta&utm_content=58s_201710
+http://www.tutorvista.com/content/physics/physics-iv/electric-charges/electric-field-lines.php
+http://www.monvalleyfarms.com/
+https://play.google.com/store/apps/details?id=com.telemundo.awe&hl=en
+http://drdainheer.com/
+http://wow.mmozone.de/
+https://plus.google.com/u/0/b/117486178183944388989/117486"
+arduino security,z-_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/z-_urls.txt,"http://www.cforu.net/
+https://itunes.apple.com/us/tv-season/new-girl-season-2/id550722024?uo=4&at=11lcif&ct=NewGirlSea%7Eytretargetingus
+http://www.skis.com/Stockli-Stormrider-95-Skis/478002P,default,pd.html
+http://azhiaziam.com/
+https://www.aeres.nl/hogeschool/opleidingen/ah_dier-%20%20en%20veehouderij%20-%20voltijd
+http://www.nba.com/global/youtube-nbastore
+https://www.talkingbass.net/simple-steps-slap-bass/
+https://millsmotion.com/
+http://www.lenamurois.be/site/compte-dadherent/choix-dadhesio"
+arduino security,kN_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/kN_urls.txt,"http://crafticursosonline.com/infofloresdejabon.html
+https://itunes.apple.com/in/app/sonyliv-for-ipad-live-cricket-tv-movies/id587796359?mt=8
+http://www.fragrancex.com/products/_cid_perfume-am-lid_r-am-pid_65781w__products.html
+http://clck.ru/ArCyP
+https://slap.lnk.to/Brasileiro
+http://www.jorgeortizphotography.com
+http://advaitac.com/mini-kurs.html
+http://www.leisureleagues.net/youtube
+http://www.bankmodify.com/weddingband
+http://www.erfolgsonline.de/niemals-aufgeben-power-info-paket.php?afrid="
+arduino security,tU_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/tU_urls.txt,"http://www.americanmuscle.com/8fiblan.html?utm_source=YouTube&utm_medium=Call%2BTo%2BAction&utm_campaign=day%2B7%2Bof%2Bgiftmas
+https://www.facebook.com/thenightlyshow
+https://itunes.apple.com/in/album/ra-ra...-krishnayya-original/id884007932
+http://www.ozee.com/shows/yaara-nee-mohini/video/yaare-nee-mohini-episode-32-october-31-2017-full-episode.html?utm_source=BestScene_Zee_Kannada_yaara-nee-mohini_YT_Card&utm_medium=referral&utm_campaign=YT_Zee_Kannada
+http://www
+https://everydamndayfitness.n"
+arduino security,13_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/13_urls.txt,"http://wiquiltexpo.com
+http://www.galileo.tv/food/
+http://www.dimontegroup.com
+http://www.miniminiplus.pl/
+http://www.abudhabitv.ae/
+http://www.cbc.ca/sports/olympics/rio2016
+http://www.ft.com/content/28787548-8c82-11e6-8cb7-e7ada1d123b1?ftcamp=traffic/social_promo/YouTube/Diagonal_View/auddev&utm_source=YouTube&utm_medium=social_promo&utm_campaign=Diagonal_View
+http://toushin-shisan.net/2015/02/post-1350.html
+https://www.atlasreactorgame.com/en/sign-up/?affiliateId=8
+https://play.google.com/sto"
+arduino security,d8_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/d8_urls.txt,"http://autoimagenvlog.blogspot.com/
+http://dr-shaal.com/
+https://www.facebook.com/DestinyTheGame
+http://amzn.to/2Ox7dX0
+https://al3omk.com/youtube
+http://www.espares.co.uk/browse/at1088/tumble-dryers
+https://play.google.com/store/apps/details?id=astrology.appwox.com.astrology
+http://www.youtalk.es/libros-de-ingles/
+https://itunes.apple.com/app/babytv-mobile/id418900349?mt=8&ls=1
+http://www.agf.dk/billetter
+http://inoeita.com/
+http://www.patreon.com/caraudiofabrication
+http://www.stormshieldapp.c"
+arduino security,cb_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/cb_urls.txt,"http://www.KungFuMaintenance.com
+http://theberrics.com/canteen/brands/deathwish
+http://www.madeinnetwork.com/r/find-the-beauty-facebook
+http://sportimpittasr.blogspot.com/
+http://1.topnata.ru/
+https://www.patreon.com/michaelfk
+http://apps.facebook.com/thefragcup
+https://www.yujikudo.com/project/wildbird/
+http://www.slimfitprogram.com/fr/recevez-gratuitement-ebook-7-jours-gratuits.html?utm_source=YTetirementspourcontre7jours&utm_medium=YTetirementspourcontre7jours&utm_term=YTetirementspourcontre7"
+arduino security,S5_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/S5_urls.txt,"https://gumroad.com/l/vFujc
+http://www.tailgating-challenge.com/personalized-cart-review
+http://www.dgrworks.com
+http://domik-mo.ru/videosearch?param=2_51,60_141,180_2,4_1800,2600
+http://visnomadic.com/twitter.html
+https://play.google.com/store/music/album/DeeWillOfficial_The_Headnottaz?id=Beiozfhd2zsrabkcrcsfnlc76ae
+http://www.lccnet.tv
+http://www.1aauto.com/1A/IgnitionCoil/GMC/Savana-2500-Van/1AERK00070?utm_source=YouTube&utm_medium=card&utm_campaign=overlaycardcta2
+https://www.redbubble.com/p"
+arduino security,D6_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/D6_urls.txt,"http://www.dougspencervideo.com
+http://barbellbrigade.com/en/fleece/35-bulletproof-hoodie-red.html
+https://soundcloud.com/kath-81/al-final
+http://semena-partner.ru/
+http://www.lucaspiubelli.com/maile
+http://www.ochencentarmishevi.com/
+https://www.ff-fotoschule.de/reiseziele/lanzarote
+http://www.flutegirl.ca/
+https://www.facebook.com/malaventuramovie
+https://laitik.ru/krovati-mashinyi/krovat-mashina-feya/?utm_source=youtube&utm_medium=annotac
+http://www.zildjian.com/archive/socialgo3.html
+http://"
+arduino security,KE_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/KE_urls.txt,"http://www.juegosdemesafrikis.com/carcassonne-la-princesa-y-el-dragon-c2x19470088
+http://www.paulstravelpictures.com/2003-2008-Honda-Pilot-License-Plate-Light-Bulbs-Replacement-Guide/index.html
+https://itunes.apple.com/mr/app/aghany-sh-byat/id1058366348?mt=8
+http://www.mentalfox.com/twitter
+http://soziale-berufe.com/ausbildungsstaetten-navigator/?category=#content
+http://www.mylifetime.com/watch-full-episodes-online
+https://streamlabs.com/andrewrblevins
+http://www.zweikampfsofa.de/
+http://ibnliv"
+arduino security,mh_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/mh_urls.txt,"http://vevo.ly/65GlEh
+http://www.levi-eshkol.org.il
+http://www.Hlucinsko.TV
+http://lauriesarahdesigns.com/facebook
+http://kenshin9977.olympe.in/Twitter.php
+http://www.rvtravelquest.com
+http://www.repairclinic.com/PartDetail/Spark-Plug/692051/1643414?TLSID=1877
+http://comfy.ua/holodil-nik-samsung-rl55tte1l1-bwt.html?utm_source=youtube&utm_medium=freevideo&utm_content=holodil-nik-samsung-rl55tte1l1-bwt&utm_campaign=videodemonstracija
+http://caribouforests.blogspot.com/
+http://www.iltradingpertutti"
+arduino security,3y_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/3y_urls.txt,"https://itunes.apple.com/us/app/yu-gi-oh-duel-links/id1068378177?mt=8
+https://shop.ballislife.com/collections/winter-collection
+http://www.gboah.com
+http://open.spotify.com/track/55w0Z1ESJ0zCCMZ2lF02fS?si=24BohLsJSz60D200Mr3LRw
+http://www.rnib.org.uk/dots-raise-lots
+https://itunes.apple.com/es/album/oriental-billie-holiday-feat./id669684617
+http://www.nationalpowersports.net/CYCLECHEX/20160721160047_1HD1KEM13DB663067.pdf
+https://itunes.apple.com/us/album/underdog-feat.-copper-king/id1156258442
+h"
+arduino security,Pf_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Pf_urls.txt,"https://itunes.apple.com/us/album/the-best-of-2014/id948872674
+http://tramefilmcinema.altervista.org/
+http://www.skynewsarabia.com/web/video
+https://getphysicalmusic.lnk.to/GPMCD180
+https://videocall6.blogspot.com/2018/07/imo-video-call-recording-my-phone-hd_59.html
+http://www.decorezerva.gr/eshop/index.php/decorative-elements/polyester.html
+http://www.nafham.com/live/?ref=y
+https://blackstonelabs.com/collections/all-supplements/products/dust-v2
+http://brass.winds-score.com/?pid=34328510
+https:/"
+arduino security,PZ_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/PZ_urls.txt,"http://www.smartbuyglasses.com/designer-sunglasses/Police/Police-S8299-583B-93355.html?sd=1?utm_source=youtube&utm_medium=social&utm_campaign=YT+reviews+Police-S8299-583B
+http://www.vivresanspeur.org/peur-en-avion
+https://UMA.lnk.to/lctEHID
+http://www.ultimate4wdequipment.com.au/contact.html
+http://mkshow.ru/
+https://www.closertotruth.com/contributor/christof-koch/profile?utm_source=youtube&utm_campaign=Contributor-Card&utm_medium=social&utm_content=YT-Cards
+https://gumroad.com/l/vFujc
+https://i"
+arduino security,iM_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/iM_urls.txt,"http://www.themangonews.com/
+http://www.zeemarathi.com/shows/nanda-saukhya-bhare
+http://www.fox.com.tr/Memet-Ozer-ile-Mutfakta/ekstra-video/8767/Kutuk-Pasta
+https://saimanblog.ru/
+http://www.arnoldclark.com/voucher/?utm_medium=video?utm_source=youtube?utm_campaign=car-video-reviews
+http://www.skl.ru/catalog/JCB/
+http://pc.ign.com/articles/118/1188515p1.html?_cmpid=ign1392
+http://www.rajneeshpranapati.net/rok-s-tarotem/
+http://www.ford.com/trucks/super-duty/2017/
+http://www.telespot.xyz/
+http://w"
+arduino security,8g_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/8g_urls.txt,"http://www.220-volt.ru/catalog-81637/?ref=yb&utm_source=youtube&utm_medium=social&utm_content=iprompt&utm_campaign=81637
+https://itunes.apple.com/us/artist/mattyb/id386927257
+http://www.philips.ru/c-p/FC7088_01/
+http://www.vmware.com/solutions/iot.html?src=so_598dfa714a3e3&cid=70134000001CaER
+https://play.google.com/store/music/album/Windfall_Infector?id=Bkgiwyitelzq7vw6yhuplk5qrnu
+http://elixir.anyluck.ru
+http://ibnlive.in.com/news/muzaffarnagar-relief-camps-30-children-dead-up-government-in-de"
+arduino security,ZH_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/ZH_urls.txt,"http://oreilly.com
+http://www.newpower99.com/TomTom_Via_1500_Battery_Replacement_Kit_p/tomtom%20via%201500.htm
+https://www.patreon.com/chinanonstop
+http://www.gunhildcarling.net
+https://itunes.apple.com/tr/album/g%C3%B6ky%C3%BCz%C3%BC-masmavi/1229673920?l=tr
+http://royalflushseduction.com
+http://www.chinco.ru/lcm.html#ZB-09
+http://www.dostor.org/
+http://bit.ly/Adwords_Para_Afiliados
+http://www.bodybuilding.com/fun/transformation-challenge.html?mcid=youtubeannotation
+http://www.thecreativepenn.co"
+arduino security,HA_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/HA_urls.txt,"https://itunes.apple.com/us/album/two-live/id1109736258
+http://www.noch.de/
+http://kentheckel.com/facebook
+http://banphimlaptopviet.vn/man-hinh-laptop-lenovo-g460
+http://www.sportsbookreview.com/Sportsbook/?v=3608&book=NBA_Odds_YTC
+http://www.haydensummerall.com
+http://2k.fty.li/buy
+https://www.etsy.com/shop/DoubleDoseDesigns
+http://keep-a-breast.org
+http://coolb.lu/benro-kh25
+http://www.patrickarundell.com/free-tarot-readings&rel=0
+http://www.themangonews.com
+https://play.google.com/store/apps/"
+arduino security,Ys_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Ys_urls.txt,"https://www.zee5.com/myaccount/subscription?utm_source=Other_Zee_TV_&utm_medium=YT_Card&utm_campaign=YT_Zee_TV
+http://FaucetDirect.com/?source=youtube
+https://www.patreon.com/nuoviso
+http://www.oprah.com/own-own/Bold-Moves_2
+http://truefire.com/c899
+http://www.fxempire.com/technical/technical-analysis-reports
+https://plus.google.com/u/0/b/104211407962801225644/104211407962801225644
+http://www.flixlatinogo.com/
+http://www.itmtrading.com/
+http://www.multiradiance.com/?utm_source=youtube&utm_medium"
+arduino security,_7_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/_7_urls.txt,"http://hplus.com.vn/
+http://pakdenono.com/pesan_dvd_ahmed_deedat_zakir_naik.htm
+http://www.carid.com/auto-parts.html
+http://www.wwe.com/article/100-best-matches?utm_source=YouTube&utm_campaign=100best&utm_medium=card
+http://enragedcinema.spreadshirt.com/
+http://smartdrugsmarts.com/get-started/
+http://www.smythstoys.com/uk/en-gb/search/?text=Despicable+Me+3+Mini-Music+
+http://cashforjunkautosnj.com/
+http://www.vct6.jimdo.com/epicbrotanksgame
+https://itunes.apple.com/us/album/ahl-el-hawa-remastere"
+arduino security,Nh_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Nh_urls.txt,"http://www.swimoutlet.com/ProductDetails.asp?ProductCode=8135985&Click=2759796
+http://logan.infotv.in.ua
+http://www.patreon.com/areyougamingpage
+http://www.clubedodesign.com
+http://www.mbnow.in/property
+http://projectroom.banquepopulaire.fr/ 
+http://www.juicygamereviews.com/
+http://www.radiointense.com/redirect.php?url=http://facebook.com/radiointense
+http://www.craftbeernation.org
+https://www.showhow2.com/register
+https://uritim.bid/watch/india-story-1415.html
+https://itunes.apple.com/ae/album/"

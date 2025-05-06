@@ -1,0 +1,2521 @@
+source,texte
+arduino logs,Best Method for High-Speed ADC Data Acquisition in Arduino (Fast Logging & Serial Data Integrity Check)
+arduino logs,"Hi everyone,"
+arduino logs,I’m currently working on afast data logging systemusing thebuilt-in ADC of Arduino. One of my main concerns isensuring that no data is lostduring high-speed serial communication between Arduino and a PC.
+arduino logs,"To test this, I’m sending1000 ADC readingsfrom Arduino and reading them usingPython (PySerial). This should help verify whether the serial communication can keep up without dropping data."
+arduino logs,Arduino Code (Sending 1000 ADC Readings via Serial)
+arduino logs,"#define NUM_SAMPLES 1000
+
+void setup() {
+    Serial.begin(115200); // High-speed baud rate
+    while (!Serial);
+}
+
+void loop() {
+    for (int i = 0; i < NUM_SAMPLES; i++) {
+        int adcValue = analogRead(A0);
+        Serial.println(adcValue);
+    }
+    while(1); // Stop after sending 1000 data points
+}"
+arduino logs,Python Code (Reading Data from Arduino Using PySerial)
+arduino logs,"import serial
+
+# Open serial connection (adjust port name as needed)
+ser = serial.Serial('COM3', 115200, timeout=1) 
+
+received_data = []
+num_samples = 1000
+
+for _ in range(num_samples):
+    line = ser.readline().strip()  # Read and remove trailing spaces/newlines
+    if line:
+        try:
+            received_data.append(int(line))  # Convert string to integer
+        except ValueError:
+            print(""Invalid data received:"", line)
+
+ser.close()
+
+# Check if all 1000 samples were received
+print(f""Received {len(received_data)} out of {num_samples} samples."")
+
+if len(received_data) == num_samples:
+    print(""No data loss detected!"")
+else:
+    print(f""Data loss detected: {num_samples - len(received_data)} samples missing."")"
+arduino logs,Discussion PointsI’d like to discuss themost effective methodsfor achieving high-speed ADC data acquisition while maintainingdata integrity. Some key aspects I’m considering:
+arduino logs,"If anyone has experience withfast real-time data loggingon Arduino, I’d love to hear your thoughts! Have you encounteredserial data loss at high speeds? What strategies did you use to overcome it?"
+arduino logs,Looking forward to your insights!
+arduino logs,You have you not mentioned error detection and correction and acknowledgement of messages to detect missing data?  Those are all things that are usually used to ensure data integrity.
+arduino logs,Have you encounteredserial data loss at high speeds?
+arduino logs,"""Here at Akers & Son law firm, we get cases like this every month"""
+arduino logs,"Looking forward to hear the real intention,@learningcenter50"
+arduino logs,assuming the UNO ADC can convert 1000 samples/second then transmitting binary data at a high serial baud project should be possibleyou would need to transmit data frames with error checking etchave a look atSerialTransfer librarythe UNO ADC is 10bits - you could send a sample in two bytes or do some compressionyou need to experiment!
+arduino logs,I’m currently working on afast data logging systemusing thebuilt-in ADC of Arduino.
+arduino logs,"This is somewhat open-ended and difficult to answer. It depends on what you mean by ""fast"", i.e. we need a number. Also ""an Arduino"" is too generic, which board?"
+arduino logs,"However, in general to get ""fast"" and reliable you need"
+arduino logs,"Usually, when people try to roll their own protocol it's either has fatal flaws or ends up re-inventing TCP. It is usually better to adapt an existing protocol."
+arduino logs,// High-speed baud rate
+arduino logs,"115200 is not really a high-speed baud rate... I recently worked on a product which used a 1 Mega-bit rate, but that is only ""high"" for a serial connection. Gigabit ethernet is now fairly common."
+arduino logs,high-speed
+arduino logs,What is high speed?1kbits 100kbits 100Mbits?
+arduino logs,Gigabit ethernet is now fairly common.
+arduino logs,the termhigh speeddoes depends on contextsome time ago worked on a project reading two ADCs each at 5Msamples/second transmitting results over Ethernet to a PC to be processed by Matlabthe dev boards which were  based on Texas DSPs cost over £2K each plus another £2K for the ADC daughter board
+arduino logs,"You're not going to run out of memory: the max serial buffer on a PC is huge. Not as massive as the network buffering, but big enough that it shouldn't be an issue."
+arduino logs,"Unless you are trying to transfer this data many hundreds of feet, data corruption is unlikely."
+arduino logs,"If you run out of serial transfer speed, then I'd think about using an arduino that supports USB HID natively. That should be much faster, IIRC."
+arduino logs,I would like to upvote this post multiple times
+arduino logs,Related topics
+arduino logs,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs1,Faster Data logging with Arduino Giga — using USB or a Micro SD or there’s a better way?
+arduino logs1,"Hi, I just received Giga board for my project and need support with the following query:What is the faster method for logging sensor data—using USB or a Micro SD card via SPI or there’s a better way?The project involves reading sensor data over I2C and capturing data from 8 ADC Pins."
+arduino logs1,What is the faster method for logging sensor data—using USB or a Micro SD card via SPI or there’s a better way?
+arduino logs1,"How much data and how often does it need to be recorded?  ALL SD card functions are blocking until completed, so does that have an effect on your project?If consistent timing for recording is important, send the data to a program on your PC to do the logging.If integrity of the recording is important, then develop a message checking protocol for data sent to the PC."
+arduino logs1,Related topics
+arduino logs1,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs2,Arduino through airport security
+arduino logs2,"Hello everyone. In a few weeks, I am planning to take an international flight to Canada from Europe, and I would like to bring my arduinos with me."
+arduino logs2,"I would like to bring a project (wireless weather station) that uses NRF24l01 radio modules to transmit the sensors' data, well, without wires. Also, I would like to take other types of hardware (boards, leds, resistors, sensors, motors, etc) and tools (screwdrivers, soldering irons...)."
+arduino logs2,"I have fears that the X-Ray damages the Arduinos and the sensors, since after all it is radiation, albeit in low quantities. And, more importantly, I fear that airport security might think that I carry a bomb or something similar."
+arduino logs2,"I do carry checked bagagge, so most of the hardware and tools would go there. However, the weather station is kind of different. Many posts on the internet suggest to put the electronics on the checked lugagge, but they also recommend not to carry anything that resembeled an antenna."
+arduino logs2,"This is a problem for me, since I will carry two 10 cm antenna. My idea was to put them on the hand luggage, because if my checked suitcase is retained without me able to explain, I would lose the project. If I put them on my handbag, I will get stopped, but I would be able to explain the officers what I do carry."
+arduino logs2,Anyone would be kind to give me some advice? Thanks to everyone.
+arduino logs2,"I have had no problems with electronics in my carry on. I even went early in case I had to explain/demo the items. I didn't have any external antennas, just the on board squiggle types. Even the bright red SparkFun board wasn't interesting to them. Your experience may vary."
+arduino logs2,I have fears that the X-Ray damages the Arduinos and the sensors
+arduino logs2,Nah. No.
+arduino logs2,"But if your prototype looks like a bomb, well...Pack a granola bar for your time in the special queue..."
+arduino logs2,Hello there!
+arduino logs2,"I read your post about your trip. It took some fears away. However, one of the replies said to avoid antenna looking things. And I'm carrying the same antennas you can find on Wi-Fi routers. Hence my worry."
+arduino logs2,Take the antennas off?
+arduino logs2,"I have taken a fully working copy of a satellite that was orbiting the Earth through airport security, no problems."
+arduino logs2,I did check beforehand as to what was allowed or had to be declared in backage and there was nothing about satellites.
+arduino logs2,Why do you need it in flight?
+arduino logs2,real working earth orbiting satellite
+arduino logs2,!!!Wow!How big?
+arduino logs2,Ask them to inspect it manually and not Xray it.
+arduino logs2,Hello.
+arduino logs2,Thanks for the reply. I was worried about radiation (although I am sometimes kind of paranoic with those subjects).
+arduino logs2,"About the bomb thing, my project doesn't look like a bombper se, but cables and an lcd screen don't usually look good on a security check."
+arduino logs2,One friend of mine once got stopped because police confused his power bank wrapped with  a phone charger wire with a bomb.
+arduino logs2,So who knows
+arduino logs2,Look at my Avatar. Coke can with working satellite.
+arduino logs2,"It was circa 206g, and the lightest, cheapest satellite with two way comms at the time."
+arduino logs2,"I don't need it In flight, but I do need to carry it to my destination"
+arduino logs2,Why? Is your baggage not going to the same place?
+arduino logs2,Maybe I take the antennas off and put them on the checekd bag. I think that will avoid confusion
+arduino logs2,"Nah, it looks more like a bomb with no antennas."
+arduino logs2,"Sorry for the missunderstanding. I want it to fly with me to Canada. Not exactly by my side, but yes in any of my bags (I don't care if it is checked lugagge, handbag or in cabin)"
+arduino logs2,"Welcome to Canada! Weather is killer now, though..."
+arduino logs2,Thanks! The climate was a motivation in doing this project (test the weather station on a rough climate sounds appealing).
+arduino logs2,"About the security, I think I'll just explain what the project is when I arrive there, to avoid confusion.Thanks for the replies!"
+arduino logs2,Just assure them it won't affect the autopilot.image1920×1080 108 KB
+arduino logs2,"Hahaha, thanks for the advice!"
+arduino logs2,Related topics
+arduino logs2,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs3,How to check the update log of Arduino board library?
+arduino logs3,"Hello everyone, I recently purchased a UNO R4 minima board and made some adaptations to my previous projects based on the R3 board."
+arduino logs3,"Today when I opened the Arduino IDE, it prompted me that there are available updates for the Uno R4 library. May I ask how can I view the update content of the library? Is there any place where I can check the change log? Clicking ""more info"" in Board Manager only redirects me tohttp://www.arduino.cc/. Are these libraries open source? Can I see their change log?"
+arduino logs3,Inspecting the update log of the board library can assist me in determining whether the issue I previously encountered was caused by a preexisting bug in the library.
+arduino logs3,GitHub - arduino/ArduinoCore-renesas
+arduino logs3,Contribute to arduino/ArduinoCore-renesas development by creating an account on GitHub.
+arduino logs3,the Uno R4 library
+arduino logs3,"There is no such thing as ""Uno R4 library"". Do you mean ""Arduino UNO R4 Boards""? If so, that is a boards ""platform"", not a library. An Arduino library is a completely different thing."
+arduino logs3,"It might seem like I'm being pedantic, but it is very important to use the correct terminology in order to effectively communicate about complex technical subjects as we do here on Arduino Forum."
+arduino logs3,Are these libraries open source?
+arduino logs3,"Assuming you are referring to the ""Arduino UNO R4 Boards"" platform, yes. You can see the base license here:"
+arduino logs3,"MIT License
+
+Copyright (c) 2022-2023 Arduino SA
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the ""Software""), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE"
+arduino logs3,Can I see their change log?
+arduino logs3,"Unfortunately the developers of the ""Arduino UNO R4 Boards"" platform don't provide a conventionalchangelog, but you can see the complete changeset for a release by checking the Git commit history of the repository. For example, you can see the changeset of the 1.0.2 release here:"
+arduino logs3,Comparing 1.0.1...1.0.2 · arduino/ArduinoCore-renesas
+arduino logs3,Contribute to arduino/ArduinoCore-renesas development by creating an account on GitHub.
+arduino logs3,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs3,Related topics
+arduino logs3,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs4,Temperature data log with Arduino with DS18B20 + DS1302 + SPI ICSP
+arduino logs4,"Hi guys, I am currently doing a project to create a cooling fan for a room. For the temperature and time reading I am using DS18B20 temperature sensor and a DS1302 RTC. I am using a SPI ICSP micro SD card adapter module to record the temperature reading and time."
+arduino logs4,"Currently I am stuck at the code, I manage to create the code that will show the temperature and time on serial monitor but I am having trouble to code the Arduino to save the data in the SDCard."
+arduino logs4,Can someone help to solve the problem? Bellow is my sketch code
+arduino logs4,"//Start of RTC
+#include <virtuabotixRTC.h>
+// Creation of the Real Time Clock Object
+virtuabotixRTC myRTC(6, 7, 8);
+//End of RTC
+
+//Stat of temperature
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+// Data wire is plugged into digital pin 2 on the Arduino
+#define ONE_WIRE_BUS 2
+
+// Setup a oneWire instance to communicate with any OneWire device
+OneWire oneWire(ONE_WIRE_BUS);	
+
+// Pass oneWire reference to DallasTemperature library
+DallasTemperature sensors(&oneWire);
+
+int deviceCount = 0;
+float tempC;
+//end of temperature
+
+
+void setup()  {
+  Serial.begin(9600);
+  // Set the current date, and time in the following format:
+  // seconds, minutes, hours, day of the week, day of the month, month, year
+  myRTC.setDS1302Time(0, 7, 12, 3, 31, 5, 2023);
+
+
+//Start of temperature setup
+  sensors.begin();	// Start up the library
+  Serial.begin(9600);
+  
+  // locate devices on the bus
+  Serial.print(""Locating devices..."");
+  Serial.print(""Found "");
+  deviceCount = sensors.getDeviceCount();
+  Serial.print(deviceCount, DEC);
+  Serial.println("" devices."");
+  Serial.println("""");
+}
+//End of temperature setup
+
+
+void loop()  {
+  //Start of RTC loop
+  // This allows for the update of variables for time or accessing the individual elements.
+  myRTC.updateTime();
+  // Start printing elements as individuals
+  Serial.print(""Current Date / Time: "");
+  Serial.print(myRTC.dayofmonth);
+  Serial.print(""/"");
+  Serial.print(myRTC.month);
+  Serial.print(""/"");
+  Serial.print(myRTC.year);
+  Serial.print(""  "");
+  Serial.print(myRTC.hours);
+  Serial.print("":"");
+  Serial.print(myRTC.minutes);
+  Serial.print("":"");
+  Serial.println(myRTC.seconds);
+  // Delay so the program doesn't print non-stop
+  delay(500);
+  //End of RTC loop
+
+  //start of temperature loop
+  // Send command to all the sensors for temperature conversion
+  sensors.requestTemperatures(); 
+  
+  // Display temperature from each sensor
+  for (int i = 0;  i < deviceCount;  i++)
+  {
+    Serial.print(""Sensor "");
+    Serial.print(i+1);
+    Serial.print("" : "");
+    tempC = sensors.getTempCByIndex(i);
+    Serial.print(tempC);
+    Serial.print((char)176);//shows degrees character
+    Serial.print(""C  |  "");
+    Serial.print(DallasTemperature::toFahrenheit(tempC));
+    Serial.print((char)176);//shows degrees character
+    Serial.println(""F"");
+  //end of temperature loop
+}
+
+  Serial.println("""");
+  delay(1000);
+}"
+arduino logs4,For every device I 1st write (or modify the example) a sketch to prove I can get it to work.
+arduino logs4,Here is mine for the SD card.The code:Opens / begins the SD cardlooks for a file starting with 100.csv and if exist continues until a file does not exist then opens it.It writes the full time and date.
+arduino logs4,"/*
+  SD card read/write
+  Mod 01 make file name a string and iterate until we find a unused file name.
+  Mod 02 add capability to increment filename.
+  Rev 03 tested successfully on Arduino M0
+
+  SD card attached to SPI bus on ICSP Header.
+  SD Board power = 5V (for large board with EEPROM)
+
+  based on code created: Nov 2010 by David A. Mellis, 9 Apr 2012 by Tom Igoe
+  This code is in the public domain.
+
+driver has a 512 byte buffer then write to SD
+
+Closing the file forces any buffered data to be written to the SD and also updates
+the file's directory entry.
+
+If you don't close the file, you will lose all data written the file since it was opened,
+not just the last buffer, since the directory entry will not be updated.
+*/
+
+#include <SPI.h>
+#include <SD.h>
+
+// *** SD Card declarations **************************************************
+// ***************************************************************************
+
+#define SDCARD_CS_PIN 4
+
+uint8_t fileNumb = 100;
+char dataFile[8];
+bool SD_Error = false;
+
+File myFile;			// create instance of a ""File"" class
+
+void setup() {
+  SerialUSB.begin(115200);
+  delay (2000);
+// Initializing SD card....
+  if (!SD.begin(SDCARD_CS_PIN))
+    {SerialUSB.print(""initialization failed"");
+     SD_Error = true;
+    }
+
+// loop until we find a file that doesn't already exist.......
+  do
+    {
+     itoa(fileNumb, dataFile, 10);  // (value, Array, base)
+     const char *extension = "".csv"";
+     strcat(dataFile, extension);  // syntax  strcat(dest, source)
+     ++fileNumb;
+    } while (SD.exists(dataFile));
+
+
+SerialUSB.print(""READY TO OPEN FILE FOR WRITING   = "");
+SerialUSB.println(dataFile);
+  myFile = SD.open(dataFile, FILE_WRITE);   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+SerialUSB.println(myFile);
+  // if the file opened okay, write to it:
+  if (myFile) {
+    myFile.println(""data from boiler"");     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    SerialUSB.println(""data from boiler"");
+    //SerialUSB.print("" data written to file:   "");
+    myFile.close();                         // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+ SerialUSB.println(dataFile);
+    }
+  else {
+    // if the file didn't open, print an error:
+    SD_Error = true;
+    }
+  SerialUSB.print(""SD_Error = "");
+  SerialUSB.print(SD_Error);
+}
+void loop() {
+  // nothing happens after setup
+}"
+arduino logs4,I try out your code but is js print out an excel that write boiler temperature. Is there away to modified it so that it can record the temperature and time?
+arduino logs4,"The datalogger and Dumpfile  included in the SD examples are probably all you need. You already have the time data, so you just need to file.print it."
+arduino logs4,I see. I already got it to work tq very much for helping.
+arduino logs4,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs4,Related topics
+arduino logs4,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs5,Arduino data logging problems
+arduino logs5,"Hello!I flew a model rocket with active roll control. I have my homemade altimeter onboard to control the roll of the vehicle and to log data. I have done this several times before and have always successfully logged the data to a micro SD card. However, after the flight I checked the card and didn't find a fileI don't know why this happened. It worked fine in my integrated testing before and after the launch and the software has worked before on this rocket with only changes to the control algorithm."
+arduino logs5,Does anyone have any suggestions as to what might be going on?Thanks so much!
+arduino logs5,Code
+arduino logs5,Preformatted text
+arduino logs5,"#include <Adafruit_LSM6DS33.h>
+
+// For SPI mode, we need a CS pin
+#define LSM_CS 10
+// For software-SPI mode we need SCK/MOSI/MISO pins
+#define LSM_SCK 13
+#define LSM_MISO 12
+#define LSM_MOSI 11
+#include <math.h>
+Adafruit_LSM6DS33 lsm6ds33;
+#include <BMP388_DEV.h> 
+#include <SD.h>
+#include <SPI.h>
+#include <Servo.h>
+
+Servo pitchServo;
+Servo yawServo;
+Servo pitchServo1;
+Servo yawServo1;
+
+
+float temperature, pressure, altitude; //call the temp, pressure, and altitude variables for the barometer
+float altitudeoffset = 0;//set the offset variable to get altitude above ground level
+float Altitude_true = 0;//altitude above the ground
+float altfilt = 0;// variable to filter altitude data
+
+float yawServoVal = 0;
+float yawServoVal1 = 0;
+float yawTarget = 0;
+
+float pitchServoVal = 0;
+float pitchServoVal1 = 0;
+float pitchTarget = 0;
+
+float rollServoVal = 0;
+float rollTarget = 0;
+
+float roll_Pgain = 0.00555555;
+float pitch_yaw_Pgain = 0.05;
+
+
+File dataFile;//set data file for micro sd card
+
+int chipSelect = 4;// call the chip select pin for the micro sd card
+
+
+float alt_past_counter = 1;
+float alt_present_counter = 1;
+
+float alt_past = 0;
+float alt_present = 0;
+
+float anglecounter = 0;// a counter that is used to tell when to recalibrate angle data
+
+float recalibratecounter = 0;// a counter that is used to tell when to recalibrate the sensors
+
+float  millisoffset = 0;// variable to offset millis
+
+#include <math.h>
+
+float anglexoffset = 0;
+float angleyoffset = 0;
+float anglezoffset = 0;
+
+float gyroxoffset = 0;
+float gyroyoffset = 0;
+float gyrozoffset = 0;
+
+float thetaG=0;//pitch, yaw, and roll angles from the gyro
+float phiG=0;
+float yawG = 0;  
+
+float systemstate = -1; // a system state variable to switch from pad idle to launch
+
+BMP388_DEV bmp388(9);
+
+float millisOld = 0;
+
+float dt; //delay time 
+
+float rollG;
+
+float landing_time = 0;
+
+float propellentloss = 14.9583333333; //declare the amount of propellent burned by the E20 mtor every second
+
+
+float wetmass = 460; // declare the total mass of the rocket on the launch pad
+
+float loop_mass_reduction = 0; //this variable will contain the propellent loss each clock cycle.
+
+
+float masscounter = 1;
+
+//set up some timing variables
+float previous_time; // set up time at end of loop
+float Time; // set up time at start of loop
+float time_actual;//set up the difference in time, also the actual time
+float time_offset; // set up the time offset
+float apogee = -1;
+float apogee_time = 0;
+float mos = 5;
+void setup() {
+  Serial.begin(115200); // start serial monitor
+
+
+
+    
+bmp388.begin();                                   // Default initialisation, place the BMP388 into SLEEP_MODE 
+  bmp388.setTimeStandby(TIME_STANDBY_80MS);       // Set the standby time to 1.3 seconds
+  bmp388.startNormalConversion(); 
+
+
+SD.begin(chipSelect);// start the SD card
+ 
+Serial.println(""Adafruit LSM6DSOX test!"");
+
+  
+  if (!lsm6ds33.begin_I2C()) {
+    // if (!lsm6ds33.begin_SPI(LSM_CS)) {
+    // if (!lsm6ds33.begin_SPI(LSM_CS, LSM_SCK, LSM_MISO, LSM_MOSI)) {
+    Serial.println(""Failed to find LSM6DS33 chip"");
+    
+  }
+  
+   lsm6ds33.setAccelRange(LSM6DS_ACCEL_RANGE_16_G);
+  Serial.print(""Accelerometer range set to: "");
+  switch (lsm6ds33.getAccelRange()) {
+  case LSM6DS_ACCEL_RANGE_16_G:
+    Serial.println(""+-2G"");
+    break;
+  case LSM6DS_ACCEL_RANGE_4_G:
+    Serial.println(""+-4G"");
+    break;
+  case LSM6DS_ACCEL_RANGE_8_G:
+    Serial.println(""+-8G"");
+    break;
+
+    Serial.println(""+-16G"");
+    break;
+  }
+
+  lsm6ds33.setGyroRange(LSM6DS_GYRO_RANGE_2000_DPS);
+  Serial.print(""Gyro range set to: "");
+  switch (lsm6ds33.getGyroRange()) {
+  case LSM6DS_GYRO_RANGE_2000_DPS:
+    Serial.println(""125 degrees/s"");
+    break;
+  case LSM6DS_GYRO_RANGE_250_DPS:
+    Serial.println(""250 degrees/s"");
+    break;
+  case LSM6DS_GYRO_RANGE_500_DPS:
+    Serial.println(""500 degrees/s"");
+    break;
+  case LSM6DS_GYRO_RANGE_1000_DPS:
+    Serial.println(""  1000 degrees/s"");
+    break;
+
+    Serial.println(""2000 degrees/s"");
+    break;
+  case ISM330DHCX_GYRO_RANGE_4000_DPS:
+    break; // unsupported range for the DSOX
+  }
+
+  // sox.setAccelDataRate(LSM6DS_RATE_12_5_HZ);
+  Serial.print(""Accelerometer data rate set to: "");
+  switch (lsm6ds33.getAccelDataRate()) {
+  case LSM6DS_RATE_SHUTDOWN:
+    Serial.println(""0 Hz"");
+    break;
+  case LSM6DS_RATE_12_5_HZ:
+    Serial.println(""12.5 Hz"");
+    break;
+  case LSM6DS_RATE_26_HZ:
+    Serial.println(""26 Hz"");
+    break;
+  case LSM6DS_RATE_52_HZ:
+    Serial.println(""52 Hz"");
+    break;
+  case LSM6DS_RATE_104_HZ:
+    Serial.println(""104 Hz"");
+    break;
+  case LSM6DS_RATE_208_HZ:
+    Serial.println(""208 Hz"");
+    break;
+  case LSM6DS_RATE_416_HZ:
+    Serial.println(""416 Hz"");
+    break;
+  case LSM6DS_RATE_833_HZ:
+    Serial.println(""833 Hz"");
+    break;
+  case LSM6DS_RATE_1_66K_HZ:
+    Serial.println(""1.66 KHz"");
+    break;
+  case LSM6DS_RATE_3_33K_HZ:
+    Serial.println(""3.33 KHz"");
+    break;
+  case LSM6DS_RATE_6_66K_HZ:
+    Serial.println(""6.66 KHz"");
+    break;
+  }
+
+  // sox.setGyroDataRate(LSM6DS_RATE_12_5_HZ);
+  Serial.print(""Gyro data rate set to: "");
+  switch (lsm6ds33.getGyroDataRate()) {
+  case LSM6DS_RATE_SHUTDOWN:
+    Serial.println(""0 Hz"");
+    break;
+  case LSM6DS_RATE_12_5_HZ:
+    Serial.println(""12.5 Hz"");
+    break;
+  case LSM6DS_RATE_26_HZ:
+    Serial.println(""26 Hz"");
+    break;
+  case LSM6DS_RATE_52_HZ:
+    Serial.println(""52 Hz"");
+    break;
+  case LSM6DS_RATE_104_HZ:
+    Serial.println(""104 Hz"");
+    break;
+  case LSM6DS_RATE_208_HZ:
+    Serial.println(""208 Hz"");
+    break;
+  case LSM6DS_RATE_416_HZ:
+    Serial.println(""416 Hz"");
+    break;
+  case LSM6DS_RATE_833_HZ:
+    Serial.println(""833 Hz"");
+    break;
+  case LSM6DS_RATE_1_66K_HZ:
+    Serial.println(""1.66 KHz"");
+    break;
+  case LSM6DS_RATE_3_33K_HZ:
+    Serial.println(""3.33 KHz"");
+    break;
+  case LSM6DS_RATE_6_66K_HZ:
+    Serial.println(""6.66 KHz"");
+    break;
+  }
+ 
+ lsm6ds33.configInt1(false, false, true); // accelerometer DRDY on INT1
+  lsm6ds33.configInt2(false, true, false); // gyro DRDY o
+  
+pitchServo.attach(6); // Attaches the servo on pin 6 to the
+yawServo.attach(7); // Attaches the servo on pin 6 to the
+pitchServo.write(90); // Put servo2 at home postion
+yawServo.write(147); // Put servo2 at home postion
+delay(500);
+pitchServo.write(45);
+yawServo.write(70);
+delay(500);
+pitchServo.write(120);
+yawServo.write(180);
+delay(500);
+pitchServo.write(90); // Put servo2 at home postion
+yawServo.write(92); // Put servo2 at home postion
+
+
+pitchServo1.attach(6); // Attaches the servo on pin 6 to the
+yawServo1.attach(7); // Attaches the servo on pin 6 to the
+pitchServo1.write(90); // Put servo2 at home postion
+yawServo1.write(147); // Put servo2 at home postion
+delay(500);
+pitchServo1.write(45);
+yawServo1.write(70);
+delay(500);
+pitchServo1.write(120);
+yawServo1.write(180);
+delay(500);
+pitchServo1.write(90); // Put servo2 at home postion
+yawServo1.write(92); // Put servo2 at home postion
+delay(2000);
+}
+
+void loop() {
+  dataFile = SD.open(""dat.txt"", FILE_WRITE);//open the sd card file
+Time = millis();
+
+
+   if(systemstate > 0 && (Time/1000)/alt_past_counter > 0.1) {
+    alt_past_counter = alt_past_counter++;
+    bmp388.getMeasurements(temperature, pressure, altitude); // get another set of measurements.
+    alt_past = altitude;
+   }
+ 
+    
+
+ if(systemstate < 0 && (Time/1000)/recalibratecounter >5 )  // check the time and if we have launched. If we havn't launched recalibrate th sensors every 5 seconds
+  {
+    
+
+  bmp388.getMeasurements(temperature, pressure, altitude); // get another set of measurements.
+  altitudeoffset = altitude; 
+
+
+ recalibratecounter = recalibratecounter + 1;//this will hold how many times we preformed this loop
+
+  //DO THE SETUP FUNCTION AGAIN
+ 
+    
+if (!lsm6ds33.begin_I2C()) {
+    // if (!lsm6ds33.begin_SPI(LSM_CS)) {
+    // if (!lsm6ds33.begin_SPI(LSM_CS, LSM_SCK, LSM_MISO, LSM_MOSI)) {
+    Serial.println(""Failed to find LSM6DS33 chip"");
+    
+  }
+
+
+  lsm6ds33.setAccelRange(LSM6DS_ACCEL_RANGE_16_G);
+  //Serial.print(""Accelerometer range set to: "");
+  switch (lsm6ds33.getAccelRange()) {
+  case LSM6DS_ACCEL_RANGE_16_G:
+    //Serial.println(""+-2G"");
+    break;
+  case LSM6DS_ACCEL_RANGE_4_G:
+    Serial.println(""+-4G"");
+    break;
+  case LSM6DS_ACCEL_RANGE_8_G:
+    Serial.println(""+-8G"");
+    break;
+
+    Serial.println(""+-16G"");
+    break;
+  }
+
+   
+    lsm6ds33.setGyroRange(LSM6DS_GYRO_RANGE_2000_DPS);
+  //Serial.print(""Gyro range set to: "");
+  switch (lsm6ds33.getGyroRange()) {
+  case LSM6DS_GYRO_RANGE_2000_DPS:
+    //Serial.println(""125 degrees/s"");
+    break;
+  case LSM6DS_GYRO_RANGE_250_DPS:
+    //Serial.println(""250 degrees/s"");
+    break;
+  case LSM6DS_GYRO_RANGE_500_DPS:
+    //Serial.println(""500 degrees/s"");
+    break;
+  case LSM6DS_GYRO_RANGE_1000_DPS:
+    //Serial.println(""1000 degrees/s"");
+    break;
+
+    //Serial.println(""2000 degrees/s"");
+    break;
+  case ISM330DHCX_GYRO_RANGE_4000_DPS:
+    break; // unsupported range for the DSOX
+  }
+
+  // sox.setAccelDataRate(LSM6DS_RATE_12_5_HZ);
+  //Serial.print(""Accelerometer data rate set to: "");
+  switch (lsm6ds33.getAccelDataRate()) {
+  case LSM6DS_RATE_SHUTDOWN:
+    //Serial.println(""0 Hz"");
+    break;
+  case LSM6DS_RATE_12_5_HZ:
+    //Serial.println(""12.5 Hz"");
+    break;
+  case LSM6DS_RATE_26_HZ:
+    //Serial.println(""26 Hz"");
+    break;
+  case LSM6DS_RATE_52_HZ:
+    //Serial.println(""52 Hz"");
+    break;
+  case LSM6DS_RATE_104_HZ:
+    //Serial.println(""104 Hz"");
+    break;
+  case LSM6DS_RATE_208_HZ:
+    //Serial.println(""208 Hz"");
+    break;
+  case LSM6DS_RATE_416_HZ:
+    //Serial.println(""416 Hz"");
+    break;
+  case LSM6DS_RATE_833_HZ:
+    //Serial.println(""833 Hz"");
+    break;
+  case LSM6DS_RATE_1_66K_HZ:
+    //Serial.println(""1.66 KHz"");
+    break;
+  case LSM6DS_RATE_3_33K_HZ:
+    //Serial.println(""3.33 KHz"");
+    break;
+  case LSM6DS_RATE_6_66K_HZ:
+    //Serial.println(""6.66 KHz"");
+    break;
+  }
+
+  // sox.setGyroDataRate(LSM6DS_RATE_12_5_HZ);
+  //Serial.print(""Gyro data rate set to: "");
+  switch (lsm6ds33.getGyroDataRate()) {
+  case LSM6DS_RATE_SHUTDOWN:
+    //Serial.println(""0 Hz"");
+    break;
+  case LSM6DS_RATE_12_5_HZ:
+    //Serial.println(""12.5 Hz"");
+    break;
+  case LSM6DS_RATE_26_HZ:
+    //Serial.println(""26 Hz"");
+    break;
+  case LSM6DS_RATE_52_HZ:
+    //Serial.println(""52 Hz"");
+    break;
+  case LSM6DS_RATE_104_HZ:
+    //Serial.println(""104 Hz"");
+    break;
+  case LSM6DS_RATE_208_HZ:
+    //Serial.println(""208 Hz"");
+    break;
+  case LSM6DS_RATE_416_HZ:
+    //Serial.println(""416 Hz"");
+    break;
+  case LSM6DS_RATE_833_HZ:
+    //Serial.println(""833 Hz"");
+    break;
+  case LSM6DS_RATE_1_66K_HZ:
+   // Serial.println(""1.66 KHz"");
+    break;
+  case LSM6DS_RATE_3_33K_HZ:
+   // Serial.println(""3.33 KHz"");
+    break;
+  case LSM6DS_RATE_6_66K_HZ:
+   // Serial.println(""6.66 KHz"");
+    break;
+  }
+  }
+  
+  sensors_event_t accel;
+  sensors_event_t gyro;
+  sensors_event_t temp;
+  lsm6ds33.getEvent(&accel, &gyro, &temp);
+  
+float gyrox = gyro.gyro.x;
+float gyroy = gyro.gyro.y;
+float gyroz = gyro.gyro.z;
+
+    if(systemstate < 0) {
+delay(100);
+    time_offset = millis();
+  }
+ 
+  // check the accelerometer to see if we have launched
+if(accel.acceleration.x < -13)
+{
+systemstate = 2;// if we launched set the system state to 1
+
+
+}
+
+
+if(time_actual > 2.41) {
+  systemstate = 3;
+  
+}
+if(apogee > 0 && Altitude_true < 20) {
+landing_time = millis()/1000;
+  
+}
+
+if(apogee > 0 && Altitude_true < 20 && landing_time > 5) {
+ Serial.print("" landing "");
+ dataFile.print("" landing "");
+}
+else{
+  Serial.print("" Not_land "" );
+  dataFile.print("" Not_land "");
+}
+
+  if(systemstate > 0) {
+   bmp388.getMeasurements(temperature, pressure, altitude); // get another set of measurements.
+Altitude_true = altitude - altitudeoffset; // call altitude above ground as the altitude above sea level subtracted from the offset
+
+  }
+    // filter for altitude data
+   if(abs(alt_past - alt_present) > 50 && systemstate > 0) //check if the difference in altitude is greater than 50(meaning the reading is innacurate) if so, don't preform the rest of the loop
+   
+ {
+ dataFile.print("" filter "");
+
+ }
+ else {
+dataFile.print("" not_filter "");
+ }
+  if(abs(alt_past - alt_present) < 50 && systemstate > -2)
+ {
+ millisoffset = millis()/100;
+ 
+if(systemstate >2 && systemstate < 4) {
+apogee_time = millis();
+}
+ if(systemstate > 2 && time_actual >= 6.2)// check if the current altitude is less than the previous altitude, if so we are descending
+     {
+digitalWrite(mos, HIGH);//uncomment these 3 lines if you want to fire a pyro channel at apogee
+if(millis()/1000 - apogee_time/1000 > 2) {
+digitalWrite(mos, LOW);
+
+}
+ apogee = 1;
+
+
+  }
+  if(systemstate > 0 && thetaG > 100){  
+digitalWrite(mos, HIGH);//uncomment these 3 lines if you want to fire a pyro channel at apogee
+if(millis()/1000 - apogee_time/1000 > 2) {
+digitalWrite(mos, LOW);
+
+}
+ apogee = 1;
+
+  }
+  if(systemstate > 0 && yawG > 100) { 
+digitalWrite(mos, HIGH);//uncomment these 3 lines if you want to fire a pyro channel at apogee
+if(millis()/1000 - apogee_time/1000 > 2) {
+digitalWrite(mos, LOW);
+
+}
+ apogee = 1;
+  }
+if(apogee < 1) {
+dataFile.print("" not_apogee "");
+Serial.print("" not_apogee "");
+ 
+
+    
+  }
+  else {
+    Serial.print("" Apogee "");
+    dataFile.print("" Apogee "");
+  }
+  if(apogee > 0) {
+    systemstate = 4;
+    
+  }
+  
+ }
+  
+ if(systemstate > 0 && (Time/1000)/alt_present_counter > 0.1) {
+    alt_present_counter = alt_present_counter++;
+    bmp388.getMeasurements(temperature, pressure, altitude); // get another set of measurements.
+    alt_present = altitude;
+   }
+ 
+previous_time = millis();
+
+
+  
+time_actual = Time/1000 - time_offset/1000;
+ 
+ // find the difference in time
+dt=(millis()-millisOld)/1000.;
+millisOld=millis();
+
+if(time_actual > 0 && time_actual < 0.6) {
+//  roll1Target = phiG;
+pitchTarget = thetaG;
+}
+if(time_actual > 0.6) {
+
+thetaG=thetaG+(gyroy * 57.2958 + 6.23 )*dt;// caculate angles
+phiG=phiG-(gyrox * 57.2958  - 2.66)*dt;
+yawG=yawG-(gyroz *57.2958 + 3.5) *dt;
+
+pitchServoVal = thetaG - pitchTarget;
+pitchServoVal = pitchServoVal * pitch_yaw_Pgain;
+
+rollServoVal = (gyrox * 57.2958  - gyroxoffset) - rollTarget;
+rollServoVal = rollServoVal * roll_Pgain;
+
+pitchServoVal = pitchServoVal + rollServoVal;
+pitchServoVal1 = pitchServoVal;
+
+if(pitchServoVal > 5) {
+pitchServoVal = 97;
+}
+
+if(pitchServoVal < -5) {
+pitchServoVal = 87;
+}
+
+
+if(pitchServoVal1 > 5) {
+pitchServoVal1 = 97;
+}
+
+if(pitchServoVal1 < -5) {
+pitchServoVal1 = 87;
+}
+
+pitchServo.write(pitchServoVal + 92);
+pitchServo1.write(pitchServoVal1 + 92);
+
+
+yawServoVal = yawG - yawTarget;
+yawServoVal = yawServoVal * pitch_yaw_Pgain;
+
+yawServoVal = yawServoVal + rollServoVal;
+
+yawServoVal1 = yawServoVal;
+
+if(yawServoVal > 5) {
+yawServoVal = 95;
+}
+
+if(yawServoVal < -5) {
+yawServoVal = 85;
+}
+
+if(yawServoVal1 > 5) {
+yawServoVal1 = 95;
+}
+
+if(yawServoVal1 < -5) {
+yawServoVal1 = 85;
+}
+yawServo.write(yawServoVal + 90);
+yawServo1.write(yawServoVal1 + 90);
+}
+  //print out all the data
+ 
+ if(time_actual > 0 && time_actual < 2.41) {
+
+loop_mass_reduction = ((previous_time/1000)-(Time/1000)) * 9.52941176471;
+
+wetmass = wetmass - loop_mass_reduction;
+ }
+
+ if(systemstate > -2) {
+  
+Serial.print("" landing_time is "");
+Serial.print(yawServoVal);  
+Serial.print("" systemstate is "");
+Serial.print(yawServoVal1);
+
+Serial.print("" Temp "");
+Serial.print(pitchServoVal); 
+Serial.print("" Pressure "");                   
+Serial.print(pitchServoVal1);  
+Serial.print("" Altitude True "");
+Serial.print(Altitude_true);
+
+Serial.print("" wetmass "");
+Serial.print(wetmass);
+Serial.print("" Time since startup "");
+Serial.print(Time/1000);
+Serial.print("" Time since launch "");
+Serial.print(time_actual);
+
+Serial.print(""  gyro yaw  ""); // print out these angles
+Serial.print(yawG);
+Serial.print(""  gyro roll "");
+Serial.print(phiG);
+Serial.print(""  gyro pitch  "");
+Serial.print(thetaG);
+
+
+Serial.print("" YawServoVal "");
+Serial.print(pitchServoVal);
+Serial.print("" YawServoTarget "");
+//Serial.print(YawServoVal);
+
+
+
+Serial.print("" Acceleration X "");
+Serial.print(accel.acceleration.x);
+Serial.print("" Y "");
+ Serial.print(accel.acceleration.y);
+Serial.print("" Z "");
+  Serial.print(accel.acceleration.z);
+  
+Serial.print("" gyro rates X "");
+  Serial.print(gyro.gyro.x * 57.2958 - 2.66);
+Serial.print("" Y "");
+  Serial.print(gyro.gyro.y * 57.2958 + 6.23);
+  Serial.print("" Z "");
+  Serial.println(gyro.gyro.z * 57.2958 + 3.5);
+
+ 
+
+if(accel.acceleration.x < -13) {
+
+dataFile.print("" launch "");
+Serial.print("" launch "");
+
+  
+}
+
+else {
+
+dataFile.print("" not_launch "");
+
+Serial.print("" not_launch "");
+  
+}
+dataFile.print("" landing_time is "");
+dataFile.print(landing_time);  
+dataFile.print("" systemstate is "");
+dataFile.print(systemstate);
+dataFile.print("" Altitude present "");
+//dataFile.print(altitudepresent);
+dataFile.print("" Temp "");
+dataFile.print(temperature); 
+dataFile.print("" Pressure "");                   
+dataFile.print(pressure);  
+dataFile.print("" Altitude True "");
+dataFile.print(Altitude_true);
+
+ dataFile.print("" wetmass "");
+dataFile.print(wetmass);
+dataFile.print("" Time since startup "");
+dataFile.print(Time/1000);
+dataFile.print("" Time since launch "");
+dataFile.print(time_actual);
+dataFile.print("" gyro yaw ""); // print out these angles
+dataFile.print(yawG);
+dataFile.print("" gyro roll "");
+dataFile.print(phiG);
+dataFile.print("" gyro pitch "");
+dataFile.print(thetaG);
+
+dataFile.print("" Acceleration X "");
+dataFile.print(accel.acceleration.x);
+dataFile.print("" Y "");
+dataFile.print(accel.acceleration.y);
+dataFile.print("" Z "");
+dataFile.print(accel.acceleration.z);
+dataFile.print("" gyro rates X "");
+dataFile.print(gyro.gyro.x* 57.2958-gyroxoffset);
+dataFile.print("" Y "");
+dataFile.print(gyro.gyro.y*57.2958 + gyroyoffset);
+dataFile.print("" Z "");
+dataFile.println(gyro.gyro.z*57.2958 - gyrozoffset);
+
+
+ dataFile.close();
+ }
+
+
+  //}
+
+previous_time  = millis();
+
+if(systemstate < 2 &&(Time/1000)/anglecounter >5) // if we are on the pad, offset the angles every 5 seconds
+  {
+    
+sensors_event_t accel;
+  sensors_event_t gyro;
+  sensors_event_t temp;
+  lsm6ds33.getEvent(&accel, &gyro, &temp);
+  
+ anglecounter = anglecounter + 1;
+    
+gyroxoffset = gyro.gyro.x * 57.2958;
+
+
+gyroyoffset = gyro.gyro.y * 57.2958;
+
+
+gyrozoffset = gyro.gyro.z * 57.2958;
+
+   
+  }
+
+ if(systemstate < 0 &&(Time/1000)/anglecounter >5) // if we are on the pad, offset the angles every 5 seconds
+  {
+    
+sensors_event_t accel;
+  sensors_event_t gyro;
+  sensors_event_t temp;
+  lsm6ds33.getEvent(&accel, &gyro, &temp);
+  
+    // find the difference in time
+dt=(millis()-millisOld)/1000.;
+millisOld=millis();
+
+thetaG=thetaG+(gyroy * 57.2958  + gyroyoffset)*dt;// caculate angles
+phiG=phiG-(gyrox * 57.2958  -gyroxoffset)*dt;
+yawG=yawG-(gyroz *57.2958 -gyrozoffset) *dt;
+
+    anglecounter = anglecounter + 1;
+    
+anglexoffset = phiG;
+phiG = abs(phiG - anglexoffset);
+
+angleyoffset = thetaG;
+thetaG = abs(thetaG - angleyoffset);
+
+anglezoffset = yawG;
+yawG= abs(yawG - anglezoffset);
+   
+  }
+
+
+
+}"
+arduino logs5,"soldered connections, or headers and connectors?  If the latter, could one have been loose?"
+arduino logs5,"It's possible,but wouldn't I notice the problem after and before the fact when I tested it?"
+arduino logs5,"I'm thinking not blatantly obviously loose connection, but rather just a poor connection.  can come and go at random.  Problem is, can be fiendishly difficult to find.  Just one pin in a header that doesn't fit snuggly can cause this.  But, it's pretty unusual unless you've been plugging/unplugging a lot.  More common is one pin poorly soldered on a board.  Soldering is an art, and I've seen some pretty outlandish crap coming from Amazon; it's obvious that some of the product is going through a resoldering lab, where people fix boards that failed in production.  The fix is resoldering one or more pins, usually the evidence is solder rosin around just a few pins on an otherwise good-looking board.  When I find these, I resolder them myself, then test the item, because I don't believe they test after they redo.C"
+arduino logs5,I see a lot of delay()s in the code. Your logging is start at least 5 seconds after reset. Perhaps your flight is finished at this time?
+arduino logs5,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs5,Related topics
+arduino logs5,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs6,Issues with OpenLog Artemis interfacing with Arduino for Data Logging
+arduino logs6,"I am attempting to use the SparkFun OpenLog Artemis (SparkFun OpenLog Artemis - DEV-16832 - SparkFun Electronics) in conjunction with a SparkFun RedBoard for very simple data processing and logging. I have no issue using the OLA on its own, but for the life of me cannot get it to interface with the RedBoard/Arduino Uno."
+arduino logs6,"I have tried installing the OpenLog_Artemis Library via GitHub (GitHub - sparkfun/OpenLog_Artemis: The OpenLog Artemis is an open source datalogger the comes preprogrammed to automatically log IMU, GPS, serial data, and various pressure, humidity, and distance sensors. All without writing a single line of code!) but keep encountering the following error:(Error: 13 INTERNAL: Library install failed: moving extracted archive to destination dir: - LIBRARY NOT VALID) when attempting to add the library to the Arduino IDE via (Add library via Sketch-> Include Library -> Add .ZIP Library). I have attempted this on Arduino IDE 2.3.3 and 1.8.12 both with the same results."
+arduino logs6,"My goal is to collect basic atmospheric parameters via the SparkFun BME280 in conjunction with a differential pressure sensor to calculate volumetric airflow over a test period of 3 minutes. I seek to store the average of this value to the OLA utilizing the RTK for timestamping. I have functioning code for everything but the logging of the data, and I cannot find any resources to provide insight on storing non-raw data to the OLA."
+arduino logs6,If any one has any experience or insight on how to use this board for data logging with an Arduino/RedBoard please help. Thank you.
+arduino logs6,Related topics
+arduino logs6,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs7,Trouble transferring and logging data between arduinos using the serialTransfer and SD libraries
+arduino logs7,"Hello there, first post so hopefully I don't bungle any rules here."
+arduino logs7,I'm working on a telemetry logging project and the specific problem I'm running into is a confusing interaction seemingly between the serialTransfer library and the combination of the SPI and SD libraries.
+arduino logs7,"The problem is that gps data that I have gathered on one Arduino Uno, and then transferred to the second Arduino Uno, doesn't get written to an SD card attached to the second Arduino."
+arduino logs7,"I've put together as minimally reproducible of an example as I could make and attached the code in 3 scripts.1 would be running on the first Arduino, while 2 or 3 would be running on the second Arduino."
+arduino logs7,The wiring setup for all 3 scripts is commented in the 3rd script
+arduino logs7,"#include <TinyGPSPlus.h>
+#include <SoftwareSerial.h>
+#include <SerialTransfer.h>
+
+static const int RXPin = 4, TXPin = 3;
+static const uint32_t GPSBaud = 9600;
+
+float lon=0;
+int h = 0,m=0,cs=0;
+
+// The TinyGPSPlus object
+TinyGPSPlus gps;
+
+// The serial connection to the GPS device
+SoftwareSerial ss(RXPin, TXPin);
+
+SerialTransfer myTransfer;
+
+struct STRUCT {
+  int s;
+  float lat;
+} testStruct;
+
+void setup()
+{
+  Serial.begin(9600);
+  ss.begin(GPSBaud);
+  myTransfer.begin(Serial);
+
+  testStruct.s = 6;
+  testStruct.lat = 4.5;
+
+  Serial.println(""Starting GPS test"");
+  delay(1000);
+}
+
+void loop()
+{
+  // This sketch displays information every time a new sentence is correctly encoded.
+  while(ss.available() > 0){
+    if (gps.encode(ss.read())){
+      if (gps.location.isValid()){
+        testStruct.lat = gps.location.lat();
+      }
+
+
+      if (gps.time.isValid()){
+        testStruct.s = gps.time.second();
+      }
+    }
+  }   
+
+  myTransfer.sendDatum(testStruct);
+  delay(10); 
+ 
+}"
+arduino logs7,"#include ""SerialTransfer.h""
+
+SerialTransfer myTransfer;
+
+struct STRUCT {
+  int s;
+  float lat;
+} testStruct;
+
+
+void setup()
+{
+  Serial.begin(9600);
+  myTransfer.begin(Serial);
+}
+
+
+void loop()
+{
+  if(myTransfer.available())
+  {
+    myTransfer.rxObj(testStruct);
+    Serial.print(testStruct.s);
+    Serial.print("" | "");
+    Serial.println(testStruct.lat);
+  }
+}"
+arduino logs7,"Code 1 and 2 work together as intended, after a brief gps warmup the serial monitor displays the lat and s values."
+arduino logs7,"#include <SPI.h>
+#include <SD.h>
+#include ""SerialTransfer.h""
+
+// Wiring Setup-----------------
+// 5v everything running through dom arduino 5v
+// grounds Everything back to dom arduino grounds
+//0(RX)dom to 1(tx)sub
+//1(tx)dom to 0(rx)sub
+//sub 4 to tx gps
+//sub 3 to rx gps
+// dom 6 to cs sd
+// dom 11 to mosi sd
+// dom 12 to miso sd 
+// dom 13 to sck sd
+
+SerialTransfer myTransfer;
+
+struct STRUCT {
+  int s;
+  float lat;
+} testStruct;
+
+File myFile;
+
+void setup()
+{
+   Serial.begin(9600);
+  
+  //sd setup
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+
+  Serial.print(""Initializing SD card..."");
+
+  if (!SD.begin(6)) {
+    Serial.println(""initialization failed!"");
+    while (1);
+  }
+  Serial.println(""initialization done."");
+
+  myFile = SD.open(""TELEM.txt"", FILE_WRITE);
+  myFile.println(""Lat, Sec"");
+  //close the file:
+  myFile.close();
+
+  myTransfer.begin(Serial);
+ 
+}
+
+
+void loop()
+{
+
+  myFile = SD.open(""TELEM.txt"", FILE_WRITE);
+
+  // if the file opened okay, write to it:
+  if (myFile) {
+    Serial.print(""Writing to TELEM.txt..."");
+     if(myTransfer.available()){
+      myTransfer.rxObj(testStruct);
+      myFile.print(testStruct.s);
+      myFile.print("", "");
+      myFile.println(testStruct.lat);
+      } else {
+        myFile.print(""NA"");
+        myFile.print("",  "");
+        myFile.println(""NA"");
+      }
+
+    // close the file:
+    myFile.close();
+    Serial.println(""done.""); 
+  } else {
+    // if the file didn't open, print an error:
+    Serial.println(""error opening test.txt"");
+  }
+
+  delay(10);  // delay in between reads for stability
+  
+}"
+arduino logs7,"If anyone has any ideas of how to fix this and use the existing methodology, great! Otherwise, I'm sure that there's a better method of doing this, but as it's my first attempt at sending info from one Arduino to another I'm rather overwhelmed with options that I don't fully understand.  I've looked at the serialTransfer library's spi_tx_datum/spi_rx_datum examples but I'm unclear on how I would wire the connection between Arduino 1 and Arduino 2 and don't see documentation on how to do so."
+arduino logs7,I know I haven't given specific info on the gps or sd module but I don't  believe the issue is dependent on those specs. I'm happy to provide them if someone believes otherwise though.Thank you for any help!
+arduino logs7,Why the second arduino? All that can run on one.
+arduino logs7,"Ah yes, sorry, I could have been more clear there. 2 reasons."
+arduino logs7,"What's interesting is even when I just have the gps module and the sd module on a single Arduino, no other sensors at all. It still gives me that choppy signal being logged to the sd card, whereas, when I just read the GPS or read the gps and use serialTransfer to send it to a second Arduino that comes through very smooth and consistent about 2hz ish."
+arduino logs7,"So mostly this is in the name of keeping a smooth refresh rate to the time. If there's a better way to just do that on one Arduino I'm all ears, but given that I'm planning to add a fair few sensors, I thought it best to spread out some of the processing load."
+arduino logs7,"I would be surprised that if there is an issue using one Arduino without using tasking, that it would be any better communicating to a second.If I had the time I might play with it but I am fairly sure you need to implement at least millis() based tasking if not proper tasking."
+arduino logs7,"So, I'd agree with you except for the fact that the second is taking away the whole reason that the single would have any trouble without tasking. Regardless, thank you for the input, but I think we're getting a little off in the weeds."
+arduino logs7,"To reiterate though, my main problem is that, while I'm able to read and transfer well better than 1hz gps readings (which honestly the fact that it's gps shouldn't matter at all, it's just sending as an int and a float in the struct object), when I attempt to log those transferred values the system does not seem to get past the void setup step. Hence my main question being, what about this interaction of serialTransfer, SD, and SPI is causing this failure, or is it something that I've written wrong?"
+arduino logs7,Some suggestions:
+arduino logs7,"myFile = SD.open(""TELEM.txt"", FILE_WRITE);"
+arduino logs7,"I don't know why the third code doesn't work, but opening a file, writing a line of data and closing a file brings out the very worst of the already poorly performing Arduino SD library."
+arduino logs7,"Doing so vastly increases the time it takes to write the data, the error rate and the current consumption, and is more or less guaranteed to trash the SD card in a fairly short time. Furthermore, you open the file every time loop() runs, but don't close it unless some data were written, which is also a bad idea."
+arduino logs7,Open the output file once in setup() then close the file only when you are all done collecting data. Many people use a button to stop data collection and close the file.
+arduino logs7,"For long term data collection, be sure to execute the myFile.flush() command once every hour or day to update the file pointers, then you will not lose all the data if the power fails."
+arduino logs7,PS: this is nonsense:
+arduino logs7,delay(10);  // delay in between reads for stability
+arduino logs7,You might also find it easier to usea different NMEA parser lib
+arduino logs7,You might try assigning the SD's CS to D10 instead of D6.
+arduino logs7,"I don't know if the OP is still here, but I'm trying to figure out how even the second sketch (no SD) works.  Is what's shown not the complete sketch? Where is softwareSerial set up?  Or does SerialTransfer do that for you?  Or is he using D0/D1 for both the incoming GPS data and the output to the serial monitor.  Can someone explain what's going on? I have no experience with serialTransfer, and can find no documentation on how to use it."
+arduino logs7,"First off, Sorry for the flailing here was, trying to get proper reply formatting."
+arduino logs7,"Hey there@ShermanP,The second script is a complete script. It didn't have softwareSerial set up because in that script it isn't doing anything with it. That second script works as I expected and receives the testStruct object and prints the s and lat elements being sent to it by the sub arduino. Also yes, these arduinos are connected between the 0 and 1 pins. The wiring setup for all 3 scripts is shown in the header of script 3."
+arduino logs7,"I recognize that using those 0 and 1 pins may be part of the problem, but as I'm pretty new to this and the documentation in the serialTransfer library doesn't give any explanation as to where wires are supposed to be connected I was just making an educated guess."
+arduino logs7,"@jremingtonyes, thank you, I'd since updated it to not open and close the file on each loop, but hadn't updated the post  as it didn't seem to have any effect on my main issue of the data not transferring and logging when using both serialTransfer and SD together."
+arduino logs7,"As for that last point. I've seen that at the end of oodles of scripts, and had just left it in. Do you have an explanation as to why it's ""nonsense"" when it's so ubiquitous in demo scripts?"
+arduino logs7,"why it's ""nonsense"" when it's so ubiquitous in demo scripts?"
+arduino logs7,"Statements and comments like that are put into code by beginners who have no idea when it is required or appropriate to use delay(), and left in place by beginners who copy the code and are likewise uninformed."
+arduino logs7,"In fact, delay() is almost nevernecessary.  Use of delay() can be convenient, for example when all you want to do is slow down some printout, so you can read it."
+arduino logs7,"When you get to the point where you want the Arduino to be doing several different things in the same program, you can't afford to use delay()."
+arduino logs7,"In fact, delay() is almost nevernecessary. Use of delay() can be convenient, for example when all you want to do is slow down some printout, so you can read it."
+arduino logs7,"Okay gotcha, I'd thought it was an odd thing to be there as my understanding was that it simply delayed the next operation by that many milliseconds, but figured with it being so ubiquitous there must be some reason it was actually helpful, that I wasn't aware of."
+arduino logs7,"Correct. delay() just wastes some processor time, which could actually be used to do something useful instead."
+arduino logs7,@Power_BrokerA couple things.
+arduino logs7,"First Thing:given nothing is showing up when 3 and 1 are run together does this all just relate back to using the 0,1 pins for the serialTransfer, and should I instead be using your I2C or SPI transfer? If so would you mind pointing me to a little explanation on how I would wire that, because in your I2C and SPI examples I'm not seeing anything about that (and my hardware and wiring knowledge is pretty turrible)"
+arduino logs7,"The rest of the things:The reason for looking to use two arduinos rather than 1 did start off with me thinking it was just too much work to put on a single Arduino, but I believe the fix of not opening and closing the sd card file each loop has gotten my gps logging to a point where it's pretty fine on 1 arduino."
+arduino logs7,"The main reason for using 2 at this point is that the logging for everything except the gps is conducted at well better than 1hz, however my el-cheapo gps module only receives a signal at about 1hz. Therefore I wanted to use the structure I have in my example code so that the  dom (master/control whatever you want to call it) arduino can be logging various other sensors quickly, and pull the latest gps info I've saved into the testStruct without having to wait for a new GPS signal. I do agree that I might need something more powerful than an uno to act as the dom here, given this message I get when I upload the sketch"
+arduino logs7,usage957×77 4.3 KB
+arduino logs7,"In a final version there'd definitely be more global variables so I'll need to get around that. However, right now at 86% it still doesn't look maxed out, and I'd expect to see something, as opposed to nothing, when script 3 is run on the dom and script 1 is run on the sub, as again script 2 on dom and script 1 on sub works perfectly and doesn't look massively different in terms of available space."
+arduino logs7,"Additionally, I'm hesitant to try your NMEA parser. There seems to be almost no documentation for it and the one example doesn't have any explanation. I think it'd just lead me back to being confused and making another forum post."
+arduino logs7,"So you have the SD logging working on another sketch, but using the same SD wiring as on sketch#3above, particularly using D6 as the CS?  I just want to be sure the SD part works on its own."
+arduino logs7,"I don't know if using D0/D1 is the problem.  It would be nice if that worked because they use the UART peripheral in the 328P, which saves a lot of time because you don't have to bit-bang the transfers as softwareSerial would do.  And you could use the second Uno's Rx to receive the GPS data, but use Tx to transmit to the serial monitor.  I just don't know if that works.  We really need@Power_Brokerto explain better how his library works."
+arduino logs7,"That said, you do have the option of using I2C or SPI, both of which are also internal peripherals.  But that might depend on how you will be communicating with all the sensors and such.  The problem would be that your second Arduino would need to be the sub when receiving data from the first Arduino, but the dom when saving to SD.  I don't know if that's practical."
+arduino logs7,"I just wonder if it might all be easier to just use one Arduino for everything.  And if that's too much, maybe something like a Mega could be used.  Well, I guess I'm just going over what's already been said."
+arduino logs7,however my el-cheapo gps module only receives a signal at about 1hz.
+arduino logs7,"Most often the 1hz location update rate is the default setup, but even el-cheapo GPSs can normally be configured for location update rates of 5hz or more."
+arduino logs7,"hey@ShermanP, yes I do have a single Arduino solution that gathers data and logs it, with the same wiring setup, and yes in particular using the D6 for CS."
+arduino logs7,"Agreed on the rest of those parts. However, the reason that I'd like to get this two arduino solution working properly, is mostly to use it as a proof of concept when adding more and more sensors. As I'd like to be able to effectively plug a cluster of sensors into the system and tell the SD focussed arduino to log it, but that's well beyond the scope of this post and question.  I guess I should look deeper into creating a faux CAN bus system or something like it.I guess, whether@Power_Brokeris right and it's too much load to use serialTransfer and a struct object on an Arduino Uno, or there's something not playing nice between serialTransfer and SD, I'll be trying out a teensy board or trying out a different Arduino to Arduino communication method."
+arduino logs7,"@srnetif you've got any examples/documentation to point me to there I'm all ears. I've done the obligatory google on the subject, but my understanding is that those signals are only being sent out at about 1hz, so  unless my GPS module had an internal IMU (which it doesn't) to do some sweet sensor fusion, I'm not actually going to be getting any new information."
+arduino logs7,We really need@Power_Brokerto explain better how his library works.
+arduino logs7,"When you look at the documentation andespeciallythe multitude of given examples, you shouldn't need any more explanation on how it works."
+arduino logs7,Users of the lib should already know how to wire up a UART connection between two Arduinos and read example sketches - it's basic knowledge.
+arduino logs7,I'm hesitant to try your NMEA parser.
+arduino logs7,"That's fair, I wrote it fairly recently for a personal project and never ""punched it up"". However, this would be a good example if you're using RMC messages:"
+arduino logs7,"#include ""NMEA_Parser.h""
+
+nmea_parser gnssParser;
+nmea::rmc_struct rmc;
+
+void setup()
+{
+  Serial.begin(115200);
+  Serial1.begin(115200); // Use the serial port and baud of YOUR GPS receiver/Arduino connection
+  gnssParser.begin(Serial1);
+}
+
+void loop()
+{
+    if (gnssParser.available() && (gnssParser.getCurrMsgType() == nmea::msg_types::RMC))
+    {
+        rmc = gnssParser.getRMC_struct();
+
+        Serial.print(rmc.hour);        Serial.print("","");
+        Serial.print(rmc.min);         Serial.print("","");
+        Serial.print(rmc.sec, 5);      Serial.print("","");
+        Serial.print(rmc.pos_status);  Serial.print("","");
+        Serial.print(rmc.lat_dms, 5);  Serial.print("","");
+        Serial.print(rmc.lat_dms_dir); Serial.print("","");
+        Serial.print(rmc.lat_dd, 5);   Serial.print("","");
+        Serial.print(rmc.lon_dms, 5);  Serial.print("","");
+        Serial.print(rmc.lon_dms_dir); Serial.print("","");
+        Serial.print(rmc.lon_dd, 5);   Serial.print("","");
+        Serial.print(rmc.sog_kn, 5);   Serial.print("","");
+        Serial.print(rmc.cog_true, 5); Serial.print("","");
+        Serial.print(rmc.year);        Serial.print("","");
+        Serial.print(rmc.month);       Serial.print("","");
+        Serial.print(rmc.day);         Serial.print("","");
+        Serial.print(rmc.mag_var, 5);  Serial.print("","");
+        Serial.print(rmc.mag_var_dir); Serial.print("","");
+        Serial.print(rmc.mode_ind);    Serial.print("","");
+        Serial.print(rmc.checksum);    Serial.print("","");
+        Serial.print(rmc.usTimestamp); Serial.println();
+    }
+}"
+arduino logs7,"Overall, my suggestion is to get aTeensy 4.1plus aUblox NEO-M9nand do everything you want in one combined setup."
+arduino logs7,Related topics
+arduino logs7,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs8,Integrating a Hard Disk Drive with Arduino for Data Logging Project
+arduino logs8,"Hi everyone,"
+arduino logs8,I'm working on a project where I want to use an Arduino to log data onto a Hard Disk Drive. I have a 300GB 10K RPM 2.5-Inch SATA 3GBPS HDD that I'd like to integrate with my Arduino setup. Has anyone attempted a similar project or have any pointers on how to get started?
+arduino logs8,"Specifically, I'm looking for guidance on:"
+arduino logs8,The necessary hardware and connections to interface the HDD with the Arduino.
+arduino logs8,Code examples or libraries that can facilitate data writing and retrieval from the HDD.
+arduino logs8,Power considerations for running the HDD directly from the Arduino or through an external power source.
+arduino logs8,Any potential issues or limitations I should be aware of when working with an HDD of this capacity and speed.
+arduino logs8,Your insights and experiences would be greatly appreciated!
+arduino logs8,"Thanks in advance,"
+arduino logs8,The data rate is way to high for any Arduino. If you actually wanted to use it you would need to design and build a custom controller board.
+arduino logs8,Welcome to the forum
+arduino logs8,You started a topic in theUncategorisedcategory of the forum when its description explicitly tells you not to
+arduino logs8,Your topic has been moved to a relevant category.  Please be careful in future when deciding where to start new topics
+arduino logs8,why not use anSD cardwhat volume/speed of data are you acquiring that requires a HDD?
+arduino logs8,Evenan SSD would be a better choice in a well designed project.
+arduino logs8,The necessary hardware and connections to interface the HDD with the Arduino.
+arduino logs8,"I would recommend a Raspberry Pi 4 or 5 and a USB-3-to-SATA adapter. A Raspberry Pi 5V, 3A PSU should provide enough power for the Pi and the HDD I think, although I have not tried this."
+arduino logs8,"You can connect the Arduino to the Pi using UART, SPI or I2C interfaces using the Pi's GPIO header pins, but be aware that if the Arduino is a 5V model, you will need to use logic level shifters to avoid damaging the Pi. If the Arduino is 3.3V model, this won't be a problem. Another option would be to connect the Arduino to the Pi with USB, which may be the best and simplest way."
+arduino logs8,"However, it may be possible and easier to connect your sensor direct to the Pi. In this case the Arduino will not be needed."
+arduino logs8,"EDIT: if Pi 4/5 seems a bit pricey and overkill, you are right. The only reason I recommended those models is because they have USB 3.0. Not because you need the speed of USB 3.0, you don't. It's power for the HDD. A USB 2.0 socket won't be able to provide enough power, I'm pretty sure, for an HDD, even a 2.5"" one."
+arduino logs8,"Lower/cheaper models of Pi should be suitable if you can get the HDD enough power. USB 2.0 to SATA adapters with an additional input for extra power might be an option. Most of these lower models of Pi have Micro-USB power inputs, which will make them the bottleneck in terms of power. But they can also be powered by the 5V & ground GPIO pins. If you have an external 5V PSU and can split the power from that to power the Pi and the USB 2.0 to SATA adapter, that could work."
+arduino logs8,"How much data do you need to store, and at what rate?"
+arduino logs8,log data onto a Hard Disk Drive
+arduino logs8,Is the use of an actual HDD a requirement of your project?
+arduino logs8,"As others have asked, how much data do you actually need to store, and approximately how quickly is the data produced?"
+arduino logs8,Perhaps give us more detail on what it is you are measuring for your data logging project.
+arduino logs8,Related topics
+arduino logs8,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs9,Using Arduino with Bluetooth to log data from sensor
+arduino logs9,"I have been banging my head against this, so any help is greatly appreciated.  I added an HC-05 to my arduino R3 to send data to my PC or better yet my phone, and log it.  The Hc-05 pairs with either platform, but refuses to send data to PC.  It will send data to the phone, but the very few BT receiver apps are kinda crappy, and don't allow the baud rate to be selected.  Also, I've tried a bunch of code to send it, but none works for the PC."
+arduino logs9,the very few BT receiver apps are kinda crappy
+arduino logs9,"Kai Morich's BT serial terminal is very good, likewisemightyIT's (bluetooth terminal hc-05 pro)"
+arduino logs9,"So I got this to work on the PC at 9600 baud, but the DSD Tech HC-05 says it can be used at 9600 or 38400.  At 38400 it produces weird characters only."
+arduino logs9,int pressure;
+arduino logs9,"void setup(){Serial.begin(38400);pinMode(0,INPUT);analogReference(DEFAULT);}"
+arduino logs9,void loop(){pressure = analogRead(0);
+arduino logs9,Serial.flush();
+arduino logs9,Serial.println(pressure);
+arduino logs9,}
+arduino logs9,At 38400 it produces weird characters only.
+arduino logs9,How did you set the module to use 38400 baud and did you confirm that setting with a report from the module?
+arduino logs9,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs9,Related topics
+arduino logs9,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs10,Using arduino for motorcycle telemetry/data logging
+arduino logs10,"I am planning on building a motorcycle telemetry setup.  Hoping to measure speed graphed over time, rpm graphed over time, accelerometer/gyro/gps, tire temp sensors, control 2 servo motors that will be paralleled so basically controlling 1, with future plans of measuring braking pressure.  I am a newbie to the world of arduino and was curious if this is even possible to do with the arduino."
+arduino logs10,Thanks for the time.
+arduino logs10,EDIT 1/30/23 - TLDR  Currently using a Mega REV3 and hope I don't use to much space for this project.  I have copied and modified non contact IR sensor program and now working on implementing it physically.  Will probably need an I2C extender for sensors.  Looks like I can only add 6 sensors at 5v or it'll go boom to soon.
+arduino logs10,"Sensors are now 2 mlx90614 IR non contact temp (potentially 3), 1 VL53L0X Distance ToF (potentially 2), GPS (unordered), Accelerometer/Gyro multi axis (lean angle, G forces, and hopefully servo control).  Could be forgetting something as I do not have my notes in front of me but I will have the sensors in front of me and will be testing ToF and IR sensors by 1/31/23."
+arduino logs10,"EDIT 2/1/23 - I now have an Arduino Nano & Mega and have been testing configurations.  I have learned the software and downloaded many libraries.I have on hand an IR temp sensor (MLX9064), ToF distance sensor (VL53L0), a 6 axis accel/gyro (MPU 6040), an sd card unit, 3.3v to 5v converter, and a relay.  I have ran programs on the Temp, ToF, and 6 axis accel/gyro.  All are working but are working individually and not in series.  Next goal is to add all 3 working together at same time.  Then I have to see if I can make my relay open and close from one of my inputs (relay is used to supply voltage from Motorcycle battery to 18650 batteries when ignition is off to keep batteries charges and to keep motorcycle electronics from interfering with analog comms."
+arduino logs10,"Out Your post, maybe possible, but not sure if You will pull it through.Please read the topic ""How to get the best out of this forum"" and act accordingly."
+arduino logs10,"I don't see why you could not do what you want, but there is a lot of information missing."
+arduino logs10,"If using wireless to send data, how much range for the radio?"
+arduino logs10,How fast is the data acquired?  How much data to be transfered per second?
+arduino logs10,What is to receive the data?
+arduino logs10,What have done so far?
+arduino logs10,Can you post a schematic?
+arduino logs10,"Post technical data for relevant components (sensors, actuators, drivers)."
+arduino logs10,I have no plans and no current idea on how to transmit data.  most likely store data on motorcycle.
+arduino logs10,Data is acquired in mostly real time.  Delays aren't critical but information increments in .1 seconds would be a goal.  Only thing that's time critical is servo motor output but that part is the easiest part to do with my current knowledge.  Unknown data per second.  RPM would be 4 pulses a second I believe which I would have to translate into RPM.
+arduino logs10,On what's receiving the data I do not know.  Would it be easier to run a Raspberry Pi and have it do all?  Raspberry's don't like real time from my knowledge though.  I could always store the info on a Pi though.
+arduino logs10,I am in brainstorming phase.  Currently 3d printing parts for the project and now I have started the electronics side.  I have nothing purchases except a Raspberry Pi zero w and an arduino uno.
+arduino logs10,It does look like most code can be copied and modified slightly to work for what I want though.
+arduino logs10,"The termtelemetryimplies wireless transmission of data.  If you are storing data on board, the term would bedata logging."
+arduino logs10,You could log the data to a SD card.  Then it is easy to pull the card and insert it into a reader on a PC for analysis and presentation.
+arduino logs10,10 samples a second to SD is possible.
+arduino logs10,Will you want time stamps on the data?  How accurate will the sample rate need to be?
+arduino logs10,"I know nothing of Raspberry Pi.    An Uno is OK for development, but a Nano or Pro Micro would be better for something mounted on a bike.  Other choices could be one of the Teensie boards.  There are many othes to choose from."
+arduino logs10,"That is quite an undertaking for a newbie. Do you have experience in automotive/motor bike electronics? Automotive is one of the worse electronic environments to work in. I understand motorcycles are not much better. I also recommend posting at least a preliminary annotated schematic of your circuit showing all connections including power, ground, power supplies etc."
+arduino logs10,Sorry about the word mix ups.  All the motorcyclists call it telemetry.  Also it makes sense why they say data logging because in MotoGP the team has the data in basically real time in the pits.  So yes I will be data logging with the occasional output.
+arduino logs10,I would prefer time stamps on the data not a deal breaker though.  Sample rate could have easily be + or - 5% with basically zero problem.
+arduino logs10,I know very little when it comes to the boards capabilities.  I just bought the uno and the pi because I like to tinker.  I've had them both since 2019 and yet to do something with them.  I am also completely ok with purchasing almost anything I'd need to finish this as most stuff is relatively cheap and I'd like to have a prototype by sometime in May.
+arduino logs10,I have tons of experience with automotive and motorcycle electronics.  I am currently rebuilding a Fiero and completely redid the wiring harness ground up.  Also I have had to repair my motorcycle harness multiple times.  I am an industrial electrician and robotics by trade currently working in CNC environment.
+arduino logs10,I will gladly post schematics when I make them.  Should be relatively soon hopefully.  I need to learn all the power requirements.  I could draw something VERY rudimentary tomorrow at work but won't have voltages.  Worst case scenario Id run a small inverter to power 5 or 3.3 volts off the battery (most likely 5v because servo's).  Also I believe my sensors run off of 5v and could possibly use this assuming its clean enough voltage.  Any problems with power cycles?
+arduino logs10,Amazon.com: Pack of 2 Digital Servo 25KG Full Metal Gear High Torque Waterproof...
+arduino logs10,Buy Pack of 2 Digital Servo 25KG Full Metal Gear High Torque Waterproof for RC Car Crawler Robot Control Angle 270°: Servos - Amazon.com ✓ FREE DELIVERY possible on eligible purchases
+arduino logs10,So far plan on using these servos.  I will be seeing if these will work tomorrow.
+arduino logs10,Getting clean well regulated power in an automotive or motorcycle environment can be challenging.  Much has been written about that on this forum and some time taken with the search function would be well spent.
+arduino logs10,Much appreciated.  That's where I'll be in the meantime then.
+arduino logs10,To many arduino models!  I think I'm going to purchase a nano ble sense if available and power it from the Vin with 2 14500 as they are small.  this will mostly guarantee clean voltage and the arduino will not suck enough power in 30 min.  If need be I can run 18650 or 21700 depending on needs.  Will start with 14500 unless someone says otherwise.  Then I can install a protection device and when motorcycle is off It can charge the arduino batteries from the motorcycle main battery with a relay that shuts off charging when key switch is on.
+arduino logs10,Now I'm reading that powering through the Vin is also asking for trouble.
+arduino logs10,Would a lipo 3.7 to 3v3 converter give any better results than just running a linear convertor off my 5v power supply on my ecu?
+arduino logs10,Does anybody see a problem with this?
+arduino logs10,Picking up 2 nanos off a buddy tomorrow 1 is 5v power and other is 3.3v power.  I'll be testing on my motorcycle to see what works first hand until more knowledgeable people chime in (like those that already have).  I'll most likely be buying various components as I would like fail fast and not get hung up on $25 dollars worth of gadgetry.
+arduino logs10,"What is your vision for getting sensor data?   Does this bike have an OBD port or CAN bus from which you're taking data from existing sensors, is it going to be add-on sensors, or some combination?"
+arduino logs10,"If it were me, I'd start with the Raspberry Pi, at least for prototyping, until I ran into a problem that it doesn't readily address.  It's just easier to develop in a less resource constrained environment, but this presumes familiarity with the platform relevant development tools.  I doubt your real-time requirements in this case are particularly stringent, but it would be easy enough to add a supplementary Arduino-like processor if necessary."
+arduino logs10,I think you can start with this setup and modify further:
+arduino logs10,Motorbike Telemetry System | Arduino Nano 33 IoT
+arduino logs10,Using an Arduino Nano 33 IoT combined with a GPS module and a battery enable motorbike riders to monitor and track their behavior on track. By Jesus Soriano.
+arduino logs10,That's awesome!  I might build exactly that then modify in future exactly like your suggestion.  That would speed things up drastically.  Thanks for the link.
+arduino logs10,@MrMarkSensor data will be mostly add-on sensors probably all add on sensors.  Real time requirements are only stringent for the servo motors.  They need to act as quickly as possible.
+arduino logs10,Real time requirements are only stringent for the servo motors. They need to act as quickly as possible.
+arduino logs10,That means that the code that you write must be non-blocking code so that the code can be responsive.  Non-blocking code cannot use functions like the delay() or while or for loops that take much time to execute.  Here are some non-blocking timing tutorials:Blink without delay().Beginner's guide to millis().Several things at a time.
+arduino logs10,2 servo motors that will be paralleled so basically controlling 1
+arduino logs10,What is the purpose of the servos?
+arduino logs10,Thank you very much for the tutorials.  I have just started the basic tutorials as of yesterday.  Having the link above will help out and the rest is trial by fire.  I will practice these tutorials to understand why.  I'm familiar with robot and PLC programming so the fact that python is interpreted really helps.
+arduino logs10,"@2112servos are going to be active aero, wings in front that rotate based on gyro and braking input."
+arduino logs10,"Use a Garmin smart watch (I use for flying airplanes).It works also for running, driving bikes...Nice is: it shows me my travel (flight) path on a map. Do you want to code all this yourself (and using Google maps just to draw path which needs license and a separate topic how to use the API)."
+arduino logs10,Why so complicated?Smart Watch
+arduino logs10,I need to be able to control a servo which is why its so complicated.  The servo will be controlled via gyro/accel module for active aero.  I have zero proof that the active aero will provide a benefit but I still want to accomplish my goal.
+arduino logs10,I will research Garmin watch but I don't believe it'll be capable of doing what I want.  Still a simple and effective solution for most things so I will keep it in mind.
+arduino logs10,"What is ""aero""?When you have to control a servo - OK, good question where to get the sensor data to do so."
+arduino logs10,"For measuring ""RPM"", you might think also to connect to an ODB plug (a connector in cars/motorcycles to read engine data, errors, often as a CAN bus)."
+arduino logs10,And for location - you would need anyway a GPS module (can be done via UART).A pretty complex project - but why not? Reasonable.Good luck and happy coding.
+arduino logs10,"Not just power from an auto, but signals, too, can carry dangerous spikes and noise.  This page may have information of interest,"
+arduino logs10,10 Ways to Destroy an Arduino — Rugged CircuitsRugged Industrial Arduino...
+arduino logs10,Related topics
+arduino logs10,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs11,How to have Arduino uno time while logging to an SD card
+arduino logs11,"hi,"
+arduino logs11,I am trying to read values from a load cell then log the values to an SD card with that I want to have the Arduino to log the time between the changes in the value.
+arduino logs11,Thanks
+arduino logs11,"If you want ‘time-of-day’, you’ll need a real time clock chip, or network connection."
+arduino logs11,"But if it’s simply the interval between events, you can use the millis() function to determine interval down to a few milliseconds."
+arduino logs11,@lastchancenamehow do you do that?
+arduino logs11,"What usually happens here, is you get the clues, go off and see what you can do after reading and experimenting, then come back and ask specific questions."
+arduino logs11,"Post your existing code here (in code tags), and there are many helpers to push you along, or if you’re under pressure - there is a specific forum section for paid assistance projects."
+arduino logs11,millis() returns the # of milliseconds that have elapsed since the start of the program.   it is a 4 byte value.
+arduino logs11,"you can write both the load cell value and msec timestampthe timestamp (msec) could be divided by 1000 to give secs or some other value so only 2 bytes, for example are needed and provides sufficient resolution"
+arduino logs11,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs11,Related topics
+arduino logs11,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs12,Connecting an Arduino Nano ESP32 board to Arduino Data Logging Shield
+arduino logs12,"I have an Arduino Data Logging Shield hooked up to an Arduino Mega. Now I need to hook it up to a camera module to take photos and analyze them using a Python script. To be more specific, the Python script will analyze the photos to determine the presence of fires in the photos.Since Arduino Mega doesn't support Python, I intend to get an Arduino Nano ESP32 board and program it with micropython to do the job for me but then how do I connect the ESP32 board to the Data Logging shield to save the JPG files after the photos have been taken?"
+arduino logs12,"I initially thought the Chip select pin (pin 10) would be the ideal pin on the logging shield to connect to but I am not really sure how that will work. Before making the purchase, I want to be sure the connection will work since it's not that cheap."
+arduino logs12,unless you particularly require the Nano footprint why not go for aESP32 NodeMCU
+arduino logs12,What is the difference between the two? I am open to either. I am concerned about how the connection will happen. I am open to any ideas?
+arduino logs12,"the main advantage of theNano ESP32is the Nano footprint which may be a requirement in some projects.  However, it appears to be two to three times the cost of a ESP32 NodeMCU in the UK.both runMicroPython"
+arduino logs12,"the main question is will thedata logger shieldwhich was designed for UNO. Mega, etc work with a ESP32?suggest you get a ESP32 NodeMCU and try - be careful the UNO, Mega etc use 5V logic the ESP32 3,3V"
+arduino logs12,@etornam09You will need the following connections:+5VGndSCKMOSIMISOCSAll the connections are done through the 6 pin header at the end of the board
+arduino logs12,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs12,Related topics
+arduino logs12,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs13,Logging ACC-Data with AvrAdcLogger with Arduino Nano V3.0
+arduino logs13,"Hi, I am recording acceleration data from three accelerometers using my Arduino Nano V3.0. The accelerometers are connected to analog inputs 0 to 7 (so 8 analog inputs are used). The software used is the AvrAdcLogger. The acceleration data is stored on a micro SD card as a CSV file. This works so far for the analog inputs 0 to 4 (first five columns in the CSV file). Unfortunately for the analog inputs 5 to 7 (last three columns in the CSV file) the values are zero. However, if I query analog inputs 5 to 7 separately, I also get values. I would have suspected that the problem is due to the buffersize, but my program does not give me a buffer overrun error. Unfortunately my Arduino knowledge is not so great that I completely understand the program used.Used Hardware:Arduin Nano V3.0 (Gravitech)3x EVAL-ADXL356 CZ (accelerometers)MicroSD Card Breakout Board (Ardafruit)"
+arduino logs13,"/**
+ * This program logs data from the Arduino ADC to a binary file.
+ *
+ * Samples are logged at regular intervals. Each Sample consists of the ADC
+ * values for the analog pins defined in the PIN_LIST array.  The pins numbers
+ * may be in any order.
+ *
+ * Edit the configuration constants below to set the sample pins, sample rate,
+ * and other configuration values.
+ *
+ * If your SD card has a long write latency, it may be necessary to use
+ * slower sample rates.  Using a Mega Arduino helps overcome latency
+ * problems since more 64 byte buffer blocks will be used.
+ *
+ * Each 64 byte data block in the file has a four byte header followed by up
+ * to 60 bytes of data. (60 values in 8-bit mode or 30 values in 10-bit mode)
+ * Each block contains an integral number of samples with unused space at the
+ * end of the block.
+ *
+ */
+#ifdef __AVR__
+#include <SPI.h>
+#include ""SdFat.h""
+#include ""BufferedPrint.h""
+#include ""FreeStack.h""
+#include ""AvrAdcLogger.h""
+
+// Save SRAM if 328.
+#ifdef __AVR_ATmega328P__
+#include ""MinimumSerial.h""
+MinimumSerial MinSerial;
+#define Serial MinSerial
+#endif  // __AVR_ATmega328P__
+//------------------------------------------------------------------------------
+// This example was designed for exFAT but will support FAT16/FAT32.
+//
+// Note: Uno will not support SD_FAT_TYPE = 3.
+// SD_FAT_TYPE = 0 for SdFat/File as defined in SdFatConfig.h,
+// 1 for FAT16/FAT32, 2 for exFAT, 3 for FAT16/FAT32 and exFAT.
+#define SD_FAT_TYPE 2
+//------------------------------------------------------------------------------
+// Set USE_RTC nonzero for file timestamps.
+// RAM use will be marginal on Uno with RTClib.
+// Set USE_RTC nonzero for file timestamps.
+// RAM use will be marginal on Uno with RTClib.
+// 0 - RTC not used
+// 1 - DS1307
+// 2 - DS3231
+// 3 - PCF8523
+#define USE_RTC 0
+#if USE_RTC
+#include ""RTClib.h""
+#endif  // USE_RTC
+//------------------------------------------------------------------------------
+// Pin definitions.
+//
+// Digital pin to indicate an error, set to -1 if not used.
+// The led blinks for fatal errors. The led goes on solid for SD write
+// overrun errors and logging continues.
+const int8_t ERROR_LED_PIN = -1;
+
+
+// System-Mode Switch-Pin and Status-LED Pin #####################################################################
+const uint8_t STATUS_LED = 5;
+const uint8_t MODE_SWITCH = 7;
+int buttonState = 0;
+// ###############################################################################################################
+
+// SD chip select pin.
+const uint8_t SD_CS_PIN = 10;
+//------------------------------------------------------------------------------
+// Analog pin number list for a sample.  Pins may be in any order and pin
+// numbers may be repeated.
+const uint8_t PIN_LIST[] = {0, 1, 2, 3, 4, 5, 6, 7};
+//------------------------------------------------------------------------------
+// Sample rate in samples per second.
+const float SAMPLE_RATE =2000;  // Must be 0.25 or greater.
+
+// The interval between samples in seconds, SAMPLE_INTERVAL, may be set to a
+// constant instead of being calculated from SAMPLE_RATE.  SAMPLE_RATE is not
+// used in the code below.  For example, setting SAMPLE_INTERVAL = 2.0e-4
+// will result in a 200 microsecond sample interval.
+const float SAMPLE_INTERVAL = 1.0/SAMPLE_RATE;
+
+// Setting ROUND_SAMPLE_INTERVAL non-zero will cause the sample interval to
+// be rounded to a a multiple of the ADC clock period and will reduce sample
+// time jitter.
+#define ROUND_SAMPLE_INTERVAL 1
+//------------------------------------------------------------------------------
+// Reference voltage.  See the processor data-sheet for reference details.
+ uint8_t const ADC_REF = 0; // External Reference AREF pin.
+// uint8_t const ADC_REF = (1 << REFS0);  // Vcc Reference.
+// uint8_t const ADC_REF = (1 << REFS1);  // Internal 1.1 (only 644 1284P Mega)
+// uint8_t const ADC_REF = (1 << REFS1) | (1 << REFS0);  // Internal 1.1 or 2.56
+//------------------------------------------------------------------------------
+// File definitions.
+//
+// Maximum file size in bytes.
+// The program creates a contiguous file with MAX_FILE_SIZE_MiB bytes.
+// The file will be truncated if logging is stopped early.
+const uint32_t MAX_FILE_SIZE_MiB = 10;  // 10 MiB file. [Changed from 100 to 10 on 2022-05-26]
+
+// log file name.  Integer field before dot will be incremented.
+#define LOG_FILE_NAME ""AvrAdc00.bin""
+
+// Maximum length name including zero byte.
+const size_t NAME_DIM = 40;
+
+// Set RECORD_EIGHT_BITS non-zero to record only the high 8-bits of the ADC.
+#define RECORD_EIGHT_BITS 0
+//------------------------------------------------------------------------------
+// FIFO size definition. Use a multiple of 512 bytes for best performance.
+//
+#if RAMEND < 0X8FF
+#error SRAM too small
+#elif RAMEND < 0X10FF
+const size_t FIFO_SIZE_BYTES = 512;
+#elif RAMEND < 0X20FF
+const size_t FIFO_SIZE_BYTES = 4*512;
+#elif RAMEND < 0X40FF
+const size_t FIFO_SIZE_BYTES = 12*512;
+#else  // RAMEND
+const size_t FIFO_SIZE_BYTES = 16*512;
+#endif  // RAMEND
+//------------------------------------------------------------------------------
+// ADC clock rate.
+// The ADC clock rate is normally calculated from the pin count and sample
+// interval.  The calculation attempts to use the lowest possible ADC clock
+// rate.
+//
+// You can select an ADC clock rate by defining the symbol ADC_PRESCALER to
+// one of these values.  You must choose an appropriate ADC clock rate for
+// your sample interval.
+// #define ADC_PRESCALER 7 // F_CPU/128 125 kHz on an Uno
+// #define ADC_PRESCALER 6 // F_CPU/64  250 kHz on an Uno
+// #define ADC_PRESCALER 5 // F_CPU/32  500 kHz on an Uno
+// #define ADC_PRESCALER 4 // F_CPU/16 1000 kHz on an Uno
+// #define ADC_PRESCALER 3 // F_CPU/8  2000 kHz on an Uno (8-bit mode only)
+//==============================================================================
+// End of configuration constants.
+//==============================================================================
+// Temporary log file.  Will be deleted if a reset or power failure occurs.
+#define TMP_FILE_NAME ""tmp_adc.bin""
+
+// Number of analog pins to log.
+const uint8_t PIN_COUNT = sizeof(PIN_LIST)/sizeof(PIN_LIST[0]);
+
+// Minimum ADC clock cycles per sample interval
+const uint16_t MIN_ADC_CYCLES = 15;
+
+// Extra cpu cycles to setup ADC with more than one pin per sample.
+const uint16_t ISR_SETUP_ADC = PIN_COUNT > 1 ? 100 : 0;
+
+// Maximum cycles for timer0 system interrupt.
+const uint16_t ISR_TIMER0 = 160;
+//==============================================================================
+const uint32_t MAX_FILE_SIZE = MAX_FILE_SIZE_MiB << 20;
+
+// Max SPI rate for AVR is 10 MHz for F_CPU 20 MHz, 8 MHz for F_CPU 16 MHz.
+#define SPI_CLOCK SD_SCK_MHZ(10)
+// Select fastest interface.
+#if ENABLE_DEDICATED_SPI
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, DEDICATED_SPI, SPI_CLOCK)
+#else  // ENABLE_DEDICATED_SPI
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SPI_CLOCK)
+#endif  // ENABLE_DEDICATED_SPI
+
+#if SD_FAT_TYPE == 0
+SdFat sd;
+typedef File file_t;
+#elif SD_FAT_TYPE == 1
+SdFat32 sd;
+typedef File32 file_t;
+#elif SD_FAT_TYPE == 2
+SdExFat sd;
+typedef ExFile file_t;
+#elif SD_FAT_TYPE == 3
+SdFs sd;
+typedef FsFile file_t;
+#else  // SD_FAT_TYPE
+#error Invalid SD_FAT_TYPE
+#endif  // SD_FAT_TYPE
+
+file_t binFile;
+file_t csvFile;
+
+char binName[] = LOG_FILE_NAME;
+
+#if RECORD_EIGHT_BITS
+const size_t BLOCK_MAX_COUNT = PIN_COUNT*(DATA_DIM8/PIN_COUNT);
+typedef block8_t block_t;
+#else  // RECORD_EIGHT_BITS
+const size_t BLOCK_MAX_COUNT = PIN_COUNT*(DATA_DIM16/PIN_COUNT);
+typedef block16_t block_t;
+#endif // RECORD_EIGHT_BITS
+
+// Size of FIFO in blocks.
+size_t const FIFO_DIM = FIFO_SIZE_BYTES/sizeof(block_t);
+block_t* fifoData;
+volatile size_t fifoCount = 0; // volatile - shared, ISR and background.
+size_t fifoHead = 0;  // Only accessed by ISR during logging.
+size_t fifoTail = 0;  // Only accessed by writer during logging.
+//==============================================================================
+// Interrupt Service Routines
+
+// Disable ADC interrupt if true.
+volatile bool isrStop = false;
+
+// Pointer to current buffer.
+block_t* isrBuf = nullptr;
+// overrun count
+uint16_t isrOver = 0;
+
+// ADC configuration for each pin.
+uint8_t adcmux[PIN_COUNT];
+uint8_t adcsra[PIN_COUNT];
+uint8_t adcsrb[PIN_COUNT];
+uint8_t adcindex = 1;
+
+// Insure no timer events are missed.
+volatile bool timerError = false;
+volatile bool timerFlag = false;
+//------------------------------------------------------------------------------
+// ADC done interrupt.
+ISR(ADC_vect) {
+  // Read ADC data.
+#if RECORD_EIGHT_BITS
+  uint8_t d = ADCH;
+#else  // RECORD_EIGHT_BITS
+  // This will access ADCL first.
+  uint16_t d = ADC;
+#endif  // RECORD_EIGHT_BITS
+
+  if (!isrBuf) {
+    if (fifoCount < FIFO_DIM) {
+      isrBuf = fifoData + fifoHead;
+    } else {
+      // no buffers - count overrun
+      if (isrOver < 0XFFFF) {
+        isrOver++;
+      }
+      // Avoid missed timer error.
+      timerFlag = false;
+      return;
+    }
+  }
+  // Start ADC for next pin
+  if (PIN_COUNT > 1) {
+    ADMUX = adcmux[adcindex];
+    ADCSRB = adcsrb[adcindex];
+    ADCSRA = adcsra[adcindex];
+    if (adcindex == 0) {
+      timerFlag = false;
+    }
+    adcindex =  adcindex < (PIN_COUNT - 1) ? adcindex + 1 : 0;
+  } else {
+    timerFlag = false;
+  }
+  // Store ADC data.
+  isrBuf->data[isrBuf->count++] = d;
+
+  // Check for buffer full.
+  if (isrBuf->count >= BLOCK_MAX_COUNT) {
+    fifoHead = fifoHead < (FIFO_DIM - 1) ? fifoHead + 1 : 0;
+    fifoCount++;
+    // Check for end logging.
+    if (isrStop) {
+      adcStop();
+      return;
+    }
+    // Set buffer needed and clear overruns.
+    isrBuf = nullptr;
+    isrOver = 0;
+  }
+}
+//------------------------------------------------------------------------------
+// timer1 interrupt to clear OCF1B
+ISR(TIMER1_COMPB_vect) {
+  // Make sure ADC ISR responded to timer event.
+  if (timerFlag) {
+    timerError = true;
+  }
+  timerFlag = true;
+}
+//==============================================================================
+// Error messages stored in flash.
+#define error(msg) (Serial.println(F(msg)),errorHalt())
+#define assert(e) ((e) ? (void)0 : error(""assert: "" #e))
+//------------------------------------------------------------------------------
+//
+void fatalBlink() {
+  while (true) {
+    if (ERROR_LED_PIN >= 0) {
+      digitalWrite(ERROR_LED_PIN, HIGH);
+      delay(200);
+      digitalWrite(ERROR_LED_PIN, LOW);
+      delay(200);
+    }
+  }
+}
+//------------------------------------------------------------------------------
+void errorHalt() {
+  // Print minimal error data.
+  // sd.errorPrint(&Serial);
+  // Print extended error info - uses extra bytes of flash.
+  sd.printSdError(&Serial);
+  // Try to save data.
+  binFile.close();
+  fatalBlink();
+}
+//------------------------------------------------------------------------------
+void printUnusedStack() {
+  Serial.print(F(""\nUnused stack: ""));
+  Serial.println(UnusedStack());
+}
+//------------------------------------------------------------------------------
+#if USE_RTC
+#if USE_RTC == 1
+RTC_DS1307 rtc;
+#elif USE_RTC == 2
+RTC_DS3231 rtc;
+#elif USE_RTC == 3
+RTC_PCF8523 rtc;
+#else  // USE_RTC == type
+#error USE_RTC type not implemented.
+#endif  // USE_RTC == type
+// Call back for file timestamps.  Only called for file create and sync().
+void dateTime(uint16_t* date, uint16_t* time, uint8_t* ms10) {
+  DateTime now = rtc.now();
+
+  // Return date using FS_DATE macro to format fields.
+  *date = FS_DATE(now.year(), now.month(), now.day());
+
+  // Return time using FS_TIME macro to format fields.
+  *time = FS_TIME(now.hour(), now.minute(), now.second());
+
+  // Return low time bits in units of 10 ms.
+  *ms10 = now.second() & 1 ? 100 : 0;
+}
+#endif  // USE_RTC
+//==============================================================================
+#if ADPS0 != 0 || ADPS1 != 1 || ADPS2 != 2
+#error unexpected ADC prescaler bits
+#endif
+//------------------------------------------------------------------------------
+inline bool adcActive() {return (1 << ADIE) & ADCSRA;}
+//------------------------------------------------------------------------------
+// initialize ADC and timer1
+void adcInit(metadata_t* meta) {
+  uint8_t adps;  // prescaler bits for ADCSRA
+  uint32_t ticks = F_CPU*SAMPLE_INTERVAL + 0.5;  // Sample interval cpu cycles.
+
+  if (ADC_REF & ~((1 << REFS0) | (1 << REFS1))) {
+    error(""Invalid ADC reference"");
+  }
+#ifdef ADC_PRESCALER
+  if (ADC_PRESCALER > 7 || ADC_PRESCALER < 2) {
+    error(""Invalid ADC prescaler"");
+  }
+  adps = ADC_PRESCALER;
+#else  // ADC_PRESCALER
+  // Allow extra cpu cycles to change ADC settings if more than one pin.
+  int32_t adcCycles = (ticks - ISR_TIMER0)/PIN_COUNT - ISR_SETUP_ADC;
+
+  for (adps = 7; adps > 0; adps--) {
+    if (adcCycles >= (MIN_ADC_CYCLES << adps)) {
+      break;
+    }
+  }
+#endif  // ADC_PRESCALER
+  meta->adcFrequency = F_CPU >> adps;
+  if (meta->adcFrequency > (RECORD_EIGHT_BITS ? 2000000 : 1000000)) {
+    error(""Sample Rate Too High"");
+  }
+#if ROUND_SAMPLE_INTERVAL
+  // Round so interval is multiple of ADC clock.
+  ticks += 1 << (adps - 1);
+  ticks >>= adps;
+  ticks <<= adps;
+#endif  // ROUND_SAMPLE_INTERVAL
+
+  if (PIN_COUNT > BLOCK_MAX_COUNT || PIN_COUNT > PIN_NUM_DIM) {
+    error(""Too many pins"");
+  }
+  meta->pinCount = PIN_COUNT;
+  meta->recordEightBits = RECORD_EIGHT_BITS;
+
+  for (int i = 0; i < PIN_COUNT; i++) {
+    uint8_t pin = PIN_LIST[i];
+    if (pin >= NUM_ANALOG_INPUTS) {
+      error(""Invalid Analog pin number"");
+    }
+    meta->pinNumber[i] = pin;
+
+    // Set ADC reference and low three bits of analog pin number.
+    adcmux[i] = (pin & 7) | ADC_REF;
+    if (RECORD_EIGHT_BITS) {
+      adcmux[i] |= 1 << ADLAR;
+    }
+
+    // If this is the first pin, trigger on timer/counter 1 compare match B.
+    adcsrb[i] = i == 0 ? (1 << ADTS2) | (1 << ADTS0) : 0;
+#ifdef MUX5
+    if (pin > 7) {
+      adcsrb[i] |= (1 << MUX5);
+    }
+#endif  // MUX5
+    adcsra[i] = (1 << ADEN) | (1 << ADIE) | adps;
+    // First pin triggers on timer 1 compare match B rest are free running.
+    adcsra[i] |= i == 0 ? 1 << ADATE : 1 << ADSC;
+  }
+
+  // Setup timer1
+  TCCR1A = 0;
+  uint8_t tshift;
+  if (ticks < 0X10000) {
+    // no prescale, CTC mode
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS10);
+    tshift = 0;
+  } else if (ticks < 0X10000*8) {
+    // prescale 8, CTC mode
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11);
+    tshift = 3;
+  } else if (ticks < 0X10000*64) {
+    // prescale 64, CTC mode
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS11) | (1 << CS10);
+    tshift = 6;
+  } else if (ticks < 0X10000*256) {
+    // prescale 256, CTC mode
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS12);
+    tshift = 8;
+  } else if (ticks < 0X10000*1024) {
+    // prescale 1024, CTC mode
+    TCCR1B = (1 << WGM13) | (1 << WGM12) | (1 << CS12) | (1 << CS10);
+    tshift = 10;
+  } else {
+    error(""Sample Rate Too Slow"");
+  }
+  // divide by prescaler
+  ticks >>= tshift;
+  // set TOP for timer reset
+  ICR1 = ticks - 1;
+  // compare for ADC start
+  OCR1B = 0;
+
+  // multiply by prescaler
+  ticks <<= tshift;
+
+  // Sample interval in CPU clock ticks.
+  meta->sampleInterval = ticks;
+  meta->cpuFrequency = F_CPU;
+  float sampleRate = (float)meta->cpuFrequency/meta->sampleInterval;
+  Serial.print(F(""Sample pins:""));
+  for (uint8_t i = 0; i < meta->pinCount; i++) {
+    Serial.print(' ');
+    Serial.print(meta->pinNumber[i], DEC);
+  }
+  Serial.println();
+  Serial.print(F(""ADC bits: ""));
+  Serial.println(meta->recordEightBits ? 8 : 10);
+  Serial.print(F(""ADC clock kHz: ""));
+  Serial.println(meta->adcFrequency/1000);
+  Serial.print(F(""Sample Rate: ""));
+  Serial.println(sampleRate);
+  Serial.print(F(""Sample interval usec: ""));
+  Serial.println(1000000.0/sampleRate);
+}
+//------------------------------------------------------------------------------
+// enable ADC and timer1 interrupts
+void adcStart() {
+  // initialize ISR
+  adcindex = 1;
+  isrBuf = nullptr;
+  isrOver = 0;
+  isrStop = false;
+
+  // Clear any pending interrupt.
+  ADCSRA |= 1 << ADIF;
+
+  // Setup for first pin.
+  ADMUX = adcmux[0];
+  ADCSRB = adcsrb[0];
+  ADCSRA = adcsra[0];
+
+  // Enable timer1 interrupts.
+  timerError = false;
+  timerFlag = false;
+  TCNT1 = 0;
+  TIFR1 = 1 << OCF1B;
+  TIMSK1 = 1 << OCIE1B;
+}
+//------------------------------------------------------------------------------
+inline void adcStop() {
+  TIMSK1 = 0;
+  ADCSRA = 0;
+}
+//------------------------------------------------------------------------------
+// Convert binary file to csv file.
+void binaryToCsv() {
+  uint8_t lastPct = 0;
+  block_t* pd;
+  metadata_t* pm;
+  uint32_t t0 = millis();
+  // Use fast buffered print class.
+  BufferedPrint<file_t, 64> bp(&csvFile);
+  block_t binBuffer[FIFO_DIM];
+
+  assert(sizeof(block_t) == sizeof(metadata_t));
+  binFile.rewind();
+  uint32_t tPct = millis();
+  bool doMeta = true;
+  while (!Serial.available()) {
+    pd = binBuffer;
+    int nb = binFile.read(binBuffer, sizeof(binBuffer));
+    if (nb < 0) {
+      error(""read binFile failed"");
+    }
+    size_t nd = nb/sizeof(block_t);
+    if (nd < 1) {
+      break;
+    }
+    if (doMeta) {
+      doMeta = false;
+      pm = (metadata_t*)pd++;
+      if (PIN_COUNT != pm->pinCount) {
+        error(""Invalid pinCount"");
+      }
+      bp.print(F(""Interval,""));
+      float intervalMicros = 1.0e6*pm->sampleInterval/(float)pm->cpuFrequency;
+      bp.print(intervalMicros, 4);
+      bp.println(F("",usec""));
+      for (uint8_t i = 0; i < PIN_COUNT; i++) {
+        if (i) {
+          bp.print(',');
+        }
+        bp.print(F(""pin""));
+        bp.print(pm->pinNumber[i]);
+      }
+      bp.println();
+      if (nd-- == 1) {
+        break;
+      }
+    }
+    for (size_t i = 0; i < nd; i++, pd++) {
+      if (pd->overrun) {
+        bp.print(F(""OVERRUN,""));
+        bp.println(pd->overrun);
+      }
+      for (size_t j = 0; j < pd->count; j += PIN_COUNT) {
+        for (size_t i = 0; i < PIN_COUNT; i++) {
+          if (!bp.printField(pd->data[i + j], i == (PIN_COUNT-1) ? '\n' : ',')) {
+            error(""printField failed"");
+          }
+        }
+      }
+    }
+    if ((millis() - tPct) > 1000) {
+      uint8_t pct = binFile.curPosition()/(binFile.fileSize()/100);
+      if (pct != lastPct) {
+        tPct = millis();
+        lastPct = pct;
+        Serial.print(pct, DEC);
+        Serial.println('%');
+      }
+    }
+  }
+  if (!bp.sync() || !csvFile.close()) {
+    error(""close csvFile failed"");
+  }
+  Serial.print(F(""Done: ""));
+  Serial.print(0.001*(millis() - t0));
+  Serial.println(F("" Seconds""));
+}
+//------------------------------------------------------------------------------
+void clearSerialInput() {
+  uint32_t m = micros();
+  do {
+    if (Serial.read() >= 0) {
+      m = micros();
+    }
+  } while (micros() - m < 10000);
+}
+//------------------------------------------------------------------------------
+void createBinFile() {
+  binFile.close();
+  while (sd.exists(binName)) {
+    char* p = strchr(binName, '.');
+    if (!p) {
+      error(""no dot in filename"");
+    }
+    while (true) {
+      p--;
+      if (p < binName || *p < '0' || *p > '9') {
+        error(""Can't create file name"");
+      }
+      if (p[0] != '9') {
+        p[0]++;
+        break;
+      }
+      p[0] = '0';
+    }
+  }
+  Serial.print(F(""Opening: ""));
+  Serial.println(binName);
+  if (!binFile.open(binName, O_RDWR | O_CREAT)) {
+    error(""open binName failed"");
+  }
+  Serial.print(F(""Allocating: ""));
+  Serial.print(MAX_FILE_SIZE_MiB);
+  Serial.println(F("" MiB""));
+  if (!binFile.preAllocate(MAX_FILE_SIZE)) {
+    error(""preAllocate failed"");
+  }
+}
+//------------------------------------------------------------------------------
+bool createCsvFile() {
+  char csvName[NAME_DIM];
+
+  if (!binFile.isOpen()) {
+    Serial.println(F(""No current binary file""));
+    return false;
+  }
+  binFile.getName(csvName, sizeof(csvName));
+  char* dot = strchr(csvName, '.');
+  if (!dot) {
+    error(""no dot in binName"");
+  }
+  strcpy(dot + 1, ""csv"");
+  if (!csvFile.open(csvName, O_WRONLY|O_CREAT|O_TRUNC)) {
+    error(""open csvFile failed"");
+  }
+  Serial.print(F(""Writing: ""));
+  Serial.print(csvName);
+  Serial.println(F("" - type any character to stop""));
+  return true;
+}
+//------------------------------------------------------------------------------
+// log data
+void logData() {
+  uint32_t t0;
+  uint32_t t1;
+  uint32_t overruns =0;
+  uint32_t count = 0;
+  uint32_t maxLatencyUsec = 0;
+  size_t maxFifoUse = 0;
+  block_t fifoBuffer[FIFO_DIM];
+
+  adcInit((metadata_t*)fifoBuffer);
+  // Write metadata.
+  if (sizeof(metadata_t) != binFile.write(fifoBuffer, sizeof(metadata_t))) {
+    error(""Write metadata failed"");
+  }
+  fifoCount = 0;
+  fifoHead = 0;
+  fifoTail = 0;
+  fifoData = fifoBuffer;
+  // Initialize all blocks to save ISR overhead.
+  memset(fifoBuffer, 0, sizeof(fifoBuffer));
+
+  Serial.println(F(""Logging - type any character to stop""));
+  // Wait for Serial Idle.
+  Serial.flush();
+  delay(10);
+
+  t0 = millis();
+  t1 = t0;
+  // Start logging interrupts.
+  adcStart();
+  while (1) {
+    uint32_t m;
+    noInterrupts();
+    size_t tmpFifoCount = fifoCount;
+    interrupts();
+    if (tmpFifoCount) {
+      block_t* pBlock = fifoData + fifoTail;
+      // Write block to SD.
+      m = micros();
+      if (sizeof(block_t) != binFile.write(pBlock, sizeof(block_t))) {
+        error(""write data failed"");
+      }
+      m = micros() - m;
+      t1 = millis();
+      if (m > maxLatencyUsec) {
+        maxLatencyUsec = m;
+      }
+      if (tmpFifoCount >maxFifoUse) {
+        maxFifoUse = tmpFifoCount;
+      }
+      count += pBlock->count;
+
+      // Add overruns and possibly light LED.
+      if (pBlock->overrun) {
+        overruns += pBlock->overrun;
+        if (ERROR_LED_PIN >= 0) {
+          digitalWrite(ERROR_LED_PIN, HIGH);
+        }
+      }
+      // Initialize empty block to save ISR overhead.
+      pBlock->count = 0;
+      pBlock->overrun = 0;
+      fifoTail = fifoTail < (FIFO_DIM - 1) ? fifoTail + 1 : 0;
+
+      noInterrupts();
+      fifoCount--;
+      interrupts();
+
+      if (binFile.curPosition() >= MAX_FILE_SIZE) {
+        // File full so stop ISR calls.
+        adcStop();
+        break;
+      }
+    }
+    if (timerError) {
+      error(""Missed timer event - rate too high"");
+    }
+    if (Serial.available()) {
+      // Stop ISR interrupts.
+      isrStop = true;
+    }
+    if (fifoCount == 0 && !adcActive()) {
+       break;
+    }
+
+    // #############################################################################################
+    buttonState = digitalRead(MODE_SWITCH);
+    if (buttonState == LOW) {
+        break;
+    }
+    // #############################################################################################
+  }
+  Serial.println();
+  // Truncate file if recording stopped early.
+  if (binFile.curPosition() < MAX_FILE_SIZE) {
+    Serial.println(F(""Truncating file""));
+    Serial.flush();
+    if (!binFile.truncate()) {
+      error(""Can't truncate file"");
+    }
+  }
+  Serial.print(F(""Max write latency usec: ""));
+  Serial.println(maxLatencyUsec);
+  Serial.print(F(""Record time sec: ""));
+  Serial.println(0.001*(t1 - t0), 3);
+  Serial.print(F(""Sample count: ""));
+  Serial.println(count/PIN_COUNT);
+  Serial.print(F(""Overruns: ""));
+  Serial.println(overruns);
+  Serial.print(F(""FIFO_DIM: ""));
+  Serial.println(FIFO_DIM);
+  Serial.print(F(""maxFifoUse: ""));
+  Serial.println(maxFifoUse + 1);  // include ISR use.
+  Serial.println(F(""Done""));
+}
+//------------------------------------------------------------------------------
+void openBinFile() {
+  char name[NAME_DIM];
+  clearSerialInput();
+  Serial.println(F(""Enter file name""));
+  if (!serialReadLine(name, sizeof(name))) {
+    return;
+  }
+  if (!sd.exists(name)) {
+    Serial.println(name);
+    Serial.println(F(""File does not exist""));
+    return;
+  }
+  binFile.close();
+  if (!binFile.open(name, O_RDWR)) {
+    Serial.println(name);
+    Serial.println(F(""open failed""));
+    return;
+  }
+  Serial.println(F(""File opened""));
+}
+//------------------------------------------------------------------------------
+// Print data file to Serial
+void printData() {
+  block_t buf;
+  if (!binFile.isOpen()) {
+    Serial.println(F(""No current binary file""));
+    return;
+  }
+  binFile.rewind();
+  if (binFile.read(&buf , sizeof(buf)) != sizeof(buf)) {
+    error(""Read metadata failed"");
+  }
+  Serial.println(F(""Type any character to stop""));
+  delay(1000);
+  while (!Serial.available() &&
+         binFile.read(&buf , sizeof(buf)) == sizeof(buf)) {
+    if (buf.count == 0) {
+      break;
+    }
+    if (buf.overrun) {
+      Serial.print(F(""OVERRUN,""));
+      Serial.println(buf.overrun);
+    }
+    for (size_t i = 0; i < buf.count; i++) {
+      Serial.print(buf.data[i], DEC);
+      if ((i+1)%PIN_COUNT) {
+        Serial.print(',');
+      } else {
+        Serial.println();
+      }
+    }
+  }
+  Serial.println(F(""Done""));
+}
+//------------------------------------------------------------------------------
+bool serialReadLine(char* str, size_t size) {
+  size_t n = 0;
+  while(!Serial.available()) {
+  }
+  while (true) {
+    int c = Serial.read();
+    if (c < ' ') break;
+    str[n++] = c;
+    if (n >= size) {
+      Serial.println(F(""input too long""));
+      return false;
+    }
+    uint32_t m = millis();
+    while (!Serial.available() && (millis() - m) < 100){}
+    if (!Serial.available()) break;
+  }
+  str[n] = 0;
+  return true;
+}
+//------------------------------------------------------------------------------
+void setup(void) {
+  pinMode(MODE_SWITCH, INPUT_PULLUP);
+  pinMode(STATUS_LED, OUTPUT);
+  analogReference(EXTERNAL); // switch to external reference voltage
+  
+ 
+  
+  
+  if (ERROR_LED_PIN >= 0) {
+    pinMode(ERROR_LED_PIN, OUTPUT);
+  }
+  Serial.begin(9600);
+  char c=0;
+  //while(!Serial) {}
+  //Serial.println(F(""Type any character to begin.""));
+  //while(!Serial.available()) {}
+
+  FillStack();
+
+  
+  // Read the first sample pin to init the ADC.
+  analogRead(PIN_LIST[0]);
+
+#if !ENABLE_DEDICATED_SPI
+  Serial.println(F(
+    ""\nFor best performance edit SdFatConfig.h\n""
+    ""and set ENABLE_DEDICATED_SPI nonzero""));
+#endif  // !ENABLE_DEDICATED_SPI
+  // Initialize SD.
+  if (!sd.begin(SD_CONFIG)) {
+    error(""sd.begin failed"");
+  }
+#if USE_RTC
+  if (!rtc.begin()) {
+    error(""rtc.begin failed"");
+  }
+  if (!rtc.isrunning()) {
+    // Set RTC to sketch compile date & time.
+    // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    error(""RTC is NOT running!"");
+  } else {
+    Serial.println(F(""RTC is running""));
+  }
+  // Set callback
+  FsDateTime::setCallback(dateTime);
+#endif  // USE_RTC
+}
+//------------------------------------------------------------------------------
+void loop(void) {
+  
+  printUnusedStack();
+  clearSerialInput();
+
+  if (ERROR_LED_PIN >= 0) {
+    digitalWrite(ERROR_LED_PIN, LOW);
+  }
+
+  buttonState = digitalRead(MODE_SWITCH);
+
+  if (buttonState == HIGH) {
+    digitalWrite(STATUS_LED, HIGH);
+    createBinFile();
+    logData();
+    if (createCsvFile()) {
+      binaryToCsv();
+    }
+    digitalWrite(STATUS_LED, LOW);
+  }
+  else if (buttonState == LOW) {
+    digitalWrite(STATUS_LED, HIGH);
+    delay(125);
+    digitalWrite(STATUS_LED, LOW);
+    delay(125);
+  }
+}
+#else  // __AVR__
+#error This program is only for AVR.
+#endif  // __AVR__"
+arduino logs13,I hope somebody can help me with this problem. Thank you really much!
+arduino logs13,Kind regards
+arduino logs13,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs13,Related topics
+arduino logs13,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs14,Rocket Arduino computer with barometric data and GPS logging
+arduino logs14,"I am planning a high power rocket project, and I would like to get familiar with how to use the Arduino. I plan on utilizing a barometric pressure sensor and a GPS logger. I have seen Adafruit sensors that would work, and I linked them to this post. I am not familiar with how to make a program that would be able to record barometric data and log GPS data over the flight. If anyone can provide me with some guidance, it would be greatly appreciated."
+arduino logs14,Adafruit Ultimate GPS GNSS with USB - 99 channel w/10 Hz updates
+arduino logs14,"The Ultimate GPS module you know and love has a glow-up to let it be easily used with any computer, not just microcontrollers! With the built-in USB-to-Serial converter, you can now  ..."
+arduino logs14,Price: $29.95 USD
+arduino logs14,MPL3115A2 - I2C Barometric Pressure/Altitude/Temperature Sensor
+arduino logs14,"This pressure sensor from Freescale is a great low-cost sensing solution for precision measurement of barometric pressure and altitude. The MPL3115A2 has a typical 1.5 Pascal resolution,  ..."
+arduino logs14,Price: $9.95 USD
+arduino logs14,would be able to record barometric data and log GPS data over the flight.
+arduino logs14,Do you have a plan to disregard the air pressure caused by the rocket while it is flying?
+arduino logs14,There will be small holes drilled into the airframe so the pressure in the rocket can equalize with the atmosphere surrounding it.
+arduino logs14,"Adafruit provides their tutorials and programming examples for, essentially, all of their products."
+arduino logs14,I am not familiar with how to make a program that would be able to record barometric data and log GPS data over the flight.
+arduino logs14,"That has been done quite often, and examples are posted on the web and discussed in this forum."
+arduino logs14,"Baby steps first! Learn how to use each sensor individually, before starting to put the pieces together."
+arduino logs14,"Since the rocket has a small diameter, do you all think that the Arduino Nano RP2040 would be the best option?"
+arduino logs14,"What diameter is ""small""?"
+arduino logs14,"There are countless postage-stamp sized Arduino-compatible MCUs, and most of them are up to the task of recording data points on an SD card."
+arduino logs14,"54mm or 2.1"""
+arduino logs14,"No worries, then!"
+arduino logs14,There will be small holes drilled into the airframe so the pressure in the rocket can equalize with the atmosphere surrounding it.
+arduino logs14,There will be a pressure differential due to the speed of the rocket and air passing across its surface
+arduino logs14,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs14,Related topics
+arduino logs14,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs15,Arduino 2.1.0 doesn't show all output logs
+arduino logs15,"When I compile sketch, output logs are displayed under the sketch window. But after few seconds part of output logs, when compilator doing his job, disappear.  How may I enable all output logs displayed in window?"
+arduino logs15,Hi@dncx. I have a guess of what the problem is:
+arduino logs15,"The bottom panel of the Arduino IDE 2.x window acts as a container for ""views"". In addition to the ""Output"" view that shows the compilation output, the bottom panel holds the ""Serial Monitor"" view. The views that are open in the bottom panel are indicated by tabs at the top of the panel. You can select the active view by clicking its tab."
+arduino logs15,"When you start a compilation, the ""Output"" view is automatically selected so that the compilation output can be seen. Starting from Arduino IDE 2.1.0, if you had the ""Serial Monitor"" view selected before starting the compilation, the ""Serial Monitor"" view is selected once more after a successful compilation. If you would like to look at the compilation output, simply click on the ""Output"" tab to make that view visible:"
+arduino logs15,image675×575 23.9 KB
+arduino logs15,"Please let me know if that information solves the problem for you. If now, I'll be happy to investigate it further."
+arduino logs15,Or wondering if it is something like I ran into on the thread:Build with lots of errors hangs Arduino process - Software / Arduino IDE 2.0 - Arduino Forum
+arduino logs15,"When I was building with the sketch that has tons of errors, I could see lots and lots of errors appear during the compile, but when it completed (or the case I mentioned where the IDE mostly totally hung and required me to use task manager to kill it."
+arduino logs15,But when I tried to scroll to the start only the last probably 1000 or more lines showed up.Wonder if there is a max size kept and the earlier stuff tossed?
+arduino logs15,"Let me show You  the problem:When I start compile output window displays upper picture, but after few seconds it dispappers and it looks like down picture(some logs with other compilation massages).sketch2092×578 55.5 KB"
+arduino logs15,You currently have scroll-lock on which might be the cause of your issue. Click the lock icon at the right hand side of the output window so it looks like below.
+arduino logs15,"It doesn't matter.  When scrolling is on or off, starting messages are lost."
+arduino logs15,I think You're right. There are some output log limitations.
+arduino logs15,Wonder if there is a max size kept and the earlier stuff tossed?
+arduino logs15,"There is. As you guessed, it is 1000 lines. This can be adjusted via theadvanced settings:"
+arduino logs15,Thanks a lot. That what I was searching for. I changed  setting to 3000 and now  displays all logs.
+arduino logs15,You are welcome. I'm glad if I was able to be of assistance.
+arduino logs15,"Regards,Per"
+arduino logs15,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs15,Related topics
+arduino logs15,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino logs16,When I log out if i hit the login button arduino cc just logs me back in
+arduino logs16,I log out of arduino cc after every session but all I have to do it hit the login button no username or password needed to relogin.  Is there a way to make it ask for my username and password every time  a login attempt is made.
+arduino logs16,The credentials are not stored in firefox.
+arduino logs16,I'm not the only one with access to this computer
+arduino logs16,I think you should 'Log out' before leaving.
+arduino logs16,I do.
+arduino logs16,my problem is that it does not ask for my password when I Log back in.
+arduino logs16,The credentials are not stored in firefox.
+arduino logs16,where are they stored then?
+arduino logs16,I do not know but menu -> Passwords in firefox says there are no logins found.
+arduino logs16,"I'm noticing some weird behaviors about login out of both the forum and the main page.If I log into one it logs me into both, but to fully log out I seem to have to log out of each separately.So one login and two logouts may fix my issue."
+arduino logs16,"Perhaps it will help to bookmark the forum page, and not the main site, and enter the forum only."
+arduino logs16,"Login into the forum auto logs me into both the forum and the the main sight.  So to get out completely I have to log out of each separately, or the next time I enter forum I auto login in because I'm logged into the main site.It's a weird workaround but after logging into either one I then have to log out of each to get completely out.one login two logout"
+arduino logs16,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino logs16,Related topics
+arduino logs16,"Powered byDiscourse, best viewed with JavaScript enabled"

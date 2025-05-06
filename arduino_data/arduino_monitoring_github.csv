@@ -1,0 +1,1381 @@
+mot_clé,nom_du_fichier,url,contenu
+arduino monitoring,changelog.txt,https://raw.githubusercontent.com/repetier/Repetier-Firmware/master/changelog.txt,"Version 1.0.4
+  Added emergency parser.
+  Improved handling of small segments, especially with linear advance.
+  Linear advance gives better results now.
+  Added host rescue system.
+  Added files so it compiles with PlatformIO or Arduino IDE.
+  
+Version 1.0.0
+  Keep alive/busy signal for host timeout improvement.
+  M303 now keeps heaters/fans on.
+  Show axis compensation values with 6 digits.
+  Allow multiple MAX6675 sensors.
+  Per axis homing flags.
+  New handling for z probe = z min endstop.
+ "
+arduino monitoring,NEWS.txt,https://raw.githubusercontent.com/sensorium/Mozzi/master/extras/NEWS.txt,"Mozzi sound synthesis library for Arduino
+
+NEWS
+get the latest version from https://sensorium.github.io/Mozzi/
+
+release: v2.0.1
+- Fix compilation with configuration option MOZZI_AUDIO_INPUT
+- Fix compilation with ATMEGA328PB CPUs
+- Fix some erroneous compilation warnings
+
+release: v2.0.0
+- This release is *not* 100% source compatible to earlier versions of Mozzi. Most sketches will continue to compile,
+  but with warnings. Some will need adjustments to keep working. See https://sensorium.github."
+arduino monitoring,Tutorial.txt,https://raw.githubusercontent.com/menloparkinnovation/openpux/master/Arduino/Tutorial.txt,"MenloFramework can be introduced by examining and working with
+the follow projects. Each project is complete, and may be used
+to build an application scenario that matches the requirements
+of what features it supports.
+
+                 *** MenloBlink ***
+
+                Classic ""Blink"" example
+
+This application blinks an LED at a built in interval.
+
+The MenloFramework version of the classic Blink example introduces
+initializing the core framework and using its MenloTimer class to
+timer and eve"
+arduino monitoring,OTHERLISTS.txt,https://raw.githubusercontent.com/laxa/HackingTools/master/OTHERLISTS.txt,"Raw list from pastebin to not loose it:
+
+0trace	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+3proxy	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+3proxy-win32	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+42zip	42	Recursive Zip archive bomb.	http://blog.fefe.de/?ts=b6cea88d
+acccheck	0.2.1	A password dictionary attack tool that targets windows authentication via the SMB protocol.	http://labs.portcullis.co.uk/tools/acccheck/
+ace	1.10	Automated Corporate Enumerator. A simple "
+arduino monitoring,ref_arduino.txt,https://raw.githubusercontent.com/18322025Andrew/NIRWANA/main/ref_arduino.txt,https://how2electronics.com/max30102-arduino-heart-rate-blood-oxygen-monitoring/
+arduino monitoring,infos.txt,https://raw.githubusercontent.com/mqu/viessmann-mqtt/master/infos.txt,"links :
+
+metrics visualisation tools
+time series visualisation monitoring tools
+
+- http://pdacontrolen.com/esp8266-grafana-influxdb-node-red-arduino-mqtt/
+- http://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
+
+- http://docs.influxdata.com/ : chronograph, telegraph, influx-db
+- https://www.youtube.com/watch?v=WxUTYzxIDns : raspberryPI + node-red + MQTT
+
+rasp + node-red :
+- http://www.projetsdiy.fr/node-red-decouverte-sur-raspberry-pi-3-ou-2/#.WLE3W1d"
+arduino monitoring,Arduino Code.txt,https://raw.githubusercontent.com/khamiskhuzaiphamuhammad/ArduinoHealthMonitor/main/ArduinoHealthMonitor-main/Arduino Code.txt,"#include  
+#define RX 9
+#define TX 10
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+#include  
+float pulse = 0;
+float temp = 0;
+SoftwareSerial ser(RX,TX);
+String apiKey = ""L4GTFACOEZO7O4VS"";
+ 
+// Variables
+int pulsePin = A0; // Pulse Sensor purple wire connected to analog pin 0
+int blinkPin = 7 ; // pin to blink led at each beat
+int fadePin = 13; // pin to do fancy classy fading blink at each beat
+int fadeRate = 0; // used to fade LED on w"
+arduino monitoring,README.txt,https://raw.githubusercontent.com/FurTrader/Overkill-Solar-BMS-Arduino-Library/main/README.txt,"Overkill Solar BMS Monitor Library
+==================================
+
+Introduction
+------------
+
+This library communicates with an Overkill Solar BMS (Battery Monitoring
+System), which can be purchased from https://overkillsolar.com/
+
+If you'd like to purchase an Overkill Solar battery monitoring system, use this
+link:
+
+- https://overkillsolar.com/?myboi=187467882
+
+Please note that Overkill Solar supports the open-source community, and by
+clicking on the link above, you will be supporting the d"
+arduino monitoring,readme.txt,https://raw.githubusercontent.com/techpaul/PS2KeyRaw/master/extra/readme.txt,"PS2KeyRaw additional information
+
+Library to handle the two wire communications from a PS2 keyboard. See image
+in extras\Images called NUMLock-77.png for the one byte sequence on the two 
+wires for the one byte code from the Numlock key.
+
+Library performs raw get of characters sent from keyboard, discards
+characters with parity errors.
+
+Example included of SimpleTest.ino allows monitoring keycodes in hex on serial
+To connect to your Arduino change following lines to match your wiring."
+arduino monitoring,changelog.txt,https://raw.githubusercontent.com/makerbot/ReplicatorG/master/changelog.txt,"0040 ReplicatorG
+* Replicator 2 profile now more robust
+* support for selecting between s3g, x3g file formats (future bots)
+* minor profile updates
+* onboard preferences bug fix
+* warning when printing with accelerated speeds to ensure bot has acceleration turned on
+* added support for Sailfish firmware
+
+0039-Beta ReplicatorG
+* Added Replicator 2 Machine profile
+* Added Profiles for Thing-o-matic with Skeinforge-50 and volumetric printing
+* Added support for accelerated Thing-o-matic firmware.  "
+arduino monitoring,keywords.txt,https://raw.githubusercontent.com/psrobotics/quadruped_bai_tiny/main/software/simplefoc_lib_mod/Arduino-FOC/keywords.txt,"ArduinoFOC	KEYWORD1
+SimpleFOC	KEYWORD1
+BLDCMotor	KEYWORD1
+FOCMotor	KEYWORD1
+StepperMotor	KEYWORD1
+Encoder	KEYWORD1
+HallSensors	KEYWORD1
+MagneticSensorSPI	KEYWORD1
+MagneticSensorI2C	KEYWORD1
+MagneticSensorAnalog	KEYWORD1
+BLDCDriver3PWM	KEYWORD1    
+BLDCDriver6PWM	KEYWORD1    
+BLDCDriver	KEYWORD1    
+StepperDriver4PWM	KEYWORD1    
+StepperDriver2PWM	KEYWORD1    
+StepperDriver	KEYWORD1   
+PIDController	KEYWORD1    
+LowPassFilter	KEYWORD1    
+
+initFOC	KEYWORD2
+loopFOC	KEYWORD2
+disable	KEYWORD2
+
+_dela"
+arduino monitoring,list.txt,https://raw.githubusercontent.com/NoThrowForwardIt/awesome-pentest-tools/master/list.txt,"0trace	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+3proxy	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+3proxy-win32	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+42zip	42	Recursive Zip archive bomb.	http://blog.fefe.de/?ts=b6cea88d
+acccheck	0.2.1	A password dictionary attack tool that targets windows authentication via the SMB protocol.	http://labs.portcullis.co.uk/tools/acccheck/
+ace	1.10	Automated Corporate Enumerator. A simple yet powerful VoIP Corporate Directory enu"
+arduino monitoring,c100.txt,https://raw.githubusercontent.com/IntelLabs/control-flag/master/github/c100.txt,"https://github.com/git/git
+https://github.com/beanstalkd/beanstalkd
+https://github.com/sqlcipher/sqlcipher
+https://github.com/rubinius/rubinius
+https://github.com/toland/qlmarkdown
+https://github.com/IoLanguage/io
+https://github.com/lloyd/yajl
+https://github.com/darkk/redsocks
+https://github.com/PromyLOPh/pianobar
+https://github.com/codahale/bcrypt-ruby
+https://github.com/taf2/curb
+https://github.com/jwiegley/git-scripts
+https://github.com/rhomobile/rhodes
+https://github.com/FreeRADIUS/freeradiu"
+arduino monitoring,notes.txt,https://raw.githubusercontent.com/OpenElectronicsLab/OpenHardwareHolterMonitor/master/notes.txt,"Before we go to print again:
+* eyeball review the zones and layers
+  * also of the gerbers
+* testability
+  * what needs to be pulled out as test pads
+  * non-tented vias rather than pads?
+  * or run all the test to the edge of a board and have a connector?
+* JTAG - learn about it?
+* KiCAD
+   * CI/CD design rule checks? - is it commanline scriptable
+   * build KiCAD from source!
+   * module community?
+   * footprint default (e.g.: 0603 hand-solder), preference file?
+   * smarter BoM creation?
+   "
+arduino monitoring,IBM_Project.txt,https://raw.githubusercontent.com/pappukumar35/Environmental_Monitoring/main/IBM_Project.txt,"#include  
+
+/*
+####################################################
+# EnviroMonitor.ino
+# Part of EnviroMonitor project
+# https://github.com/EnviroMonitor
+# OpenSource Air Quality Monitoring Solution
+# Copyright © 2016 by EnviroMonitor
+####################################################
+*/
+
+#include  
+#include  
+#include  
+#include  
+
+#include  
+#include  
+#include ""Config.h""
+#include ""SmoglyDHT.h""
+#include ""PMS3003.h""
+
+//set debug mode, use only in testing
+#define DEBUG"
+arduino monitoring,Links.txt,https://raw.githubusercontent.com/CaseAnon/Dump/master/Links.txt,"/\                                                      
+    /  \   _ __   ___  _ __  _   _ _ __ ___   ___  _   _ ___ 
+   / /\ \ | '_ \ / _ \| '_ \| | | | '_ ` _ \ / _ \| | | / __|
+  / ____ \| | | | (_) | | | | |_| | | | | | | (_) | |_| \__ \
+ /_/    \_\_| |_|\___/|_| |_|\__, |_| |_| |_|\___/ \__,_|___/
+                              __/ |                          
+                             |___/                           
+
+Courses pirated & dumped by Case, S1rlancelot & dave + some ra"
+arduino monitoring,ReadMe.txt,https://raw.githubusercontent.com/hafizuddinSol/AMSA-G02_40/main/ReadMe.txt,"Aquarium Management System by Arduino
+
+Aquarium Management System by Arduino is a made to ease the arduos task of monitoring aquarium while you are away from home, hassle free with specified record of water temperature and water level.
+
+For any inquiries, contact:
+
+[ Lead Developer ]
+Muhammad Hafizuddin Bin Nordin
++60 10-5531403
+
+[ Backend Developer ]
+Najmi Hakim Bin Saharin Mizam
++60 17-2339579
+
+[ Frontend Developer ]
+Muhammad Afiq Erinoor Bin Enche Guri
++60 13-8570271
+
+[ Documentation Leader ]"
+arduino monitoring,usage.rst.txt,https://raw.githubusercontent.com/ErnestoAerzen/AERtronic-Lite-Documentation/main/build/html/_sources/usage.rst.txt,"Usage
+=====
+
+.. _installation:
+
+Installation
+------------
+
+To set up the AERtronic Lite system, follow the steps below:
+
+1. **Hardware Assembly**:
+   - Gather all the necessary components, including the ESP32 MCU, Nextion display, and required electronic components.
+   - Assemble the hardware components according to the provided schematic or circuit diagram using Proteus software for reference.
+
+2. **Upload Firmware**:
+   - Connect the ESP32 MCU to your computer using a USB cable.
+   - Open the "
+arduino monitoring,vocab.txt,https://raw.githubusercontent.com/OpenDriveLab/ELM/main/data/vocab.txt,"▁
+X
+.
+,
+s
+▁the
+a
+:
+▁and
+▁to
+▁of
+▁fill
+e
+▁in
+t
+-
+▁is
+▁de
+▁for
+’
+i
+▁that
+▁you
+d
+▁I
+▁with
+n
+▁on
+'
+o
+▁are
+▁it
+en
+▁be
+▁The
+▁as
+▁your
+l
+▁(
+▁or
+▁have
+▁at
+▁from
+▁an
+▁was
+▁this
+er
+▁la
+m
+r
+ing
+▁can
+!
+▁will
+▁by
+?
+▁not
+re
+)
+▁we
+y
+▁und
+▁has
+▁all
+▁die
+▁but
+▁our
+▁their
+▁A
+▁more
+▁un
+▁der
+c
+u
+in
+▁so
+▁they
+▁one
+▁about
+▁my
+ul
+▁which
+à
+▁In
+/
+he
+f
+▁le
+▁out
+▁also
+▁des
+▁It
+▁up
+▁""
+▁time
+ă
+if
+▁This
+▁We
+p
+▁do
+–
+▁“
+on
+h
+▁si
+le
+▁les
+▁în
+▁his
+▁who
+▁like
+b
+▁when
+;
+▁been
+▁other
+ly
+""
+g
+▁cu
+▁care
+▁what
+▁new
+or
+▁some
+▁get
+▁were
+"
+arduino monitoring,Note.txt,https://raw.githubusercontent.com/Anemo27/Sistem_Monitoring_Udara/main/Note.txt,"1. Konfigurasi WiFi
+   library: WiFimanager by tzapu
+   link: https://github.com/tzapu/WiFiManager
+   set default value: SSID, Password
+
+2. Konfigurasi ThingSpeak
+   libary: ThingSpeak by MathWork
+   link: https://thingspeak.com/
+
+2. Konfigurasi SPIFFS
+   library: default Arduino
+   set config.json file: Token Thingspeak, APIKey Thingspeak, telegram bot, telegram ID.
+   set tempData.json file untuk data sensor.
+
+3. Konfigurasi DHT22
+   library: DHT Sensor Library by Adafruit
+   link: https://git"
+arduino monitoring,structure.txt,https://raw.githubusercontent.com/freddie-a/robot/master/api/structure.txt,"NOTE: OUTDATED
+
+
+Structure ideas
+
+Robot key parts:
+    motion:
+        movement in a direction:
+            formula to move in any direction, given in degrees?:
+                eg move 0 for forward, 180 for backwards, 90 for translate left etc
+            given target distance:
+                use ultrasonic sensor to tell when distance has been reached:
+                	while distance_moved < desired distance:
+                		move_forward()
+                		check_distance()
+                "
+arduino monitoring,A.txt,https://raw.githubusercontent.com/varadchoudhari/LinkedIn-Skills-Crawler/master/output/A-Z/A.txt,"A + Certified
+A&D
+A&E
+A&H
+A&P
+A&R Administration
+A&U
+A+
+A++
+A-133
+A-GPS
+A-frames
+A/B Testing
+A/R Collections
+A/R Management
+A/R analysis
+A1 Assessor
+A10
+A2
+A2A
+A3
+A3 Thinking
+A320
+A330
+AAAHC
+AACR2
+AAMS
+AAP
+AAR
+AASHTO
+AAUS Scientific Diver
+ABAP Web Dynpro
+ABAP-OO
+ABB 800xA
+ABBYY
+ABBYY FineReader
+ABC Analysis
+ABC Flowcharter
+ABCP
+ABEL
+ABI
+ABLS
+ABO Certified
+ABSYNTH
+ABV
+AC Drives
+AC Nielsen
+AC/DC
+ACAD
+ACARS
+ACATS
+ACBS
+ACD
+ACD Management
+ACDSee
+ACE
+ACE Certified
+ACE Certified Personal Trainer
+ACF2
+A"
+arduino monitoring,ReadMe_Dekay.txt,https://raw.githubusercontent.com/Scott216/Weather_Station_Data/master/DavisRFM69 Lib/ReadMe_Dekay.txt,"DavisRFM69 Library
+-------------------
+By DeKay (dekaymail@gmail.com)
+ 
+Creative Commons Attribribution Share-Alike License
+http://creativecommons.org/licenses/by-sa/3.0/
+
+This library is a modified version of the [LowPowerLab's RFM69 library](https://github.com/LowPowerLab/RFM69) that enables reception of weather data from a Davis Instruments Integrated Sensor Suite (ISS) weather station.
+
+##Background
+The Davis Instruments ISS is a solar powered and battery-backed set of outdoor weather sensor"
+arduino monitoring,README.TXT,https://raw.githubusercontent.com/sonicepk/sfpduino/master/README.TXT,"Prints temperature and optical power receive from an SFP that supports digital optical monitoring. 
+Tested on an Arduino UNO and cheap third party SFP with DOM support."
+arduino monitoring,ora_recent.txt,https://raw.githubusercontent.com/stucooper/stubooks/master/ora_recent.txt,"# new O'Reilly books, published since 2010
+# earliers see ora_classic
+# For convenience, python books are considered recent
+21st Century C                                Klemens             ORA
+97 Things every Programmer Should Know        ed Kelvin Henney    ORA
+Ambient Findability                           Morville            ORA
+Architecture Patterns with Python        2020 Percival/Gregory    ORA
+Arduino Cookbook 2e                      2011 Margolis            ORA
+The Art of Agile Developme"
+arduino monitoring,Readme.txt,https://raw.githubusercontent.com/HumidN04/Explosion-Prevention-System-Using-Arduino/main/Readme.txt,"Objective:
+To design a safety system using Arduino that monitors hazardous conditions, such as gas leaks, overheating, or flame detection, and triggers alarms or preventive actions to avoid explosions in industrial or domestic environments.
+
+Materials Required:
+Arduino Uno
+MQ-2 Gas Sensor (for detecting combustible gases like methane or LPG)
+Flame Sensor
+Temperature Sensor (e.g., LM35)
+Buzzer (for alarm)
+LEDs (Red for danger, Green for safe)
+Relay Module (to control external devices li"
+arduino monitoring,Ash resume.txt,https://raw.githubusercontent.com/AshMartian/ash-martian/main/data/Ash resume.txt,"﻿Ash Martian [she/them]
+(253) 592-9341
+career@ashmartian.com 
+6334 Hamma Hamma LN NE, Bremerton, WA 98311
+  
+https://ashmartian.com -    Linkedin -   𝕏  -   Github
+	
+
+	
+
+Objective
+________________
+Passionate engineer driven by a love for technology and innovation. Over 6 years enhancing education through IT at Peninsula School District, 3 years developing cutting-edge B2B applications at BCG, and currently elevating educational experiences at CharacterStrong with a mission to make kindness norma"
+arduino monitoring,Report.txt,https://raw.githubusercontent.com/vishalkashyap01/Latex/main/Download/Report.txt,"pg. 1 Arduino: Build an IoT Environment Monitor   A synopsis report submission  for the first-year project of   Master of Technology in Computer Science and Engineering     By  Same er Dixit  (Roll No.:  230216008 )    UNDER THE SUP ERVISION OF   Dr. Rashi Agarwal   Associate Professor   SUBMITTED TO:   Dr. B B Sagar  (Associate Professor)   Dr. Shashwati Banerjea (Associate Professor)     DEPA RTMENT OF C OMPU TER SCIENCE AND ENGINEERING     Harcour t Butler Techni cal University , Kanpur Uttar"
+arduino monitoring,5492.txt,https://raw.githubusercontent.com/dwillis/ire-resources/main/text/5492.txt,"Sensor journalism
+How do we do it and what are the limits?
+
+SENSOR JOURNALISM
+AN INTRO GUIDE
+
+Marianne Bouchart,
+Founder and Director of HEI-DA
+#NICAR18
+
+@Maid_Marianne @HeiDaHQ | #NICAR18
+
+2
+
+[ HI EVERYONE! ]
+
+@Maid_Marianne @HeiDaHQ | #NICAR18
+
+3
+
+[ WHO AM I? ]
+
+@Maid_Marianne @HeiDaHQ | #NICAR18
+
+4
+
+WHY AM I HERE?
+
+@Maid_Marianne @HeiDaHQ | #NICAR18
+
+5
+
+WAIT A SEC… THIS PROBLEM ISN’T SPECIFIC TO
+AFRICA, LET’S GO GLOBAL!
+
+@Maid_Marianne @HeiDaHQ | #NICAR18
+
+6
+
+IN THIS SHORT PRESENTATION "
+arduino monitoring,Content.txt,https://raw.githubusercontent.com/estebanways/diy-linux-book/main/Content.txt,"Current Guide Status:
+[✔] = Text Complete**, subject to future upgrades.
+[X] = Text Incomplete/Pending, or the story is made out of screenshots. The documentation is available.
+[Q] = TODO queue.
+** Complete means technically complete, but without copy editing or proofreading.
+
+CONTENT:
+
+Module 1 - Meet the software installation sources and options available
+Where can I find software for GNU/Linux?:
+[✔] Software sources available
+Alternative software deployments:
+[✔] Automated install"
+arduino monitoring,How to use .txt,https://raw.githubusercontent.com/ZidiAhmed/TimeLapseSnapshotWithArduinoUno/main/How to use .txt,"### Project Title: Time-Lapse Snapshot System
+
+**Created by Ahmed Alzeidi, Software Engineering**
+
+#### Overview:
+The Time-Lapse Snapshot System is a versatile and efficient solution designed to capture images at specified intervals and create time-lapse videos. The system incorporates a Python script for image capture and video creation, with the option to integrate an Arduino Uno for hardware-based triggering. This project is particularly useful for creating time-lapse videos over extended per"
+arduino monitoring,tag_list.txt,https://raw.githubusercontent.com/lab11/thingspeak-scraper/master/tag_list.txt,"temperature
+humidity
+darthomir
+temperature
+homero
+Arduino Pro Mini
+esp8266
+Bastun
+siaf
+xalk
+Wondecla
+Solar
+wind
+Off Grid
+Milanówek
+PM10
+PM2.5
+WeatherDuino
+Air Quality Index
+PM2.5
+PM10
+co2
+temperature
+humidity
+lora
+signal
+DS1307
+Sense_Hat
+raspberry_pi
+humidity
+Pressure
+temperature
+Solar
+water
+temperature
+DHT22
+esp8266
+xmit
+weatherstation
+wifi
+pogoda
+weather
+jadowniki
+temperature
+humidity
+DHT22
+Raspberry Pi Zero W
+Python
+BME280
+temperature
+humidity
+Air pressure
+Brno
+VUT
+OrangePI Lite
+BMP180
+IOT
+Lv"
+arduino monitoring,help.txt,https://raw.githubusercontent.com/Plug0007/Battery-Monitoring-and-Control-System-with-ESP8266-and-Blynk/main/help.txt,"# **ESP8266 Battery Monitoring and Control System**
+
+This project monitors the health, percentage, voltage, and current of a battery and allows relay-based remote control for connection/disconnection using the **Blynk app**. It’s built using an **ESP8266 NodeMCU**, **ACS712 current sensor**, **TP4056 battery charging module**, and a relay module.
+
+---
+
+## **Features**
+
+- **Battery Monitoring**:
+  - **Voltage**: Displays the battery voltage in real-time.
+  - **Current**: Shows the curre"
+arduino monitoring,products.txt,https://raw.githubusercontent.com/devdattatalele/beauty-product-website/main/products.txt,"https://robu.in/why-the-price-of-xt60-connectors-matters/
+2	2024-12-23 13:16 +00:00
+https://robu.in/10-best-digilent-fpga-development-boards/
+1	2024-12-23 12:06 +00:00
+https://robu.in/10-best-network-attached-storage-or-nas-systems-in-sandisk/
+1	2024-12-18 12:25 +00:00
+https://robu.in/arduino-ide-2-3-3-a-new-sensation-from-arduino/
+1	2024-12-16 07:17 +00:00
+https://robu.in/emax-servo-motors-transform-precision-into-excellence/
+1	2024-12-09 07:02 +00:00
+https://robu.in/risc-v-architecture-framewo"
+arduino monitoring,a3.txt,https://raw.githubusercontent.com/vishangl/OpenTalkJS/main/answers/a3.txt,"**Project Proposal:**
+
+**Title:** Smart Home Automation System for Energy Efficiency and Comfort
+
+**Background:**
+As the world becomes increasingly aware of the importance of sustainability, energy conservation, and user comfort, the demand for innovative smart home solutions is on the rise. This project aims to develop a comprehensive smart home automation system that integrates various devices and technologies to optimize energy efficiency, enhance user experience, and provide real-time monito"
+arduino monitoring,attributions.txt,https://raw.githubusercontent.com/arbotics-llc/databot_arduino/master/attributions.txt,"arduinoFFT: https://github.com/kosme/arduinoFFT
+/*
+
+	FFT libray
+	Copyright (C) 2010 Didier Longueville
+	Copyright (C) 2014 Enrique Condes
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied"
+arduino monitoring,5000.txt,https://raw.githubusercontent.com/wangzhengya/allitebooks/master/results/5000.txt,"http://file.allitebooks.com/20171001/Java 9 Modularity Revealed.pdf
+http://file.allitebooks.com/20171002/Beginning Spring Boot 2.pdf
+http://file.allitebooks.com/20171002/Pro Functional PHP Programming.pdf
+http://file.allitebooks.com/20171004/Troubleshooting Java Performance.pdf
+http://file.allitebooks.com/20171001/Clean C.pdf
+http://file.allitebooks.com/20170929/Zabbix Network Monitoring, Second Edition.pdf
+http://file.allitebooks.com/20170930/Learning React.pdf
+http://file.allitebooks.com/20170"
+arduino monitoring,WIRING_DIAGRAM.txt,https://raw.githubusercontent.com/Adhithyan-Anand/waterq_pub/main/WIRING_DIAGRAM.txt,"WATER QUALITY MONITORING SYSTEM - WIRING DIAGRAM
+================================================
+
+1. ARDUINO UNO CONNECTIONS:
+---------------------------
+- 5V  -> I2C LCD VCC, TDS Sensors VCC, Flow Sensors VCC
+- GND -> I2C LCD GND, TDS Sensors GND, Flow Sensors GND, ESP8266 GND
+- A0  -> TDS Sensor 1 Signal
+- A1  -> TDS Sensor 2 Signal
+- D2  -> Flow Sensor 1 Signal (Interrupt 0)
+- D3  -> Flow Sensor 2 Signal (Interrupt 1)
+- A4/SDA -> I2C LCD SDA
+- A5/SCL -> I2C LCD SCL
+- D8  -> ESP8266 RX (Softw"
+arduino monitoring,ChangeLog.txt,https://raw.githubusercontent.com/pnduffy/GStreamerHUD/master/ChangeLog.txt,"﻿* Mission Planner 1.3.10
+georef: add tiff support
+currentstate: add m to ft conversion on terrain alt
+FlightPlanner: fix m to feet conversion
+magcalib: add colours
+SpainMap: update main url
+Geofence: set fence_action to 0 before upload, and restore on finish
+configfirmware: update 3.2 warning message
+ParameterMetaData: update to use stable or master on param meta data based on MP beta usage.
+app.config: update metadata to always pull from stable branchs
+Capture: placeholder code for crossbar se"
+arduino monitoring,code_structure.txt,https://raw.githubusercontent.com/LiaSkywalker/VacPack/main/code_structure.txt,"VacPack Codebase Overview
+==========================
+
+This project provides a GUI-based control and monitoring system for a lab vacuum setup.
+It supports real-time data acquisition and control of:
+- Mass Flow Controller (MFC)
+- Pressure Gauge (PDR900)
+- Vacuum Pump (via Arduino)
+
+--------------------------------------
+PROJECT STRUCTURE
+--------------------------------------
+
+vacpack/
+│
+├── main.py
+│   - Entry point of the application.
+│   - Initializes dark mode, checks devices,"
+arduino monitoring,ALIO.txt,https://raw.githubusercontent.com/Jayant-Kolapkar/ALIO/main/ALIO.txt,"Lab 1
+Aim:
+To design and implement two circuits:
+A circuit to control the speed of a DC motor using a potentiometer.
+
+
+A circuit to blink an LED using an Arduino.
+
+
+
+Theory:
+DC Motor Speed Control with Potentiometer:
+
+
+A 9V battery powers the motor.
+
+
+A potentiometer acts as a variable resistor, controlling voltage.
+
+
+As voltage increases, motor speed increases; as voltage decreases, motor speed decreases.
+
+
+LED Blinking using Arduino:
+
+
+An Arduino Uno is used as a micr"
+arduino monitoring,neg.txt,https://raw.githubusercontent.com/tanmayb123/DeepSPADE/master/data3/neg.txt,"""What nutrients do fruits and vegetables provide?""
+""I have been using this T boost max""
+""Installing .pkg with terminal ?""
+""Acne Skin Care Tip - Applying Apple Cider Vinegar To Eliminate Acne""
+""ergogenic. a massive amount""
+""Apple's Mail showing \""the identity of smtp.gmail.com cannot be verified\""""
+""How do I install Malwarebytes & purchase a Premium license? 1-844-894-7053""
+""Xbox One Controller not identified Windows 7""
+""I want a all indian music lyrics api for djbaap""
+""How To Get Rid Of Out And "
+arduino monitoring,draft.txt,https://raw.githubusercontent.com/hoonjet/starccmMacros/master/Basics/draft.txt,"An Experimental Study on the Diffusion Phenomenon of Particulate Matters Generated During Heating Cooking and Ventilation Effects by Kitchen Hoods
+
+Abstract
+A substantial amount of pollutants are generated during cooking processes, making kitchen ventilation crucial for maintaining indoor air quality. This study experimentally investigated the diffusion patterns of particulate matter(PM 2.5) and the change of its dispersing pattern according to the airflow rate of the kitchen hood. By analyzing "
+arduino monitoring,2485.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/2485.txt,"Sleep apnea (SA) is a common respiratory disorder, especially among obese people. It is caused by either the relaxation of the upper respiratory tract muscles or the failure of the neural signal to reach the muscles responsible for breathing, both of which interrupt the patient’s sleep–wake cycles. The traditional method for diagnosing this disorder, based on polysomnography, is complicated, vexing, expensive, time-consuming, and requires both sleep centers and specialized staff capable of conne"
+arduino monitoring,570.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/570.txt,"International Journal of Recent Technology and Engineering (IJRTE)
+ISSN: 2277-3878, Volume-9 Issue-1, May 2020
+
+Design and Simulation of Brain Controlled
+Electronic Wheelchair for Physically
+Challenged Person
+Emani Susmitha, K. Kishore Kumar
+
+Abstract: Improving the quality for the life of elders and disabled
+person and giving proper care at the right time is one of the most
+important role to be performed as a responsible citizen in the
+society. This paper is describing about the integration of"
+arduino monitoring,solar.txt,https://raw.githubusercontent.com/ExperimentMonty/education/master/ideas/solar.txt,"CORE CONCEPT
+
+-Get students interested in solar energy, coding, and microelectronics by
+installing solar panels on the school roof.
+
+What we'll need:
+-Solar panel and necessary wiring
+-Battery bank if we're not allowed to plug solar panel into the grid
+-Arduino/Raspberry Pi for monitoring
+-Case for Arduino/Raspberry Pi to keep it out of the elements
+-Approval of the school
+-Some kind of device to track the (voltage? watts? power?) coming off of the solar panels
+-The knowhow of all of these techn"
+arduino monitoring,to_do.txt,https://raw.githubusercontent.com/nkahassai-unc/ASTControl/main/to_do.txt,"Current ASTControl To Do (2.7.1):
+
+UNC Install Priorities:
+    - Network setup (DHCP, VNC)
+    - Dome Camera ability (Motion)
+    - File Transfer Protocol (Samba)
+    - Arduino Remote Control (Python)
+    - Dome Motor Mechanical
+    - Scripts Later Remotely
+
+
+Next test: Run control panel. Local testing.
+    - test indigo server connection (Reconnect)
+
+    - ensure solar calculations works (Yes)
+
+    - test webcam (Yes, motionplus server works)
+
+    - test mount control works (Next, test with sim"
+arduino monitoring,repo.txt,https://raw.githubusercontent.com/Dhanuvyas/repo/main/repo.txt,"Smart Jacket for Health Monitoring - Arduino Code 
+ 
+ 
+ 
+ Smart Jacket for Health Monitoring - Arduino Code 
+ 
+ 
+// Define Blynk template and authentication information
+#define BLYNK_TEMPLATE_ID ""TMPL31qKISPOA""
+#define BLYNK_TEMPLATE_NAME ""SMART JACKET""
+#define BLYNK_AUTH_TOKEN ""oJ1fAhlnyOf5TzRw8WNFknawsR-wSZ6o""
+
+// Include necessary libraries
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <BlynkSimpleEsp32.h>
+#include <LiquidCrystal.h>
+
+// WiFi credentials
+char auth[] = BLYNK_"
+arduino monitoring,JARGON.TXT,https://raw.githubusercontent.com/FRC1076/Arduino/master/JARGON.TXT,"#
+# Put # to start any line that contains comments.  We'll filter these out when we deploy
+# to the SD-Card.    Arduino will just read the text and display it.     Anyone interested
+# in increasing the sophistication, throw out some ideas!
+#
+
+
+
+#
+#
+#  First names beginning with A-D, please add your entries here (this helps reduce merge conflicts)
+#
+#
+Thank you, Kanye!  
+Hugh Mungus Wot?
+Hold my Juicebox
+OOF
+Sub 2 Pewds
+
+
+#
+#
+#  First names beginning with E-H, please add your entries here (this h"
+arduino monitoring,342.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/342.txt,"International Journal of Bioscience, Biochemistry and Bioinformatics, Vol. 3, No. 6, November 2013
+
+Hardware Simulator for Seizure, Preseizure and Normal
+Mode Signal Generation in LabVIEW Environment for
+Research
+Uvais Qidwai, Aamir Saeed Malik, Mohamed Shakir, and Nidal Kamel
+
+
+Abstract—Currently numerous theories and model have
+been developed to associate various findings or in relating EEG
+patterns to develop a software simulator. Here we develop a
+hardware simulator of the EEG model or to s"
+arduino monitoring,sitemap.txt,https://raw.githubusercontent.com/ProductiveRage/productiverage.github.io/master/sitemap.txt,"https://www.productiverage.com/i-love-immutable-data
+https://www.productiverage.com/mercurial-and-dropbox
+https://www.productiverage.com/a-static-type-system-is-a-wonderful-message-to-the-present-and-future
+https://www.productiverage.com/a-static-type-system-is-a-wonderful-message-to-the-present-and-future-supplementary
+https://www.productiverage.com/creating-a-c-sharp-roslyn-analyser-for-beginners-by-a-beginner
+https://www.productiverage.com/why-is-saving-performance-monitor-perfmon-settings-so"
+arduino monitoring,wordFreqs.txt,https://raw.githubusercontent.com/roblourens/the-listserve-stats/master/wordFreqs.txt,"the: 9215
+to: 7654
+i: 6820
+and: 6742
+a: 6208
+of: 5041
+in: 3720
+you: 3623
+that: 3076
+it: 2795
+my: 2738
+is: 2471
+for: 2201
+with: 1718
+me: 1632
+have: 1600
+on: 1529
+be: 1477
+this: 1470
+but: 1440
+was: 1385
+or: 1216
+we: 1201
+as: 1187
+your: 1165
+are: 1155
+if: 1140
+at: 1069
+not: 1062
+what: 1041
+about: 1032
+all: 979
+from: 967
+so: 955
+do: 896
+life: 874
+can: 824
+i'm: 796
+people: 788
+out: 772
+an: 770
+one: 766
+will: 759
+just: 755
+like: 753
+time: 709
+they: 666
+when: 651
+know: 635
+up: 628
+love: 623
+it's: 621
+h"
+arduino monitoring,ChangeLog.txt,https://raw.githubusercontent.com/hilaskis/UAV_MissionPlanner/master/ChangeLog.txt,"﻿* Mission Planner 1.3.25
+configframetype: update
+configrawparam: modify load/save button text
+hud video: add vlc test
+HUD: fix bgimage whiteout
+mainv2: add plugin load skip (shift key)
+Mainv2: make menu panel public
+Coords: add ability to change unit test
+firmware: change url null to blank check
+flightplanner: autoresize Columns on panel expand
+SoftwareConfig: make sure theme applys to children
+Missionplanner: remove old defines
+firmware: add url null check
+simulation: add default init of sitl "
+arduino monitoring,751.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/751.txt,"Abstract
+Teaching parallel programming and HPC is a difficult task. There is a large number of sophisticated hardware and software components, each complex on their own and often showing non-intuitive interaction when used in combination. We consider education in HPC among the more difficult topics in computer science due to the fact that larger distributed memory systems are ubiquitous yet inaccessible and intangible to students. In this work, we present the Cluster Coffer, a miniature cluster "
+arduino monitoring,data.txt,https://raw.githubusercontent.com/PredictionIO/template-scala-topic-model-LDA/master/data.txt,"20,Startupper and tech guy by day  e-engineer by night
+1,Accomplished PHP developer specialising in object-orientated software development accredited with multiple rewards and software engineering certifications. A self-motivated  ambitious and focused Computer Science student  who likes to try out new challenges and solves complex problems with ability to rapidly acquire new skills. Always punctual and reliable person with empathetic attitude towards others. Versatile  hands-on developer with g"
+arduino monitoring,1965.txt,https://raw.githubusercontent.com/Amantux/Project_3/main/corpus/1965.txt,"Machine Learning Engineer
+
+At Temboo, we build software that people are using to fundamentally change the world around us. Our no-code platform for environmental engagement empowers organizations, cities, and residents to achieve sustainability goals, advance green infrastructure projects, and build more engaged and informed communities. We want you to join us as we grow and scale Temboo. A few highlights:
+Our customers are building a wide range of environmental monitoring applications, from tra"
+arduino monitoring,portfolio.txt,https://raw.githubusercontent.com/Aditya74773/student-git-practice/main/portfolio.txt,"1. Arduino Project
+Description: A microcontroller-based project to automate the control of household appliances using sensors and actuators. The project includes real-time monitoring and control through a serial interface.
+Technologies: Arduino IDE, C++, Sensors (e.g., temperature, light), Actuators (e.g., relays, motors), Serial Communication.
+
+2. E-commerce Website
+Description: A dynamic web platform for buying and selling products online, featuring a user-friendly interface, secure payment ga"
+arduino monitoring,3161.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/3161.txt,"In the program-driven information age, programming education is concerned by the global education system, which makes the cultivation of children’s programming ability become the focus of attention. However, there is no clear definition of programming ability and teaching model. Through the snowball method, 86 studies from 1980 to 2020 were reviewed. The results showed that K-12 programming ability is defined as a stable personality and psychological characteristic that consisted of metacognitio"
+arduino monitoring,120.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/120.txt,"We propose a cuttable wireless power transfer sheet which allows users to modify its size and shape. This intuitive manipulation
+allows users to easily add wireless power transmission capabilities to everyday objects. The properties of the sheet such
+as thinness, flexibility, and lightness make our sheet highly compatible with various configurations. We contribute a set of
+technical principles for the design of circuitry, which integrates H-tree wiring and time division power supply techniques.
+"
+arduino monitoring,livre_183.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/old/kata/livre_183.txt,"Asian Canadian Writing Beyond Authoethnography
+Larbre Aux Cristaux
+Paroles Des Anciens Apophtegmes Des Peres Du Desert
+Touch Vol 10
+Pit Lasses Women And Girls In Coalmining C 1800 1914
+Jolly Phonics Pupil Book 3 In Print Letters
+Une Aventure Des Petits Hommes Tome 12 Le Guepier
+Using Os X El Capitan Server At Home English Edition
+Embrouilles A Manhattan
+Les Manifestations De La Place Tiananmen Un Mouvement Pacifique Reprime Dans La Violence Grands Evenements T 18
+Histoires De Danseuses"
+arduino monitoring,826.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/826.txt,"Increased connectivity increases the attack vector. This also applies
+to connected vehicles in which vulnerabilities not only threaten
+digital values but also humans and the environment. Typically,
+attackers try to exploit the Controller Area Network (CAN) bus,
+which is the most widely used standard for internal vehicle communication. Once an Electronic Control Unit (ECU) connected to
+the CAN bus is compromised, attackers can manipulate messages
+at will. The missing sender authentication by desi"
+arduino monitoring,NEWS.txt,https://raw.githubusercontent.com/mattybrad/drumkid/master/arduino/1.0/drumkid/MozziDK/extras/NEWS.txt,"Mozzi sound synthesis library for Arduino
+
+NEWS
+get the latest version from https://sensorium.github.io/Mozzi/
+
+
+Mozzi is now available as the most recent code on Github, rather than as releases.
+
+release v1.1.0rc1 (not actually ""released"", just the Github code around 2019 onwards.)
+- STM32(duino) and ESP8266 ports have been added by Thomas Friedrichsmeier.
+	Thomas has provided hardware specific notes on the Mozzi main web page.
+- CONTROL_RATE no longer has to be a power of 2,
+	and Mozzi no long"
+arduino monitoring,121.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/121.txt,"Wireless signals have been extensively utilized for contactless sensing in the past few years. Due to the intrinsic nature of
+employing the weak target-reflected signal for sensing, the sensing range is limited. For instance, WiFi and RFID can achieve
+3–6 meter sensing range while acoustic-based sensing is limited to less than one meter. In this work, we identify exciting
+sensing opportunities with LoRa, which is the new long-range communication technology designed for IoT communication.
+We expl"
+arduino monitoring,559.txt,https://raw.githubusercontent.com/KevinLyvers/Redactle/main/10b/559.txt,"would, helps, nepro, gov, 166, forms, connecticut, responds, nickel, spacewatches, officiel, 1890, vade, birth, testing, bulova, approximately, certain, 3, miyota, division, watchmen, creates, maintenance, rules, 21, portion, rotation, acrylic, dialling, alloys, online, self, workings, campaign, screws, range, 0, improvements, balance, data, motions, ieee, meant, timeless, heart, mean, waterproof, 15th, onward, list, industry, escapement, movements, sizing, 78401, cristalonic, inv, augsburg, naz"
+arduino monitoring,310.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/310.txt,"The network topology formation in an Edge Infrastructure-as-a-Service (EIaaS) paradigm must consider the placement of Edge Computational Nodes (ECNs) so as to minimize the delay. Existing ECN placement schemes consider redundant node density, non-optimal location selection, and distance-based association, which affect the ultra-low latency requirement(s) of applications. Further, per ECN to IoT nodes association is key to efficient utilization of ECNs and delay minimization between IoT node(s) a"
+arduino monitoring,Part161.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/Part161.txt,"battle of the jade horse lloyd alison
+battle of single european market grin
+battle for the stars hamilton edmond
+battery park city gordon david l a
+basset fauve de bretagne cunliffe juliette roberts evan l
+baskerville oconnell john
+basic statistics marcoulides george a raykov tenko
+basic stamp kuhnel claus zahnert klaus
+basics of law librarianship panella deborah mount ellis
+basic social policy and planning burch hobart a
+basic radio poole ian
+basic processes in reading humphreys glyn"
+arduino monitoring,cybertools.txt,https://raw.githubusercontent.com/thearrival/new-beginning/master/cybertools.txt,"# Awesome Hacking Tools...
+
+A curated list of awesome Hacking Tools. If you want to contribute to this list send me a pull request.
+___________________________________________________________________________________________________________
+* __0trace__	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+* __3proxy__	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+* __3proxy-win32__	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+* __42zip	42__	Recursive Zip archive bomb.	http://blog."
+arduino monitoring,Task.txt,https://raw.githubusercontent.com/Rafiq191/Temperature-and-Humidity-Monitoring-System-Proteus_Simulation/main/Task.txt,"Assignment 1: Arduino Based Project
+
+Topic: Temperature and Humidity Monitoring System
+
+Instructions:
+Design an Arduino-based temperature and humidity monitoring system using a DHT11 sensor. The system should read the temperature and humidity values from the sensor and display them on a 16x2 LCD screen. Additionally, implement a threshold-based alert mechanism that displays ""ALERT!"" on the LCD screen when the temperature exceeds a certain value (e.g., 30°C).
+
+Expected Result:
+The simulat"
+arduino monitoring,477.txt,https://raw.githubusercontent.com/KevinLyvers/Redactle/main/10b/477.txt,"would, instrumentation, mona, layout, 15766, forms, simon, recognize, bardydx, palpitations, undergoing, 5d, birth, potentials, biomed, 1911, testing, formation, appearance, modules, approximately, certain, 3, nodes, proportion, division, paced, textbook, multi, lancet, creates, 003868, earlier, rules, moyer, francisco, myogenic, denoted, hanlon, 229173576, portion, 21, estonian, preprocessing, icd, give, pain, online, self, ischemia, loughlin, mep, manifest, range, 0, data, signs, rodr, ieee, m"
+arduino monitoring,294.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/294.txt,"International Journal of Electrical and Electronic Engineering & Telecommunications Vol. 7, No. 4, October 2018
+
+LabVIEW GUI for Emotiv EPOC of Prosthetic
+Hand Control
+Muhammad Azmi Ayub1, Aainaa Zainal1, Khairunnisa Johar1, Noor Ayuni Che Zakaria1, and Cheng Yee
+Low2
+1
+
+2
+
+Faculty of Mechanical Engineering, Universiti Teknologi MARA Shah Alam, Selangor, Malaysia
+Faculty of Mechanical and Manufacturing Engineering, Universiti Tun Hussein Onn Malaysia, Johor, Malaysia
+Email: {muhammadayub, ayuni8"
+arduino monitoring,helper.txt,https://raw.githubusercontent.com/AdityaGautam1911/Smart-Emergency-System/main/helper.txt,"Arduino Alert Dashboard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Arduino Alert Dashboard 
+ Real-time Monitoring and Alerts 
+ 
+ 
+ 
+ 
+ Gas Concentration (Daily) 
+ 
+ 
+ 
+ 
+ Step Count (Weekly) 
+ 
+ 
+ 
+ 
+ Dangerous Areas Visited (Monthly)"
+arduino monitoring,2021.08.10.txt,https://raw.githubusercontent.com/sailfish009/paper/master/2021.08.10.txt,"1, TITLE:	Team Power and Hierarchy: Understanding Team Success
+AUTHORS:	HUIMIN XU et. al.
+CATEGORY:	physics.soc-ph [physics.soc-ph, cs.AI]
+HIGHLIGHT:
+	This research examines in depth the relationships between team power 
+and team success in the field of Computer Science (CS) using the DBLP 
+dataset.
+
+2, TITLE:	Macaulay Bases of Modules
+AUTHORS:	Sujit Rao
+CATEGORY:	math.AC [math.AC, cs.SC, math.RA]
+HIGHLIGHT:
+	We define Macaulay bases of modules, which are a common generalization 
+of Groebner bas"
+arduino monitoring,262.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/262.txt,"The impact of IoT-ML in the healthcare sector is very significant and it has helped us to change our view at the traditional treatment methods. In IoT-ML-based healthcare applications, the sensing layer is responsible for collecting information from humans and transferring it to the storage layer through communication technology. ML is implemented to make intelligent decisions for healthcare applications. This survey shows all the fields starting from the IoT sensor devices to the deployment of "
+arduino monitoring,605.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/605.txt,"Abstract
+There has been rapid development in the number of Internet of Things (IoT) connected nodes and devices in our daily life in recent times. With this increase in the number of devices, fog computing has become a well-established paradigm to optimize various key Quality of Service (QoS) requirements such as latency, bandwidth limitation, response time, scalability, privacy and security. In this paper, we present a systematic literature review of fog computing. This review article aims to c"
+arduino monitoring,1238.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/1238.txt,"MATEC Web of Conferences 292, 0 10 33 (2019)
+CSCC 2019
+
+https://doi.org/10.1051/matecconf/2019292010 33
+
+The Possibility of Using BCI Applications in Physiotherapy
+Zuzana Koudelkova1,*, Sarka Dankova2,3, Michal Filip2,3, and Marcela Dabrovska2
+1
+
+Tomas Bata University in Zlin, Faculty of Applied Informatics, Zlin, Czech Republic
+University of Ostrava, Faculty of Medicine, Departament of Rehabilitation, Ostrava, Czech Republic
+3
+University Hospital of Ostrava, The Clinic of Rehabilitation and Phy"
+arduino monitoring,README.md.txt,https://raw.githubusercontent.com/MegavarshanG/IoT-Based-Weather-and-Environmental-Monitoring-System/main/README.md.txt,"# IoT-Based Weather and Environmental Monitoring System
+
+This project monitors environmental parameters using IoT sensors, such as detecting day/night, room temperature, sound frequency, and earthquake activity.
+
+## Features
+- **Day/Night Detection**: Monitors light levels using an LDR.
+- **Room Temperature Monitoring**: Uses DHT11/DHT22 for temperature readings.
+- **Sound Frequency Detection**: Analyzes sound levels with KY-037.
+- **Earthquake Monitoring**: Detects vibrations using MPU6"
+arduino monitoring,resume.txt,https://raw.githubusercontent.com/chrisrobison/jobhunt/main/resume/resume.txt,"Christopher Robison
+cdr@cdr2.com 
+(415) 810-6991 
+https://www.cdr2.com/
+
+Talented technology leader excelling in the rapid development of solutions to manage complex technical environments for growing companies, ranging from startups to billion dollar industry leaders. With over 20 years experience in the industry, I can build, develop and lead high-performance technical teams and effectively manage people and resources in-person and remotely across multiple geographic locations. My extensive ex"
+arduino monitoring,Readme.txt,https://raw.githubusercontent.com/FrostyN09/Water-Pumping-System-to-Storage-Tank-Using-Sensor/main/Readme.txt,"Project Overview:
+This project involves building an automated water pumping system that fills a storage tank based on water level readings from a sensor. The system ensures that the tank is always filled with water without manual intervention. When the water level drops below a certain threshold, the pump turns on automatically and stops when the tank is full.
+
+Components Required:
+Microcontroller (e.g., Arduino or ESP8266) – to control the pump and read sensor data.
+Water Level Sensor (e.g"
+arduino monitoring,3258.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/3258.txt,"Recent years have witnessed the emergence of the Internet of Things (IoT) systems that incorporate blockchain (BC) elements in their architecture. Due to discrepancies between the requirements of IoT systems and the characteristics of BC networks, the motivations and design of these blockchain-enabled IoT systems (BC-IoT) are not only intriguing from a research perspective but also invaluable in practice. This paper presents an inductive study of the “why” and “how” of BC-IoT systems through a S"
+arduino monitoring,livre_207.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/old/kata/livre_207.txt,"Leroy Grannis Surf Photography Of The 1960s And 1970s
+Leo Tolstoi Krieg Und Frieden Illustriert Vollstandige Deutsche Ausgabe German Edition
+Giono Recits Et Essais
+Yiddish A Survey And A Grammar Second Edition
+Leon Bourgeois Fonder La Solidarite
+Explicit Instruction
+Atouts Bac Espagnol Terminale
+Calendrier 2013 Bleach
+Childrens Quick And Easy Cookbook
+Os X El Capitan The Missing Manual
+La Gymnastique A Domicile
+Cahier Decriture Sami Et Julie Des 5 Ans
+Le Commentaire De Carte Topograp"
+arduino monitoring,2022.11.01.txt,https://raw.githubusercontent.com/sailfish009/paper/master/2022.11.01.txt,"1, TITLE: GotFlow3D: Recurrent Graph Optimal Transport for Learning 3D Flow Motion in Particle Tracking
+AUTHORS: Jiaming Liang ; Chao Xu ; Shengze Cai
+CATEGORY: physics.flu-dyn [physics.flu-dyn, cs.AI]
+HIGHLIGHT: By introducing a novel deep neural network based on recurrent Graph Optimal Transport, called GotFlow3D, we present an end-to-end solution to learn the 3D fluid flow motion from double-frame particle sets.
+
+2, TITLE: QuEst: Graph Transformer for Quantum Circuit Reliability Estimation
+AU"
+arduino monitoring,adl.txt,https://raw.githubusercontent.com/Sanket-kurle123/adl/main/adl.txt,"ADL Prac manual 
+—--------------------------------- 
+Exp1 (Setup AWS Cloud9 IDE) 
+1.  Login with your AWS account. 
+2.  Navigate to Cloud 9 service from Developer tools section. 
+3.  Click on Create Environment 
+4.  Provide name for the Environment (WebAppIDE) and click on next. 
+5.  Keep all the Default settings 
+6.  Review the Environment name and Settings and click on Create Environment 
+7.  Till that time open IAM Identity and Access Management in order to Add user 
+In other tab. "
+arduino monitoring,READ ME.txt,https://raw.githubusercontent.com/Rekoman/GSM-Tracker/main/READ ME.txt,"- Make the connections as discussed and upload the code to your Arduino Nano board. 
+Insert the SIM card and make sure your network signal is established. 
+One way to do this by monitoring the LED on your GSM module, which should flash once in every 3 seconds.
+Now open the serial monitor and it should be working fine.
+
+- Now that we have our latitude and longitude value we just have to attach it to our Link
+ with a comma in-between to form the Link. The code for the same is given below.
+c"
+arduino monitoring,active_2256.txt,https://raw.githubusercontent.com/abiazizi/source/main/active_2256.txt,"{""id"": ""1005002871781141"", ""img"": ""Haa335faa81504960a28124cd158277c5B"", ""title"": ""3860 ABS Multifunction Sports Tool Running Stopwatch Electronic Track and Field Countdown Stop Watch""}
+{""id"": ""1005002239710967"", ""img"": ""H3b83d941c57a4d289cc9571787d07048u"", ""title"": ""Brand New M5000M M5000 GDDR5 8GB Video Graphics Card N16E-Q5-A1 For HP Zbook 17 G3 G4 8770W Dell M7720 M7710 M6800 100% Test""}
+{""id"": ""1005003076838917"", ""img"": ""Hcc2cf01eaea44cc2bfb7a9d574eda371o"", ""title"": ""Fully Assembled Tofu65 A"
+arduino monitoring,bob.txt,https://raw.githubusercontent.com/JoshAshby/Robotbob/master/Doc/bob.txt,"\documentclass{article}
+
+\usepackage{times}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{graphicx}
+\begin{document}
+
+\author{Joshua Ashby\\
+        Linux And Sci\\
+                \texttt{http://joshashby.com}\\
+		\texttt{joshuaashby@joshashby.com}}
+\title{Project: Bouncing Off Bumpers - BOB}
+
+\maketitle
+\section{Introduction and Background}
+The Bouncing Off Bumpers project aims to create a fully autonomous robot that is capable of navigating around obstacles and r"
+arduino monitoring,IOT 1.txt,https://raw.githubusercontent.com/meganamaddila/LTmegana/main/IOT 1.txt,"To develop a temperature monitoring system, you'll need several components to measure, process, and possibly display or transmit temperature data. Here's a list of essential components for such a system:
+
+Temperature Sensor: This is the primary component that measures the temperature. Common types include:
+
+Thermistor: Changes resistance with temperature.
+RTD (Resistance Temperature Detector): Uses the resistance change of metals with temperature.
+Thermocouple: Generates a voltage proporti"
+arduino monitoring,Readme.txt,https://raw.githubusercontent.com/GSNSAMPATH/TempPreser_show_in_home/main/Readme.txt,"It looks like you meant BMP180 with Arduino. The BMP180 is a barometric pressure sensor that can measure altitude, pressure, and temperature. It's commonly used in weather monitoring, altimeters, and navigation systems.
+
+📌 Wiring BMP180 with Arduino
+The BMP180 communicates using I2C. Here's how to connect it:
+
+------------------------------------------
+|BMP180 Pin |	Arduino Pin              |
+------------------------------------------
+| VCC	    | 3.3V                       |
+| GND	    | GND     "
+arduino monitoring,761.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/761.txt,"International Conference on Smart Electronic Systems - 2016
+KLE Society’s Dr M S Sheshgiri College of Engineering & Technology, Belagavi
+
+International Journal of Technology and Science, ISSN (Online) 2350-1111, (Print) 2350-1103 Volume 3, Issue 4, 2016 pp. 50- 52
+
+In-Vehicle Driver Health Monitoring
+System
+Savita Patil,
+Bangalore
+savitapatil.ec@gmail.com
+
+Abstract—Automotive industry is moving towards
+connected systems where many of the vehicles
+parameters can be monitored and controlled remote"
+arduino monitoring,18.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/18.txt,"2014 International Conference on Informatics, Electronics & Vision (ICIEV)
+23-24 May, 20134
+University of Dhaka, Dhaka, Bangladesh
+
+Table of Contents
+*Paper ID is the same as PDF ID or File name of eachPDF, as ‘Papers\*.pdf
+*Paper ID
+
+Paper Title
+
+28
+30
+49
+
+Multiple Regions Based Histogram Equalization
+An Effective Approach To Estimate Reverberated Channel Of Speech Signal
+Fabrication and Characterization of Self-Aligned ZnO and TiO2 Nanostructured Films
+Performance Assessment Criteria and Issue"
+arduino monitoring,506.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/506.txt,"Available online at www.sciencedirect.com
+
+ScienceDirect
+Procedia Technology 24 (2016) 1089 – 1096
+
+International Conference on Emerging Trends in Engineering, Science and Technology (ICETEST
+- 2015)
+
+Robotic Arm with Brain ± Computer Interfacing
+Sunny T.D.a, Aparna T.b, Neethu P.c, Venkateswaran J.d*, Vishnupriya V.e, Vyas P.S.f
+Department Of Electronics & Communication Engineering, Govt. Engineering College, Thrissur-680009,India
+
+Abstract
+Brain Computer Interfaces (BCI), is a modern technolog"
+arduino monitoring,255.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/255.txt,"EEG Wheelchair for People of Determination
+1
+
+Mariam AlAbboudi, 1Maitha Majed, 1Fatima Hassan, 2Ali Bou Nassif
+
+1
+
+Department of Electrical and Electronics Engineering, University of Sharjah
+2
+Department of Computer Engineering, University of Sharjah
+Sharjah, United Arab Emirates
+
+Abstract—the aim of this paper is to design and construct an
+electroencephalograph (EEG) based brain-controlled wheelchair
+to provide a communication bridge from the nervous system to
+the external technical device for "
+arduino monitoring,READMEII.txt,https://raw.githubusercontent.com/giluriel/ardupilot-cellular-extension/master/READMEII.txt,"dongfang Ardupilot Cellular Extension v2
+
+This modification to the Ardupilot UAV firmware allows using a cellular (mobile) phone transceiver to be connected to the APM or PX4, using IP over the mobile network for in-flight MAVLink telemetry.
+
+Earlier solutions would open an TCP/IP connection on the cellular module, and then put it into a data-transparent mode to simulate a hardwired connection. This method was simple but it had several drawbacks:
+- Poor performance, because MAVLink messages were"
+arduino monitoring,P2.txt,https://raw.githubusercontent.com/kokoye2007/ubuntu-mm-wiki/master/P2.txt,"﻿
+
+
+........................................................Pg 51 မွ 97 အထိ 
+
+
+Coming Soon!!!
+
+Video Applications
+
+Webcam Applications
+
+ဤေဆာ့၀ဲမ်ားသည္ Webcam အသံုးျပဳေသာေဆာ့၀ဲမ်ားျဖစ္ပါသည္။မိမိတို႔ပံုမ်ားကို Effect မ်ား ထည့္သံုး၍ 
+အလြယ္တကူအသံုးျပဳႏုိင္ေသာ ေဆာ့၀ဲမ်ားျဖစ္သည္။
+
+Cheese
+-Cheese (http://projects.gnome.org/cheese/)သည္ Gnome-based webcam
+ ေဆာ့၀ဲတစ္ခုျဖစ္ၿပီး ေဆာ့၀ဲ ၍ window size ကိုလဲ လိုအပ္သလို ျပဳလုပ္အသံုးျပဳႏုိင္ပါသည္။
+
+Terminal မွ သြင္းရန္
+
+sudo apt-get install "
+arduino monitoring,1091.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/1091.txt,"Introducing Neuroberry, a platform for pervasive EEG
+signaling in the IoT domain
+Evdokimos I. Konstantinidis
+
+Nicola Conci
+
+Giorgos Bamparopoulos
+
+Medical Physics Laboratory, Medical
+School, Faculty of Health Sciences,
+Aristotle University of Thessaloniki
+Greece
+
+MEDIA Lab
+DISI - University of Trento
+Italy
++390461283919
+
+Medical Physics Laboratory, Medical
+School, Faculty of Health Sciences,
+Aristotle University of Thessaloniki
+Greece
+
+evdokimosk@gmail.com
+
+conci@disi.unitn.it
+
+gbamparop@gmail.c"
+arduino monitoring,Latex_content.txt,https://raw.githubusercontent.com/Sh-bharat/Deep_Learning_to_Predict_the_Level_of_Dustbin_Used/main/Latex_content.txt,"\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref} 
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+\title{Deep Learning for Intelligent Waste Management: Dustbin Detection, Classification, and Fullness Pr"
+arduino monitoring,352.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/352.txt,"International Journal of Computing and Network Technology
+ISSN (2210-1519)
+
+Int. J. Com. Net. Tech. 6, No. 2 (May-2018)
+http://dx-doi.org/10.12785/ijcnt/060203
+
+Electroencephalography Signals Based Face
+Interaction for Directional Control System
+Salih Al-Qaraawi1, Muayad Sadik Croock2 and Shahad Hussain Alawi3
+1,2,3
+
+Department of Computer Engineering University of Technology, Baghdad, Iraq
+
+Received: 11 Jan. 2018, Revised: 1 March 2018, Accepted: 15 March. 2018, Published: (1 May 2018)
+Abstract"
+arduino monitoring,715.txt,https://raw.githubusercontent.com/KevinLyvers/Redactle/main/10b/715.txt,"would, helps, password, instrumentation, layout, 141, gov, 166, dod, environments, forms, simon, potentials, testing, formation, certain, 3, autonomous, comparable, levinson, 47b, multi, ecosystems, easa, maintenance, nhtsa, rules, mallinis, rolls, india, officially, indefinite, price, 21, meant, previously, online, give, updated, self, barometers, racers, airplane, ensuring, dubey, huub, food, tauro, range, nature, 0, 4015, pilotless, data, photography, signs, balance, ieee, 1242950257, ana, ti"
+arduino monitoring,6.pdf_text.txt,https://raw.githubusercontent.com/BouchanaHicham/PHP-WordSearchTool/main/6.pdf_text.txt,"Abstract —Smart environment is a combination of software 
+and hardware (electronic and mechanical) to form a comfortable 
+and an evolving place. The smart home is an environment used 
+daily by the same people. In fact, these aspects allow the system 
+to create a profile for each living person in the environment. This 
+profile is a data set that affects the behavior of the system 
+according to the user where these data is collected through 
+sensors or through PDAs. The environment uses this profi"
+arduino monitoring,Guideline.txt,https://raw.githubusercontent.com/Obarrie/Staying_Awake_Staying_Focused/main/Guideline.txt,"📅 Implementation Plan: AI-Based Drowsiness Detection System
+🔹 Phase 1: Research & Dataset Collection (Week 1-2)
+🎯 Goal: Gather and prepare a dataset for drowsiness detection.
+
+✅ Steps:
+
+Review Research on Drowsy Driving:
+
+Study effects of drowsiness on reaction time and driving safety.
+
+Identify facial cues that indicate drowsiness (e.g., closed eyes, yawning).
+
+Dataset Collection:
+
+Use publicly available datasets (like NTHU Drowsy Driver Dataset).
+
+Collect additional real-world samples if neede"
+arduino monitoring,478.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/478.txt,"International Conference on Applied Science, Technology and Engineering
+J. Mech. Cont.& Math. Sci., Special Issue, No.-4, November (2019) pp 36-46
+
+Brain Computer Interface controlled Soft Finger Exoskeleton
+for Rehabilitation – Reality and Virtual Control Analysis
+Suresh. G1, Vickneswari. D2, N. Kok Sin3
+1,2,3
+
+Asia Pacific University of Innovation and Technology (APU), Kuala
+Lumpur, Malaysia
+Email : 1suresh.gobee@apu.edu,.my, 2vicky.nesa@apu.edu.my
+https://doi.org/10.26782/jmcms.spl.4/2019.11."

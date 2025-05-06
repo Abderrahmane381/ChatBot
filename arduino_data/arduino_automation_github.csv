@@ -1,0 +1,1588 @@
+mot_clé,nom_du_fichier,url,contenu
+arduino automation,arduino.txt,https://raw.githubusercontent.com/Br3nda/openhab-icons/master/arduino.txt,"{
+  ""icon"": {
+    ""attribution"": ""arduino by uizin from Noun Project"",
+    ""attribution_preview_url"": ""https://d30y9cdsu7xlg0.cloudfront.net/attribution/34403-600.png"",
+    ""collections"": [],
+    ""date_uploaded"": ""2014-02-13"",
+    ""id"": ""34403"",
+    ""is_active"": ""1"",
+    ""license_description"": ""creative-commons-attribution"",
+    ""permalink"": ""/term/arduino/34403"",
+    ""preview_url"": ""https://d30y9cdsu7xlg0.cloudfront.net/png/34403-200.png"",
+    ""preview_url_42"": ""https://d30y9cdsu7xlg0.cloudfron"
+arduino automation,TODO.txt,https://raw.githubusercontent.com/emard/ulx3s/master/doc/TODO.txt,"# TODO
+
+Here is checklist what was done or should be done in the next PCB release.
+
+    [x] Silkscreen Double outline for BGA chip
+    [x] Silkscreen do not write over the solder pads
+    [x] Silkscreen JTAG signal names on 6-pin 2.54 mm header
+    [x] Silkscreen remove OLED outline
+    [x] Solder stop mask must go inbetween all SMD chip pads
+    [x] External differential clock input at J1_33 +/-
+    [x] physically sprinkle VCC blocator capacitors under BGA
+    [x] Dedicated antenna pin
+    [x] "
+arduino automation,README.txt,https://raw.githubusercontent.com/logxen/Fritzing/master/README.txt,"Fritzing - from prototype to product
+www.fritzing.org
+
+
+ABOUT THIS RELEASE
+This is a preview release of Fritzing. Try it out on your project 
+and let us know what requirements you have. Contribute to the part 
+library and if you're a developer, have a look at the code. We greatly 
+appreciate every contribution. Please join the discussion in our forums.  
+
+WARNING
+This is an early release and the software is not yet stable. We welcome
+your bug reports.  Also please be aware that file "
+arduino automation,readme.txt,https://raw.githubusercontent.com/seahu/rflink/master/readme.txt,"## RFlink
+is most flexible RF Gatway for control and collect data from wireless sensors
+on 433MHz (686Mhz, 2.4Ghz depents on used transmitter and receiver)
+This solution discrem wide range of sesors, socket, remote controls, door bells,
+meteorological stations, etc. of many manufectures.
+Is suitable for create Home automation.
+RFLink have support for many home automation system etc.:
+   Domoticz (tested), Jeedom, Pimatic, Domotiga, OpenHAB, HoMIDoM
+
+## RFLink for raspberryPI
+Oreginal version of "
+arduino automation,platform.txt,https://raw.githubusercontent.com/HelTecAutomation/Heltec_nRF52/main/platform.txt,"# Copyright (c) 2014-2015 Arduino LLC.  All right reserved.
+# Copyright (c) 2016 Sandeep Mistry All right reserved.
+# Copyright (c) 2017 Adafruit Industries.  All rights reserved.
+# Copyright (c) 2024 Heltec AutoMation.  All rights reserved.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version."
+arduino automation,Readme.txt,https://raw.githubusercontent.com/SuperDroidRobots/Autonomous-Promotional-Arduino-Code/master/Readme.txt,"This is the first upload of the Arduino Firmware.
+
+This contains code for both automation movement and WASD(QE) controls."
+arduino automation,vocab.txt,https://raw.githubusercontent.com/OpenDriveLab/ELM/main/data/vocab.txt,"▁
+X
+.
+,
+s
+▁the
+a
+:
+▁and
+▁to
+▁of
+▁fill
+e
+▁in
+t
+-
+▁is
+▁de
+▁for
+’
+i
+▁that
+▁you
+d
+▁I
+▁with
+n
+▁on
+'
+o
+▁are
+▁it
+en
+▁be
+▁The
+▁as
+▁your
+l
+▁(
+▁or
+▁have
+▁at
+▁from
+▁an
+▁was
+▁this
+er
+▁la
+m
+r
+ing
+▁can
+!
+▁will
+▁by
+?
+▁not
+re
+)
+▁we
+y
+▁und
+▁has
+▁all
+▁die
+▁but
+▁our
+▁their
+▁A
+▁more
+▁un
+▁der
+c
+u
+in
+▁so
+▁they
+▁one
+▁about
+▁my
+ul
+▁which
+à
+▁In
+/
+he
+f
+▁le
+▁out
+▁also
+▁des
+▁It
+▁up
+▁""
+▁time
+ă
+if
+▁This
+▁We
+p
+▁do
+–
+▁“
+on
+h
+▁si
+le
+▁les
+▁în
+▁his
+▁who
+▁like
+b
+▁when
+;
+▁been
+▁other
+ly
+""
+g
+▁cu
+▁care
+▁what
+▁new
+or
+▁some
+▁get
+▁were
+"
+arduino automation,NOTICE.txt,https://raw.githubusercontent.com/Azure-Samples/MqttApplicationSamples/main/NOTICE.txt,"NOTICES AND INFORMATION
+Do Not Translate or Localize
+
+This software incorporates material from third parties.
+Microsoft makes certain open source code available at https://3rdpartysource.microsoft.com,
+or you may send a check or money order for US $5.00, including the product name,
+the open source component name, platform, and version number, to:
+
+Source Code Compliance Team
+Microsoft Corporation
+One Microsoft Way
+Redmond, WA 98052
+USA
+
+Notwithstanding any other terms, you may reverse engineer t"
+arduino automation,2019-07.txt,https://raw.githubusercontent.com/daly/axiom/master/book/2019-07.txt,"\documentclass{book}
+%\newcommand{\VolumeName}{Volume 2: Axiom Users Guide}
+%\input{bookheader.tex}
+\pagenumbering{arabic}
+\mainmatter
+\setcounter{chapter}{0} % Chapter 1
+
+\usepackage{makeidx}
+\makeindex
+\begin{document}
+\begin{verbatim}
+\start
+Date: Tue, 9 Jul 2019 22:57:45 -0400
+From: Tim Daly  
+To: axiom-dev  
+Subject: [Axiom-developer] Fwd: [EXTERNAL] Re: Axiom's Sane redesign musings
+
+---------- Forwarded message ----------
+From: Tim Daly  
+Date: Tue, 9 Jul 2019 22:56:24 -0400
+Subject: Re: "
+arduino automation,A.txt,https://raw.githubusercontent.com/varadchoudhari/LinkedIn-Skills-Crawler/master/output/A-Z/A.txt,"A + Certified
+A&D
+A&E
+A&H
+A&P
+A&R Administration
+A&U
+A+
+A++
+A-133
+A-GPS
+A-frames
+A/B Testing
+A/R Collections
+A/R Management
+A/R analysis
+A1 Assessor
+A10
+A2
+A2A
+A3
+A3 Thinking
+A320
+A330
+AAAHC
+AACR2
+AAMS
+AAP
+AAR
+AASHTO
+AAUS Scientific Diver
+ABAP Web Dynpro
+ABAP-OO
+ABB 800xA
+ABBYY
+ABBYY FineReader
+ABC Analysis
+ABC Flowcharter
+ABCP
+ABEL
+ABI
+ABLS
+ABO Certified
+ABSYNTH
+ABV
+AC Drives
+AC Nielsen
+AC/DC
+ACAD
+ACARS
+ACATS
+ACBS
+ACD
+ACD Management
+ACDSee
+ACE
+ACE Certified
+ACE Certified Personal Trainer
+ACF2
+A"
+arduino automation,to_do.txt,https://raw.githubusercontent.com/nkahassai-unc/ASTControl/main/to_do.txt,"Current ASTControl To Do (2.7.1):
+
+UNC Install Priorities:
+    - Network setup (DHCP, VNC)
+    - Dome Camera ability (Motion)
+    - File Transfer Protocol (Samba)
+    - Arduino Remote Control (Python)
+    - Dome Motor Mechanical
+    - Scripts Later Remotely
+
+
+Next test: Run control panel. Local testing.
+    - test indigo server connection (Reconnect)
+
+    - ensure solar calculations works (Yes)
+
+    - test webcam (Yes, motionplus server works)
+
+    - test mount control works (Next, test with sim"
+arduino automation,Philosophy.txt,https://raw.githubusercontent.com/mfassler/eFirmata/develop/Philosophy.txt,"- The reasons for eFirmata -
+
+### Number 1:
+
+The number 1 reason why eFirmata exists is because USB cable length 
+is limited to about 5 meters.  
+
+I would like to attach arbitrary slave devices (like sensors, motor 
+control, lighting control, etc) to my computer at distances greater 
+than 5 meters.  I could use multiple hubs, chained together.  But 
+each hub adds latency, cost, and a point of failure.  
+
+A good solution would be Arduino+Firmata, using RS-422.  This 
+requires custom cabling with "
+arduino automation,cv.txt,https://raw.githubusercontent.com/youssef02/Job-hunter-agent/main/cv.txt,"﻿ARRASSEN YOUSSEF
+Software/Computer Engineer
+ A person wearing glasses
+
+Description automatically generated with medium confidence 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Graphical user interface, application, chat or text message
+
+Description automatically generated 
+
+	 Graphical user interface, application
+
+Description automatically generated 
+
+	
+
+DATE OF BIRTH:
+24/04/1998
+
+
+
+
+
+
+PHONE:  (+212) 6160 4081
+EMAIL: arrassen.youssef@gmail.com
+
+
+
+
+
+
+LANGUAGES:
+
+
+En"
+arduino automation,usernames.txt,https://raw.githubusercontent.com/wick2o/gitDigger/master/V1/usernames.txt,"166997 username
+75794 bob
+72360 users
+59595 admin
+45522 user
+38024 name
+29799 rails
+25853 sa
+22981 root
+21293 test
+18364 foo
+17794 jelsoft
+16727 secret
+13961 aric.smith
+13908 webuser
+12941 john
+11410 pretty
+9122 user1
+8842 arunit
+8071 johndoe
+8040 some
+7602 red
+7401 bjohnson
+6697 guest
+6144 anonymous
+6129 me
+5718 twitter
+5556 dbuser
+5487 myuser
+5433 Phusion
+5237 matt
+5159 dstearns
+4892 none
+4813 romanb
+4756 Nemu
+4732 email
+4724 Kotori
+4425 gblanco
+4292 jwage
+3971 your-username
+3911 yourUser
+3868"
+arduino automation,list.txt,https://raw.githubusercontent.com/NoThrowForwardIt/awesome-pentest-tools/master/list.txt,"0trace	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+3proxy	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+3proxy-win32	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+42zip	42	Recursive Zip archive bomb.	http://blog.fefe.de/?ts=b6cea88d
+acccheck	0.2.1	A password dictionary attack tool that targets windows authentication via the SMB protocol.	http://labs.portcullis.co.uk/tools/acccheck/
+ace	1.10	Automated Corporate Enumerator. A simple yet powerful VoIP Corporate Directory enu"
+arduino automation,full.txt,https://raw.githubusercontent.com/harith-alsafi/smartapply/main/full.txt,"Education: 
+------------------
+
+https://www.linkedin.com/in/harith-al-safi/details/education/
+Major: Bachelor of Engineering - BEng, Electronics and Computer Engineering
+School: University of Leeds
+Date Range: Sep 2020 - Jul 2024
+Details: A hybrid course between Electronics Engineering and Computer Science
+
+Skills: ['Assembly Language', 'Git', 'Digital Electronics', 'Algorithms and Data structure', 'Mathematics', 'Computer Science', 'Field-Programmable Gate Arrays (FPGA)', 'C++', 'Mbed', 'Digita"
+arduino automation,stories.txt,https://raw.githubusercontent.com/TanmayChhatbar/TanmayChhatbar.github.io/main/stories.txt,"phd
+    continued work on research in skid-steered vehicle modeling
+        combining planar with suspension models
+        model fitting and vehicle characterization through optimization
+    creating wheeled vehicle models of different fidelity
+        1-dof drivecycle models
+        2-dof - slip angle, yawrate
+        4-dof - heave, heaverate, pitch, pitchrate
+        MBD - Simscape multibody + configurable double wishbone, pacejka tyre, 
+
+RA
+    vehicle characterization
+    resear"
+arduino automation,index.txt,https://raw.githubusercontent.com/szabgab/osdc.org.il/main/pages/index.txt,"=title Open Source Developers Club
+=name Open Source Developers Club
+
+ 
+ 
+ 
+
+We provide learning opportunities and mentoring on your way to start your career in the hi-tech world
+or improve your employability, if you are already in the field.
+
+We think mutual help and continuous education is key to our long-term success in this world.
+
+We think that that one of the best ways to learn is to help others to learn so from the beginning we expect our participants to help each other and especially hel"
+arduino automation,keywords.txt,https://raw.githubusercontent.com/gergelytakacs/AutomationShield/master/keywords.txt,"######################################
+#Syntax Coloring Map For ArduinoShield
+######################################
+# USE A SINGLE TAB CHARACTER ONLY!!!!!
+
+######################################
+#Datatypes (KEYWORD1) ...
+######################################
+
+AutomationShield	KEYWORD1
+OptoShield	KEYWORD1
+FloatShield	KEYWORD1
+HeatShield	KEYWORD1
+MotoShield	KEYWORD1
+TugShield	KEYWORD1
+BOBShield	KEYWORD1
+LinkShield	KEYWORD1
+MagnetoShield	KEYWORD1
+PIDAbs	KEYWORD1
+PIDInc	KEYWORD1
+Sampling	KEYWORD1
+"
+arduino automation,README.TXT,https://raw.githubusercontent.com/GrowControl/GrowControl-mirror/master/README.TXT,"GrowControl is a computer automation system for your home and garden, or hobby projects. It's expandable with plugins, fully multi-threaded makes it fast, and your ideas make it powerful.
+
+The basic system comes in 4 parts, all of which are optional and can be customized.
+
+* The server is the core of the system, coordinating all the events and actions. Normally, this will run silently in the background on some small device. The client can be run in stand-alone mode, which makes the server option"
+arduino automation,HowTo.txt,https://raw.githubusercontent.com/nate-yocom/mantis/master/docs/HowTo.txt,"The following are general information and guides for:
+    
+    - What is in the brew system
+    - Building and flashing new code for the Arduino Due board
+    - Building and flashing new code for the Diablo16 Display board
+    - Alternate (Mantis) code
+         - Mantis protocol
+
+Note that all version numbers referenced are as of this writing and are
+generally ""latest"", which is to say - you may find newer versions available
+which may or may not work.  
+
+==========================
+YOU MUST READ "
+arduino automation,94.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/94.txt,"International Journal of Advanced and Applied Sciences, 6(4) 2019, Pages: 95-100
+
+Contents lists available at Science-Gate
+
+International Journal of Advanced and Applied Sciences
+Journal homepage: http://www.science-gate.com/IJAAS.html
+
+Autonomous wheelchair under a predefined environment
+Anbuselvi Mathivanan *, Saravanan Palani
+Department of ECE, SSN College of Engineering, Tamilnadu, India
+
+ARTICLE INFO
+
+ABSTRACT
+
+Article history:
+Received 23 June 2018
+Received in revised form
+25 January 2019
+"
+arduino automation,en.txt,https://raw.githubusercontent.com/boyu-ai/Hands-on-NLP/main/en.txt,"New IP: a future data network for a panorama
+Computer architecture and SoC design (with microtelevision)
+The guitar's first years of school, and the guitar's little white knows the 88 questions.
+Women's dynamic dictation, from entry to creation.
+It's a new justice, a new comic Q entry, 100 cases, zero basics.
+Bulma will know.
+The walrus of the mountain, the hysteria of the mountain, is a complete picture of the sea.
+Visual C++ object-oriented program design curriculum
+Financial Big Data Analysis"
+arduino automation,neg.txt,https://raw.githubusercontent.com/tanmayb123/DeepSPADE/master/data3/neg.txt,"""What nutrients do fruits and vegetables provide?""
+""I have been using this T boost max""
+""Installing .pkg with terminal ?""
+""Acne Skin Care Tip - Applying Apple Cider Vinegar To Eliminate Acne""
+""ergogenic. a massive amount""
+""Apple's Mail showing \""the identity of smtp.gmail.com cannot be verified\""""
+""How do I install Malwarebytes & purchase a Premium license? 1-844-894-7053""
+""Xbox One Controller not identified Windows 7""
+""I want a all indian music lyrics api for djbaap""
+""How To Get Rid Of Out And "
+arduino automation,560.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/560.txt,"Journal of Robotics and Control (JRC)
+Volume 2, Issue 4, July 2021
+ISSN: 2715-5072 DOI: 10.18196/jrc.24100
+
+322
+
+Wheeled Robot Design with Brain Wave Headset
+Control System
+1
+
+Arif Wibisono1
+Information Technology Education Study Program, Faculty of Mathematics Education, Natural Sciences and Information
+Technology, Universitas PGRI Semarang, Semarang, Indonesia
+Email: 1arifwibisono@upgris.ac.id
+
+Abstract—The development of the world of robotics is
+inevitable with the rapid development of suppor"
+arduino automation,NewEasy.txt,https://raw.githubusercontent.com/TinkerFu/r-dailyprogrammer/master/easy/NewEasy.txt,"﻿Title:  [easy] challenge #1
+Text:  create a program that will ask the users name, age, and reddit username. have it tell them the information back, in the format:
+
+    your name is (blank), you are (blank) years old, and your username is (blank)
+
+for extra credit, have the program log this information in a file to be accessed later.
+
+
+Title:  [easy] challenge #2
+Text:  Hello, coders! An important part of programming is being able to apply your programs, so your challenge for today is to create "
+arduino automation,vendorids.txt,https://raw.githubusercontent.com/pdjstone/windows-driver-scraper/master/vendorids.txt,"0001  Fry's Electronics
+0002  Ingram
+0003  Club Mac
+0004  Nebraska Furniture Mart
+0011  Unknown
+0053  Planex
+0079  DragonRise Inc.
+0105  Trust International B.V.
+0127  IBP
+0145  Unknown
+017c  MLK
+0200  TP-Link
+0204  Chipsbank Microelectronics Co., Ltd
+0218  Hangzhou Worlde
+02ad  HUMAX Co., Ltd.
+0300  MM300 eBook Reader
+0324  OCZ Technology Inc
+0325  OCZ Technology Inc
+0386  LTS
+03d9  Shenzhen Sinote Tech-Electron Co., Ltd
+03da  Bernd Walter Computer Technology
+03e8  EndPoints, Inc.
+03e9  Thesys "
+arduino automation,data.txt,https://raw.githubusercontent.com/PredictionIO/template-scala-topic-model-LDA/master/data.txt,"20,Startupper and tech guy by day  e-engineer by night
+1,Accomplished PHP developer specialising in object-orientated software development accredited with multiple rewards and software engineering certifications. A self-motivated  ambitious and focused Computer Science student  who likes to try out new challenges and solves complex problems with ability to rapidly acquire new skills. Always punctual and reliable person with empathetic attitude towards others. Versatile  hands-on developer with g"
+arduino automation,Proposal.txt,https://raw.githubusercontent.com/LCRRS/Palmer/master/Proposal.txt,"﻿This research project describes the physical, mathematical and programming aspects of constructing an open-source and cost-effective autonomous multirotor control. 
+
+For production, we use open-source software to create algorithms necessary for flight and stabilization.  This, paired with cost-effective hardware choices, allowed us to create our quadcopter with a minimal budget.
+
+We implement an Arduino microcontroller as a primary device for bidirectional communication with the periphery devic"
+arduino automation,ALIO.txt,https://raw.githubusercontent.com/Jayant-Kolapkar/ALIO/main/ALIO.txt,"Lab 1
+Aim:
+To design and implement two circuits:
+A circuit to control the speed of a DC motor using a potentiometer.
+
+
+A circuit to blink an LED using an Arduino.
+
+
+
+Theory:
+DC Motor Speed Control with Potentiometer:
+
+
+A 9V battery powers the motor.
+
+
+A potentiometer acts as a variable resistor, controlling voltage.
+
+
+As voltage increases, motor speed increases; as voltage decreases, motor speed decreases.
+
+
+LED Blinking using Arduino:
+
+
+An Arduino Uno is used as a micr"
+arduino automation,Auto bid.txt,https://raw.githubusercontent.com/TopDeveloper215/Text/master/Auto bid.txt,"----------------Skills---------------
+
+--------Web-------
+
+html , css , javascript , php , laravel , codeigniter , mongodb , node.js , express , vue.js  , python , web scraping , selenium  , Data Collection , chemical engineering , reverse engineering , computer vision , flask , nlp , chatbot , opencv , stable diffusion , image processing , data analysis , automation , chatgpt , gpt , Selenium Web Driver , Data Scraping , Data Extraction , BeautifulSoup , Scrapy , Google Analytics , Data Science"
+arduino automation,Auto bid.txt,https://raw.githubusercontent.com/TopDeveloper215/Text-1/master/Auto bid.txt,"----------------Skills---------------
+
+--------Web-------
+
+html , css , javascript , php , laravel , codeigniter , mongodb , node.js , express , vue.js  , python , web scraping , selenium  , Data Collection , chemical engineering , reverse engineering , computer vision , flask , nlp , chatbot , opencv , stable diffusion , image processing , data analysis , automation , chatgpt , gpt , Selenium Web Driver , Data Scraping , Data Extraction , BeautifulSoup , Scrapy , Google Analytics , Data Science"
+arduino automation,main.txt,https://raw.githubusercontent.com/jordancrubin/sprinkler-system/master/src/main.txt,"/*
+  Change this file to main.cpp to run example in platform.io
+  main.cpp - The application that runs the automated sprinkler system as 
+  part of the Irrigation Automation Project for ESP32 Using both the 
+  5 wirevalve project and the watermeter projects in the design.  More at
+  https://www.youtube.com/c/jordanrubin6502
+  2021 Jordan Rubin.
+*/
+#include  
+#include  
+
+SPRINKLERSYSTEM sprinklersystem(true);
+
+void setup() {
+  Serial.begin(38400);
+  Serial.println(""\n\n***Water Sprinkler Test Pro"
+arduino automation,262.txt,https://raw.githubusercontent.com/CarmenWen2020/Text-Classification-Dataset-Code/master/original/262.txt,"The impact of IoT-ML in the healthcare sector is very significant and it has helped us to change our view at the traditional treatment methods. In IoT-ML-based healthcare applications, the sensing layer is responsible for collecting information from humans and transferring it to the storage layer through communication technology. ML is implemented to make intelligent decisions for healthcare applications. This survey shows all the fields starting from the IoT sensor devices to the deployment of "
+arduino automation,Abstract.txt,https://raw.githubusercontent.com/LCRRS/Palmer/master/Abstract.txt,"﻿This research project examines the physical, mathematical and programming aspects of constructing an autonomous quadcopter at a minimal budget. Open-source software was used in creation of flight and stabilization algorithms. The Arduino microcontroller was implemented as primary means for bidirectional communication with the periphery devices. C++ language compatibility allowed for the fast execution necessary to process the mathematical functions involved in the two-axis stabilization of a mu"
+arduino automation,DVX.txt,https://raw.githubusercontent.com/vinaygopalp/IntelliHome/main/DVX.txt,"/*************************************************************
+Title         :   Home automation using blynk
+Description   :   To control light's brigntness with brightness,monitor temperature , monitor water level in the tank through blynk app
+Pheripherals  :   Arduino UNO , Temperature system, LED, LDR module, Serial Tank, Blynk cloud, Blynk App.
+ *************************************************************/
+
+// Template ID, Device Name and Auth Token are provided by the Blynk.Cloud
+// See th"
+arduino automation,index.html.txt,https://raw.githubusercontent.com/hariharan0920/shiny-computing-machine/main/index.html.txt,"Hariharan's Portfolio 
+ 
+ 
+ 
+ 
+ Hariharan 
+ Python Developer 
+ 
+ 
+ 
+ About Me 
+ Skills 
+ Projects 
+ Experience 
+ Education 
+ Contact 
+ 
+ 
+ 
+ About Me 
+ I am a Python developer seeking a job to kickstart my career. 
+ 
+ 
+ Skills 
+ 
+ Problem Solving 
+ Testing Automation 
+ Eager to Learn 
+ 
+ 
+ 
+ Projects 
+ Tourism Management 
+ HTML, CSS, JS, Flask, Python 
+ Smart Light Automation 
+ Arduino, C++, IR Sensor, Light Sensor 
+ 
+ 
+ Experience 
+ Fresher 
+ 
+ 
+ Education 
+ BSc Computer Science 
+ 
+ 
+ Certifica"
+arduino automation,a3.txt,https://raw.githubusercontent.com/vishangl/OpenTalkJS/main/answers/a3.txt,"**Project Proposal:**
+
+**Title:** Smart Home Automation System for Energy Efficiency and Comfort
+
+**Background:**
+As the world becomes increasingly aware of the importance of sustainability, energy conservation, and user comfort, the demand for innovative smart home solutions is on the rise. This project aims to develop a comprehensive smart home automation system that integrates various devices and technologies to optimize energy efficiency, enhance user experience, and provide real-time monito"
+arduino automation,links.txt,https://raw.githubusercontent.com/generic-github-user/links/master/links.txt,"title: links
+about: A semi-curated list of interesting and/or useful items{This repository
+also serves as a test of some new data serialization formats I'm experimenting
+with, but I've been meaning to put something like this together for quite a
+while.} from my bookmarks{entries also drawn from my GitHub stars, various
+conversations with friends, memory, etc.}; adorned with my facetious
+comments{Most of these are just me being unnecessarily harsh; if I genuinely
+dislike a project it most likely "
+arduino automation,resume.txt,https://raw.githubusercontent.com/santanafx/chat-ai-bot/main/docs/resume.txt,"Contact
+Belo Horizonte, Minas Gerais
++55 31 99791 5854 (Home)
+santanafx@hotmail.com
+LinkedIn
+GitHub (Portfolio)
+
+Key Skills
+User Experience (UX)
+React
+JavaScript
+Languages
+Portuguese (Native or Bilingual)
+English (Full Professional Proficiency)
+French (Elementary)
+Certifications
+First Certificate in English
+MySQL
+HTML and CSS Training
+User Experience
+React: Practicing React with JavaScript
+Lucas Santana Figueiredo
+Software Engineer | Front End | React | TypeScript | Next.js | UI/UX | GraphQL | R"
+arduino automation,Golang.txt,https://raw.githubusercontent.com/iustin24/chameleon/master/wordlists/Golang.txt,".info
+.ping
+.status
+.well-known/acme-challenge/
+.well-known/letsencrypt
+.well-known/openid-configuration
+.well-known/webfinger
+.within/licenses
+.x.botinfo
+0/status
+1
+1/challenge/
+1/crypt/
+1/newbtc/
+1/setpid.json
+1/setpoint.json
+1/sleep.json
+1/status/
+2
+200
+200_not_gce
+222
+3
+3/device/
+301
+302
+3tester/
+404
+500
+API/
+API/encrypt/
+About.html
+AddAMIUser
+AddNode
+AddNote/
+AltSubmit
+AngryCats
+AudService/v1/interests
+AudService/v1/user/profile
+AudService/v1/user/profile/lookup
+BothFilter/
+CallAMI
+Capture/"
+arduino automation,74.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/74.txt,"DUJE (Dicle University Journal of Engineering) 11:3 (2020) Page 945-952
+
+Research Article
+
+Artificial Intelligence Helps Protect Smart Homes against Thieves
+Zeydin Pala 1,*, Orhan Özkan 2
+Muş Alparslan University Faculty of Architecture and Engineering,
+Department of Computer Engineering, Muş.Turkey, https://orcid.org/0000-0002-2642-7788
+2 YYU, Institute of Science, Department of Artificial Intelligence and Robotics, Van, Turkey, https://orcid.org/0000-0001-9502-8222
+1
+
+ARTICLE INFO
+Article hist"
+arduino automation,557.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/557.txt,"[Marghade*, 4.(7): July, 2015]
+
+ISSN: 2277-9655
+(I2OR), Publication Impact Factor: 3.785
+
+IJESRT
+INTERNATIONAL JOURNAL OF ENGINEERING SCIENCES & RESEARCH
+TECHNOLOGY
+BRAIN MACHINE INTERFACE SYSETM WITH ARTIFICIAL INTELLIGENT FOR A
+PERSON WITH DISABILITY
+Ujwala Marghade*, Vinay Keswani
+* M.Tech ,Electronics Engg(communication), Vidarbha Institute of Technology, Nagpur University,
+India.
+Assistant Professor (M. Tech ECE),Vidarbha Institute of Technology, Nagpur University, India.
+ABSTRACT
+Brain Mac"
+arduino automation,link gsm.txt,https://raw.githubusercontent.com/satish295/project-/master/link gsm.txt,"https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299
+https://microcontrollerslab.com/gsm-based-home-automation-project/
+
+http://www.embeddedadvice.com/t/arduino-dtmf-tutorial-using-sim900-sim800-modules-live-demo/430/6
+
+https://www.raviyp.com/embedded/232-arduino-dtmf-tutorial-using-sim900-sim800-modules-live-demo
+
+
+https://sites.google.com/view/vicinityinfoindia/missed-call-based-motor-on-off-and-also-get-current-temperature-humidit
+
+https://lastminuteengineers.com/a6-gsm-gprs-module-ar"
+arduino automation,255.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/255.txt,"EEG Wheelchair for People of Determination
+1
+
+Mariam AlAbboudi, 1Maitha Majed, 1Fatima Hassan, 2Ali Bou Nassif
+
+1
+
+Department of Electrical and Electronics Engineering, University of Sharjah
+2
+Department of Computer Engineering, University of Sharjah
+Sharjah, United Arab Emirates
+
+Abstract—the aim of this paper is to design and construct an
+electroencephalograph (EEG) based brain-controlled wheelchair
+to provide a communication bridge from the nervous system to
+the external technical device for "
+arduino automation,376.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/376.txt,"Inge Cuc, vol. 11 no. 2, pp 74-83, July - December, 2015
+
+Control of a Mobile Robot Through
+Brain Computer Interface*
+Control de Móvil Robótico Mediante
+Interfaz Cerebro Computador
+DOI: http://dx.doi.org/10.17981/ingecuc.11.2.2015.08
+Research article - Reception Date: January 30, 2015 - Acceptance Date: September 16, 2015
+
+Robinson Jiménez Moreno
+
+Master in Industrial Automation. GAV Group, Universidad Militar Nueva Granada – UMNG.
+Bogotá (Colombia). robinson.jimenez@unimilitar.edu.co
+
+Jorge Rod"
+arduino automation,18.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/18.txt,"2014 International Conference on Informatics, Electronics & Vision (ICIEV)
+23-24 May, 20134
+University of Dhaka, Dhaka, Bangladesh
+
+Table of Contents
+*Paper ID is the same as PDF ID or File name of eachPDF, as ‘Papers\*.pdf
+*Paper ID
+
+Paper Title
+
+28
+30
+49
+
+Multiple Regions Based Histogram Equalization
+An Effective Approach To Estimate Reverberated Channel Of Speech Signal
+Fabrication and Characterization of Self-Aligned ZnO and TiO2 Nanostructured Films
+Performance Assessment Criteria and Issue"
+arduino automation,products.txt,https://raw.githubusercontent.com/devdattatalele/beauty-product-website/main/products.txt,"https://robu.in/why-the-price-of-xt60-connectors-matters/
+2	2024-12-23 13:16 +00:00
+https://robu.in/10-best-digilent-fpga-development-boards/
+1	2024-12-23 12:06 +00:00
+https://robu.in/10-best-network-attached-storage-or-nas-systems-in-sandisk/
+1	2024-12-18 12:25 +00:00
+https://robu.in/arduino-ide-2-3-3-a-new-sensation-from-arduino/
+1	2024-12-16 07:17 +00:00
+https://robu.in/emax-servo-motors-transform-precision-into-excellence/
+1	2024-12-09 07:02 +00:00
+https://robu.in/risc-v-architecture-framewo"
+arduino automation,work.txt,https://raw.githubusercontent.com/karthiknayak02/karthiknayak02.github.io/master/work.txt,"Karthik Nayak
+=========
+
+Bachelor of Science in Computer Science									University of Kentucky
+**GPA:** 3.6 / 4.0, Junior													Graduation: Dec 18
+**Relevant Courses:** Algorithm Design & Analysis, Machine Learning, Interactive Machine Learning, Graphics and Multimedia (Java), Embedded Systems, Program Design & Abstraction, Discrete Math
+
+Experience
+-------
+**IBM**																			_Dallas, TX_
+Software Developer Intern												_Jun. 2018 – Aug. 2018_
+
+**Tesla**															_Gigafac"
+arduino automation,log.txt,https://raw.githubusercontent.com/transistorfet/retroverse/main/log.txt,"2023-07-12:
+- for the case, there is a 63HP and a 42HP, and a 271mm and 331mm (the 391mm is way too big)
+- the 331mm is also kind of big if I wanted to put it under my oscilloscope on the shelf.  271 would fit more comfortably without
+  sticking out.  Hopefully it's big enough
+- the 63HP (364mm) is just a bit too wide to fit in the spot next to the book, it's a squeeze but possible
+- the alternative is the 42HP (257mm) is too narrow for the oscilloscope =/
+- the 42HP is a bit big but would fit b"
+arduino automation,notFound.txt,https://raw.githubusercontent.com/DNA-Dave/cs221_github_project/master/notFound.txt,"jrjparks/OpenCV-Logitech-C920
+fmgomes/WebRadio
+hohounk/AsfInfo
+anandnilkal/githubtest
+nismakoto/DOG-Function
+idaisuke/ferrum
+JacobHacker/MegaPP
+guralesko/All-In-One
+cdbfoster/smallmath
+geogy/curl-smtp-FILE
+thedsi/EnumReflection
+JoeyKanaly/DailyProgrammer
+CKPalk/Astro-VTK
+SakeSushiBig/oash
+nomis52/laughing-tribble
+russellklenk/backbone
+Michanne/TodoListMaker
+ljbo82/ArduinoTimer
+anirudhdayal/Multiset
+maximaximal/NXTRobotRemote
+kmhasan-class/summer2016dslab
+aurindam/tasklist
+Bernasss12/TrabSemestre"
+arduino automation,ideas.txt,https://raw.githubusercontent.com/xpix/XAmbi/master/ideas.txt,"﻿Xambi - media shield for raspberry pi
+=====================================
+
+DESCRIPTION:
+
+xambi are a shield for raspberry pi. the name xambi it\'s a word game between my pseudonym ""xpix"" and ""ambilight"".
+
+
+FEATURES:
+
+* Ambilight connects for WS2811 and others
+* 5V-12V connect for Ambilight
+* Infrared receiver
+* RF link for 433 mHz power plugins 
+* use RFM12B 433MHZ Modules 
+ 
+WS2811/WS2812
+----------------------
+   * user use stripes with 5V or 12V
+
+RF Transmitter 433 mHz
+--------------------"
+arduino automation,316.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/316.txt,"Drone Control based on Mental Commands and
+Facial Expressions
+Iuliana MARIN
+Faculty of Engineering in Foreign
+Languages
+University POLITEHNICA of
+Bucharest
+Bucharest, Romania
+marin.iulliana25@gmail.com
+
+Myssar Jabbar Hammood ALBATTBOOTTI
+Faculty of Engineering in Foreign
+Languages
+University POLITEHNICA of
+Bucharest
+Bucharest, Romania
+jmyssar@gmail.com
+
+Abstract—When it is tried to control drones, there are many
+different ways through various devices, using either motions like
+facial motion, spe"
+arduino automation,active_5660.txt,https://raw.githubusercontent.com/abiazizi/source/main/active_5660.txt,"{""id"": ""1005002481193064"", ""img"": ""H15c782d3b7cf45eb83200f96379efc76V"", ""title"": ""Laptop Top Cover For ACER Predator Helios 317 PH317 PH317-51 PH317-52 17.3 inch A Shell Back Cover AP222000100""}
+{""id"": ""32960131334"", ""img"": ""HTB181_oX.LrK1Rjy1zbq6AenFXa5"", ""title"": ""9 colors refillable cartridge For Epson P6000/7000/8000/9000 with one time chip which only works for European printer""}
+{""id"": ""1005001273926514"", ""img"": ""Hec66cdef01514d07929c5ba410b4afd1y"", ""title"": ""Round/Square LED Chandelier Lig"
+arduino automation,active_426.txt,https://raw.githubusercontent.com/abiazizi/source/main/active_426.txt,"{""id"": ""1005001975329545"", ""img"": ""H507285268e3049dfaed18dc886cc8858D"", ""title"": ""Motorcycle LCD Speedometer Meter Assy for Linhai Bighorn 450 500 LH500 EFI ATV 70829""}
+{""id"": ""1005003026475635"", ""img"": ""Hea85a98265c54d4b96280ef1e5ca19ece"", ""title"": ""5Pcs/Lot\uff0c100% Original New Dock Connector USB Charger Charging Port For Iphone 12 Pro 12 min Board With Microphone Replacement""}
+{""id"": ""32863180704"", ""img"": ""H10bf82d50aa14b95a899bbf7e6c2d24fV"", ""title"": ""SHELI For Lenovo Z470 Motherboard DAKL"
+arduino automation,my.txt,https://raw.githubusercontent.com/suryapaalselvi/MyPortfolio/main/assets/my.txt,"i have planned to make website there i showcase my skills how i learned path way
+this is my script please make change you neatly and short 
+when i complete my 12th after i confused which i choose college or what? then my relative said there have coimbatore texmo industries run texmo academy the course is mechatronics swiss vocational diploma 
+here after my first google search what is mechatronics there displaying more but i looking robots photos 
+i suddently surpricesd because at my 6th std to 9"
+arduino automation,index.html.txt,https://raw.githubusercontent.com/meTARIF/meTARIF.github.io/main/index.html.txt,"Tarif Ahammad Fuad Hazari - Portfolio 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Skills 
+ Projects 
+ Contact 
+ 
+ 
+ 
+ Tarif Hazari 
+ Engineer | AI & Research Enthusiast | Industrial Automation 
+ 
+ 
+ 
+ About Me 
+ As a fresh graduate, I bring a sophisticated foundation of academic, and practical adeptness in the realm of Electrical & Electronic Engineering with strong interpersonal skills at this stage of IR 4.0.
+
+To be precise, I have diverse interests along with hands-on competency in cutting-edge interdisciplinary"
+arduino automation,release-notes.txt,https://raw.githubusercontent.com/ANRGUSC/iris-riot/develop/release-notes.txt,"RIOT-2017.04 - Release Notes
+============================
+RIOT is a multi-threading operating system which enables soft real-time
+capabilities and comes with support for a range of devices that are typically
+found in the Internet of Things: 8-bit microcontrollers, 16-bit
+microcontrollers and light-weight 32-bit processors.
+
+RIOT is based on the following design principles: energy-efficiency, soft
+real-time capabilities, small memory footprint, modularity, and uniform API
+access, independent of t"
+arduino automation,new-2.8.0.txt,https://raw.githubusercontent.com/networkupstools/networkupstools.github.io/master/source/2.8/new-2.8.0.txt,"If you're upgrading from an earlier version, see the UPGRADING file.
+
+For a complete and more detailed list of changes, please refer to the
+ChangeLog file (generated for release archives), or to the Git version
+control history for ""live"" codebase.
+
+---------------------------------------------------------------------------
+Release notes for NUT 2.8.0 - what's new since 2.7.4:
+
+NOTE: Earlier discussions (mailing list threads, GitHub issues, etc.) could
+refer to this change set (too long in the ma"
+arduino automation,10.txt,https://raw.githubusercontent.com/hy3440/diffSimilarTech/master/out/tech/10.txt,"90039
+csla	.net
+although the csla framework is written in .net the overall approach can be used in any language
+
+90049
+opera	firefox
+this works for opera 9 but not for firefox 2 or internet explorer 7
+
+90068
+inherited	subclassing
+by implementing multiple interfaces one can have a class that is a subclassing to inherited some features yet also inherited the features of another by implementing an interface
+
+90095
+lxml	beautifulsoup
+there s lxml for parsing well-formed html but you should really us"
+arduino automation,294.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/294.txt,"International Journal of Electrical and Electronic Engineering & Telecommunications Vol. 7, No. 4, October 2018
+
+LabVIEW GUI for Emotiv EPOC of Prosthetic
+Hand Control
+Muhammad Azmi Ayub1, Aainaa Zainal1, Khairunnisa Johar1, Noor Ayuni Che Zakaria1, and Cheng Yee
+Low2
+1
+
+2
+
+Faculty of Mechanical Engineering, Universiti Teknologi MARA Shah Alam, Selangor, Malaysia
+Faculty of Mechanical and Manufacturing Engineering, Universiti Tun Hussein Onn Malaysia, Johor, Malaysia
+Email: {muhammadayub, ayuni8"
+arduino automation,cku1.txt,https://raw.githubusercontent.com/mrluc/cku-irc-bots/master/data/cku1.txt,"18:33 *** mr_luc JOIN
+18:33 *** TOPIC it's strange (the nastybatin')
+                (hswe!~hswe@207.67.61.1 on Tue Jun 18 21:42:14
+                2013)
+18:33 *** NAMES @ChanServ @hswe @quezacotl bingbot crash0verride
+                cujojp dogshitbot DunksALot encrypt3d_wound gramps
+                griswold mkap mr_luc pema safetybot1 scorpio
+                will_i_was |h9|
+18:33   omg derpo is down
+18:33   what about derpo
+18:33 *** derpo JOIN
+18:34   what about focus farther
+18:34   [Focus F"
+arduino automation,tag_list.txt,https://raw.githubusercontent.com/lab11/thingspeak-scraper/master/tag_list.txt,"temperature
+humidity
+darthomir
+temperature
+homero
+Arduino Pro Mini
+esp8266
+Bastun
+siaf
+xalk
+Wondecla
+Solar
+wind
+Off Grid
+Milanówek
+PM10
+PM2.5
+WeatherDuino
+Air Quality Index
+PM2.5
+PM10
+co2
+temperature
+humidity
+lora
+signal
+DS1307
+Sense_Hat
+raspberry_pi
+humidity
+Pressure
+temperature
+Solar
+water
+temperature
+DHT22
+esp8266
+xmit
+weatherstation
+wifi
+pogoda
+weather
+jadowniki
+temperature
+humidity
+DHT22
+Raspberry Pi Zero W
+Python
+BME280
+temperature
+humidity
+Air pressure
+Brno
+VUT
+OrangePI Lite
+BMP180
+IOT
+Lv"
+arduino automation,342.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/342.txt,"International Journal of Bioscience, Biochemistry and Bioinformatics, Vol. 3, No. 6, November 2013
+
+Hardware Simulator for Seizure, Preseizure and Normal
+Mode Signal Generation in LabVIEW Environment for
+Research
+Uvais Qidwai, Aamir Saeed Malik, Mohamed Shakir, and Nidal Kamel
+
+
+Abstract—Currently numerous theories and model have
+been developed to associate various findings or in relating EEG
+patterns to develop a software simulator. Here we develop a
+hardware simulator of the EEG model or to s"
+arduino automation,rag_data.txt,https://raw.githubusercontent.com/yashas-hm/ask-yashas-llm/main/rag_data.txt,"About Me(Yashas Majmudar)
+I'm the Conductor of Code and Innovation in the digital symphony! As a Full Stack Virtuoso, I wield both frontend finesse and backend brilliance to create experiences that are as seamless as they are stunning. With Flutter, I craft cross-platform mobile marvels, while JavaScript, TypeScript, Dart, and React are my go-to tools for orchestrating interactive and immersive user interfaces.\n
+Whether it's bringing ideas to life with pixel-perfect precision on Android or anim"
+arduino automation,resume.txt,https://raw.githubusercontent.com/arvinder004/Resume_Analyzer/main/resume.txt,"Education
+Rajiv Gandhi Proudyogiki Vishwavidyalaya Bachelor of Technology in Computer Science & Business Systems CGPA : 8.01 Projects
+Madhya Pradesh, India
+Oct. 2022 – May 2026(expected)
+Blackboard Tool | Live | GitHub React.js, Node.js, Vite, Tailwind, Rough.js
+• Engineered a real-time collaborative whiteboard leveraging React.js, Node.js, and Vite, achieving sub-100ms latency for
+seamless multi-user interaction.
+• Implemented a robust undo/redo architecture, optimizing user workflows and boost"
+arduino automation,27.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/27.txt,"Downloaded from orbit.dtu.dk on: Mar 23, 2020
+
+Mind Controlled Drone: An Innovative Multiclass SSVEP based Brain Computer
+Interface
+
+Chiuzbaian, Andrei; Jakobsen, Jakob; Puthusserypady, Sadasivan
+Published in:
+Proceedings of 2019 7th International Winter Conference on Brain-Computer Interface
+Link to article, DOI:
+10.1109/IWW-BCI.2019.8737327
+Publication date:
+2019
+Document Version
+Peer reviewed version
+Link back to DTU Orbit
+
+Citation (APA):
+Chiuzbaian, A., Jakobsen, J., & Puthusserypady, S. (2"
+arduino automation,white_list.txt,https://raw.githubusercontent.com/ekozlowski/devops-against-humanity/master/white_list.txt,"Brogrammers
+Continuous integration
+Copypasta
+The Cult of Mac
+Degraded performance in some AWS availability zones
+Developers
+DevOps
+Eating sushi with Andrew Clay Shafer
+fuckedcompany.com
+Git
+Golang
+Growth hacking
+vi vi vi
+Hacker News
+Larry Ellison
+Leaky abstractions
+Meritocracy
+MongoDB
+Node.js
+NPM
+Pareto Inefficient Nash Equilibriums
+Posting on Etsy's codeascraft blog
+Python
+Python datetime module
+RecruiterFail
+Ruby
+Running out of IPv4 addresses
+Sysadmins
+The Stanford of Canada
+Thought leadership"
+arduino automation,reflection.txt,https://raw.githubusercontent.com/notYoosung/Arduino/main/reflection.txt,"What to Submit
+A 500-700 word reflection (approximately 1-1.5 pages single-spaced) addressing each section described below. 
+
+
+
+Directions
+Write about your overall experiences in this class. Please submit a reflection divided into sections (or paragraphs). Prompts for each section follow. 
+
+
+
+Section One
+    Reflect on your experiences in this course. How have your views and assumptions about being an engineer changed (or been confirmed)? Describe experiences that you have had in this course tha"
+arduino automation,134.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/134.txt,"Journal of Engineering and Applied Sciences 15 (6): 1377-1384, 2020
+ISSN: 1816-949X
+© Medwell Journals, 2020
+
+BCI Based Home Automation using User Controlled Blinks
+1, 2
+
+Sebastián Poveda Zavala, 1, 2Kelvin Ortíz Chicaiza, 1, 2José Luis Murillo López,
+1, 2
+Juan Sulca and 1, 2Sang Guun Yoo
+1
+Departamento de Informática y Ciencias de la Computación, Escuela Politécnica Nacional,
+Quito, Ecuador
+2
+Smart Lab, Escuela Politécnica Nacional, Quito, Ecuador
+Abstract: Nowadays, Internet of Things (IoT) is"
+arduino automation,217.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/217.txt,"A Real-time Control Approach for Unmanned Aerial Vehicles using
+Brain-computer Interface*
+
+arXiv:1809.00346v1 [cs.RO] 2 Sep 2018
+
+Ravi M. Vishwanath1 , Saumya Kumaar1 and S N Omkar1
+Abstract— Brain-computer interfacing (BCI) is a technology
+that is almost four decades old and it was developed solely
+for the purpose of developing and enhancing the impact
+of neuroprosthetics. However, in the recent times, with the
+commercialization of non-invasive electroencephalogram (EEG)
+headsets, the technolog"
+arduino automation,allskills.txt,https://raw.githubusercontent.com/pratikpoddar/zlemma-pratik-poddar/master/allskills.txt,".NET
+ANOVA
+ARIMA Model
+ASP.NET
+Acceptance Testing
+Actionscript
+Adobe Flash
+Adobe Illustrator
+Agile Software Development
+Ajax
+Algebra
+Algorithm Analysis
+Algorithmic Trading
+Algorithms
+Alternating Current
+Amazon Ec2
+Amazon Web Services
+American Options
+Analog Circuits
+Android Programming
+AngularJS
+Apache Ant
+Apache HBase
+Apache Webserver
+Approximation Algorithms
+Arbitrage Pricing
+Arduino
+Artificial Intelligence
+Assembly Language
+Asset Pricing
+Audio Electronics
+AutoCAD
+Automata Theory
+Awk
+Backbone."
+arduino automation,678.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/678.txt,"International Journal of Recent Technology and Engineering (IJRTE)
+ISSN: 2277-3878, Volume-8 Issue-6, March 2020
+
+Brain Computer Interface Controlled Voice
+Assistant
+Rahul Sarkar, M. Prakash
+
+Abstract: A brain-controlled robot using brain computer
+interfaces (BCIs) was explored in this project. BCIs are systems
+that are able to circumvent traditional communication channels
+(i.e. muscles and thoughts), to ensure the human brain and
+physical devices communicate directly and are in charge by
+conve"
+arduino automation,out.txt,https://raw.githubusercontent.com/JesseAldridge/upwork-analysis/master/src/out.txt,"word counts:
+Liferay 1
+Dreamweaver 1
+Landing 1
+Pages 1
+Core 1
+Device 1
+Driver Development 1
+VMware 1
+ESX 1
+AMP 1
+Web Development 1
+TypeScript 1
+Learning 1
+(LMS) 1
+Azure 1
+Continuous 1
+Integration 1
+DevOps 1
+Docker 1
+Field-Programmable 1
+Gate 1
+Array 1
+(FPGA) 1
+TCP/IP 1
+Administrative 1
+Communications 1
+Assistant 1
+SSH 1
+Agile 1
+Software Development 1
+Planning 1
+Financial 1
+Twilio 1
+Digital 1
+Electronics 1
+PCB Design 1
+APIs 1
+DocuSign 1
+Golang 1
+Malware 1
+d3.js 1
+Real 1
+Estate 1
+IDX 1
+ArcGIS 1
+Ge"
+arduino automation,fbe.txt,https://raw.githubusercontent.com/ivan8882004/HKUCoursePlanner-Reviewer/main/fbe.txt,"COMP2119. Introduction to data structures and algorithms (6 credits)
+Arrays, linked lists, trees and graphs; stacks and queues; symbol tables; priority queues,
+balanced trees; sorting algorithms; complexity analysis.
+Prerequisite: ENGG1340 or COMP2113 or COMP2123
+Assessment: 40% continuous assessment, 60% examination
+19
+COMP2121. Discrete mathematics (6 credits)
+This course provides students a solid background on discrete mathematics and structures
+pertinent to computer science. Topics include l"
+arduino automation,notes.txt,https://raw.githubusercontent.com/ab3nd/TinyRobo/master/notes.txt,"Fiducial tracking from NERVE cameras
+	Camera uses RTSP
+	Default TUIO tracker implementation can't use RTSP cameras
+	v4l2loopback is broken on Ubuntu 14.04
+		Yes, both v4l2loopback-dkms and v4l2loopback-source + module-helper
+		Not going to bother compiling from source
+			It would break with every kernel upgrade
+			Unconvinced it's going to work, given that the packages are broken
+		So no converting RTSP to a /dev/videoX entry
+	TUIO isn't actually a fiducial library, it's a protocol
+	And the reac"
+arduino automation,S5_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/S5_urls.txt,"https://gumroad.com/l/vFujc
+http://www.tailgating-challenge.com/personalized-cart-review
+http://www.dgrworks.com
+http://domik-mo.ru/videosearch?param=2_51,60_141,180_2,4_1800,2600
+http://visnomadic.com/twitter.html
+https://play.google.com/store/music/album/DeeWillOfficial_The_Headnottaz?id=Beiozfhd2zsrabkcrcsfnlc76ae
+http://www.lccnet.tv
+http://www.1aauto.com/1A/IgnitionCoil/GMC/Savana-2500-Van/1AERK00070?utm_source=YouTube&utm_medium=card&utm_campaign=overlaycardcta2
+https://www.redbubble.com/p"
+arduino automation,iot.txt,https://raw.githubusercontent.com/OLDHel1Otrope/bote/main/iot.txt,"UNIT – I
+Getting Familiar with Internet of Things (IoT): Definition, Characteristics, History
+Evolution of IoT. Physical Design of IoT: Things in IoT, IoT Protocols. Logical Design of IoT:
+Functional block, Communication Models and APIs, IoT Stack. Enabling Technologies:
+Sensors, Cloud Computing, Big Data analytics, Embedded Computing Boards,
+Communication Protocols, IoT Challenges, IoT Levels, Overview of Domain Specific IoTs
+applications Like Smart Cities, Smart Agriculture and Industrial IoT "
+arduino automation,992.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/992.txt,"Who Was Milton Hershey
+The Infertility Cure The Ancient Chinese Programme For Getting Pregnant
+La Politique Comparee Deuxieme Edition Revue Et Mise A Jour
+Cuarto De Guerra Paquete Para El Lider Spanish Edition
+Where Courage Calls Return To The Canadian West Book 1 A When Calls The Heart Novel
+Break Ins Death Threats And The Fbi The Covert War Against The Central America Movement
+Der Deutsche Burgerkrieg Eine Geschichte Der Deutschen Und Osterreichischen Freikorps 1918 1923
+Giving Ground T"
+arduino automation,Ya_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Ya_urls.txt,"http://landofcoder.com/magento-2-mega-menu.html/
+http://heroyuuki.com/
+https://geo.itunes.apple.com/us/album/id1391859749?at=1l3v9Tx&app=itunes
+http://www.ebcbuzz.com/url/39
+http://action.tamtamclub.ru
+http://www.sportsbookreview.com/Sportsbook/?v=3700&book=outro-rating-guide
+http://karekareoyun.blogspot.com/
+http://www.smartbuyglasses.com/designer-eyeglasses/Persol/Persol-PO3124V-95-271928.html
+http://www.indiamart.com/easybuy/cmp/index-new.php?afflid=-55&modid=EMKTG&utm_source=BL_youtube_Gen&u"
+arduino automation,wO_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/wO_urls.txt,"http://www.1aauto.com/1A/TransferCaseShiftMotor/Chevy/Trailblazer/1AFWM00011?utm_source=YouTube&utm_medium=card&utm_campaign=overlaycardcta2
+http://xn--80adinicesfbivc.xn--j1aef.xn--p1ai
+http://www.discovercuencaecuador.com/2015/01/fact-or-fiction-you-will-get-robbed-on.html
+https://www.patreon.com/guerrillaminiaturegames?ty=h
+http://smarturl.it/iTunesThisLifedlx
+http://officialjohnhowell.com/ytfc/
+http://www.viztisztitomarket.hu/silverex-ezustion-zuhanyszuro
+http://sites.google.com/site/http555"
+arduino automation,s__urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/s__urls.txt,"https://www.quebecoriginal.com/en/see-and-do/hunting-and-fishing
+http://www.bitkiseltedavi.com/Zerdecal-Seti,PR-1480.html
+http://xn----ctbhofdbekubgb2addy.xn--p1ai
+http://mobiltelefon.ru/post_1400674912.html
+http://abk.us/newsletter
+http://www.snipeground.com/formaw.php?r=clients/signup/gpcFRL2H
+http://www.rocketbeans.tv
+http://bit.ly/1LlZ5iM
+http://www.atv.com.tr/webtv/muge-anli-ile-tatli-sert/bolum
+http://squadops.gg/
+http://www.benzio.net/aonline/
+http://www.zumbafrance.com
+http://www.moffy.c"
+arduino automation,7V_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/7V_urls.txt,"http://www.bodybuilding.com/fun/steve-cook-big-man-on-campus-12-week-college-trainer.html?mcid=youtubecard
+http://www.aljazeera.com/programmes/listeningpost/2016/02/breaking-taboos-donald-trump-bush-wmd-lie-160221123312222.html
+http://generationiron.com/Twitter
+http://www.fortistour.com/sunprime-ocean-alanya-beach-spa-alanya.html
+http://go.ign.com/dk64_wii_u
+http://www.herrk.online
+http://fcpaudio.com
+https://user/aajtaktv?annotation_id=annotation_1882655431&ei=QvEwXNPVB7WQhwar-qLQBQ&feature=iv&"
+arduino automation,Resume.txt,https://raw.githubusercontent.com/chetanreddyv/portfolio/main/Resume.txt,"Roll no.:19071A04B8
+Contact : 9100855854
+Mail id: valluruchetanreddy@gmail.com
+Whatsapp link: http://wa.me/+919100855854
+
+10th : 8.8 (CGPA)
+Inter : 93.4
+B.Tech: 8.15/10.00 (CGPA)
+
+SKILLS: HTML, C, Python
+
+SOFTWARES and TOOLS:
+Arduino IDE, MATLAB, Multisim, AutoCAD, Adobe photoshop, Blender, Xilinx.
+
+
+CERTIFICATIONS:
+1. Udemy Certification in Python- Complete Python Bootcamp From Zero to Hero in Python
+2. Bits pilani certification in IOT
+
+PROJECTS:
+1. Contactless Thermal scann"
+arduino automation,tt_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/tt_urls.txt,"http://go.voot.com/a/key_live_npk7xwS9h3Jn6aiZIelFWalptuaDu2y6?channel=COBYT&mediaId=424676
+http://www.mo-media.com/acfw/ytc/psat
+http://www.cloud-studios.co.uk
+https://www.scripps.org/services/women-s-health__obstetrics-and-gynecology-ob-gyn
+https://www.greenfieldpuppies.com/cavapoo-puppies-for-sale-pa-md-de/
+https://teespring.com/stores/thereportoftheweek
+https://play.google.com/store/music/artist/El_Mashe?id=Azucs5lqqrortgvt3jszc25la7y
+https://95.pm/go/kvartal?id=tt4FK8-EwfU
+http://stp.me/y/7"
+arduino automation,Kp_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Kp_urls.txt,"http://panzar.anyluck.ru/
+http://teespring.com/stores/thedanes?pr=thedanes15
+http://www.ordendelallamavioleta.blogspot.com
+http://fb.aunight.ga
+https://plus.google.com/u/0/b/101002586153729598929/101002586153729598929
+http://www.dogsunlimited.com/i/883/tip-up-bird-releaser.htm?sc=YOUTUBE2
+http://www.onlinechesslessons.net/10gmsecrets/
+http://youtu.be/IIwg3fW80BU
+https://www.chegg.com/tutors/Physics-online-tutoring/?utm_source=youtube&utm_medium=video&utm_content=managed&utm_campaign=videotutoria"
+arduino automation,41_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/41_urls.txt,"https://laptop.me/go.php
+http://www.cpt.com.br/cursos-comofazer/curso-de-ourives-fabricacao-e-reparo-de-joias
+http://www.cbn.com/stepstopeace/topics.aspx?t=love-forgiveness-and-purpose&cpid=socclub-yt-i-evan
+https://www.patreon.com/Aza73l?rf=2289434
+https://plus.google.com/u/0/b/101209317247598430691/101209317247598430691
+https://itunes.apple.com/gr/album/eho-ginei-i-alli-feat.-lakis/id1063133272
+https://businessdynamite.xyz/dropshipping/se-former-dropshipping-formation
+http://seanwes.com/value-"
+arduino automation,cu_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/cu_urls.txt,"http://www.smartptmarketing.com
+http://www.binvested.com.au/services
+https://plus.google.com/u/0/111022976856065664864
+http://koko-trading.de/?utm_source=youtube&utm_medium=Videos&utm_campaign=Organische-Videoaufrufe&utm_content=2014-07-10-Organische-Videoaufrufe
+https://bibliaaudio.pl/SiNT_pen_prezent
+http://www.graphicpolicy.com/
+http://www.RevivePowerWash.com
+http://gyroroue-shop.fr/
+http://withyou.tv/
+http://www.christiansalerno.com/2017/03/mia-sebastian-theme-la-la-land-sheet.html
+http://ww"
+arduino automation,xa_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/xa_urls.txt,"https://play.google.com/store/apps/details?id=com.turner.b10runner&hl=pt_BR
+https://www.n1nja.wtf/?p=submissions
+https://www.talentsprint.com/examprep.dpl?utm_source=Organic-Youtube
+http://eduiy16.jimdo.com/
+https://plus.google.com/u/0/b/110376008562852375435/110376008562852375435
+https://www.blunt.senate.gov/public/index.cfm/in-the-news?ID=332D7E43-1C68-464B-A703-E3A5FEE3D26B
+http://www.snapbacks.cz/mitchell-ness/
+http://www.Artifexcreation.com
+http://instagram.com/disneychannel_la/
+http://www."
+arduino automation,Nr_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/Nr_urls.txt,"http://www.sinaloa360.com/
+https://Cosculluela.lnk.to/BlancoPerla
+https://itunes.apple.com/us/album/beautiful-relaxing-sleep-music/1438744665
+http://www.binghammusic.com
+https://youtu.be/32HjdhKAcP4
+http://www.markokacanski.com/
+http://bitly.com/IngressoEntreIrmas
+http://hanfanapproved.com/GoToWPSiteGuardian2017EarlyBird
+http://www.autodoc.ee/auto-osad/piduriketas-10132/renault/grand-scenic/grand-scenic-ii-jm0-1?utm_source=YouTube&utm_medium=annotation&utm_campaign=249_ersatz
+http://www.inkefalo"
+arduino automation,sq_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/sq_urls.txt,"https://play.google.com/store/apps/details?id=com.ndtv.india
+https://takelessons.com/live?utm_source=youtube&utm_medium=organic&utm_campaign=youtube_chromatik&utm_content=chromatik_videos
+http://1excel.ru
+http://www.fifagaming.de/tumilo
+http://tviplayer.iol.pt/programa/jornal-da-uma/53c6b2633004dc00624392e1?utm_campaign=youtube&utm_source=youtube&utm_medium=social&utm_content=-jornal1
+http://www.cityleaguehoops.net/MSHTVCamp
+https://plus.google.com/u/0/101826895332786789246
+http://www.usapatriot"
+arduino automation,-V_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/-V_urls.txt,"http://www.stonecirclegames.com/
+http://www.beyond20.com/
+http://www.ulusoywo.com/uzaktan-egitim
+http://www.flowerstv.in/firstnews
+http://www.minhavida.com.br
+http://www.crankgameplays.com/
+https://www.winamax.fr/landing/landing_leads.php?ldg=1er-pari-rembourse&banid=32166
+https://www.zee5.com/tvshows/details/kaleerein/0-6-tvshow_2022210918
+http://stp.me/y/6306J/?kc=SYOUTUBE13%20&utm_campaign=PRODVID&utm_medium=Social&utm_source=YouTube
+https://itunes.apple.com/us/app/apple-store/id1226514781
+ht"
+arduino automation,584.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/584.txt,"Advances in Science, Technology and Engineering Systems Journal Vol. 4, No. 3, 220-226 (2019)
+
+ASTESJ
+
+www.astesj.com
+
+ISSN: 2415-6698
+
+Special Issue on Advancement in Engineering and Computer Science
+
+Brain-inspired IoT Controlled Walking Robot - Big-Foot
+Anna Lekova*,1, Ivan Chavdarov1,2, Bozhidar Naydenov1, Aleksandar Krastev1, Snezhanka Kostova1
+1
+
+Bulgarian Academy of Sciences, Institute of Robotics, Str. Acad. G. Bonchev, Blk. 2, 1113, Sofia, Bulgaria
+University of Sofia, “St. Kliment Ohri"
+arduino automation,KD_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/KD_urls.txt,"http://www.nauczsiegrac.pl/maparozwoju/
+http://www.zappos.com/steven-wrenn-black-suede
+http://www.india-forums.com/facebook
+https://playlist?annotation_id=annotation_4976437&ei=3R0mXJ2GEJKUhwam37PIDA&feature=iv&list=PLpZn7PGkDHJmko7txNsLQgDficaC52HOK&src_vid=KD7Y2OTwWPI
+http://christopherodd.com/twitter
+http://www.sixx.de/tv/paula-kommt/video/paula-kommt-alle-ganzen-folgen-online-sehen
+http://www.fox.com.tr/Karagul/bolum/119
+http://www.preciouscore.com/
+http://gunplanner-laboratory.myjournal.jp/"
+arduino automation,6y_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/6y_urls.txt,"http://steveaoki.com/djmagtop100
+http://rip3ooo.tumblr.com/
+http://patreon.com/grimachu
+http://www.saigontimes.us/
+http://sovetecaterinas.ru/category/sadogorod
+http://lifehack.center/top100/pandayt.html
+https://watch?annotation_id=annotation_963907985&ei=PkUtXJe9AsKE8gPuwKfQCA&feature=iv&src_vid=6yBhr5C2sKY&v=dRiSrfasbgU
+http://www.Gamezhero.com
+http://www.cifrus.ru/post.php?id=1424
+http://allo.ua/ru/products/mobile/asus-zenfone-max-zc550kl-2-16gb-lte-black.html?utm_source=youtube-in-cards&utm_m"
+arduino automation,on_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/on_urls.txt,"http://www.india-forums.com/
+http://www.rcitalia.it/rc/index.php?utm_source=Youtube&utm_medium=Descrizione&utm_content=homepage&utm_campaign=Annotazioni-Canale
+https://soundcloud.com/elektroshokrecords
+https://channel/UCYPvAwZP8pZhSMW8qs7cVCw?annotation_id=annotation_2020022249&ei=wpYlXL-uINitgQOWr4fwAw&feature=iv&src_vid=onob2a1ew9U⊂_confirmation=1
+http://www.zappos.com/product/8630246/color/18506?utm_medium=em_plat&utm_source=youtube&utm_campaign=ep_youtube
+http://jaypeejp.com/
+http://www.thiz"
+arduino automation,DA_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/DA_urls.txt,"http://www.ndtv.com/video/news/the-buck-stops-here/sedition-case-on-amnesty-can-we-resolve-kashmir-if-we-re-scared-of-slogans-427649?yt
+https://www.doorsteptutor.com/Exams/UGC/Geography/
+http://gotv.ctitv.com.tw/2018/10/979112.htm
+http://www.patreon.com/123toid
+http://www.iforex.com/promotions/education-package?SID=451315&dsp9=social_youtube&trigger=social
+http://o.ea.com/40798
+http://www.dittotv.com/livetv/zee-tamil
+http://www.speakenglishwithvanessa.com/free-ebook
+http://TheLarkinBeats.com
+htt"
+arduino automation,P3_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/P3_urls.txt,"https://itunes.apple.com/in/album/baba-nanak-mere-naal-naal/id1067806377
+https://www.patreon.com/zueljin
+https://www.patreon.com/bePatron?u=2912724&patAmt=1
+http://www.oprah.com/ytendcard
+http://www.fox.com.tr/Tolgshow/ekstra-video/24021/Arkadasim-olayi-cozmek-icin-her-yolu-deniyor
+http://www.kraftmusic.com/brands/mackie/monitors/big-knob/studio/?utm_source=youtube&utm_medium=video&utm_content=vid&utm_campaign=namm2017_mac-bigknobstudio
+https://itunes.apple.com/ru/podcast/%D0%BC%D1%83%D0%B6%D1%8"
+arduino automation,5p_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/5p_urls.txt,"http://www.tvn.cl
+http://www.cartoonnetworkla.com/cnanything
+http://alocubanolisandra.com/
+https://lovestoryss.com/watch/indonesia-story-1395.html
+http://loja.cancaonova.com/cd-por-causa-de-um-certo-reino
+http://www.ausbilderschein-bestehen.de/
+https://plus.google.com/u/1/b/110789179803147949204/110789179803147949204
+https://www.patreon.com/user?u=4140610
+http://www.osograndeknives.com/catalog/knives/cold-steel-extra-large-espada-tri-ad-lock-folding-knife-7.5-inch-cts-xhp-black-dlc-plain-blade-o"
+arduino automation,65_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/65_urls.txt,"https://itunes.apple.com/us/album/jalast-ayaish-al-fayadh-man/id1170850614?i=1170850653
+http://www.makeuseof.com/tag/safely-take-apart-microwave/
+https://goo.gl/JfiA1B
+https://geo.itunes.apple.com/th/album/%E0%B8%AD%E0%B8%B2%E0%B8%88%E0%B8%A2-%E0%B8%87%E0%B9%84%E0%B8%A1-%E0%B8%AA%E0%B8%B2%E0%B8%A2/1023906197?app=itunes&at=1001lcek
+https://play.google.com/store/music/album?id=B255f3qtviysb4jexsgj4h7qdpq&tid=song-Tyrkggnduadbcsvw335jj6ewcem
+http://www.bladehq.com/item--CRKT-Clever-Girl-Fixed-Blade"

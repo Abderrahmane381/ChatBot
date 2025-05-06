@@ -1,0 +1,2430 @@
+mot_clé,nom_du_fichier,url,contenu
+arduino logs,README.txt,https://raw.githubusercontent.com/kjordahl/Arduino-Weather-Station/master/README.txt,"README
+                                ======
+
+Author: Kelsey Jordahl  
+Date: 2012-02-19 14:15:53 EST
+
+
+Introduction 
+~~~~~~~~~~~~~
+
+Receive La Crosse TX4 weather sensor data with Arduino and send to
+serial (USB) port.  Also calculates the dewpoint from current
+temperature and relative humidity, and records indoor temperature from
+a [DS1631 digital sensor] and barometric pressure from an onboard [BMP085 pressure sensor].  The Arduino does not output the time of
+measurements, so a timestamp shoul"
+arduino logs,log.txt,https://raw.githubusercontent.com/transistorfet/computie/main/log.txt,"2020-08-14:
+- the serial issue turns out to be a problem with the crystal for the serial chip.  It is outputting an inconsistent signal around
+  100kHz when powered through USB or power supply.  When powered by the arduino, you have to unplug and replug the serial usb cable to
+  make it work, which seems to reset the oscillator.  Connecting a 22pF capacitor across the crystal jumpstarts it, but the output is
+  a lot lower on the scope with it connected.  The datasheet says to use 15 and 5pF whic"
+arduino logs,TODO.txt,https://raw.githubusercontent.com/RobertFach/panobot/master/software/gigascan/lib/ArduinoMenu library_ID1468/TODO.txt,"Arduino Menu Library
+
++ color enumeration at base level
++ add list of output devices
++ add macros to build navRoot
++ suspension in only one function with suspension events
++ implement other fields
++ use menu acceletators + auto numbering
++ output numbering + acceletation should be optional for any menu class and not just specialized
+- split options into:
+  * config (static MEMMODE)
+  * options (dynamic => RAM)
++ use/draw title option for any menu, and ignore it on single line devices!
++ wrap men"
+arduino logs,Labels.txt,https://raw.githubusercontent.com/Installomator/Installomator/main/Labels.txt,"1password7
+1password8
+1passwordcli
+4kvideodownloader
+4kvideodownloaderplus
+8x8
+abetterfinderrename11
+abletonlive12intro
+abletonlive12lite
+abletonlive12standard
+abletonlive12suite
+abletonlive12trial
+abstract
+acorn
+acroniscyberprotectconnect
+acroniscyberprotectconnectagent
+adium
+adobeacrobatprodc
+adobebrackets
+adobeconnect
+adobecreativeclouddesktop
+adobedigitaleditions
+adobereaderdc
+adobereaderdc-install
+adobereaderdc-update
+affinitydesigner2
+affinityphoto2
+affinitypublisher2
+aftermath
+aircall
+air"
+arduino logs,MANUAL.txt,https://raw.githubusercontent.com/hackingvolvo/SardineCAN-Win32/master/MANUAL.txt,"Sardine CAN : (C) Olaf @ Hackingvolvo blog (hackingvolvo@blogspot.com)
+Version 0.2 alpha
+
+Please read the DLL installation instructions in INSTALLATION.txt
+
+See ARDUINO-DLL-COMM.txt for brief explanation of communication between Sardine DLL and Arduino: Message structure and list of commands and notifications.
+
+======================= Brief explanation of most important modules: =============================
+
+- dllmain.cpp: main entry for DLL. Creating and closing comm thread is done here
+
+- Com"
+arduino logs,boards.txt,https://raw.githubusercontent.com/openwch/arduino_core_ch32/main/boards.txt,"# See: https://arduino.github.io/arduino-cli/latest/platform-specification/
+
+menu.pnum=Board Select
+menu.clock=Clock Select
+menu.xserial=U(S)ART support
+menu.usb=USB support (if available)
+menu.xusb=USB speed (if available)
+menu.virtio=Virtual serial support
+
+menu.opt=Optimize
+menu.dbg=Debug symbols and core logs
+menu.rtlib=C Runtime Library
+menu.upload_method=Upload method
+
+
+
+##############################################################################
+##CH32V00x_EVT Board   
+
+CH32V00x_EVT.nam"
+arduino logs,ReadMe.txt,https://raw.githubusercontent.com/JChristensen/aaLogger_SW/master/ReadMe.txt,"/*----------------------------------------------------------------------*
+ * Double-A Datalogger - A low-power Arduino-based data logger.         *
+ * Jack Christensen 20Mar2013 v1                                        *
+ *                                                                      *
+ * This basic logging sketch logs the date/time, the temperature from   *
+ * the DS3232 sensor, the battery and regulator voltages.               *
+ *                                                      "
+arduino logs,notes.txt,https://raw.githubusercontent.com/mengstr/cpm8266/master/notes.txt,"https://github.com/espressif/esptool
+https://github.com/pfalcon/esp-open-sdk
+
+https://github.com/pfalcon/esp-open-sdk
+BLUE 67x 4Mhz Z80 speed
+
+https://github.com/pfalcon/esp-open-sdk/issues/226
+http://www.cpm.z80.de/develop.htm
+http://forgetfullbrain.blogspot.my/search/label/ESP%20Native%20SDK%20Programming
+http://forgetfullbrain.blogspot.my/2015/08/dissecting-blinky-program.html
+http://forgetfullbrain.blogspot.my/2015/08/let-get-connected-esp-as-tcp-server.html
+https://github.com/anotherlin/z80"
+arduino logs,README.TXT,https://raw.githubusercontent.com/Tronix286/DOSMID/main/README.TXT,"DOSMid Copyright (C) 2014-2018 Mateusz Viste
+Creative Music System / Game Blaster output support version (C) Tronix 2021
+
+Used piece of software codes from third-party peoples, eg:
+- DEATHSHADOW'S Paku-Paku game by Jason M. Knight
+- SAATunes v 1.04 lib by Bobcatmodder Jacob Field
+- Arduino YM2149 MIDI Synth by yukimizake
+
+New DOSMid options:
+
+ /cms=XXX  Force dosmid to use Creative Music System / Game Blaster
+           on port XXX. The port part is optional, that means you can 
+           use """
+arduino logs,readme.txt,https://raw.githubusercontent.com/chipaudette/EEGHacker/master/readme.txt,"This is my repository holding software and data related to my EEG Hacker blog (http://eeghacker.blogspot.com).  I've organized this repository as follows:
+
+* Arduino: This directory holds Arduino code for performing certain duties that are not tied to one specific EEG Hacker post.
+
+* Matlab: This directory holds Matlab code not tied to one specific EEG Hacker post
+
+* Data: This directory holds EEG data and analysis code that *is* tied to specific EEG Hacker posts"
+arduino logs,NOTICE.txt,https://raw.githubusercontent.com/Azure-Samples/MqttApplicationSamples/main/NOTICE.txt,"NOTICES AND INFORMATION
+Do Not Translate or Localize
+
+This software incorporates material from third parties.
+Microsoft makes certain open source code available at https://3rdpartysource.microsoft.com,
+or you may send a check or money order for US $5.00, including the product name,
+the open source component name, platform, and version number, to:
+
+Source Code Compliance Team
+Microsoft Corporation
+One Microsoft Way
+Redmond, WA 98052
+USA
+
+Notwithstanding any other terms, you may reverse engineer t"
+arduino logs,CHANGES.txt,https://raw.githubusercontent.com/g4klx/DStarRepeater/master/CHANGES.txt,"Repeater - 20180710
+===================
+
+20090530
+--------
+
+Added audio filtering and optional pre- and de-emphasis. Also modified the
+configuration to have less pages as well as add the new settings.
+
+20090607
+--------
+
+Silly bug in the through audio fixed.
+Added the option to use a sound file as an input, but only in a debug build.
+
+20090608
+--------
+
+Added debugging information in the tone decoder.
+Not generally released.
+
+20090609
+--------
+
+Added a simple VOGAD with reporting in the GUI.
+Rew"
+arduino logs,Golang.txt,https://raw.githubusercontent.com/iustin24/chameleon/master/wordlists/Golang.txt,".info
+.ping
+.status
+.well-known/acme-challenge/
+.well-known/letsencrypt
+.well-known/openid-configuration
+.well-known/webfinger
+.within/licenses
+.x.botinfo
+0/status
+1
+1/challenge/
+1/crypt/
+1/newbtc/
+1/setpid.json
+1/setpoint.json
+1/sleep.json
+1/status/
+2
+200
+200_not_gce
+222
+3
+3/device/
+301
+302
+3tester/
+404
+500
+API/
+API/encrypt/
+About.html
+AddAMIUser
+AddNode
+AddNote/
+AltSubmit
+AngryCats
+AudService/v1/interests
+AudService/v1/user/profile
+AudService/v1/user/profile/lookup
+BothFilter/
+CallAMI
+Capture/"
+arduino logs,todo.txt,https://raw.githubusercontent.com/wovo/godafoss-c-/master/todo.txt,"https://github.com/MoebiusTech
+https://github.com/shihaipeng03/MiniTelegraph.git
+https://www.dansaks.com/articles.shtml
+https://github.com/Picovoice
+https://jsandler18.github.io/tutorial/locks.html
+https://www.reddit.com/r/embedded/comments/lscmen/endtoend_voice_recognition_on_microcontrollers/
+https://adspthepodcast.com/2021/03/05/Episode-15.html
+https://www.youtube.com/watch?v=4qBKOAv0sBI
+https://dl.acm.org/journal/toplas
+
+books:
+book: c++ templates the complete guide
+https://leanpub.com/c20
+
+"
+arduino logs,howto.txt,https://raw.githubusercontent.com/pedromreis/Skynet3d/master/howto.txt,"Quick and dirty howto:
+
+1 - install arduino, tested with 1.6.12
+
+2 - downgrade avr boards to version 1.6.11
+    follow: https://forum.arduino.cc/index.php?topic=419445.0
+
+3 - Install Sanguino firmware 
+    follow: http://dustsreprap.blogspot.pt/2015/06/better-way-to-install-sanguino-in.html
+
+Open up the menu   File|Preferences 
+
+At the bottom is a field  Additional Boards manager URLs:
+Enter ""https://raw.githubusercontent.com/Lauszus/Sanguino/master/package_lauszus_sanguino_index.json""
+
+4 - Add "
+arduino logs,logs.txt,https://raw.githubusercontent.com/RASSec/wordlist/master/logs.txt,"folder
+npm-debug.log
+development.log
+config.log
+test.log
+build.log
+builderror.log
+debug.log
+.log
+error.log
+CMakeOutput.log
+production.log
+server.log
+libpeerconnection.log
+access.log
+sut.log
+dev.log
+gradle.log
+latest.log
+yarn-error.log
+fml-junk-earlystartup.log
+fml-client-latest.log
+autoscan.log
+fml-client-1.log
+change.log
+0.log
+appDevDebugProjectContainerCompiler.log
+fml-client-2.log
+app.log
+apacheAccess.log
+apacheError.log
+application.log
+fml-client-3.log
+log.log
+sample.log
+zookeeper.log
+prod.l"
+arduino logs,list.txt,https://raw.githubusercontent.com/NoThrowForwardIt/awesome-pentest-tools/master/list.txt,"0trace	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+3proxy	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+3proxy-win32	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+42zip	42	Recursive Zip archive bomb.	http://blog.fefe.de/?ts=b6cea88d
+acccheck	0.2.1	A password dictionary attack tool that targets windows authentication via the SMB protocol.	http://labs.portcullis.co.uk/tools/acccheck/
+ace	1.10	Automated Corporate Enumerator. A simple yet powerful VoIP Corporate Directory enu"
+arduino logs,NewEasy.txt,https://raw.githubusercontent.com/TinkerFu/r-dailyprogrammer/master/easy/NewEasy.txt,"﻿Title:  [easy] challenge #1
+Text:  create a program that will ask the users name, age, and reddit username. have it tell them the information back, in the format:
+
+    your name is (blank), you are (blank) years old, and your username is (blank)
+
+for extra credit, have the program log this information in a file to be accessed later.
+
+
+Title:  [easy] challenge #2
+Text:  Hello, coders! An important part of programming is being able to apply your programs, so your challenge for today is to create "
+arduino logs,README.txt,https://raw.githubusercontent.com/Coffeetrac/AG_NTRIP_ESP/master/README.txt,"----------------------------------------------------------------------
+                NTRIP Client for ESP32
+----------------------------------------------------------------------
+
+Easy example NTRIP client written with Arduino IDE for 
+a espressif ESP32.   Copyright (C) 2018- by Wilhelm Eder
+
+Now enhanced with Bluetooth NMEA Output.
+Optional IMU (BNO055) module,and optional Inclinometer (MMA8452) module.
+
+The IMU data is transmitted to AOG via Wifi like the NMEA Data. 
+AOG is now en"
+arduino logs,KD_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/KD_urls.txt,"http://www.nauczsiegrac.pl/maparozwoju/
+http://www.zappos.com/steven-wrenn-black-suede
+http://www.india-forums.com/facebook
+https://playlist?annotation_id=annotation_4976437&ei=3R0mXJ2GEJKUhwam37PIDA&feature=iv&list=PLpZn7PGkDHJmko7txNsLQgDficaC52HOK&src_vid=KD7Y2OTwWPI
+http://christopherodd.com/twitter
+http://www.sixx.de/tv/paula-kommt/video/paula-kommt-alle-ganzen-folgen-online-sehen
+http://www.fox.com.tr/Karagul/bolum/119
+http://www.preciouscore.com/
+http://gunplanner-laboratory.myjournal.jp/"
+arduino logs,Readme.txt,https://raw.githubusercontent.com/ch570512/Qlockwork/master/Readme.txt,"******************************************************************************
+QLOCKWORK
+An advanced firmware for a DIY ""word-clock"".
+******************************************************************************
+
+Qlockwork is an ESP8266 (NodeMCU or WeMos D1 mini) firmware (under GPL license) for a so called ""word-clock"".
+
+The clock adjusts the time and date once every hour via NTP with a time server on the Internet.
+If an RTC is installed, the time of the ESP is also set from the RTC vi"
+arduino logs,output.txt,https://raw.githubusercontent.com/Aryan-Poonacha/ultralight_llamafile/main/output.txt,"The following text is a Git repository with code. The structure of the text are sections that begin with ----!@#$----, followed by a single line containing the file path and file name, followed by a variable amount of lines containing the file contents. The text representing the Git repository ends when the symbols --END-- are encounted. Any further text beyond --END-- are meant to be interpreted as instructions using the aforementioned Git repository as context.
+----!@#$----
+app.py
+import strea"
+arduino logs,Links.txt,https://raw.githubusercontent.com/eaba/Hostel/master/Links.txt,"http://www.hcpro.com/QPS-331486-234/Cleanliness-sensors-Using-technology-to-improve-hand-hygiene-compliance.html
+https://link.springer.com/chapter/10.1007/978-981-10-8575-8_9
+http://www.figarosensor.com/
+https://electronza.com/hydrogen-sulfide-sensing-arduino-due/2/
+https://electronza.com/h2s-sensing-revisited-tutorial-arduino-uno/
+https://acadpubl.eu/hub/2018-119-14/articles/1/67.pdf
+https://stackoverflow.com/questions/6041811/close-all-tabs-in-visual-studio
+https://www.itprotoday.com/net/swimm"
+arduino logs,Readme.txt,https://raw.githubusercontent.com/thunderbug1/Spherebot-Host-GUI/master/Readme.txt,"﻿
+Copyright 2014 by Alexander Balasch http://coolrobotprojects.blogspot.co.at/
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc/4.0/.
+
+this project has been inspired by:
+
+http://pleasantsoftware.com/developer/3d/spherebot/
+
+///////////////////////////////////////////////////////////////////////////////////
+
+Features of 2.0:
+
+-Complete rework of the internal Commu"
+arduino logs,adl.txt,https://raw.githubusercontent.com/Sanket-kurle123/adl/main/adl.txt,"ADL Prac manual 
+—--------------------------------- 
+Exp1 (Setup AWS Cloud9 IDE) 
+1.  Login with your AWS account. 
+2.  Navigate to Cloud 9 service from Developer tools section. 
+3.  Click on Create Environment 
+4.  Provide name for the Environment (WebAppIDE) and click on next. 
+5.  Keep all the Default settings 
+6.  Review the Environment name and Settings and click on Create Environment 
+7.  Till that time open IAM Identity and Access Management in order to Add user 
+In other tab. "
+arduino logs,136.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/136.txt,"TELKOMNIKA Telecommunication, Computing, Electronics and Control
+Vol. 18, No. 2, April 2020, pp. 919~927
+ISSN: 1693-6930, accredited First Grade by Kemenristekdikti, Decree No: 21/E/KPT/2018
+DOI: 10.12928/TELKOMNIKA.v18i2.13993
+
+ 919
+
+Brain computer interface based smart keyboard
+using neurosky mindwave headset
+Thair A. Salih, Yasir M. Abdal
+Technical Engineering College/Mosul, Northern Technical University, Iraq
+
+Article Info
+
+ABSTRACT
+
+Article history:
+
+In the last decade, numerous researches"
+arduino logs,ReadMe_Dekay.txt,https://raw.githubusercontent.com/Scott216/Weather_Station_Data/master/DavisRFM69 Lib/ReadMe_Dekay.txt,"DavisRFM69 Library
+-------------------
+By DeKay (dekaymail@gmail.com)
+ 
+Creative Commons Attribribution Share-Alike License
+http://creativecommons.org/licenses/by-sa/3.0/
+
+This library is a modified version of the [LowPowerLab's RFM69 library](https://github.com/LowPowerLab/RFM69) that enables reception of weather data from a Davis Instruments Integrated Sensor Suite (ISS) weather station.
+
+##Background
+The Davis Instruments ISS is a solar powered and battery-backed set of outdoor weather sensor"
+arduino logs,Readme.txt,https://raw.githubusercontent.com/MuraliKrishna-git/Smart-Shopping-Cart/main/Readme.txt,"Smart Shopping Cart  
+====================  
+
+The Smart Shopping Cart is an innovative project designed to revolutionize the shopping experience by automating product selection using embedded systems and robotics. This repository contains everything you need to build, program, and operate the Smart Shopping Cart.  
+
+--------------------------------------------------------------------------------
+
+Overview  
+========  
+
+The Smart Shopping Cart comprises three main components:  
+
+1. User Interface"
+arduino logs,domains.txt,https://raw.githubusercontent.com/unkn0w/disposable-email-domain-list/main/domains.txt,"0-00.usa.cc
+0-mail.com
+001.igg.biz
+027168.com
+0815.ru
+0815.ry
+0815.su
+0845.ru
+0box.eu
+0clickemail.com
+0mel.com
+0v.ro
+0w.ro
+0wnd.net
+0wnd.org
+0x01.gq
+0x01.tk
+0x207.info
+1-8.biz
+1000rebates.stream
+100likers.com
+10mail.com
+10mail.org
+10minut.com.pl
+10minut.xyz
+10minutemail.be
+10minutemail.cf
+10minutemail.co.uk
+10minutemail.co.za
+10minutemail.com
+10minutemail.de
+10minutemail.ga
+10minutemail.gq
+10minutemail.ml
+10minutemail.net
+10minutemail.nl
+10minutemail.pro
+10minutemail.us
+10minutemailbox.com
+10min"
+arduino logs,domains.txt,https://raw.githubusercontent.com/cliqz-oss/privacy-bot/master/domains.txt,"facebook.com
+youtube.com
+google.de
+ebay.de
+amazon.de
+web.de
+gmx.net
+bild.de
+kinox.to
+t-online.de
+spiegel.de
+mobile.de
+immobilienscout24.de
+bahn.de
+twitch.tv
+yahoo.com
+de.yahoo.com
+ebay-kleinanzeigen.de
+movie4k.to
+leo.org
+autoscout24.de
+9gag.com
+paypal.com/de/webapps/mpp/home
+wetter.com
+chip.de
+otto.de
+arbeitsagentur.de
+spielaffe.de
+kicker.de
+wetteronline.de
+jappy.de
+zdf.de
+rtl.de
+google.com
+sky.de
+sport1.de
+bs.to
+fritz.box
+focus.de
+n-tv.de
+tagesschau.de
+burning-seri.es
+commerzbank.de
+ok.ru
+tchib"
+arduino logs,yay-qe.txt,https://raw.githubusercontent.com/henriquesebastiao/workstation/main/yay-qe.txt,"7zip 24.09-3
+act 0.2.75-1
+aircrack-ng 1.7-5
+alsa-firmware 1.2.4-4
+alsa-oss 1.1.8-6
+alsa-tools 1.2.11-1
+amberol 2024.2-1
+android-tools 35.0.2-11
+anki-bin 25.02-1
+anydesk-bin 6.4.2-1
+apostrophe 3.2-3
+arduino 1:1.8.19-2
+arduino-cli 1.1.1-1
+arduino-ide-bin 2.3.4-2
+arm-none-eabi-gcc 14.2.0-1
+arm-none-eabi-newlib 4.5.0.20241231-1
+awesome-terminal-fonts 1.1.0-5
+baobab 47.0-1
+base 3-2
+base-devel 1-2
+bat 0.25.0-4
+bind 9.20.6-1
+binwalk 3.1.0-1
+bitwarden 2025.1.3-1
+brightnessctl 0.5.1-3
+btop 1.4.0-5
+chirp-"
+arduino logs,vocab.txt,https://raw.githubusercontent.com/pass-lin/misaka-writer/main/vocab.txt,"[PAD]
+[UNK]
+[CLS]
+[SEP]
+[CLS_ZH]
+[CLS_EN]
+ 
+ 
+氼
+？
+；
+：
+．
+，
+）
+（
+！
+龟
+龛
+龚
+龙
+龋
+龈
+龄
+齿
+齐
+齁
+鼾
+鼻
+鼹
+鼬
+鼠
+鼓
+鼐
+鼎
+鼋
+黯
+黠
+黝
+黜
+黛
+默
+黔
+黒
+黑
+黏
+黎
+黍
+黄
+麾
+麻
+麸
+麦
+麟
+麝
+麓
+麒
+麋
+麂
+鹿
+鹳
+鹰
+鹭
+鹫
+鹧
+鹦
+鹤
+鹞
+鹜
+鹘
+鹗
+鹑
+鹏
+鹌
+鹊
+鹈
+鹅
+鹄
+鹃
+鹂
+鸿
+鸾
+鸽
+鸵
+鸳
+鸯
+鸮
+鸭
+鸪
+鸨
+鸦
+鸥
+鸣
+鸢
+鸡
+鸠
+鸟
+鳞
+鳝
+鳗
+鳖
+鳕
+鳍
+鳌
+鳅
+鳄
+鳃
+鲸
+鲷
+鲶
+鲲
+鲱
+鲫
+鲨
+鲤
+鲢
+鲟
+鲜
+鲛
+鲑
+鲍
+鲉
+鲈
+鲁
+鲀
+鱿
+鱼
+鮨
+魔
+魏
+魇
+魅
+魄
+魂
+魁
+鬼
+鬲
+鬣
+鬟
+鬓
+鬃
+髻
+髯
+髪
+髦
+高
+髓
+髋
+髅
+髂
+骼
+骸
+骷
+骶
+骰
+骨
+骧
+"
+arduino logs,urls.txt,https://raw.githubusercontent.com/rsenn/lc-meter/main/urls.txt,"http://4.bp.blogspot.com/_meF1KpGU79k/SrOFEki4nNI/AAAAAAAAAFM/ZLoWprWRvY8/s1600-h/diagram_876A.jpg | diagram_876A.jpg (image)
+http://4.bp.blogspot.com/_meF1KpGU79k/SrOFEki4nNI/AAAAAAAAAFM/ZLoWprWRvY8/s400/diagram_876A.jpg | diagram_876A.jpg (400×240)
+http://ael.chungbuk.ac.kr/ael/%EC%BA%A1%EC%8A%A4%ED%86%A4%EB%94%94%EC%9E%90%EC%9D%B8(%EB%8C%80%ED%95%99%EC%9B%90)/%EC%B0%B8%EA%B3%A0%EB%AC%B8%ED%97%8C/%EC%A7%81%EC%A0%91%EA%B4%80%EB%A0%A8/LC_meter_with_PIC_MCU.pdf | LC_meter_with_PIC_MCU.pdf
+http://"
+arduino logs,ToDOs.txt,https://raw.githubusercontent.com/nuljon/MyGarden_id.IoT/master/ToDOs.txt,"TO DOs ===================================================================================
+
+	write motor control function for valve
+	write scheduling module to schedule irrigation, logging sensor data, and log file backups
+	wire the index.html file to realtime sensor data instead of just logs
+	update sensor logging
+		- allow only one entry per hour
+		- log barometer as a rolling average combining current reading with last 3 log entries 
+		- add a field to record if barometer direction - steady, "
+arduino logs,vocab.txt,https://raw.githubusercontent.com/OpenMatch/Augmentation-Adapted-Retriever/main/src/LM/Flan-T5/vocab_en/vocab.txt,"▁
+X
+.
+,
+s
+▁the
+a
+:
+▁and
+▁to
+▁of
+▁fill
+e
+▁in
+t
+-
+▁is
+▁de
+▁for
+’
+i
+▁that
+▁you
+d
+▁I
+▁with
+n
+▁on
+'
+o
+▁are
+▁it
+en
+▁be
+▁The
+▁as
+▁your
+l
+▁(
+▁or
+▁have
+▁at
+▁from
+▁an
+▁was
+▁this
+er
+▁la
+m
+r
+ing
+▁can
+!
+▁will
+▁by
+?
+▁not
+re
+)
+▁we
+y
+▁und
+▁has
+▁all
+▁die
+▁but
+▁our
+▁their
+▁A
+▁more
+▁un
+▁der
+c
+u
+in
+▁so
+▁they
+▁one
+▁about
+▁my
+ul
+▁which
+à
+▁In
+/
+he
+f
+▁le
+▁out
+▁also
+▁des
+▁It
+▁up
+▁""
+▁time
+ă
+if
+▁This
+▁We
+p
+▁do
+–
+▁“
+on
+h
+▁si
+le
+▁les
+▁în
+▁his
+▁who
+▁like
+b
+▁when
+;
+▁been
+▁other
+ly
+""
+g
+▁cu
+▁care
+▁what
+▁new
+or
+▁some
+▁get
+▁were
+"
+arduino logs,vocab.txt,https://raw.githubusercontent.com/svmundada/Tag_prediction_stackoverflow/master/vocab.txt,"4839550
+to 166793
+in 150784
+? 135569
+a 119756
+how 97225
+the 73205
+of 64849
+is 52111
+- 51290
+and 49757
+with 47390
+for 42690
+: 39138
+from 38842
+i 38080
+, 33700
+not 33566
+using 31787
+on 31737
+an 26958
+java 26106
+php 25907
+/ 22479
+error 21645
+string 21322
+what 20840
+can 20185
+file 20071
+python 19698
+javascript 19589
+array 19310
+why 19238
+function 18890
+get 17671
+when 17406
+) 16796
+do 16763
+( 16412
+data 15596
+use 15248
+value 15246
+or 15147
+code 14964
+it 14164
+my 13649
+does 13491
+android 13280
+list 13"
+arduino logs,urls.txt,https://raw.githubusercontent.com/amyr11/ap-chat/main/urls.txt,"https://www.angpamantasan.org/news/plm-proudly-announces-its-newly-elected-university-president
+https://www.angpamantasan.org/news/mga-larawan-or-puv-modernization-program-protest-manila
+https://www.angpamantasan.org/news/sona-2023-highlights-or-bagong-pilipinas-marcos-highlights-accomplishments
+https://www.angpamantasan.org/news/candle-lighting-2024
+https://www.angpamantasan.org/news/59th-founding-anniversary-carnival
+https://www.angpamantasan.org/news/transition-and-turnover-conference-2024
+ht"
+arduino logs,links.txt,https://raw.githubusercontent.com/generic-github-user/links/master/links.txt,"title: links
+about: A semi-curated list of interesting and/or useful items{This repository
+also serves as a test of some new data serialization formats I'm experimenting
+with, but I've been meaning to put something like this together for quite a
+while.} from my bookmarks{entries also drawn from my GitHub stars, various
+conversations with friends, memory, etc.}; adorned with my facetious
+comments{Most of these are just me being unnecessarily harsh; if I genuinely
+dislike a project it most likely "
+arduino logs,links.txt,https://raw.githubusercontent.com/Danielc3388/AirMonitor/main/links.txt,"Hardware : https://robocraze.com/blogs/post/mq-series-gas-sensor
+
+Software : https://steemit.com/utopian-io/@cha0s0000/arduino-basics-tutorials-use-mq135-air-quality-detecting-module
+
+Reference : https://w3.eclass.com.hk/event/STEM_contest_voting/end.php#
+
+Code Source : https://www.youtube.com/watch?v=bzEVvzppvvo"
+arduino logs,8.txt,https://raw.githubusercontent.com/Lizhmq/TopRepos/master/repos/8.txt,"zephyrproject-rtos/zephyr
+apple/swift
+mozilla-b2g/gaia
+wildfly/wildfly
+ros/rosdistro
+qgis/QGIS
+owncloud/core
+php/php-src
+kaltura/server
+ArduPilot/ardupilot
+daos-stack/daos
+puppetlabs/puppet
+opencv/opencv
+electron/electron
+discourse/discourse
+nrfconnect/sdk-nrf
+hashicorp/terraform-provider-aws
+apache/pulsar
+xamarin/Xamarin.Forms
+rubocop/rubocop
+glpi-project/glpi
+pentaho/pentaho-kettle
+dotnet/dotnet-api-docs
+Homebrew/homebrew-cask-fonts
+sonata-project/SonataAdminBundle
+ppy/osu-web
+apache/superset
+"
+arduino logs,hn.txt,https://raw.githubusercontent.com/stubailo/hn-reddit-scrape/master/hn.txt,"Introducing the  mozjpeg  Project
+Stripe Checkout
+When Airlines Screw Up Your Flight  AirHelp  YC W14  Gets You Paid
+College Board SAT Partnership
+Major Changes in SAT Announced by College Board
+Mandela was right  the Foreign Language Effect
+ 19B later  Facebook now wants to own my phone
+2014 Goals
+Making computer vision easy
+Stick bomb
+GnuTLS considered harmful  2008 
+The new Checkout
+Every Quadrotor Needs This Failsafe Software
+Mathematicians are chronically lost and confused 
+Using OpenSSH Ce"
+arduino logs,boards.txt,https://raw.githubusercontent.com/Air-duino/Arduino-AirMCU/main/boards.txt,"# See: https://arduino.github.io/arduino-cli/latest/platform-specification/
+
+menu.pnum=Board part number
+
+menu.UploadSpeed=Upload Speed
+menu.xserial=U(S)ART support
+menu.usb=USB support (if available)
+menu.xusb=USB speed (if available)
+menu.virtio=Virtual serial support
+menu.BootConnection=Boot Connection
+
+menu.opt=Optimize
+menu.dbg=Debug symbols and core logs
+menu.rtlib=C Runtime Library
+menu.upload_method=Upload method
+
+# Air001 设置方式
+menu.ClockSourceAndFrequency=Clock Source and Frequency
+
+# A"
+arduino logs,next.txt,https://raw.githubusercontent.com/thiagourbizu/Eco-Metry/main/next.txt,"﻿proximas intervenciones
+probar acelerometro en casa con codigo
+conseguir portapilas, probar codigo receptor con todo conectado ( incluido lm7805)
+-comenzar con ese pcb
+-preparar proto que iria en el auto
+-probar todo correctsamente
+-hacer diseño kikad del auto
+
+(en el medio agregar boludeces a la app)
+Jueves, dia 221 del año, 08/08/24 11:23:58
+
+agregar boton github y boton en los logs para seleccionar que ver
+a parte de esto
+agregar detector de fallas una vez configutado con los logs
+
+proximas "
+arduino logs,Readme.txt,https://raw.githubusercontent.com/asesorplaza1/Programas-ROV-en-evolucion/master/Readme.txt,"Versión 60 de los programas a fecha 30/11/2020
+
+Los dos primeros programas
+
+01 Programa Maestro
+02 Programa Esclavo
+
+Son para el entorno Arduino
+
+El programa llamado
+04 VSC PIO projects
+
+Es para utilizar con el programa Visual Studio Code más el complemento Platform-IO
+
+En este repositorio, voy a publicar las modificaciones hechas a los programas para controlar un ROV, comenzó los programas con el IDE de Arduino,
+y con dos placas Arduino Mega 2560, pero en vista del tamaño y la co"
+arduino logs,yay-q.txt,https://raw.githubusercontent.com/henriquesebastiao/workstation/main/yay-q.txt,"7zip 24.09-3
+a52dec 0.8.0-2
+aalib 1.4rc5-18
+abseil-cpp 20250127.0-2
+accountsservice 23.13.9-2
+acl 2.3.2-1
+act 0.2.75-1
+ada 2.9.2-1
+adobe-source-code-pro-fonts 2.042u+1.062i+1.026vf-2
+adwaita-cursors 47.0-1
+adwaita-icon-theme 47.0-1
+adwaita-icon-theme-legacy 46.2-3
+aircrack-ng 1.7-5
+alsa-card-profiles 1:1.4.1-1
+alsa-firmware 1.2.4-4
+alsa-lib 1.2.13-1
+alsa-oss 1.1.8-6
+alsa-tools 1.2.11-1
+alsa-topology-conf 1.2.5.1-4
+alsa-ucm-conf 1.2.13-2
+alsa-utils 1.2.13-2
+amberol 2024.2-1
+android-tools 35.0.2-1"
+arduino logs,NEWS.txt,https://raw.githubusercontent.com/opensupport-dev/IR-remote-RaspberryPi/master/deb-lircd-patched/build/lirc-0.10.1/debian/tmp/usr/share/doc/lirc/lirc.org/html/NEWS.txt,"0.10.1 10/9/17
+ * mode2: Fix inconsistent loglevel/debug option (#307).
+ * build: install media/lirc.h (Debian BTS #872074).
+ * build: Fix make ""always build all"" error - c6eb8ec.
+ * plugins: devinput: Fix glob ""no match"" error - 14685b2.
+
+0.10.0 12/8/17
+ * lib/curl_poll.h: Fix header guard build error on müsl libc.
+ * Build: Mute libtool when V=0, typo.
+ * Update driver version info.
+
+0.10.0-rc3 21/6/17
+ * lircmd: Fix bogus, excessive logging using --uinput (#295).
+ * Build: VPATH fixes (#294)."
+arduino logs,needed.txt,https://raw.githubusercontent.com/minilandl/dotfiles/master/needed.txt,"1password
+7-zip
+8188eu-aircrack-dkms-git
+8188fu-dkms-git
+8188fu-kelebek333-dkms-git
+8192eu-dkms
+86box
+aarch64-linux-musl
+absolutely-proprietary
+acestream-engine
+acestream-launcher
+acidrip
+aconfmgr-git
+act
+activate-linux
+adcli
+adguardhome
+adms
+adw-gtk3-git
+adwaita-icon-theme-git
+adwmod-theme-git
+afdko
+agregore-browser-bin
+aic94xx-firmware
+airshipper
+airspy-git
+airspyhf-git
+akonadi-calendar-git
+akonadi-calendar-tools-git
+akonadi-contacts-git
+akonadi-git
+akonadi-import-wizard-git
+akonadi-mime-git
+a"
+arduino logs,boards.txt,https://raw.githubusercontent.com/py32duino/Arduino-PY32/master/boards.txt,"# See: https://arduino.github.io/arduino-cli/latest/platform-specification/
+
+menu.pnum=Board part number
+
+menu.UploadSpeed=Upload Speed
+menu.xserial=U(S)ART support
+menu.usb=USB support (if available)
+menu.xusb=USB speed (if available)
+menu.virtio=Virtual serial support
+menu.BootConnection=Boot Connection
+
+menu.opt=Optimize
+menu.dbg=Debug symbols and core logs
+menu.rtlib=C Runtime Library
+menu.upload_method=Upload method
+
+# py32f0xx 设置方式
+menu.ClockSourceAndFrequency=Clock Source and Frequency
+
+#"
+arduino logs,howto.txt,https://raw.githubusercontent.com/herbbetz/betzBirdiary/main/howto.txt,"Install Bullseye lite (no X desktop) 32Bit using RPi Imager
+Beware: 
+    'uname -m' -> 'aarch64' means 64bit kernel
+    'dpkg --print-architecture' -> 'armhf' means 32bit userland (= programs)
+    useful, if some software might still rely on 32-bit libraries (?)
+    if 64bit userland wanted ('arm64'), best clean install '64-bit Raspbian OS lite' (bullseye).
+
+WLAN data and PI password can be preconfigured in RPi Imager
+so ssh and sftp (e.g. for putty, WinSCP) will already be possible
+you may conf"
+arduino logs,422.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/422.txt,"Indian Journal of Science and Technology, Vol 9(19), DOI: 10.17485/ijst/2016/v9i19/53088, May 2016
+
+ISSN (Print) : 0974-6846
+ISSN (Online) : 0974-5645
+
+Mobile Phone Sensing: A New Application Paradigm
+Shaukat Ali* and Shah Khusro
+Department of Computer Science, University of Peshawar, 25120, Pakistan;
+shoonikhan@upesh.edu.pk, khusro@upesh.edu.pk
+
+Abstract
+Background/Objectives: The main objectives are to present a comprehensive survey of mobile phones sensing applications
+by analyzing and classi"
+arduino logs,boards.txt,https://raw.githubusercontent.com/RoboMaster/ArduinoCore-imxrt/main/boards.txt,"#
+# Copyright (C) 2022 DJI.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Change Logs:
+# Date           Author       Notes
+# 2022-09-27     robomaster   first version
+#
+
+# =============================================================================
+
+# The MIT License (MIT)
+
+# Copyright (c) 2019 Seeed Technology Inc.
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the ""Software""), to deal
+# in the Software"
+arduino logs,repos.txt,https://raw.githubusercontent.com/omkar-334/Wi-Fi-Scanner-and-Deauther/main/repos.txt,"https://lab401.com/blogs/academy/deauth  
+https://www.esp8266.com/viewtopic.php?p=41196#p41196  
+https://null-byte.wonderhowto.com/how-to/detect-when-device-is-nearby-with-esp8266-friend-detector-0188642/  
+https://forum.arduino.cc/t/esp8266-scan-the-wifi-network-for-connected-devices/1018462/4  
+https://forum.arduino.cc/t/warning-library-liquidcrystal_i2c-1-1-2-claims-to-run-on-avr-architecture-s/556271/3  
+https://iot4beginners.com/creating-a-raspberry-pi-network-scanner/  
+https://hackernoon."
+arduino logs,_notes.txt,https://raw.githubusercontent.com/g41797/syslog/main/_notes.txt,"Wiki - Syslog
+    https://en.wikipedia.org/wiki/Syslog
+
+Image
+    https://commons.wikimedia.org/wiki/File:Syslog.png
+
+What is Syslog and How it Works
+    https://sematext.com/glossary/syslog/
+    https://www.paessler.com/it-explained/syslog
+    https://www.auvik.com/franklyit/blog/what-is-syslog/
+
+Is Syslog Useful?
+    https://www.dnsstuff.com/is-syslog-useful
+
+RFC 5424
+    https://tools.ietf.org/html/rfc5424
+
+    6.1.  Message Length
+
+       Syslog message size limits are dictated by the syslog"
+arduino logs,345.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/345.txt,"ConVRgence
+
+3 Days Scientific Conference
+
+2019
+
+VRIC 2019
+
+VIRTUAL REALITY
+INTERNATIONAL CONFERENCE
+PROCEEDINGS
+
+Editor: Simon RICHIR
+Publisher: Laval Virtual
+2019, April 20-22
+www.laval-virtual.com
+ISBN
+978-2-9566251-2-4
+
+EAN
+9782956625124
+
+VIRTUAL REALITY INTERNATIONAL CONFERENCE
+VRIC 2019 PROCEEDINGS
+TABLE OF CONTENTS
+Paper
+
+3
+5
+
+Authors
+
+Title
+
+Sanaa Sharaf, Ebtehal Alsaggaf, Salwa
+Almalki, Amany Alattas, Amna Omar and
+Mawadh Sait
+Juan Sebastian Munoz-Arango, Dirk
+Reiners and Carolina Cruz-"
+arduino logs,history.txt,https://raw.githubusercontent.com/Beryshadow/configs/main/history.txt,"hx .
+config nu
+config nu hx
+hx config nu
+config nu .
+config nu
+cd /etc/nixos/configuration.nix
+cd /etc/nixos/
+ls
+hx .
+nixos-help
+cd /etc/nixos/
+ls
+sudo hx .
+sudo 
+cd /etc/nixos/
+echo $XDG_SESSION_TYPE 
+sudo hx .
+sudo nixos-rebuild switch
+sudo hx .
+sudo nixos-rebuild switch
+hx .
+sudo hx .
+sudo nixos-rebuild switch
+sudo hx .
+sudo nixos-rebuild switch
+sudo hx .
+sudo nixos-rebuild switch
+hx .
+ok
+lol
+~/.config/helix/config.toml
+~/.config/helix
+ls
+cd ..
+ls
+cd helix
+ls 
+~/.config/helix/themes
+~/.config"
+arduino logs,EDISON.txt,https://raw.githubusercontent.com/agutikov/rbpoc/master/EDISON.txt,"Живые линки на доки
+	http://www.intel.com/support/maker/edison.htm#documents
+
+Форум - две штуки
+	https://software.intel.com/en-us/forums/internet-of-things
+	https://communities.intel.com/community/makers/edison
+
+Connector Pinout
+	http://www.intel.com/support/edison/sb/CS-035259.htm
+
+Buttons
+	https://communities.intel.com/docs/DOC-23454
+
+Downloads
+	http://www.intel.com/support/edison/sb/CS-035180.htm
+
+
+Arduino board ADC - ADS7951
+	http://www.ti.com/product/ADS7951/technicaldocuments
+
+
+Creating a "
+arduino logs,Idea.txt,https://raw.githubusercontent.com/luisarellano09/sbr/develop/Idea.txt,"Test 
+									ROBOT PROJECT:  SELF-BALANCE-ROBOT SBR
+
+http://roboticssamy.blogspot.com/
+https://www.youtube.com/watch?v=D7hvI_Tb0o4
+https://github.com/elkayem/ZippyTheBalancingRobot
+
+- Raspberry PI 3 (NodeJs , QT c++, Python comm websockets, PWA): WEB INTERFACES - MQTT - OPC UA - MODBUS TCP - Opencv (Raspi Cam v2) - ML Tensor Flow - Path planning
+- Motion Board (c++): ESP32 - Odometry - PID Motor - Servos
+- Sensor Board (c++): ESP32 - IMU, encoders, Fusion, kalman
+- Flutter      (Dart"
+arduino logs,reddits.txt,https://raw.githubusercontent.com/kingbuzzman/MyRedditAll/master/reddits.txt,"292833,announcements
+284002,blog
+265100,funny
+264995,pics
+260907,reddit.com
+256193,wtf
+253626,science
+228671,politics
+195154,worldnews
+170392,technology
+161080,askreddit
+153570,programming
+146712,gaming
+81912,offbeat
+76216,entertainment
+74067,atheism
+72065,comics
+66889,business
+62214,geek
+59922,videos
+59490,iama
+53879,bestof
+53100,music
+46618,economics
+40691,todayilearned
+40639,humor
+38886,gadgets
+38853,environment
+37715,news
+33809,wikipedia
+33396,linux
+30844,sex
+"
+arduino logs,arch.txt,https://raw.githubusercontent.com/thebesttv/vul-arch-package/main/arch.txt,"0ad a26-14
+0ad-data a26-1
+389-ds-base 3.0.1-3
+4ti2 1.6.10-1
+6tunnel 0.13-2
+9base 6-8
+a2jmidid 9-4
+a2ps 4.15.6-1
+a52dec 0.8.0-2
+aalib 1.4rc5-18
+aarch64-linux-gnu-binutils 2.42-1
+aarch64-linux-gnu-gcc 14.1.0-1
+aarch64-linux-gnu-gdb 14.2-2
+aarch64-linux-gnu-glibc 2.39-1
+aarch64-linux-gnu-linux-api-headers 6.7-1
+aardvark-dns 1.10.0-2
+abc 0.0.0.20221019-1
+abduco 0.6-7
+abiword 3.0.5-4
+abletonlink 3.1.1-1
+abseil-cpp 20240116.2-2
+accerciser 3.42.0+r100+g6e6256e-2
+accessibility-inspector 24.05.0-1
+accoun"
+arduino logs,tips.txt,https://raw.githubusercontent.com/streanger/tipts/master/tips.txt,"#things you should have know:
+
+python tips:
+-use pylint tool to analyze your python code (pip3 install pylint; I should to use it too :))
+-use functions instead of copying the same part of codes
+-use arguments in to make your scripts flexible
+-remember about PEP8 and zen_of_python
+-speed -> numpy arrays vs lists vs tuples:
+    http://zwmiller.com/blogs/python_data_structure_speed.html
+
+
+git merge:
+    The ""merge"" command is used to integrate changes from another branch.
+    The target of this in"
+arduino logs,bl-zip.txt,https://raw.githubusercontent.com/JoniRousu/einmalzahlungzweihundert/main/bl-zip.txt,"# Eine Liste mit möglichen bösen .zip-Domains
+# Die Ursprungs-Liste stammt aus dem Github-Repository https://github.com/trickest/zip
+# und wird von mir modifiziert und unter https://zip.einmalzahlungzweihundert.de/ bereitgestellt.
+# Die entfernten Domains sind hier aufgelistet: https://www.einmalzahlungzweihundert.de/allowed-zip.txt
+# Homepage: https://www.einmalzahlungzweihundert.de/
+# Zuletzt aktualisiert: 11.02.2024 17:30 Uhr
+# Datenstand Trickest: 11.02.2024 17:30 Uhr
+
+# MIT License
+# 
+# Cop"
+arduino logs,vocab.txt,https://raw.githubusercontent.com/vishnu-hue/ctcdecode_with_neural_scorer/main/vocab.txt,"!
+""
+#
+$
+%
+&
+'
+(
+)
+*
++
+,
+-
+.
+/
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+:
+;
+<
+=
+>
+?
+@
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+[
+\
+]
+^
+_
+`
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+{
+|
+}
+~
+¡
+¢
+£
+¤
+¥
+¦
+§
+¨
+©
+ª
+«
+¬
+®
+¯
+°
+±
+²
+³
+´
+µ
+¶
+·
+¸
+¹
+º
+»
+¼
+½
+¾
+¿
+à
+á
+â
+ã
+ä
+å
+æ
+ç
+è
+é
+ê
+ë
+ì
+í
+î
+ï
+ð
+ñ
+ò
+ó
+ô
+õ
+ö
+×
+ø
+ù
+ú
+û
+ü
+ý
+þ
+ß
+à
+á
+â
+ã
+ä
+å
+æ
+ç
+è
+é
+ê
+ë
+ì
+í
+î
+ï
+ð
+ñ
+ò
+ó
+ô
+õ
+ö
+÷
+ø
+ù
+ú
+û
+ü
+ý
+þ
+ÿ
+ā
+ā
+ă
+ă
+ą
+ą
+ć
+ć
+ĉ
+ĉ
+ċ
+ċ
+č
+č
+ď
+ď
+đ
+đ
+ē
+ē
+ĕ
+ĕ
+ė
+ė
+ę
+ę
+ě
+ě
+ĝ
+ĝ
+ğ
+ğ
+
+
+ģ
+ģ
+ĥ
+ĥ
+ħ
+ħ
+ĩ
+ĩ
+ī
+ī
+ĭ
+ĭ
+į
+į
+i̇
+ı
+ĳ
+ĳ
+ĵ
+ĵ
+ķ
+ķ
+ĸ
+ĺ
+ĺ
+ļ
+ļ
+ľ
+ľ"
+arduino logs,hacker.txt,https://raw.githubusercontent.com/Leetcore/wie-werde-ich-hacker/master/hacker.txt,"__    __ 
+/#/ /\ \#  ___  
+\#\/##\/#/#|/#_#\ 
+ \# /\ #/|#|##__/
+  \/  \/ |#|\###|     _
+__      _____ _ __ __|#| ___ 
+\#\ /\ /#/#_#\#’#_/#_`#|/#_#\
+ \#V##V#/##__/#| |#(_|#|##__/
+  \#/\#/ \###|#|  \#_,#|\###| 
+ _      _     
+  ___|#|__  
+|#|/#__|#’##\ 
+|#|#(__|#| |#|
+|#|\###|#| |#|
+ _   _            _               ___ 
+|#| |#|  ___  ___|#| __ ___ _ __ /###\
+|#|_|#|/#_##|/##_|#|/#/#_#\#’#_/   /#/
+|#|#|#|#(_|#|#(__|##< ##__/#|      \/ 
+|#| |#| \#,#|\##_|#|\#\###|#|      ><  _
+
+WIE WERDE ICH HACKER"
+arduino logs,repos.txt,https://raw.githubusercontent.com/surprisetalk/licensure/main/repos.txt,"freeCodeCamp/freeCodeCamp
+EbookFoundation/free-programming-books
+sindresorhus/awesome
+public-apis/public-apis
+jwasham/coding-interview-university
+996icu/996.ICU
+kamranahmedse/developer-roadmap
+donnemartin/system-design-primer
+codecrafters-io/build-your-own-x
+facebook/react
+vuejs/vue
+vinta/awesome-python
+tensorflow/tensorflow
+trekhleb/javascript-algorithms
+TheAlgorithms/Python
+getify/You-Dont-Know-JS
+CyC2018/CS-Notes
+twbs/bootstrap
+ohmyzsh/ohmyzsh
+awesome-selfhosted/awesome-selfhosted
+torvalds/li"
+arduino logs,memo.txt,https://raw.githubusercontent.com/jehyunglee612/xsens_imu_plot/main/memo.txt,"This PC\경희의 Galaxy Note20 5G\Internal storage\Android\data\com.xsens.dot.android\files\logs
+
+=========================================================
+Data 1: 
+    arduino_file: serial_data_230720_1.csv
+    xsens_raw_file: 15_20230720_151055_577.csv
+
+Data 2:
+    arduino_file: serial_data_230720_2.csv
+    xsens_raw_file: 15_20230720_161025_154.csv
+
+Data 3:
+    arduino_file: serial_data_230721_1.csv
+    xsens_raw_file: 15_20230721_134758_096.csv
+
+
+Data 3:
+    arduino_file: serial_data_230721_2.csv"
+arduino logs,data.txt,https://raw.githubusercontent.com/tomaszszewczyk/seo/master/data.txt,"software house
+software house warszawa
+warszawa software house
+software house kraków
+software house poznań
+software house wroclaw
+software house wrocław
+wroclaw software house
+wrocław software house
+poznan software house
+poznań software house
+software house katowice
+software house krakow
+software house poznan
+krakow software house
+software house co to
+software house polska
+software house rzeszów
+gdańsk software house
+software house gdańsk
+android software house
+software house gliwice
+software ho"
+arduino logs,ReadMe.txt,https://raw.githubusercontent.com/ENSTABretagneRobotics/UxVCtrl/master/ReadMe.txt,"This folder ( https://github.com/ENSTABretagneRobotics/UxVCtrl ) contains a program used to control and configure UGVs, USVs, UUVs, UAVs used in WRSC, SAUC-E and euRathlon/ERL competitions. See corresponding GitHub releases for examples of configurations provided for several robots.
+
+Quick start:
+*** USER and DEVELOPER ***
+_ Use Windows 10 Professional 64 bit or Ubuntu 22.04 64 bit and see https://github.com/ENSTABretagneRobotics/UxVCtrl/releases 
+*** DEVELOPER ***
+_ Connect to the Internet
+_ In"
+arduino logs,readme.txt,https://raw.githubusercontent.com/shusritavenugopal/Archaeology-Dataset-Management-System/main/readme.txt,"##Center for Comparative Archaeology - Database Management System
+In the realm of archaeological research and resource management, the ""Center for Comparative Archaeology"" website stands as a pivotal platform designed to facilitate seamless access, contribution, and administration of databases pertinent to the archaeological domain. This user-friendly website offers a simple yet effective way for users to download existing databases and actively contribute to their growth.
+This project is aimed "
+arduino logs,_notes.txt,https://raw.githubusercontent.com/g41797/ziglog/main/_notes.txt,"Wiki - Syslog
+    https://en.wikipedia.org/wiki/Syslog
+
+Image
+    https://commons.wikimedia.org/wiki/File:Syslog.png
+
+What is Syslog and How it Works
+    https://sematext.com/glossary/syslog/
+    https://www.paessler.com/it-explained/syslog
+    https://www.auvik.com/franklyit/blog/what-is-syslog/
+
+Is Syslog Useful?
+    https://www.dnsstuff.com/is-syslog-useful
+
+RFC 5424
+    https://tools.ietf.org/html/rfc5424
+
+    6.1.  Message Length
+
+       Syslog message size limits are dictated by the syslog"
+arduino logs,AWSPDF.txt,https://raw.githubusercontent.com/Merxxotas/AWS-CLF-C02-Course/main/AWSPDF.txt,"By Stéphane Maarek
+https://links.data
+cumulus.com/aw
+s-certifiedpractitionercoupon
+
+https://links.da
+tacumulus.com
+/aws-certifiedpractitionercoupon
+https://links.datacumulus.com/aw
+s-certified-practitioner-coupon
+
+COURSE
+
+© Stephane Maarek
+
+https://links.dat
+acumulus.com/
+aws-cert-cloudpractitioner-ptcoupon
+
+https://links.datacumulus.com/aws
+EXTRA PRACTICE EXAMS
+-cert-cloud-practitioner-pt-coupon
+
+NOT FOR DISTRIBUTION © Stephane Maarek www.datacumulus.com
+
+AWS Certified Cloud Practitioner
+
+• Th"
+arduino logs,platzi.txt,https://raw.githubusercontent.com/anthonymanotoa/extract-data-twitter/main/platzi.txt,"@nicolassneijder Hola, Naico 😊 Puedes ver algunas secciones del Live después en YouTube, pero no subimos todo el Live.
+@platzi Hola @platzi, estos lives se pueden ver después? A esa hora estoy en clases
+¿Explicar? 
+
+Ay, maduren, por Dios santo. ¿Cómo que explicar? ¿Qué es lo que quieren que ""explique"" un presidente? De verdad que ustedes pretenden vivir en unas lógicas completamente infantilizadas de la vida.
+
+Por ustedes que el presidente saque un curso en Platzi sobre gobernar https://t."
+arduino logs,6.txt,https://raw.githubusercontent.com/Lizhmq/TopRepos/master/repos/6.txt,"dotnet/roslyn
+dotnet/corefx
+CleverRaven/Cataclysm-DDA
+freeCodeCamp/freeCodeCamp
+godotengine/godot
+ampproject/amphtml
+emscripten-core/emscripten
+dotnet/installer
+openshift/origin
+spack/spack
+Sylius/Sylius
+googleapis/google-api-java-client-services
+DynamoDS/Dynamo
+hashicorp/terraform
+EnMarche/en-marche.fr
+dotCMS/core
+apache/arrow
+Xilinx/XRT
+DataDog/datadog-agent
+matplotlib/matplotlib
+dolphin-emu/dolphin
+projectacrn/acrn-hypervisor
+curl/curl
+prysmaticlabs/prysm
+Submitty/Submitty
+elastic/logstash
+do"
+arduino logs,395.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/395.txt,"Journal of Learning and Teaching in Digital Age, 2018, 3(1), 21-34
+
+Where does Arduino’s power come from?: An extended literature review
+Mehmet Akif Ocak
+Gazi University
+maocak@gazi.edu.tr
+ABSTRACT
+The aim of this literature review is to examine the applications and researches related to
+the use of Arduino boards in learning and teaching environments. The study conducted a
+content review of 100 studies published between the years 2006-2016 by using the indexes
+of Educational Research Information"
+arduino logs,todo.txt,https://raw.githubusercontent.com/prisonerjohn/processing-android/master/todo.txt,"0218 android
+X add support for icon-96 for xhdpi icons
+X   https://github.com/processing/processing-android/issues/37
+X switch to onBackPressed() for back button handling
+X   developer.android.com/reference/android/app/Activity.html#onBackPressed()
+X   https://github.com/processing/processing-android/pull/52
+X   https://github.com/processing/processing-android/issues/50
+X sync PVector plus the processing.data package
+X   https://github.com/processing/processing-android/issues/47
+X   https://gith"
+arduino logs,0.txt,https://raw.githubusercontent.com/Lizhmq/TopRepos/master/repos/0.txt,"odoo/odoo
+dotnet/coreclr
+Homebrew/linuxbrew-core
+Azure/azure-sdk-for-net
+ARMmbed/mbed-os
+Homebrew/homebrew-cask-versions
+forem/forem
+prestodb/presto
+getsentry/sentry
+Katello/katello
+mulesoft/mule
+qmk/qmk_firmware
+EFForg/https-everywhere
+taosdata/TDengine
+department-of-veterans-affairs/vets-api
+eliotsykes/real-world-rails
+spree/spree
+Unity-Technologies/Graphics
+PowerShell/PowerShell
+ApolloAuto/apollo
+appcelerator/titanium_mobile
+Samsung/TizenRT
+knative/serving
+apache/shardingsphere
+Azure/iotedge
+"
+arduino logs,vocab.txt,https://raw.githubusercontent.com/APodolskiy/TextWorld_Challenge/master/vocab.txt,"<|>
+!
+""
+#
+$
+%
+&
+'
+'a
+'d
+'ll
+'m
+'n
+n't
+'re
+'s
+'t
+'ve
+(
+)
+*
++
+,,
+-
+-=
+--
+---
+----
+-1
+-2
+-5
+-i
+-the
+.
+.-
+..
+...
+....
+.....
+......
+.......
+........
+.........
+..........
+...........
+............
+.1
+.i
+.net
+.the
+/
+0
+0.1
+0.2
+0.3
+0.5
+00
+000
+01
+02
+03
+04
+05
+06
+07
+08
+09
+1
+1,000
+1,500
+1-
+1-0
+1-1
+1-2
+1-3
+1-4
+1-5
+1.
+1.0
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+1.8
+10
+10,000
+10-12
+100
+100,000
+1000
+101
+102
+103
+104
+105
+106
+107
+108
+1080p
+109
+10am
+10k
+10pm
+10th
+11
+110
+1100
+111
+112
+113
+114
+115
+116
+117
+118
+119
+11am
+11th
+12
+12,00"
+arduino logs,todo.txt,https://raw.githubusercontent.com/clixx-io/clixx.io/master/todo.txt,"David's ToDo List
+=================
+
+ - Attiny85 Bootloader - https://github.com/micronucleus/micronucleus
+
+Pyside Tuturial
+---------------
+
+ - http://madebits.com/retro/pyside.php
+
+  http://redmine.drawersteak.com/projects/achd-soc/repository/entry/trunk/tests/BasicNetworkedQuadSPIFlashControllerTest/main.cpp
+ 
+Linux GPIO
+----------
+ - http://hertaville.com/2012/11/18/introduction-to-accessing-the-raspberry-pis-gpio-in-c/
+
+LCD for Arduino
+---------------
+
+http://magnusglad.wordpress.com/2013/03"
+arduino logs,to_read.txt,https://raw.githubusercontent.com/amit-mittal/Programming-Questions-Practice/master/to_read.txt,"http://ideone.com/ECRUMS
+
+https://www.google.co.in/search?q=2-SAT&ie=utf-8&oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&gws_rd=cr&ei=OFxNUrT7FJCnrAfWpoC4Bw
+
+https://www.google.co.in/search?q=min-cost+perfect+matching&ie=utf-8&oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&gws_rd=cr&ei=SFtNUuv4BIaFrAf41oHQDw
+
+http://www.codechef.com/tags/problems/fft
+
+http://shakil0304003.wordpress.com/2010/10/05/bit-mask/
+
+http://arduino.cc/en/Tutorial/BitMask
+
+http://islamhamdy48.wordpress"
+arduino logs,inputdb.txt,https://raw.githubusercontent.com/KeerthiSagarSN/Generalized-Sequential-Pattern-Mining---Python/master/inputdb.txt,"2 1 5 design Webdesign inspiration icons images
+3 1 3 ubuntu linux util
+4 1 1 Apps
+5 1 1 board
+6 1 2 cake, cinnamon
+7 1 1 education
+7 2 1 educators
+7 3 1 math
+7 4 1 education
+7 5 1 education
+7 6 2 social studies
+7 7 1 games
+7 8 1 games
+7 9 1 education
+7 10 1 science
+7 11 1 reading
+8 1 2 food strange
+9 1 4 math Worksheets education polynomials
+10 1 1 chemometrics
+10 2 1 Ultrasound
+10 3 1 chemometrics
+11 1 1 recs:sg1
+12 1 12 web2.0 semantic socialmedia aggregator socialnetworking blog web software"
+arduino logs,bat.txt,https://raw.githubusercontent.com/manuhg/scripts/master/bat.txt,"--==[ blackman - BlackArch ]==--
+[+] ropeadope
+	A linux log cleaner.
+[+] saruman
+	ELF anti-forensics exec, for injecting full dynamic executables into process image (With thread injection).
+[+] secure-delete
+	Secure file, disk, swap, memory erasure utilities.
+--==[ blackman - BlackArch ]==--
+[+] ssl-phuck3r
+	All in one script for Man-In-The-Middle attacks.
+[+] masscan-automation
+	Masscan integrated with Shodan API.
+[+] msf-mpc
+	Msfvenom payload creator.
+[+] blueranger
+	A simple Bash script which"
+arduino logs,SFTP.txt,https://raw.githubusercontent.com/alexhtwen/small_projects/main/SFTP.txt,"Here's how to use SFTP on your Ubuntu 22.04 LTS server:
+
+Install the OpenSSH server if it's not already installed:
+Copy code
+sudo apt install openssh-server
+Enable and start the SSH server:
+bash
+Copy code
+sudo systemctl enable ssh
+sudo systemctl start ssh
+Configure the firewall to allow SSH traffic:
+Copy code
+sudo ufw allow ssh
+To use SFTP, you can simply connect with an SFTP client (such as FileZilla, Cyberduck, or WinSCP) using your server's IP address, your system user credentials, and the de"
+arduino logs,739.txt,https://raw.githubusercontent.com/gwf/emotiv-IA-papers/master/txt/739.txt,"Review
+
+Hardware for Recognition of Human Activities: A
+Review of Smart Home and AAL Related
+Technologies
+Andres Sanchez-Comas 1,*, Kåre Synnes 2,* and Josef Hallberg 2
+Department of Productivity and Innovation, Universidad de la Costa, 080 002 Barranquilla, Colombia;
+asanchez@cuc.edu.co
+2 Department of Computer Science, Electrical and Space Engineering, Luleå Tekniska Universitet, 971 87
+Luleå, Sweden; josef.hallberg@ltu.se
+* Correspondence: asanchez@cuc.edu.co (A.S.C.); kare.synnes@ltu.se (K.S"
+arduino logs,api sap.txt,https://raw.githubusercontent.com/ninomax0529/DB_ERPSIGE/main/api sap.txt,"https://adictosaltrabajo.com/2012/09/17/gson-java-json/
+https://www.baoss.es/herramientas-imprescindibles-para-desarrolladores-java-2021/
+https://oscarmaestre.github.io/servicios/textos/tema3.html
+https://upscodigojava.wordpress.com/2014/02/09/ejemplo-en-java-con-sensor-de-temperatura-en-arduino/
+
+https://172.20.1.159:9443/#!/home log de facturacion electronica
+**************************************************************************
+real debrid prices mas strement
+https://community.sap"
+arduino logs,output.txt,https://raw.githubusercontent.com/chloewang-200/custom-ai-chatbot-backend/main/output.txt,"[95m[1mCHUNK: 0[0m
+""Chloe Wang 👋 Hi, I'm Chloe I like making fun things with art and technology . 
+My journey has taken me from design to coding and beyond. 
+Python Java C/C++ JavaScript HTML/CSS SpringBoot React Flask JUnit DynamoDB Coding. 
+I'm a Computer Science major, so here's some SWE experience...🫢 
+Research Assistant RA @ Creating Adaptive Tutoring Systems Lab CATS Lab I worked under Prof. Vincent Aleven and Jonathan Sewell to develop a web-based tutoring dashboard for teachers to ana"
+arduino logs,index.txt,https://raw.githubusercontent.com/aidenm05/portfolio/main/index.txt,"vCard - Personal Portfolio
+
+# sidebar
+
+alt = Aiden McManus
+Aiden McManus
+Student / Maker
+
+Show Contacts
+
+Email
+Aidenpmcmanus@gmail.com
+
+Phone
++1 (804) 357-6389
+
+Birthday
+September 18th, 2005
+
+Location
+Richmond, Virginia USA
+
+# navbar
+
+About
+Resume
+Portfolio
+Blog
+Contact
+
+# about
+
+About me
+
+I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs.
+
+My job is to build y"
+arduino logs,95.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/95.txt,"conceptual physics concept development book pdf
+chronic kidney disease a reference guide bonus downloads the hill resource and reference guide book 111
+isuzu trooper 1998 repair service manual
+sample opening prayer for a meeting
+professional chef workbook answers
+omics in clinical practice genomics pharmacogenomics proteomics and transcriptomics in clinical research
+yamaha generator repair
+prehistoric hunter gathers the emergence of cultural complexity
+josef mengele book
+principles of o"
+arduino logs,98.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/98.txt,"citroen jumper 1994 1999 service repair manual
+one tribe at a time the paper that changed the war in afghanistan
+htc thunderbolt user guide pdf
+emachines e725 user manual
+hazmat chemistry cheat sheet
+hsc 11th std trigonometric functions solutions
+Read Memoirs
+Realidades 2 Capitulo 4 A Prueba 4 Answers
+Carlo Scarpa By Mccarter Robert Published By Phaidon Press 2013 Hardcover
+Space Opera Limaginaire Spatial Avant 1977
+sylvia day entwined with you pdf 
+the law of adaptation to climate ch"
+arduino logs,42.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/42.txt,"bmw 1602 repair manual
+1992 chevrolet chevy s 10 truck service shop manual set service manual and the electrical diagnosis and wiring diagrams manual
+2005 yamaha 90 tlrd outboard service repair maintenance manual factory service manual
+similarity and differences between funza and nfsas
+epidemiologists websters facts and phrases
+Sociology John J Macionis 13th Edition
+audi b5 workshop manual 1997 2001
+lcms applications in drug development
+cardiovascular crosspuzzle answer key
+Isuzu 42 Mar"
+arduino logs,Notes2.txt,https://raw.githubusercontent.com/AnkurKonan/My_development_workspace/main/Notes2.txt,"Humans vs computer:
+-human -get bored, creative, detect patterns, follows
+-computer -don't bored, non-creative, computation, follow blindly
+
+
+Think like programmer:
+-programming is about problem-solving, not just writing code
+-understand problem deeply
+-What are inputs
+-What are outputs
+-What constraints exist
+-break problem into small, manageable pieces
+-jumping into code without plan = wasted time & frustration
+-write out logic in plain english (pseudocode)
+-break task into smaller subproblems"
+arduino logs,466.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/466.txt,"polaroid tv user manual
+Power Of Logic Chapter 8 Answer Key
+cognitive systems engineering in health care
+killer work from home jobs 200 fortune 500 legitimate work at home jobs how to make money online from home job search series book 1
+building learning power resources
+1999 grand marquis maintenance schedule
+introduction of e beauty pegeant proposal
+broderson ap 308 crane operating manuals
+high yield embryology 4th edition pdf
+santa fe chief of police
+nfl game review
+destined to reig"
+arduino logs,output.txt,https://raw.githubusercontent.com/jazibkhan1/Tweets/main/output.txt,"Tweet 0 :
+we want to buy
+
+aluminum hydroxide 
+
+
+cas 
+
+cfr karachi pakistan 
+
+aluminum water watertreatment treatment venus venuscorporation fahim styrene acrylic butylacrylate butylglycol glycols phenol nonylphenol ethoxylate ethoxylates surfactants mma
+Label:
+
+Tweet 1 :
+ is the combined live storage across all lakesè_x_½supplying drinking water to mumbai as of  jul bhatsa  uppervaitarna  middlevaitarna  modaksagar  tansa  tulsi  vihar  barvi  thane amp navimumbai mumbaimonsoon
+La"
+arduino logs,drone.txt,https://raw.githubusercontent.com/iponkarja/pinterest/main/drone.txt,"camera for drone
+drone for camera
+a camera drone
+drone
+drone cameras
+drone with a camera
+drone with cam
+drone prices with camera
+camera drone
+drone for cameras
+a drone with a camera
+drone camera
+camera on drone
+drone shop
+drone caméra
+drone with camera
+drone shops
+drone dji
+drone with price
+dgi drone
+drone dj
+dji drone
+drone with 4k
+drone with remote controller
+remote controller drone
+drone for military
+drone for flying
+fly the drone
+drone for sales
+drone sales
+dron"
+arduino logs,todo.txt,https://raw.githubusercontent.com/danzeeeman/Processing-Android-Eclipse-Demos/master/processing-android/todo.txt,"0218 android
+X add support for icon-96 for xhdpi icons
+X   https://github.com/processing/processing-android/issues/37
+X switch to onBackPressed() for back button handling
+X   developer.android.com/reference/android/app/Activity.html#onBackPressed()
+X   https://github.com/processing/processing-android/pull/52
+X   https://github.com/processing/processing-android/issues/50
+X sync PVector plus the processing.data package
+X   https://github.com/processing/processing-android/issues/47
+X   https://gith"
+arduino logs,vocab.txt,https://raw.githubusercontent.com/SCNU203/GeoQA-Plus/main/vocab.txt,"[PAD]
+[unused1]
+N_0
+N_1
+N_2
+N_3
+N_4
+N_5
+N_6
+N_7
+N_8
+V_0
+V_1
+V_2
+V_3
+V_4
+V_5
+V_6
+V_7
+V_7
+C_0
+C_1
+C_2
+C_3
+C_4
+C_5
+C_6
+C_7
+C_8
+C_9
+g_equal
+g_double
+g_half
+g_add
+g_minus
+g_sin
+g_cos
+g_tan
+g_asin
+g_acos
+gougu_add
+gougu_minus
+g_bili
+g_mul
+g_divide
+cal_circle_area
+cal_circle_perimeter
+cal_cone
+g_sqrt
+⊥
+A
+B
+C
+D
+E
+F
+G
+H
+J
+I
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+⊙
+▱
+口
+Rt△
+Rt
+≌
+[unused82]
+[unused83]
+[unused84]
+[unused85]
+[unused86]
+[unused87]
+[unused88]
+[unused89]
+[unused90]
+[unused91]
+[unused92]
+[unused93]
+[unu"
+arduino logs,Api.txt,https://raw.githubusercontent.com/Raskan23/E-Soft_Mad-Task/main/Api.txt,"""status"": ""ok"",
+""totalResults"": 5393,
+-""articles"": [
+-{
+-""source"": {
+""id"": ""business-insider"",
+""name"": ""Business Insider""
+},
+""author"": ""Dan DeFrancesco"",
+""title"": ""The world reacts to Donald Trump's latest trade plans"",
+""description"": ""Donald Trump's new trade proposals target China, Mexico, and Canada."",
+""url"": ""https://www.businessinsider.com/trumps-latest-trade-plans-consumer-price-hike-negotiation-tactic-2024-11"",
+""urlToImage"": ""https://i.insider.com/674706619f2901eb603738cb?width=700&format"
+arduino logs,notas.txt,https://raw.githubusercontent.com/menymp/JetbotTank/main/notas.txt,"links adc
+https://github.com/afiskon/stm32-adc-dac/tree/master/Src
+
+Donkey car github
+https://github.com/autorope/donkeycar/tree/main
+
+tutorial for ros creating packages
+https://www.youtube.com/watch?v=iLiI_IRedhI&list=PLuteWQUGtU9BU0sQIVqRQa24p-pSBCYNv&index=3
+
+rplidar and ros
+https://www.youtube.com/watch?v=Qrtz0a7HaQ4&list=PLuteWQUGtU9BU0sQIVqRQa24p-pSBCYNv&index=11
+https://github.com/NickL77/RPLidar_Hector_SLAM/tree/master
+
+Lista ToDo: 
+etapa de robot 2.0
+	se espera que el vehiculo este list"
+arduino logs,output.txt,https://raw.githubusercontent.com/vipulgupta2048/starthemall/master/output.txt,"https://github.com/asetalias/ALiasNativeApp
+https://github.com/asetalias/amibot
+https://github.com/asetalias/asetaliashub.io
+https://github.com/asetalias/asetaliaslucknowhub.io
+https://github.com/asetalias/blog
+https://github.com/asetalias/cms
+https://github.com/asetalias/geekbattle
+https://github.com/asetalias/Hacksprint-2019
+https://github.com/asetalias/hackthenight
+https://github.com/asetalias/Logistics-and-Event-Contributions
+https://github.com/asetalias/org
+https://github.com/balena-fleetop"
+arduino logs,input.txt,https://raw.githubusercontent.com/PranavGopalak/DNS-Name-Resolver-PY/main/input.txt,"google.com
+youtube.com
+tmall.com
+baidu.com
+qq.com
+sohu.com
+facebook.com
+taobao.com
+360.cn
+jd.com
+amazon.com
+yahoo.com
+wikipedia.org
+weibo.com
+sina.com.cn
+xinhuanet.com
+netflix.com
+reddit.com
+live.com
+instagram.com
+panda.tv
+alipay.com
+zoom.us
+google.com.hk
+csdn.net
+vk.com
+zhanqi.tv
+bing.com
+microsoft.com
+twitch.tv
+myshopify.com
+yahoo.co.jp
+okezone.com
+office.com
+twitter.com
+ebay.com
+naver.com
+amazon.in
+bongacams.com
+amazon.co.jp
+haosou.com
+aliexpress.com
+17ok.com
+adobe.com
+yy.com
+huanqiu.com
+appl"
+arduino logs,types.txt,https://raw.githubusercontent.com/ORESoftware/hr4r2/master/types.txt,"find packages
+Search
+sign up or log in
+log in
+npm private modules
+npm Enterprise
+features
+pricing
+documentation
+support
+types
+2925 Packages by types
+definition-header - v0.3.4 - DefinitelyTyped definition header tools
+definition-tester - v2.0.6-alpha - DefinitelyTyped repository testing infrastructure
+dt-review-tool - v0.6.1 - Review bot for DefinitelyTyped
+dts-dom - v0.1.12 - DOM for TypeScript Declaration Files
+dts-gen - v0.4.20 - TypeScript Definition File Generator
+@types/3d-bin-packing - v0"
+arduino logs,pixel.txt,https://raw.githubusercontent.com/melabidi5560/weblists/main/pixel.txt,"00.pixel.parsely.com
+01.pixel.parsely.com
+03.pixel.parsely.com
+04.pixel.parsely.com
+05.pixel.parsely.com
+0s.moatpixel.com
+10.212.54.132200pixel.everesttech.net
+10.72.180.60pixel.moatads.com
+10.72.180.60spotxchangejsvideo759622536126.s.moatpixel.com
+10.pixel.parsely.com
+132200pixel.everesttech.net
+14.pixel.parsely.com
+16.pixel.parsely.com
+17.pixel.parsely.com
+180.60pixel.moatads.com
+180.60spotxchangejsvideo759622536126.s.moatpixel.com
+18pixels.co.in
+18pixels.com
+212.54.132200pix"

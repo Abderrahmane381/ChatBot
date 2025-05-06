@@ -1,0 +1,167 @@
+Contenu
+"ESP32 : 25 guides gratuits pour les capteurs et les modules
+par
+9 juin 2023, 9 h 13 min
+Il existe une grande variété de capteurs, modules et périphériques compatibles avec les cartes ESP32.  Nous avons des tutoriels pour les composants les plus populaires.  Cet article est une compilation de 25 guides gratuits pour les capteurs et modules ESP32.  La plupart des guides couvrent la programmation de l’ESP32 à l’aide du noyau Arduino, mais nous avons également des tutoriels pour MicroPython.
+Voici une liste rapide des capteurs/modules :
+Capteurs environnementaux :
+Capteurs liés au mouvement :
+Autres capteurs/modules/périphériques :
+Affiche :
+Communication:
+Moteurs :
+Capteurs environnementaux
+1. Capteur de température DS18B20
+Le capteur de température DS18B20 est un capteur de température numérique à un fil.  Cela signifie qu’il ne nécessite qu’une seule ligne de données (et GND) pour communiquer avec votre ESP32.  Chaque capteur de température DS18B20 possède un code série unique de 64 bits.  Cela vous permet de câbler plusieurs capteurs au même fil de données.  Ainsi, vous pouvez obtenir la température de plusieurs capteurs en utilisant un seul GPIO.
+Le capteur de température DS18B20 est également disponible en version étanche.
+Pour commencer, vous pouvez suivre les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+.
+.
+2. Capteur de température à thermocouple de type K
+Un thermocouple de type K est un type de capteur de température avec une large plage de mesure comme −200 à 1260ºC (−326 à 2300ºF).  Pour obtenir la température du thermocouple, nous avons besoin d’un amplificateur de thermocouple.  Nous utilisons l’amplificateur MAX6675 qui est vendu avec le thermocouple, mais vous pouvez utiliser n’importe quel autre amplificateur, comme le MAX31855.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+3. Capteur de température et d’humidité DHT11/DHT22
+Les capteurs DHT11 et DHT22 sont utilisés pour mesurer la température et l’humidité relative.  Ces capteurs contiennent une puce qui effectue une conversion analogique-numérique et crache un signal numérique avec la température et l’humidité.  Cela les rend très faciles à utiliser avec n’importe quel microcontrôleur.
+Pour commencer, suivez les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+4. Capteur de température, d’humidité et de pression BME280
+Le
+module lit la pression barométrique, la température et l’humidité.  Étant donné que la pression change avec l’altitude, vous pouvez également estimer l’altitude.  Il existe plusieurs versions de ce module de capteur : certains peuvent communiquer en utilisant uniquement le protocole de communication I2C, et d’autres ont la possibilité supplémentaire d’utiliser le protocole de communication SPI.  Nous utilisons généralement le protocole I2C avec ce capteur.  Ce capteur est très polyvalent et nous l’utilisons dans plusieurs de nos tutoriels.
+Pour commencer, suivez les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+5. Capteur environnemental BME680 (gaz, pression, humidité, température)
+Le BME680 est un capteur environnemental qui combine des capteurs de gaz, de pression, d’humidité et de température.  Le capteur de gaz peut détecter une large gamme de gaz comme les composés organiques volatils (COV).  Pour cette raison, le BME680 peut être utilisé dans le contrôle de la qualité de l’air intérieur.
+Pour commencer, suivez les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+6. Capteur d’altimètre BMP388 (pression, altitude, température)
+Le
+est un capteur de pression barométrique absolue précis, à faible puissance et à faible bruit qui mesure la pression et la température absolues.  Comme la pression change avec l’altitude, nous pouvons également estimer l’altitude avec une grande précision.  Pour cette raison, ce capteur est pratique pour la navigation par drone et d’autres applications comme le calcul de la vitesse verticale ;  Internet des objets ;  prévisions météorologiques et stations météorologiques;  applications de soins de santé;  applications de remise en forme ;  et beaucoup plus.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+7. Capteur barométrique BMP180 (pression, altitude, température)
+Le BMP180 est un capteur de pression numérique et il mesure la pression absolue de l’air qui l’entoure.  Il dispose d’une plage de mesure de 300 à 1100 hPa avec une précision jusqu’à 0,02 hPa.  Parce que la température affecte la pression, le capteur est livré avec un capteur de température pour donner des lectures de pression compensées en température.
+De plus, étant donné que la pression change avec l’altitude, vous pouvez également estimer l’altitude en fonction de la mesure de pression actuelle.  Le capteur communique avec un microcontrôleur en utilisant le protocole de communication I2C.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+8. Capteur de lumière BH1750
+Le BH1750 est un capteur de lumière ambiante 16 bits qui communique via le protocole I2C.  Il produit des mesures de luminosité en lux (unité d’éclairement dérivée du SI).  Il peut mesurer un minimum de 1 lux et un maximum de 65535 lux.  Il peut être utilisé dans une grande variété de projets.  Par exemple : pour détecter s’il fait jour ou nuit ;  pour régler ou allumer/éteindre la luminosité des LED en fonction de la lumière ambiante ;  pour régler les écrans LCD et la luminosité de l’écran ;  pour détecter si une LED est allumée ;  etc.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+9. Capteur TDS (total des solides dissous)
+Un compteur TDS indique le total des solides dissous comme les sels, les minéraux et les métaux, dans une solution.  Ce paramètre peut être utilisé pour vous donner une idée de la qualité de l’eau et comparer l’eau de différentes sources.  L’une des principales applications d’un compteur TDS est la surveillance de la qualité de l’eau de l’aquarium.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+Capteurs liés au mouvement
+10. Capteur de mouvement PIR
+Le détecteur de mouvement PIR est idéal pour détecter les mouvements.  PIR signifie « Passive Infrared » et il mesure la lumière infrarouge des objets dans son champ de vision.  Ainsi, il peut détecter les mouvements en fonction des changements de lumière infrarouge dans l’environnement.  Il est idéal pour détecter si un humain ou un animal s’est déplacé dans ou hors de la portée du capteur.
+Commencez avec les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+11. Capteur de porte (interrupteur à lames)
+Un interrupteur à contact magnétique est un interrupteur à lames enfermé dans une coque en plastique afin que vous puissiez facilement l’appliquer sur une porte, une fenêtre ou un tiroir pour détecter s’il est ouvert ou fermé.
+Nous avons plusieurs tutoriels avec l’ESP32 qui utilisent un interrupteur à lames et envoient des notifications lorsque la porte est ouverte ou fermée :
+12. Capteur à ultrasons HC-SR04
+Le capteur à ultrasons HC-SR04 utilise un sonar pour déterminer la distance à un objet.  Ce capteur lit de 2 cm à 400 cm (0,8 pouce à 157 pouces) avec une précision de 0,3 cm (0,1 pouce), ce qui est bon pour la plupart des projets amateurs.  De plus, ce module particulier est livré avec des modules émetteur et récepteur à ultrasons.
+Commencez avec l’un des tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+13. Accéléromètre et gyroscope MPU6050
+L’IMU (unité de mesure inertielle) MPU-6050 est un accéléromètre 3 axes et un capteur gyroscope 3 axes.  L’accéléromètre mesure l’accélération gravitationnelle et le gyroscope mesure la vitesse de rotation.  De plus, ce module mesure également la température.  Ce capteur est idéal pour déterminer l’orientation d’un objet en mouvement.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+Autres capteurs/modules/périphériques
+14. Module de carte microSD
+Le module de carte microSD permet d’interfacer l’ESP32 avec une carte microSD.  Vous pouvez utiliser la carte microSD avec l’ESP32 pour créer, écrire, lire et supprimer des fichiers.  Il peut être très utile pour l’enregistrement de données, pour enregistrer des fichiers de configuration ou enregistrer des fichiers à servir aux clients via un serveur Web.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+15. Potentiomètre
+Un potentiomètre, également appelé potentiomètre, est une résistance réglable manuellement qui peut être utilisée dans de nombreuses applications : régler la vitesse d’un moteur à courant continu, régler la position d’un moteur pas à pas ou d’un servomoteur, régler des valeurs de seuil, régler l’intensité lumineuse, etc. beaucoup plus.
+Pour obtenir une valeur d’un potentiomètre, il faut savoir lire des signaux analogiques avec l’ESP32.  Commencez avec les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+Pour savoir comment fonctionne un potentiomètre, nous vous conseillons de jeter un coup d’œil rapide au guide suivant :
+16. Module relais
+Un relais est un interrupteur à commande électrique et comme tout autre interrupteur, il peut être activé ou désactivé, laissant passer le courant ou non.  Il peut être contrôlé avec des tensions basses, comme les 3,3 V fournis par les GPIO ESP32, et nous permet de contrôler des tensions élevées comme le 12 V, le 24 V ou la tension secteur (230 V en Europe et 120 V aux États-Unis).
+L’utilisation d’un relais avec l’ESP32 est un excellent moyen de contrôler à distance les appareils électroménagers AC.  Commencez avec les tutoriels suivants :
+Noyau Arduino :
+MicroPython :
+Procurez-vous un module relais :
+17. Cellule de charge avec amplificateur HX711
+La cellule de charge que vous voyez dans l’image ci-dessus est une cellule de charge à jauge de contrainte.  Une jauge de contrainte est un capteur électrique qui mesure la force ou la contrainte exercée sur un objet.  La résistance de la jauge de contrainte varie lorsqu’une force externe est appliquée à un objet, ce qui entraîne une déformation de la forme de l’objet (dans ce cas, la barre métallique).  La variation de la résistance est proportionnelle à la charge appliquée, ce qui nous permet de calculer le poids des objets.
+Commencez avec le tutoriel suivant :
+Noyau Arduino :
+Affiche
+18. Écran OLED (SSD1306)
+L’écran à diodes électroluminescentes organiques (OLED) est un écran monochrome qui ne nécessite pas de rétroéclairage, ce qui se traduit par un très beau contraste dans les environnements sombres.  De plus, ses pixels ne consomment de l’énergie que lorsqu’ils sont allumés, de sorte que l’écran OLED consomme moins d’énergie par rapport aux autres écrans.  Il est disponible avec différents pilotes, mais nous vous recommandons d’obtenir celui avec le pilote SSD1306, qui est le plus pris en charge.  Il existe également une grande variété de tailles OLED.  Nous utilisons généralement l’écran de 0,96 pouces avec 128 × 64 pixels.
+Il existe également des cartes ESP32 avec un écran OLED intégré.  Ceci est très utile car vous n’avez besoin d’aucun circuit supplémentaire si vous souhaitez ajouter une interface visuelle physique à votre projet : Carte OLED intégrée ESP32 (Wemos Lolin32) : brochage, bibliothèques et contrôle OLED.
+Noyau Arduino :
+MicroPython :
+19. LCD I2C (affichage à cristaux liquides)
+L’écran d’affichage le plus simple et le moins cher est l’écran à cristaux liquides (LCD).  Les écrans LCD se trouvent dans les appareils électroniques de tous les jours comme les distributeurs automatiques, les calculatrices, les parcmètres et les imprimantes, et sont idéaux pour afficher du texte ou de petites icônes.
+Les écrans LCD sont mesurés en fonction du nombre de lignes et de colonnes de caractères qui tiennent sur l’écran.  Vous trouverez des tailles allant de 8×1 à 40×4.  Un LCD 16×2 peut afficher 2 lignes de 16 caractères chacune et c’est celle que nous utilisons le plus dans nos projets.  Nous vous recommandons d’en acheter un qui prend en charge I2C car cela rend le câblage et le codage encore plus faciles.
+Commencez avec le tutoriel suivant :
+Noyau Arduino :
+20. Bande LED RVB
+Les bandes LED sont tout simplement incroyables et il existe une grande variété de bandes LED parmi lesquelles choisir.  Elles peuvent être analogiques, ou numériques, et varient en densité et en nombre de LED, d’alimentation, etc. Votre projet?
+Les bandes LED analogiques ont leurs LED câblées en parallèle.  L’ensemble de la bande fonctionne comme une LED RVB géante.  Ainsi, vous pouvez éclairer toute votre bande dans de nombreuses couleurs différentes, mais vous ne pouvez pas contrôler les LED individuellement.  Cela signifie que votre bande ne peut être que d’une seule couleur à la fois.  Ce type de bandes LED est moins cher que les bandes numériques et plus facile à utiliser.  Vous pouvez suivre le tutoriel suivant qui montre comment utiliser ces bandes LED :
+Noyau Arduino :
+En ce qui concerne les bandes LED numériques, vous pouvez contrôler chaque LED individuellement – elles sont également appelées bandes LED adressables.  Vous pouvez choisir chaque couleur de LED, sa luminosité et quand elles doivent être allumées et éteintes.  Cela vous permet de faire toutes sortes d’effets fous et impressionnants.  Notre bande LED RVB adressable préférée est la WS2812B.  Nous avons un guide MicroPython montrant comment contrôler une bande LED RVB adressable et produire des effets étonnants.
+MicroPython :
+.
+.
+Communication
+21. Émetteur-récepteur LoRa
+LoRa est une technologie de communication de données sans fil qui utilise une technique de modulation radio qui peut être générée par les puces d’émetteur-récepteur Semtech LoRa.  Cette technique de modulation permet la communication à longue portée de petites quantités de données (ce qui signifie une faible bande passante) et une grande immunité aux interférences tout en minimisant la consommation d’énergie.  Ainsi, il permet une communication longue distance avec de faibles besoins en énergie.
+Pour utiliser LoRa dans vos projets, vous pouvez utiliser un émetteur-récepteur comme le
+ou utiliser un
+.
+Commencez avec les tutoriels suivants :
+Noyau Arduino :
+.
+.
+22. Multiplexeur TCA9548A I2C
+Le protocole de communication I2C vous permet de communiquer avec plusieurs appareils I2C sur le même bus I2C tant que chaque appareil a une adresse I2C unique.  Cependant, cela ne fonctionnera pas si vous souhaitez connecter plusieurs périphériques I2C avec la même adresse.
+Le
+vous permet de communiquer avec jusqu’à 8 appareils I2C avec le même bus I2C.  Le multiplexeur communique avec un microcontrôleur en utilisant le protocole de communication I2C.  Ensuite, vous pouvez sélectionner le bus I2C du multiplexeur que vous souhaitez adresser.
+Commencez avec le tutoriel suivant :
+Noyau Arduino :
+.
+Moteurs
+23. Servomoteur
+Apprenez à contrôler un servomoteur avec l’ESP32 à distance à l’aide d’un serveur Web :
+.
+24. Moteur à courant continu et pilote de moteur L298N
+Apprenez à contrôler un moteur à courant continu (vitesse et direction) avec l’ESP32 à l’aide du pilote de moteur L298N.  Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+25. Moteur pas à pas
+Un moteur pas à pas est un moteur électrique à courant continu sans balais qui divise une rotation complète en plusieurs étapes.  Il se déplace d’un pas à la fois, et chaque pas a la même taille.  Cela nous permet de faire tourner le moteur à un angle précis vers une position précise.  Le moteur pas à pas peut tourner dans le sens des aiguilles d’une montre ou dans le sens inverse des aiguilles d’une montre.
+Pour commencer, suivez le tutoriel suivant :
+Noyau Arduino :
+Conclusion
+Il s’agissait de notre compilation de tutoriels pour les capteurs, modules et périphériques les plus populaires compatibles avec l’ESP32.
+Si vous avez un capteur/module que vous aimeriez voir apparaître sur notre site Web, écrivez simplement un commentaire ci-dessous.
+Nous espérons que vous trouverez cet article utile.  N’oubliez pas de mettre cette page en signet pour l’avenir et de la partager avec un ami qui aime aussi l’électronique.
+Si vous souhaitez en savoir plus sur l’ESP32, consultez les ressources suivantes :
+Cette vidéo vous emmène dans l’histoire de Raspberry Pi :
+Carte de développement ESP32 AYWHP ESP32 Module ESP-WROOM-32 avec puce CP2012 Support WiFi+Bluetooth Dual Core Interface STA/AP/STA+AP Type-C 38 PIN Version soudée Compatible avec Arduino
+【Module WiFi et Bluetooth ESP32】 En utilisant la puissante puce ESP-WROOM-32 ESP32, il dispose de fonctions Bluetooth et WiFi à double mode, ce qui est très adapté pour les applications IoT.
+【Communication USB vers série CP2012】ESP32 wroom est équipé d'une puce USB vers série CP2012, qui peut communiquer facilement avec différents microcontrôleurs et ordinateurs et est compatible avec Arduino.
+【Prise en charge de la programmation Lua】La carte ESP32 prend en charge le langage de scripting Lua, ce qui simplifie le processus de développement et rend plus facile pour les débutants et les utilisateurs avancés.
+【Hautement intégré】Antenne intégrée, interrupteur, équilibreur RF, amplificateur de puissance, amplificateur à faible bruit, filtre et module de gestion de l'alimentation.
+【Performance fiable】 ESP32S est construit en utilisant la technologie à faible consommation TSMC de 40 nm pour fournir des performances élevées avec une consommation d'énergie réduite.
+8,99 €
+AZDelivery 3 x ESP32 NodeMCU Module WLAN WiFi Dev Kit C Development Board avec CP2102 (successeur de ESP8266) Compatible avec Arduino incluant Un E-Book!
+✅ Obtenez maintenant trois modules AZDelivery ESP32 NodeMCU à un prix spécial avec remise sur quantité !
+✅ Que vous soyez débutant ou expert, AZDelivery ESP32 NodeMCU Module WLAN WiFi est le microcontrôleur qu’ il vous faut! Il vous assure un prototypage facile grâce à une programmation simple via le script Lua ou dans Arduino-IDE et un design compatible breadboard. Vous aurez ainsi la l’opportunité de développer des projets uniques et étonnants en rapport avec l’IoT, des horloges décoratives à LED, des outils de mesures de la qualité de l’air à l’intérieur.
+✅ Cette carte est équipée de puces Wi-Fi et Bluetooth bimode 2,4 GHz de TSMC ainsi que de la technologie 40nm basse consommation.
+✅ Le module a 38 broches et offre plus de fonctions qu'un module à 30 broches. Il est également plus petit et plus pratique à utiliser.
+✅ Ce produit inclut un E-Book qui fournit des informations utiles sur la façon de commencer votre projet. Il permet une installation rapide et fait gagner du temps sur le processus de configuration. On y trouve une série d'exemples d'applications, des guides d'installation complets et des bibliothèques.
+29,99 €
+See more
+Plus de:"

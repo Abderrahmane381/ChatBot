@@ -1,0 +1,682 @@
+Ligne
+Les problèmes de sécurité des systèmes embarqués et les
+solutions
+Azrou Lilia
+Etudiante
+Ecole Nationale Supérieure d’Informatique
+"Alger, Algérie."
+cl_azrou@esi.dz  Si Hamdi Katia
+Etudiante
+Ecole Nationale Supérieure d ’Informatique
+"Alger, Algérie."
+ck_si_hamdi@esi.dz
+Résumé  - Les systèmes embarqués sont en forte
+"croissance, de plus en plu s populaire ces dernières"
+années. Les domaines les utilisant étant de plus en plus
+"nombreux et certains requérant une très forte sécurité, la"
+sécurisation d es systèmes embarqués est donc devenue
+aujourd’hui un axe majeur de recherche. L'évolution
+rapide de ces systèmes et la sensibilité des informations
+manipulées par ces derniers font l'objet de différents types
+d’att aques auxquels la communauté scientifique a répondu
+par un ensemble de mécanismes de protection.
+"Mots-clés: Système embarqué, sécurité, attaque ,"
+protection.
+1 Introduction
+Les systèmes embarqués prennent un rôle et une place
+chaque jour de plus en plus importants dans tous les
+aspects des activités humaines. Ils sont utilisés pour de
+"nombreuses applications, aussi bien dans les domaines de"
+"la défense, de l'aérospatiale, du nucléaire que dans le"
+secteur automobile.
+L’avancée technologique que les systèmes embarqués ont
+connue lors de ces dernières années les rend de plus en
+plus complexes. Ils sont non seulement responsables de la
+commande des différents composants mais aussi de leur
+survei llance. A l’occurrence d’événements pouvant mettre
+"en danger la vie des utilisateurs, une certaine configuration"
+du système est exécutée afin de maintenir le système dans
+"un état dégradé mais sûr. Malheureusement, il est fort"
+probable que la configuration échoue conduisant le
+système dans un état appelé « état redouté » avec des
+conséquences dramatiques pour le système et l’utilisateur
+[2].
+L'évolution rapide de ces systèmes qui ne cesse de
+s’arrêter et la sensibilité des informations manipulées par
+"ces systèmes font l'objet de plusieurs menaces, notamment"
+"dans les systèmes critiques et/ou complexes, tels que les"
+"centrales nucléaires, les avions et engins spatiaux, les"
+véhicules et les infrastructures des systèmes de transport
+"routiers et ferroviaires. Les besoins de sécurité sont donc devenus de plus en plus intenses, ce qui a fait de la"
+sécurité des systèmes embarqués un domaine critique qu’il
+faut prendre en charge.
+"Dans cet article, nous commencerons dans un premier"
+temps par faire une présentation des systèmes embarqués
+ainsi  les concepts de base de la sécurité.  Puis on exposera
+les différentes sources d’attaques qui peuvent menacer un
+"système embarqué, la classification de ces attaques et"
+contre-attaques les plus connues de la littérature. Par la
+"suite, on présentera la carte à puce, puis nous donnons un"
+"aperçu des grandes classes d’attaques physiques, de leurs"
+principes et des contre-mesures destinées à les rendre
+difficiles ou à les contrer.
+2 Les systèmes embarqués
+2.1 Définition
+Les systèmes embarqués sont des composants
+"électroniques issus de la combinaison de matériel, de"
+logiciel qui interagissent avec l’environnement. Ils sont
+modélisés pour résoudre un problème ou effectuer des
+tâches spécifiques plutôt que des tâches multiples d’usage
+général comme c ’est le cas pour les systèmes tra ditionnels
+tel que l’ordinateur  [4].
+2.2 Architecture d’un système embarqué
+L'architecture d'un système embarqué se définie par le
+schéma suivant :
+Figure 1. Architecture générale d’un système embarqué
+Cette architecture peut varier selon les systèmes : on peut
+"par exemple, ne pas trouver de systèmes auxiliaires dans"
+de nombreux systèmes embarqués autonome et
+"indépendants. En revanche, l'architecture de base est la"
+plupart du temps composée d'une unité centrale de
+"traitement (CPU), d'un système d'exploitation qui réside"
+parfois uniquement en un logiciel spécifique (routeur). De
+"même l'interface IHM1 n'est pas souvent existante, mais"
+est souvent utile pour reconfigurer le système ou vérifier
+son comportement.
+Le fonctionnement du système se résume ainsi :
+1. Il reçoit des informations de l'environnement
+extérieur qu'il converti en signal numérique.
+"2. L'unité de traitement composée du CPU, de la"
+"mémoire, du logiciel, de l'ASIC2 et"
+éventuellement de système externes traite
+l'information.
+3. Le traitement génère éventuellement une sortie
+"qui est envoyée vers la sortie, les systèmes"
+"auxiliaire, les ports de monitoring ou l'IHM."
+2.3 Contraintes d’un système embarqué
+Les domaines d'utilisation de l'informatique embarqués
+sont très variés. Les systèmes embarqués sont donc soumis
+"à des contraintes physiques, de fonctionnement,"
+"logicielles, ou matérielles différentes. (Voir la [Table 1])"
+Table 1. Contraintes d’un système embarqué selon le
+secteur d’activité
+3 Concepts de base de la sécurité
+La sécurité des systèmes embarqués peuvent être divisés
+"en une collection de préoccupations plus spécifiques, telles"
+"que la confidentialité, l'intégrité  et la disponibilité [5]."
+3.1 La confidentialité
+La confidentialité consiste à arrêter les utilisateurs non
+autorisés  d'accéder aux informations sensibles stockées ou
+communiqué par le système. La majeure partie de la
+recherche en sécurité informatique a été centrée sur la
+confidentialité.
+1 Interface Homme Machine
+2 Application-Specific Integrated Circuit  3.2 L’intégrité
+L'intégrité des données garantit que les données dans le
+système embarqué n'ont pas été supprimées ou modifiée
+"sans autorisation, que ce soit par une erreur, un utilisateur"
+malveillant ou un virus.
+3.3 La disponibilité
+La disponibilité fait référence que le système embarqué
+"soit accessible en cas de besoin par une entité autorisée, et"
+"sans retard non justifié. Par exemple, la disponibilité est de"
+s'assurer que les dénis de service ne réussissent pas.
+"Cependant, l'accessibilité d'un système ne signifie pas qu'il"
+est disponible car le système doit aussi remplir sa fonction
+correctement.
+4 Les attaques dans les systèmes
+embarqués
+4.1 Sources d’attaques dans les systèmes embarqués
+Les systèmes embarqués sont exposés de plusieurs
+"attaques, dont la cause principale est la faiblesse et les"
+fautes résultant lors de la phase d’implément ation des
+mécanismes de sécurité fonctionnelle et leurs algorithmes
+de cryptographie.
+Avec ces faiblesses les attaquants peuvent contourner
+"complètement, ou d’affaiblir de  manière significative la"
+solution de sécurité. Les raisons sont les suivantes :
+4.1.1 Le fonctionnement dans un environnement
+non fiable
+Il est facile de concevoir un système embarqué sûr si on
+base sur la sécurité physique naturelle du système
+(personne ne peut ouvrir le système) ou de supposer que
+les parties du système ne sont pas accessible par des
+entités malveillantes.
+"Cependant, les systèmes embarqués ont parfois besoin de"
+"travailler dans des relations complexes, où un dispositif"
+"souhaite mettre une partie sécurisé dans la main des autres,"
+en assurant que la deuxième partie ne peut pas modifier les
+parties internes du dispositif [5].
+Par exemple : une banque peut conserver des informations
+pertinentes dans une carte à puce qui est dans les mains de
+"ses clients, toute en assurant que le client ne peuvent pas"
+manipuler la carte ou de modi fier les informations qu’ elle
+contient.
+4.1.2 Vulnérabilité introduite à travers les réseaux
+Il y a pas mal de systèmes embarqués qui ont la capacité
+"de se connecter aux réseaux, ce qui les expose à de"
+"nombreuses sources d’attaque, en d’autre terme, il n’ est"
+plus nécess aire d’ avoir la possession physique de
+l’appareil afin de briser ses mécanismes de sécurité. Les
+"appareils avec connectivité sans fil, ou ceux qui se"
+connectent à Internet sont les plus vulnérable.
+4.1.3 L’exécution des logiciels téléchargés
+Afin de fournir et enrichir les fonctionnalités des systèmes
+"embarqués et les personnalisé pour l’ utilisateur final, il est"
+parfois nécessaire d’ avoir la capacité de télécharger et
+"exécuter des logiciels non fiable (approuvés), (avec des"
+"virus, chevaux de trois, etc ...) qui peuvent être la source"
+des vulnérabilités.
+4.1.4 Processus de conception complexe
+Il peut ne pas être possible de pré-valider chaque
+composant du système pour assurer la sécurité de celle-ci.
+"En d’ autre terme, même si chaque composant du système"
+"est assuré en soi, il est possible que la composition des"
+pièces expose des nouvelles vulnérabilités [5].
+La prise en compte de la sécurité lors de la conception des
+systèmes embarqués devient un manque qui doit être pris
+en compte.
+4.2 Types d'attaquants (menaces) [4]
+1. Terroristes (but : destruction) ;
+2. Ennemis (but : causer des désagréments) ;
+"3. Espions, services de renseignement"
+"(gouvernementaux, industriels) (but :"
+informations) ;
+4. Concurrents industriels (but : prise de part de
+marché) ;
+5. Pirates (but : vol) ;
+"6. Hackers (but : défi, jeux)."
+4.3 Objectifs des attaques
+1. Accéder aux données privées et secrètes pour
+accéder à un niveau supérieur d'information
+(exemple : clé de cryptage pour décoder un
+message crypté) ;
+2. Accéder aux données privées pour les modifier
+ou les détruire ;
+3. Copier les données de conception pour
+reconstruire ou améliorer un système ;
+4. Prendre en main un système pour le détourner de
+sa fonction ou pour le détruire.
+4.4 Classification des attaques
+Il est possible de classifier les attaques en se basant sur 2
+critères : L’objectif fonctionnel et les méthodes utilisées
+afin d’exécuter ces attaques.
+4.4.1 Critère 1 : L’objectif fonctionnel
+Figure 2. Classification des attaques dans les systèmes
+embarqués
+La [Figure 2] montre une classification générale des
+"attaques sur les systèmes embarqués [5], dont le"
+1er niveau montre la classification selon l'objectif
+fonctionnel.
+Dans ce niveau on peut distinguer 3 types d’attaques  :
+4.4.1.1  Attaques de confidentialité
+L'objectif de ces attaques est d'obtenir des informations
+"sensibles stockées, transmises ou manipulées par un"
+système embarqué.
+4.4.1.2  Attaque d'intégrité
+Ces attaques tentent de modifier les données ou le code
+associé à un système embarqué.
+4.4.1.3   Attaque sur la disponibilité
+Ces attaques tentent à introduire des erreurs afin de
+perturber le fonctionnement normal d'un système ou de
+s'emparer les ressources de tel sorte que le système ne soit
+pas disponible pur un fonctionnement normal.
+4.4.2 Critère 2 : les méthodes utilisées
+"Dans la même [Figure 2], le 2eme niveau et la [Figure 3] ,"
+présente nt une classification des attaques selon les moyens
+et les agents utilisés pour lancer une attaque.
+Ces agents sont généralement regroupés en 3 grandes
+catégories [5] :
+4.4.2.1  Attaque des logiques
+Qui se réfèrent à des attaques lancées par des agents
+"logiciels tels que : les virus, les chevaux de trois, etc…"
+4.4.2.2  Attaques physiques
+Qui se réfèrent à des attaques qui nécessitent une intrusion
+physique dans le système embarqué.
+4.4.2.3   Les canaux cachés
+Qui se réfèrent à des attaques qui sont basées sur
+l'observation des propriétés du système lors de l'exécution
+des opérations de chiffrement par ce dernier.
+"Par exemple : la consommation d'énergie par le système,"
+"le temps d'exécution, le comportement dans la présence"
+"des failles, etc…"
+Figure 3. Classification des attaques dans les systèmes
+embarqués selon les méthodes utilisées
+4.5 Les attaques logicielles
+"4.5.1 Infections informatiques, codes malveillants"
+Programmes simples qui exécutent un programme en tâche
+"de fond. Ils ne peuvent pas se reproduire, ils servent"
+souvent à ouvrir une brèche cachée dans le système pour y
+"faire pénétrer un pirate [4], par exemple : Cheval de Troie"
+et Bombe Logique (dans le cas de la bombe logique le
+départ du programme est retardé).
+Programmes autoreproducteurs par exemple : Un ver est
+un virus très virulent qui se diffuse de façon planétaire.
+4.5.2 Vulnérabilités logicielles
+La plus part des systèmes embarqués ont une zone
+mémoire extérieure au SoC 3principal. Des données et des
+instructions sont échangés entre le processeur et la
+"mémoire sur un ou plusieurs bus (adresse, instruction,"
+donnée)
+Menaces (logicielle ou matérielle) : Lecture non autorisée
+"de données, Injection de code, Modification des données."
+3 System on a Chip
+Figure 4. Vulnérabilité des systèmes embarqués à base de
+SoC et mémoire externe
+4.5.3 Modèle de menaces
+Ici le SoC est dans un environnement sécurisé à contraire
+de la mémoire externe qui n'est pas dans un environnement
+"sécurisé, voir la [Figure 5]."
+Figure 5. Modèle de menaces
+Dans ce cas il y'a deux modèles d'attaques [4] :
+1. Attaques passives : écoute du bus (bus probing) par
+analyse hors ligne du code est la reconstitution d'une clé
+"de chiffrement, qui permet de faire une reconstitution de"
+"message, ce qui constitue une matière première pour"
+préparer une attaque active.
+2. Attaques actives : modification du contenu de la
+mémoire (memory tampering). Il y'a trois types d'attaques
+actives sont définies en fonction du choix fait par
+l'attaquant :
+a. Spoofing : injection aléatoire de données.
+b. Splicing : permutation spatial de données.
+c. Replay (rejeu) : permutation temporelle de
+données. interception d’une é criture/lecture et
+remplacement par une donnée plus ancienne.
+"Les objectifs de ces attaques sont : détournement du code,"
+réduire l'espace de recherche pour la reconstruction d'une
+clé ou d'un message.
+4.6 Les attaques matérielles
+4.6.1 Vulnérabilités matérielles
+Plusieurs types de menaces peut être considérés en
+fonction de l'environnement et de la possibilité d'accès ou
+"non à l'intérieure du système [4] , voir la [Figure 6]."
+Figure 6. Types de menaces
+4.6.2 Attaques physiques irréversibles (Invasive
+"attacks, tampering) :"
+1. Découpage du circuit intégré.
+2. Attaque chimique de la puce.
+3. Découpage du layout : reconnaître les structures
+formées par les différentes couches et les
+transformer en un circuit électrique équivalent.
+4. Analyse microscopique.
+5. Reconstruction du layout.
+4.6.3 Attaques physiques réversibles
+Injection de fautes (non-invasive ou semi-invasive
+attacks) : les attaques par perturbation sont extrêmement
+puissantes et permettent à un attaquant de casser un
+système non protégé plus rapidement que n'importe quelle
+"autre attaque par canaux auxiliaires. Par conséquent, ces"
+attaques sont largement utilisées pour valider la sécurité
+des applications sensibles s'exécutant dans un
+environnement carte à puce. Et cette attaque est faite par :
+1. Glitch : Causer une défaillance électronique ou
+électrique qui correspond à une fluctuation dans
+les circuits électroniques ou à une coupure de
+courant. Ce qui entraîne un dysfonctionnement du
+"matériel informatique, qui occasionne à son tour"
+des répercussions sur les logiciels.
+2. Flash lumineux qui agit sur les technologies
+EPROM4 pour modifier une partie du système.
+3. Ionisation locales qui se fait par l'utilisation du
+Laser pour les mémoires CMOS SRAM.
+4.6.4 Les canaux cachés
+Les attaques par canaux cachés (auxiliaires) dans
+l'environnement de la carte à puce sont composées des
+quatre catégories présentées ci-dessus :
+1. analyse de temps d'exécution [5] : Les
+algorithmes de cryptographies utilisent souvent
+4Erasable Programmable Read Only Memory
+des opérations de multiplication et de division.
+"Cependant, ces instructions s'exécutent dans un"
+nombre variable de cycle selon les données
+d'entrées .Comme dans le cas des attaques à base
+"d'analyse d'énergie, des statistiques du temps"
+d'exécution peuvent être recueillies et analysé
+afin de déduire la clé de chiffrement.
+2. analyse de courant/de fréquences radio [5] : Tout
+le monde connaît que la consommation d'énergie
+d'un circuit dépend de la commutation d'un signal
+"électrique à l'intérieur d'un fil, ainsi cette"
+commutation elle- même dépend des données.
+Donc il n'est pas surprenant que la clé utilisé
+dans un algorithme de cryptographie peut être
+déduite à partir des statistiques recueillies à partir
+de la consommation d'énergie sur une vaste
+gamme de données d'entrées. Ces attaques sont
+aussi appelées attaque à base d'analyse de
+"puissance, et il a été démontré qu'elles sont très"
+efficaces pour briser les systèmes embarqués tel
+que les cartes à puce
+3. analyse du rayonnement électromagnétique [5] :
+Les attaques à base d'analyse électromagnétique
+(EMA) ont été utilisé depuis longtemps en
+utilisant les rayonnements électromagnétique
+d'une unité d'affichage vidéo afin de reconstruire
+le contenue de l'écran.
+4. attaques par perturbation (Bien que ce dernier
+type d'attaque n'utilise pas directement les
+"informations disponibles par canaux auxiliaires, il"
+est très souvent classé comme tel dans la
+littérature) [5] : Les attaques à base d'injection de
+faute s'appuyé sur la variation et le changement
+des paramètres externes d'un système embarqué
+afin d'inciter des fautes dans ses composants .Les
+fautes injectées peuvent être transitoire ou
+"permanant, et peuvent compromettre la sécurité"
+d'un système dans plusieurs points :
+Les fautes peuvent être injectées afin de perturber le
+fonctionnement normal d'u n système afin d’ attaquer sa
+disponibilité. Par exemple : le bus dans un système
+embarqué (ex : carte à puce) peut être rendu indisponible
+"pour effectuer des communications, ceci est possible par le"
+biais de mettre une valeur constante sur le bus.
+L'injection des fautes peuvent être utilisé aussi afin
+d’attaquer un système embarqué par le fait de changer ou
+altérer les valeurs stockés dans les composants du système
+(introduit des bruits).
+5 Les contres attaques
+"Dans cette section, on va présenter les techniques qui ont"
+été proposé pour renforcer les   systèmes   embarqués
+contre   les   diverses   attaques   décrites   dans les
+sections précédentes .
+5.1 Classification des contres-attaques:
+Figure 7. Classification des contres attaques
+"La [Figure 7], schématise la classification des contres"
+attaques selon le moment d'intervention.
+5.1.1 Techniques de prévention
+Ces techniques rendre plus difficile de lancer une attaque
+sur le système embarqué [5].
+Ces techniques peuvent inclure :
+1. Des mécanismes de protection physique.
+2. Concevoir des matériels dont les caractéristiques
+ne dépend pas des données afin d'éviter les
+attaques à base d'analyse du temps et d'énergie.
+3. Concevoir des logiciels avec des mécanismes
+d'authentification avant l'exécution.
+5.1.2  Détection des attaques
+Dans le cas où une attaque est lancée et malgré toutes les
+"techniques de prévention utilisées, les techniques de"
+détection tentent de détecter l'attaque dès que possible.
+L'intervalle de temps écoulé entre le lancement d'une
+attaque et sa détection (la latence de détection) représente
+une période de vulnérabilité et doit être aussi courte que
+possible [5].
+Exemple : La détection d'accès mémoire à partir d'un
+logiciel malveillant.
+5.1.3 Recouvrement d'attaque
+"Une fois l'attaque a été détecté, le système embarqué doit"
+à son tour exécuter les actions appropriées.
+Le recouvrement des attaques présente les techniques
+utilisées afin de stopper l'attaque et mettre le système dans
+un état sûr et opérationnel.
+5.1.4  Sauvegarder l'histori que
+"Dans certains cas, il est préférable de laisser l'attaque"
+exécuter et enregistrer les actions effectuées pour des
+utilisations ultérieures. 5.2 Technique de conception des contres attaques
+"Dans cette section, on va présenter les techniques de"
+conception pour contrer chacune des techniques d'attaque
+présenté dans les sections précédentes.
+5.2.1 Protection contre les attaques logiques
+Il existe plusieurs techniques qui assurent la sécurité d'un
+système embarqué contre les attaques logiques.
+"Dans ce qui suite, on va présenter quelques techniques qui"
+assurent la sécurité des systèmes embarqués contre les
+attaque logiques.
+5.2.1.1  Support matériel
+Cette approche consiste à l'utilisation d'un module séparé
+(coprocesseur) qui est dédié au traitement de toutes
+informations sensible dans le système embarqué [5 ].
+Toute information sensible qui doit être sortir du
+coprocesseur sera cryptée.
+Une autre approche matériel consiste à réserver une zone
+"mémoire (volatil ou non, dans la puce ou hors la puce)"
+comme un lieu de stockage sécurisé accessible seulement
+pour les composants du système confiée.
+"Enfin, il existe d'autres mécanismes de protection de"
+mémoire adoptée dans nombreux système embarqués qui
+utilisent des matériels de surveillances du bus qui peuvent
+distinguer entre les accès légal et illégal à ces endroits .
+5.2.1.2   Amélioration du système d'exploitation
+L'amélioration des systèmes d'exploitation afin d'assurer la
+sécurité incluse des modifications dans :
+1. La gestion des exceptions.
+2. La communication entres processus.
+3. Gestion de mémoire.
+4. La commutation du contexte.
+Car ces derniers présentent la source de la plus part des
+vulnérabilités.
+"Cependant, il est important de noter que la plus part de ces"
+améliorations nécessite des modifications au niveau
+architecturale (changement du système de gestion de
+mémoire).
+"Enfin, l'isolation des processus est aussi utilisée comme"
+technique qui garantit que les ressources privées d'un
+processus peuvent être protégé contre un autre processus.
+5.2.1.3  Logiciels de validation et de vérification
+Il est connu qu'un très grand nombre des attaques
+proviennent des vulnérabilités produites par des logiciels
+confiés [5].
+"Par conséquent, les moteurs de vérification de logiciels"
+sont de plus en plus importants afin de détecter les erreurs
+qui rendent le système vulnérable.
+L'utilisation de la vérification dynamique du code source
+est utile pour la recherche des erreurs pendant l’ exécution.
+"Enfin, des techniques de vérification formelle ont été"
+également appliquées avec succès pour vérifier
+l'implémentation des protocoles de sécurités.
+5.2.2 Protection contre les attaques physiques
+5.2.2.1  Processeurs dédiés
+Afin de protéger les systèmes embarqués contre les
+"attaques physiques, des techniques de réponses"
+immédiates et d'emballage ont été proposé.
+Un exemple d'un module cryptographique qui fournit des
+"niveaux très élevés de la sécurité physique est "" IBM4758"
+"PCI cryptographic adapter "". Dont le dispositif comprend"
+un circuit qui détecte les attaques physique et répondre aux
+attaque de température et de voltage [5].
+5.2.2.2  Chiffrement du bus
+La protection contre les attaques sur le bus (bus probing)
+implique l'utilisation d'un processeur qui crypte toutes les
+informations envoyées sur le bus.
+Tel processeur assure que la mémoire et les bus de
+données et d'adresse ne contiennent que des valeurs
+cryptés qui sont ensuite décrypté.
+Alors que ces processeurs ont tendance à atteindre des
+"niveaux de sécurité très élevés, ils restent toujours"
+insuffisants contre les attaques par des canaux cachées. Ce
+qui nécessite des mécanismes de protection
+supplémentaire.
+5.2.3  Protection contre les canaux cachés
+La majorité des attaques sur les systèmes embarqués sont à
+base des canaux cachés
+"(Analyse du temps, analyse d'énergie, rayonnement"
+"électromagnétique, etc.…)."
+Diverses techniques de protection contre ces attaques ont
+été proposées afin d'éliminer les symptômes qui rendent
+un système embarqué vulnérable.
+L'une de ces techniques est la randomisation qui permet de
+donner des faut mesures à l'attaquant.
+L'utilisation d'un signal d'horloge aléatoire est proposée
+dans comme un moyen efficace d'introduire le non
+déterminisme dans les processeurs des cartes à puce [5].
+"Ainsi, l'utilisation des données supplémentaire (donnée de"
+masquage) et l'introduction des bruits permettent de
+perturber les mesures dans les attaques à base d'analyse
+d'énergie.
+6 Les cartes à puce
+On retrouve des systèmes embarqués « cachés » dans de
+nombreux objets de la vie quotidienne : les téléphones
+"portables, les imprimantes, le PDA5, les appareils"
+"médicaux, etc. Chacun d’entre  nous utilise environ 250"
+puces par jour.
+"Dans cette section, nous décrivons le dispositif"
+cryptographique embarqué probablement le plus répandu
+au monde : la carte à puce.
+5 Personal Digital Assistant  6.1 Présentation des cartes à puce
+Une carte à puce est un objet en plastique contenant un
+circuit micro-électronique possédant la plupart des
+fonctionnalité s d’un m icro-ordinateur. La portabilité de cet
+"objet (un portefeuille peut en contenir une dizaine), et sa"
+capacité à défendre les donné es et programmes qu’il
+contient contre les attaques lui procurent naturellement sa
+fonction essentielle pour le stockage de clés et l’exé cution
+d’algorithmes cryptographi ques dans les usages mobiles
+nécessitant un haut degré de sécurité [3] :
+"– la sécurité des transactions (carte bancaire),"
+–l’identification et le contrôle d’accès (passeport
+"électronique),"
+Figure 8. Les contacts d'un module de carte à puce
+Elle se compose de 8 zones [3] :
+"1. Vcc : tension d’alimentation fournie à la carte,"
+"2.  RST : signal de remise à zéro de la carte,"
+3.  CLK : horloge fournie par le lecteur à la carte.
+"4. RFU : réservé pour un usage futur,"
+"5. Gnd : potentiel de référence (masse),"
+6. Vpp : tension de programmation (21 volts) qui
+servait par le passé à alimenter une pompe de
+charge utilisée pour les écritures en EEPROM
+"(inutilisé de nos jours),"
+7. I/O : ligne transportant de manière bi-
+directionnelle les données échangées entre la
+carte et le lecteur.
+6.2 L’analyse des canaux auxiliaires
+Il est apparu récemment que les précautions prises quant à
+"la fonction mathématique utilisée et à son emploi,"
+"quoique, évidemment nécessaires, ne suffisent pas à"
+"garantir, concrètement, la sécurité d’un systè me. La mise"
+en œuvre de la c ryptographie requiert une implémentation
+physique qui produira nécessairement des grandeurs
+observables d ’une autre nature que la fonction
+mathématique. C’est l’exploitation de ces grandeurs
+physiques que l’on nomme l’analyse des canaux
+auxiliaires SCA6.
+Les attaques permises par ce type d’analyse  concernent
+"donc essentiellement les crypto-systèmes embarqués, par"
+exemple dans les cartes à puce. Le premier exemple publié
+d’une analyse de canal auxiliaire exploitait le tem ps
+"d’exécution d’une commande, mais d’autres grandeurs"
+6 Side Channel Analysis
+physiques ont rapidement été analysé es par la suite comme
+la consommation de courant dès 19 98.
+6.2.1 Les attaques
+6.2.1.1  L’analyse du temps d’exé cution
+"Analyse des variations de la durée de certaines opérations,"
+"exemple : une multiplication modulaire, en fonction des"
+valeurs de ses opérandes. Les analyses du temps
+d’exé cution ne se limitent pas aux algorithmes
+cryptographiques. Il existe par exemple une commande
+qui permet de comparer le code personnel d’identificat ion
+PIN7 stocké dans la carte avec la valeur présentée par
+l’utilisateur. Il est évident qu’une telle comparaison
+pourrait ê tre la cible d’une att aque par mesure de temps si
+la durée de cette commande devait être plus ou moins
+longue en fonction de la valeur du PIN.
+Les attaques par analyse du temps d’exécution n’ont pas
+donné lieu par la suite à beaucoup d’autres publications
+car il est apparu qu’il était souvent assez facile d’assurer
+qu’une implém entation logicielle sur carte à puce
+s’exécute en temps constant.
+6.2.1.2  L’analyse simple du courant
+L’analyse simple du courant SPA8 consiste à mesurer et à
+observer la consom mation de courant d’une carte à  puce.
+Cette consommation est proportionnelle à la tension
+observée aux bornes d’une résistance connectée en série à
+"l’alimentation de la carte, mesurée à  l’aide d’un"
+oscilloscope.
+"La [Figure 8], montre comment la consommation de"
+courant peut révéler la struc ture d’un algorithme et de son
+implémentation. On y distingue les différentes opérations
+effectuées pendant un tour du DES. Cette opportunité de
+distinguer par SPA à quels instants se produisent des
+évènements précis peut être mise à profit par l’adversai re
+pour améliorer l’efficacité de nomb reux types d’attaques
+physiques [3].
+Figure 9. La consommation de courant révèle la structure
+des algorithmes
+7 Personal Identification Number
+8 Simple Power Analysis 6.2.2 Les contre-mesures
+6.2.2.1  L’analyse du temps d’exé cution
+"Pour parer l’analyse du temps d’exécution, la contre -"
+mesure la plus évidente consiste à implémenter les
+fonctions cryptographiques et autres routines sensibles en
+"temps constant, c’est -à-dire de manière telle que le temps"
+"d’exécution de la fonction ne varie pas, ou tout au moins"
+que sa variation ne dépende en rien de la valeur du secret.
+La lacune :  Il existe des cas difficiles où la source de
+variation temporelle n’est pas inhérente à
+l’implémentation logicielle mais provient par exemple du
+fonctionnement interne d’un crypto -processeur ou encore
+d’un m´mécanism e de mémoire cache [3].
+6.2.2.2  L’analyse simple du courant
+S’il est relativement simple d’éviter qu’un attaquant puisse
+"mener une SPA au niveau instruction, il n’est pas aisé de"
+se protéger contre une SPA au niveau donnée. Sous
+l’hypothèse qu’un  attaquant est capable de lire la valeur
+"d’une donnée quelconque, ou même seulement son poids"
+"de Hamming, on peut affirmer qu’il est impossible de se"
+protéger de manière logicielle contre ce type de SPA.
+Nous comprenons donc qu’il est  nécessaire de rendre
+"impossible, ou au moins très difficile, la détermination de"
+la valeur d’une  donnée à partir de l’analyse de la
+"consommation de courant. Les techniques utilisées, font"
+appel à des dispositifs au niveau matériel pouvant avoir
+comme objectif de :
+1. Rendre la consommation la plus indépendante
+possible des données manipulées par une
+conception équilibrée au niveau des portes
+logiques.
+2. Brouiller la consommation par l’ajout d’un bruit
+"aléatoire,"
+3. Désynchroniser l’exécution du processus.
+La première technique est la plus prometteuse car elle
+traite le problème à la base en visant à supprimer la fuite
+d’information.  La désynchronisation du processus consiste
+à utiliser une horloge interne variable basée sur un
+oscillateur instable [3]. Le haut de la [Figure 10] montre
+un exemple de l’activation d’un tel mécanisme. Sur la
+partie gauche les courbes sont superposées mais elles
+divergent dès que l’horloge interne est utilisée. Cette
+"contre- mesure est assez efficace, même s’il est facilement"
+"possible de rendre deux courbes synchrones, comme"
+"illustré sur la figure du bas, à l’aide d’un traitement à base"
+de reconnaissance de forme.
+Figure 10. Exemple de désynchronisation provoquée par
+une horloge instable
+7 Conclusion
+"En conclusion, n ous tenons à souligner l’énorme  défi"
+technique  et  conceptuel  que  représente  la  création
+d’un  mécanisme  de  sécurisation  de s systèmes
+"embarqués. Dans ce travail, nous avons examiné les"
+différentes formes d’attaques d’un système embarqué .
+"Pour ces scénarios, nous avons également vu comment une"
+panoplie de contres attaques a été élaborée par les
+chercheurs pour fournir des systèmes embarqués sûrs.
+Il faut noter que même dans les cas où la sécurité a été
+"prise en compte depuis le début, le développeur doit faire"
+face à des contraintes matérielles.  Enfin nous tenons à
+souligner la très grande activité des recherches dans le
+domaine qui est un sujet d ’actualité.
+References
+"[1] J. Dekeyser, S. Le Beux, et P. Marquet “Une"
+approche modèle pour la conception conjointe de
+systèmes embarqués hautes performances dédiés au
+"transport ”, Inria Futurs Lille, 2007."
+"[2] N. Sadou , “Aide à la conception des systèmes"
+"embarqués sûrs de fonctionnement ”, LAAS Laboratoire"
+"d’analyse et d’architecture des systèmes [Toulouse], 2007."
+"[3] C. Clavier , “De la sécurité physique des crypto-"
+"systèmes embarqués ”, Université de Versailles Saint-"
+"Quentin- en-Yvelines, Laboratoire de recherche en"
+"informatique, 2007."
+"[4] R. Boulkroune , “ Les systèmes embarqués ”,"
+"Université de Annaba, 2009."
+"[5] M. Bada , “Les Problèmes De Sécurité Dans Les"
+"Systèmes Embarqués ”, Université de Batna , 2012 ."
+[6] “Rapport d’étude sur les systèmes embarqués en
+"2012 ”, National Instruments France, 2012 [7] P.PARADINAS , “ Sécurité et sûreté des systèmes"
+"embarqués et mobiles ”, Cnam/Cedric"
+"[8] M.L.FLOTTES,LIRMM,G.NATALE,G.GOGNIAT,"
+"“Sécurite Des Systemes Embarqués ”, Lab -STICC, 2011."
+"[9] Didier Hallépée , “ La sécurité du smartphone et des"
+"systèmes embarqués ”, Carrefour du Net, 2012."

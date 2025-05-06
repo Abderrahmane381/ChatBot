@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Interface </title>
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+    }
+    body { 
+      display: flex; 
+      font-family: 'Segoe UI', sans-serif; 
+      margin: 0; 
+      height: 100vh;
+      background: #f8f9fa;
+    }
+    #sidebar { 
+      width: 250px; 
+      background: var(--primary-color); 
+      padding: 20px;
+      color: white;
+    }
+    #main { 
+      flex: 1; 
+      padding: 30px; 
+      display: flex; 
+      flex-direction: column;
+    }
+    .chat-container {
+      flex: 1;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      overflow-y: auto;
+    }
+    .input-group {
+      display: flex;
+      gap: 10px;
+    }
+    input, button {
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+    input {
+      flex: 1;
+    }
+    button {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .message {
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 5px;
+      line-height: 1.5;
+    }
+    .user-message {
+      background: #f1f1f1;
+      border-left: 4px solid var(--secondary-color);
+    }
+    .bot-message {
+      background: #f9f9f9;
+      border-left: 4px solid #27ae60;
+    }
+    .system-message {
+      background: #fff8e1;
+      border-left: 4px solid #f39c12;
+      font-style: italic;
+    }
+    .bot-switch {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #27ae60;
+      transition: all 0.3s;
+    }
+    .bot-switch:hover {
+      transform: translateY(-2px);
+    }
+    /* Style pour le formatage markdown */
+    .bot-message p {
+      margin: 8px 0;
+    }
+    .bot-message ul, .bot-message ol {
+      margin: 8px 0;
+      padding-left: 20px;
+    }
+    .bot-message li {
+      margin: 4px 0;
+    }
+    .bot-message h1, .bot-message h2, .bot-message h3 {
+      margin-top: 15px;
+      margin-bottom: 8px;
+    }
+    .loader {
+      text-align: center;
+      padding: 10px;
+    }
+    .loader:after {
+      content: "...";
+      animation: dots 1.5s steps(5, end) infinite;
+    }
+    @keyframes dots {
+      0%, 20% { content: "."; }
+      40% { content: ".."; }
+      60% { content: "..."; }
+      80%, 100% { content: "...."; }
+    }
+  </style>
+  <!-- Ajouter une librairie simple pour formatter le Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>ChatBots Disponibles</h2>
+    <button class="bot-switch" onclick="switchBot('generalist')"> ChatBot Général</button>
+    <button class="bot-switch" onclick="switchBot('arduino_expert')"> Expert Arduino</button>
+    <button class="bot-switch" onclick="switchBot('raspberry_expert')"> Expert Raspberry Pi</button>
+    
+    <hr style="margin: 20px 0; border-color: rgba(255,255,255,0.2);">
+    
+
+  </div>
+  
+  <div id="main">
+    <h1>ChatBots</h1>
+    <div class="chat-container" id="chat"></div>
+    
+    <div class="input-group">
+      <input id="prompt" type="text" placeholder="Posez votre question..." autofocus>
+      <button id="send">Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    const chatEl = document.getElementById('chat');
+    let currentBot = 'generalist';
+    let currentBotName = 'Expert Général';
+    let isWaitingForResponse = false;
+
+    // Parse et format le texte avec Markdown
+    function formatMessage(text) {
+      // Assurer que les caractères spéciaux sont échappés pour HTML
+      const escapedText = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      
+      // Convertir le markdown en HTML
+      return marked.parse(escapedText);
+    }
+
+    async function addMessage(sender, message, type = 'user') {
+      const div = document.createElement('div');
+      
+      // Définir la classe en fonction du type de message
+      if (type === 'system') {
+        div.className = 'message system-message';
+      } else if (type === 'bot') {
+        div.className = 'message bot-message';
+        message = formatMessage(message); // Formatter le markdown pour les réponses du bot
+      } else {
+        div.className = 'message user-message';
+      }
+      
+      div.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      chatEl.appendChild(div);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+
+    function addLoader() {
+      const div = document.createElement('div');
+      div.className = 'message bot-message loader';
+      div.id = 'response-loader';
+      div.innerHTML = `<strong>${currentBotName} réfléchit</strong>`;
+      chatEl.appendChild(div);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    }
+
+    function removeLoader() {
+      const loader = document.getElementById('response-loader');
+      if (loader) {
+        loader.remove();
+      }
+    }
+
+    document.getElementById('prompt').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && !isWaitingForResponse) {
+        document.getElementById('send').click();
+      }
+    });
+
+    document.getElementById('send').addEventListener('click', async () => {
+      if (isWaitingForResponse) return;
+      
+      const promptInput = document.getElementById('prompt');
+      const prompt = promptInput.value.trim();
+      if (!prompt) return;
+      
+      isWaitingForResponse = true;
+      promptInput.disabled = true;
+      addMessage('Vous', prompt);
+      promptInput.value = '';
+      addLoader();
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ prompt })
+        });
+        
+        removeLoader();
+        
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(errorText);
+        }
+        
+        const data = await res.json();
+        addMessage(currentBotName, data.response, 'bot');
+      } catch (error) {
+        removeLoader();
+        addMessage('Système', `Erreur: ${error.message}`, 'system');
+      } finally {
+        isWaitingForResponse = false;
+        promptInput.disabled = false;
+        promptInput.focus();
+      }
+    });
+
+    async function switchBot(name) {
+      if (isWaitingForResponse) return;
+      
+      try {
+        isWaitingForResponse = true;
+        const res = await fetch('/switch', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ bot_name: name })
+        });
+        
+        if (!res.ok) throw new Error(await res.text());
+        const data = await res.json();
+        currentBot = name;
+        
+        // Mettre à jour le nom d'affichage du bot
+        currentBotName = name === 'generalist' ? 'Expert Général' : 'Expert Arduino'
+        'Expert Raspberry Pi';
+        
+        addMessage('Système', data.message, 'system');
+      } catch (error) {
+        addMessage('Système', `Erreur: ${error.message}`, 'system');
+      } finally {
+        isWaitingForResponse = false;
+      }
+    }
+    
+    // Message d'accueil au chargement
+    window.addEventListener('load', () => {
+      addMessage('Système', 'Bienvenue! Sélectionnez un expert et posez votre question.', 'system');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1907 @@
+Titre,Contenu
+IoT Based Weather Monitoring System Using Arduino,"IoT Based Weather Monitoring System Using Arduino
+It is a system that involves in acquiring weather and environment data using advanced electronic sensors and sending them to a web server vi
+Sep 3, 2022
+•
+46252 views
+•
+6 respects
+Components and supplies
+1
+12c Adapter
+1
+Arduino UNO
+1
+DHT11 Temperature & Humidity Sensor (4 pins)
+1
+ESP8266 ESP-01
+1
+MQ 135
+1
+Solderless Breadboard Half Size
+1
+RGB LCD Shield Kit, 16x2 Character Display
+1
+Jumper wires (generic)
+Apps and platforms
+1
+ThingSpeak API
+Project description
+Code
+Code for Esp 8266
+arduino
+1
+#include
+""ThingSpeak.h""
+2
+#include
+<
+ESP8266WiFi
+.
+h
+>
+3
+4
+//-------  WI-FI details ----------//
+5
+char ssid
+[
+]
+=
+""SSID""
+;
+//SSID here
+6
+char pass
+[
+]
+=
+""PASSWORD""
+;
+// Password here
+7
+//--------------------------------//
+8
+9
+//-----------  Channel details ----------------//
+10
+unsigned long Channel_ID
+=
+123456
+;
+// Your  Channel ID
+11
+const
+char
+*
+myWriteAPIKey
+=
+""ABC123CDE456""
+;
+//Your write API key
+12
+//-------------------------------------------//
+13
+14
+const
+int Field_Number_1
+=
+1
+;
+15
+const
+int Field_Number_2
+=
+2
+;
+16
+const
+int Field_Number_3
+=
+3
+;
+17
+const
+int Field_Number_4
+=
+4
+;
+18
+const
+int Field_Number_5
+=
+5
+;
+19
+String  value
+=
+""""
+;
+20
+int value_1
+=
+0
+,
+value_2
+=
+0
+,
+value_3
+=
+0
+,
+value_4
+=
+0
+,
+value_5
+=
+0
+;
+21
+WiFiClient  client
+;
+22
+23
+void
+setup
+(
+)
+24
+{
+25
+Serial
+.
+begin
+(
+115200
+)
+;
+26
+WiFi
+.
+mode
+(
+WIFI_STA
+)
+;
+27
+ThingSpeak
+.
+begin
+(
+client
+)
+;
+28
+internet
+(
+)
+;
+29
+}
+30
+31
+void
+loop
+(
+)
+32
+{
+33
+internet
+(
+)
+;
+34
+if
+(
+Serial
+.
+available
+(
+)
+>
+0
+)
+35
+{
+36
+delay
+(
+100
+)
+;
+37
+while
+(
+Serial
+.
+available
+(
+)
+>
+0
+)
+38
+{
+39
+value
+=
+Serial
+.
+readString
+(
+)
+;
+40
+if
+(
+value
+[
+0
+]
+==
+'*'
+)
+41
+{
+42
+if
+(
+value
+[
+14
+]
+==
+'#'
+)
+43
+{
+44
+value_1
+=
+(
+(
+value
+[
+1
+]
+-
+0x30
+)
+*
+10
++
+(
+value
+[
+2
+]
+-
+0x30
+)
+)
+;
+45
+value_2
+=
+(
+(
+value
+[
+3
+]
+-
+0x30
+)
+*
+10
++
+(
+value
+[
+4
+]
+-
+0x30
+)
+)
+;
+46
+value_3
+=
+(
+(
+value
+[
+5
+]
+-
+0x30
+)
+*
+10000
++
+(
+value
+[
+6
+]
+-
+0x30
+)
+*
+1000
++
+(
+value
+[
+7
+]
+-
+0x30
+)
+*
+100
++
+(
+value
+[
+8
+]
+-
+0x30
+)
+*
+10
++
+(
+value
+[
+9
+]
+-
+0x30
+)
+)
+;
+47
+value_4
+=
+(
+(
+value
+[
+10
+]
+-
+0x30
+)
+*
+10
++
+(
+value
+[
+11
+]
+-
+0x30
+)
+)
+;
+48
+value_5
+=
+(
+(
+value
+[
+12
+]
+-
+0x30
+)
+*
+10
++
+(
+value
+[
+13
+]
+-
+0x30
+)
+)
+;
+49
+}
+50
+}
+51
+}
+52
+}
+53
+upload
+(
+)
+;
+54
+}
+55
+56
+void
+internet
+(
+)
+57
+{
+58
+if
+(
+WiFi
+.
+status
+(
+)
+!=
+WL_CONNECTED
+)
+59
+{
+60
+while
+(
+WiFi
+.
+status
+(
+)
+!=
+WL_CONNECTED
+)
+61
+{
+62
+WiFi
+.
+begin
+(
+ssid
+,
+pass
+)
+;
+63
+delay
+(
+5000
+)
+;
+64
+}
+65
+}
+66
+}
+67
+68
+void
+upload
+(
+)
+69
+{
+70
+ThingSpeak
+.
+writeField
+(
+Channel_ID
+,
+Field_Number_1
+,
+value_1
+,
+myWriteAPIKey
+)
+;
+71
+delay
+(
+15000
+)
+;
+72
+ThingSpeak
+.
+writeField
+(
+Channel_ID
+,
+Field_Number_2
+,
+value_2
+,
+myWriteAPIKey
+)
+;
+73
+delay
+(
+15000
+)
+;
+74
+ThingSpeak
+.
+writeField
+(
+Channel_ID
+,
+Field_Number_3
+,
+value_3
+,
+myWriteAPIKey
+)
+;
+75
+delay
+(
+15000
+)
+;
+76
+ThingSpeak
+.
+writeField
+(
+Channel_ID
+,
+Field_Number_4
+,
+value_4
+,
+myWriteAPIKey
+)
+;
+77
+delay
+(
+15000
+)
+;
+78
+ThingSpeak
+.
+writeField
+(
+Channel_ID
+,
+Field_Number_5
+,
+value_5
+,
+myWriteAPIKey
+)
+;
+79
+delay
+(
+15000
+)
+;
+80
+value
+=
+""""
+;
+81
+}
+#include ""ThingSpeak.h""
+#include <ESP8266WiFi.h>
+
+//-------  WI-FI details ----------//
+char ssid[] = ""SSID""; //SSID here
+char pass[]  = ""PASSWORD""; // Password here
+//--------------------------------//
+
+//-----------  Channel details ----------------//
+unsigned long Channel_ID = 123456; // Your  Channel ID
+const char * myWriteAPIKey = ""ABC123CDE456""; //Your write API key
+//-------------------------------------------//
+
+const  int Field_Number_1 = 1;
+const int Field_Number_2 = 2;
+const int Field_Number_3  = 3;
+const int Field_Number_4 = 4;
+const int Field_Number_5 = 5;
+String  value = """";
+int value_1 = 0, value_2 = 0, value_3 = 0, value_4 = 0, value_5  = 0;
+WiFiClient  client;
+
+void setup()
+{
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  ThingSpeak.begin(client);
+  internet();
+}
+
+void  loop()
+{
+  internet();
+  if (Serial.available() > 0)
+  {
+    delay(100);
+    while (Serial.available() > 0)
+    {
+      value = Serial.readString();
+      if (value[0] == '*')
+      {
+        if (value[14] == '#')
+        {
+          value_1 = ((value[1] - 0x30) * 10 + (value[2] - 0x30));
+          value_2  = ((value[3] - 0x30) * 10 + (value[4] - 0x30));
+          value_3 = ((value[5]  - 0x30) * 10000 + (value[6] - 0x30) * 1000 + (value[7] - 0x30) * 100 + (value[8]  - 0x30) * 10 + (value[9] - 0x30));
+          value_4 = ((value[10] - 0x30) *  10 + (value[11] - 0x30));
+          value_5 = ((value[12] - 0x30) * 10 + (value[13]  - 0x30));
+        }
+      }
+    }
+  }
+  upload();
+}
+
+void  internet()
+{
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    while (WiFi.status()  != WL_CONNECTED)
+    {
+      WiFi.begin(ssid, pass);
+      delay(5000);
+    }
+  }
+}
+
+void upload()
+{
+  ThingSpeak.writeField(Channel_ID,  Field_Number_1, value_1, myWriteAPIKey);
+  delay(15000);
+  ThingSpeak.writeField(Channel_ID,  Field_Number_2, value_2, myWriteAPIKey);
+  delay(15000);
+  ThingSpeak.writeField(Channel_ID,  Field_Number_3, value_3, myWriteAPIKey);
+  delay(15000);
+  ThingSpeak.writeField(Channel_ID,  Field_Number_4, value_4, myWriteAPIKey);
+  delay(15000);
+  ThingSpeak.writeField(Channel_ID,  Field_Number_5, value_5, myWriteAPIKey);
+  delay(15000);
+  value = """";
+}
+Code for Arduino
+arduino
+1
+#include
+<
+LiquidCrystal_I2C
+.
+h
+>
+2
+#include
+<
+SoftwareSerial
+.
+h
+>
+3
+#include
+<
+dht
+.
+h
+>
+4
+#include
+<
+Wire
+.
+h
+>
+5
+#include
+<
+BMP180
+.
+h
+>
+6
+dht
+DHT
+;
+7
+LiquidCrystal_I2C
+lcd
+(
+0x27
+,
+16
+,
+2
+)
+;
+8
+SoftwareSerial
+mySerial
+(
+10
+,
+11
+)
+;
+9
+BMP180
+myBMP
+(
+BMP180_ULTRAHIGHRES
+)
+;
+10
+#define
+DHT11_PIN
+A0
+11
+#define mq135_pin
+A2
+12
+#define
+LDR
+A1
+13
+void
+ReadDHT
+(
+void
+)
+;
+14
+void
+ReadBMP
+(
+void
+)
+;
+15
+void
+ReadAir
+(
+void
+)
+;
+16
+void
+send_data
+(
+void
+)
+;
+17
+bool BMP_flag
+=
+0
+;
+18
+bool DHT_flag
+=
+0
+;
+19
+20
+21
+void
+setup
+(
+)
+22
+{
+23
+mySerial
+.
+begin
+(
+115200
+)
+;
+24
+pinMode
+(
+mq135_pin
+,
+INPUT
+)
+;
+25
+pinMode
+(
+LDR
+,
+INPUT
+)
+;
+26
+lcd
+.
+init
+(
+)
+;
+27
+lcd
+.
+backlight
+(
+)
+;
+28
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+29
+lcd
+.
+print
+(
+""  IoT  Weather  ""
+)
+;
+30
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+31
+lcd
+.
+print
+(
+""Monitor System""
+)
+;
+32
+delay
+(
+1500
+)
+;
+33
+}
+34
+35
+void
+loop
+(
+)
+36
+{
+37
+ReadDHT
+(
+)
+;
+38
+ReadBMP
+(
+)
+;
+39
+ReadAir
+(
+)
+;
+40
+Readlight
+(
+)
+;
+41
+send_data
+(
+)
+;
+42
+}
+43
+44
+void
+ReadDHT
+(
+void
+)
+45
+{
+46
+lcd
+.
+clear
+(
+)
+;
+47
+int chk
+=
+DHT
+.
+read11
+(
+DHT11_PIN
+)
+;
+48
+switch
+(
+chk
+)
+49
+{
+50
+case
+DHTLIB_OK
+:
+51
+DHT_flag
+=
+1
+;
+52
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+53
+lcd
+.
+print
+(
+""Temp: ""
+)
+;
+54
+lcd
+.
+print
+(
+DHT
+.
+temperature
+,
+1
+)
+;
+55
+lcd
+.
+print
+(
+"" *C""
+)
+;
+56
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+57
+lcd
+.
+print
+(
+""Humi:  ""
+)
+;
+58
+lcd
+.
+print
+(
+DHT
+.
+humidity
+,
+1
+)
+;
+59
+lcd
+.
+print
+(
+"" %""
+)
+;
+60
+break
+;
+61
+case
+DHTLIB_ERROR_CONNECT
+:
+62
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+63
+lcd
+.
+print
+(
+""NO  DHT11 SENSOR""
+)
+;
+64
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+65
+lcd
+.
+print
+(
+""     FOUND!     ""
+)
+;
+66
+break
+;
+67
+case
+DHTLIB_ERROR_CHECKSUM
+:
+68
+case
+DHTLIB_ERROR_TIMEOUT
+:
+69
+case
+DHTLIB_ERROR_ACK_L
+:
+70
+case
+DHTLIB_ERROR_ACK_H
+:
+71
+default
+:
+72
+DHT_flag
+=
+0
+;
+73
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+74
+lcd
+.
+print
+(
+""  DHT11 SENSOR  ""
+)
+;
+75
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+76
+lcd
+.
+print
+(
+""     ERROR      ""
+)
+;
+77
+break
+;
+78
+}
+79
+delay
+(
+2000
+)
+;
+80
+}
+81
+82
+void
+ReadBMP
+(
+void
+)
+83
+{
+84
+lcd
+.
+clear
+(
+)
+;
+85
+if
+(
+myBMP
+.
+begin
+(
+)
+!=
+true
+)
+86
+{
+87
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+88
+lcd
+.
+print
+(
+""  BMP180  SENSOR ""
+)
+;
+89
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+90
+lcd
+.
+print
+(
+""    NOT FOUND   ""
+)
+;
+91
+BMP_flag
+=
+0
+;
+92
+delay
+(
+2000
+)
+;
+93
+}
+94
+else
+95
+{
+96
+BMP_flag
+=
+1
+;
+97
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+98
+lcd
+.
+print
+(
+""Pa(Grnd):""
+)
+;
+99
+lcd
+.
+print
+(
+myBMP
+.
+getPressure
+(
+)
+)
+;
+100
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+101
+lcd
+.
+print
+(
+""Pa(sea) :""
+)
+;
+102
+lcd
+.
+print
+(
+myBMP
+.
+getSeaLevelPressure
+(
+115
+)
+)
+;
+103
+}
+104
+delay
+(
+2000
+)
+;
+105
+}
+106
+107
+void
+ReadAir
+(
+void
+)
+108
+{
+109
+int airqlty
+=
+0
+;
+110
+lcd
+.
+clear
+(
+)
+;
+111
+lcd
+.
+setCursor
+(
+0
+,
+0
+)
+;
+112
+lcd
+.
+print
+(
+""AIR QUALITY:""
+)
+;
+113
+airqlty
+=
+analogRead
+(
+mq135_pin
+)
+;
+114
+lcd
+.
+print
+(
+map
+(
+analogRead
+(
+mq135_pin
+)
+,
+0
+,
+1024
+,
+99
+,
+0
+)
+)
+;
+115
+lcd
+.
+print
+(
+""%""
+)
+;
+116
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+117
+if
+(
+airqlty
+<=
+180
+)
+118
+lcd
+.
+print
+(
+""GOOD!""
+)
+;
+119
+else
+if
+(
+airqlty
+>
+180
+&&
+airqlty
+<=
+225
+)
+120
+lcd
+.
+print
+(
+""POOR""
+)
+;
+121
+else
+if
+(
+airqlty
+>
+225
+&&
+airqlty
+<=
+300
+)
+122
+lcd
+.
+print
+(
+""VERY BAD""
+)
+;
+123
+else
+124
+lcd
+.
+print
+(
+""TOXIC""
+)
+;
+125
+delay
+(
+2000
+)
+;
+126
+}
+127
+128
+void
+Readlight
+(
+void
+)
+129
+{
+130
+lcd
+.
+clear
+(
+)
+;
+131
+lcd
+.
+setCursor
+(
+3
+,
+0
+)
+;
+132
+lcd
+.
+print
+(
+""LIGHT :""
+)
+;
+133
+lcd
+.
+print
+(
+map
+(
+analogRead
+(
+LDR
+)
+,
+0
+,
+1024
+,
+0
+,
+99
+)
+)
+;
+134
+lcd
+.
+print
+(
+""%""
+)
+;
+135
+lcd
+.
+setCursor
+(
+0
+,
+1
+)
+;
+136
+lcd
+.
+print
+(
+""****************""
+)
+;
+137
+delay
+(
+2000
+)
+;
+138
+}
+139
+140
+void
+send_data
+(
+)
+141
+{
+142
+mySerial
+.
+print
+(
+'*'
+)
+;
+// Starting  char
+143
+if
+(
+DHT_flag
+==
+1
+)
+144
+{
+145
+mySerial
+.
+print
+(
+DHT
+.
+temperature
+,
+0
+)
+;
+//2  digit data
+146
+mySerial
+.
+print
+(
+DHT
+.
+humidity
+,
+0
+)
+;
+//2 digit data
+147
+}
+148
+else
+149
+{
+150
+mySerial
+.
+print
+(
+""0000""
+)
+;
+// Send dummy data
+151
+}
+152
+if
+(
+BMP_flag
+==
+1
+)
+153
+{
+154
+mySerial
+.
+print
+(
+myBMP
+.
+getPressure
+(
+)
+)
+;
+//5 digit  data
+155
+}
+156
+else
+157
+{
+158
+mySerial
+.
+print
+(
+""00000""
+)
+;
+// Send dummy data
+159
+}
+160
+mySerial
+.
+print
+(
+map
+(
+analogRead
+(
+LDR
+)
+,
+0
+,
+1024
+,
+0
+,
+99
+)
+)
+;
+//2 digit data
+161
+mySerial
+.
+print
+(
+map
+(
+analogRead
+(
+mq135_pin
+)
+,
+0
+,
+1024
+,
+99
+,
+0
+)
+)
+;
+//2 digit data
+162
+mySerial
+.
+println
+(
+'#'
+)
+;
+// Ending char
+163
+}
+#include <LiquidCrystal_I2C.h>
+#include <SoftwareSerial.h>
+#include  <dht.h>
+#include <Wire.h>
+#include <BMP180.h>
+dht DHT;
+LiquidCrystal_I2C  lcd(0x27, 16, 2);
+SoftwareSerial mySerial(10, 11);
+BMP180 myBMP(BMP180_ULTRAHIGHRES);
+#define  DHT11_PIN A0
+#define mq135_pin A2
+#define LDR A1
+void ReadDHT(void);
+void  ReadBMP(void);
+void ReadAir(void);
+void send_data(void);
+bool BMP_flag  = 0;
+bool DHT_flag = 0;
+
+
+void setup()
+{
+  mySerial.begin(115200);
+  pinMode(mq135_pin, INPUT);
+  pinMode(LDR, INPUT);
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print(""  IoT  Weather  "");
+  lcd.setCursor(0,  1);
+  lcd.print(""Monitor System"");
+  delay(1500);
+}
+
+void loop()
+{
+  ReadDHT();
+  ReadBMP();
+  ReadAir();
+  Readlight();
+  send_data();
+}
+
+void  ReadDHT(void)
+{
+  lcd.clear();
+  int chk = DHT.read11(DHT11_PIN);
+  switch (chk)
+  {
+    case DHTLIB_OK:
+      DHT_flag = 1;
+      lcd.setCursor(0,  0);
+      lcd.print(""Temp: "");
+      lcd.print(DHT.temperature, 1);
+      lcd.print("" *C"");
+      lcd.setCursor(0, 1);
+      lcd.print(""Humi:  "");
+      lcd.print(DHT.humidity, 1);
+      lcd.print("" %"");
+      break;
+    case DHTLIB_ERROR_CONNECT:
+      lcd.setCursor(0, 0);
+      lcd.print(""NO  DHT11 SENSOR"");
+      lcd.setCursor(0, 1);
+      lcd.print(""     FOUND!     "");
+      break;
+    case DHTLIB_ERROR_CHECKSUM:
+    case DHTLIB_ERROR_TIMEOUT:
+    case DHTLIB_ERROR_ACK_L:
+    case DHTLIB_ERROR_ACK_H:
+    default:
+      DHT_flag = 0;
+      lcd.setCursor(0, 0);
+      lcd.print(""  DHT11 SENSOR  "");
+      lcd.setCursor(0, 1);
+      lcd.print(""     ERROR      "");
+      break;
+  }
+  delay(2000);
+}
+
+void ReadBMP(void)
+{
+  lcd.clear();
+  if (myBMP.begin() != true)
+  {
+    lcd.setCursor(0, 0);
+    lcd.print(""  BMP180  SENSOR "");
+    lcd.setCursor(0, 1);
+    lcd.print(""    NOT FOUND   "");
+    BMP_flag = 0;
+    delay(2000);
+  }
+  else
+  {
+    BMP_flag  = 1;
+    lcd.setCursor(0, 0);
+    lcd.print(""Pa(Grnd):"");
+    lcd.print(myBMP.getPressure());
+    lcd.setCursor(0, 1);
+    lcd.print(""Pa(sea) :"");
+    lcd.print(myBMP.getSeaLevelPressure(115));
+  }
+  delay(2000);
+}
+
+void ReadAir(void)
+{
+  int airqlty = 0;
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(""AIR QUALITY:"");
+  airqlty  = analogRead(mq135_pin);
+  lcd.print(map(analogRead(mq135_pin), 0, 1024, 99,  0));
+  lcd.print(""%"");
+  lcd.setCursor(0, 1);
+  if (airqlty <= 180)
+    lcd.print(""GOOD!"");
+  else if (airqlty > 180 && airqlty <= 225)
+    lcd.print(""POOR"");
+  else if (airqlty > 225 && airqlty <= 300)
+    lcd.print(""VERY BAD"");
+  else
+    lcd.print(""TOXIC"");
+  delay(2000);
+}
+
+void Readlight(void)
+{
+  lcd.clear();
+  lcd.setCursor(3, 0);
+  lcd.print(""LIGHT :"");
+  lcd.print(map(analogRead(LDR),  0, 1024, 0, 99));
+  lcd.print(""%"");
+  lcd.setCursor(0, 1);
+  lcd.print(""****************"");
+  delay(2000);
+}
+
+void send_data()
+{
+  mySerial.print('*'); // Starting  char
+  if (DHT_flag == 1)
+  {
+    mySerial.print(DHT.temperature, 0); //2  digit data
+    mySerial.print(DHT.humidity, 0); //2 digit data    
+  }
+  else
+  {    
+    mySerial.print(""0000""); // Send dummy data
+  }
+  if (BMP_flag == 1)
+  {
+    mySerial.print(myBMP.getPressure()); //5 digit  data
+  }
+  else
+  {
+    mySerial.print(""00000"");// Send dummy data
+  }
+  mySerial.print(map(analogRead(LDR), 0, 1024, 0, 99)); //2 digit data
+  mySerial.print(map(analogRead(mq135_pin), 0, 1024, 99, 0)); //2 digit data
+  mySerial.println('#'); // Ending char
+}
+Downloadable files
+IoT Based Weather Monitoring System Using Arduino
+IoT Based Weather Monitoring System Using Arduino
+Comments
+Only logged in users can leave comments
+login"

@@ -1,0 +1,101 @@
+Titre,Contenu
+Maintenance prédictive,"Publication
+15 janv. 2024
+|
+8 min de lecture
+Qu’est-ce que la maintenance prédictive ?
+La maintenance prédictive est une approche stratégique visant à optimiser l’utilisation des équipements. En utilisant les données collectées à partir de dispositifs IoT tels que les capteurs, l’apprentissage automatique et la surveillance des équipements en temps réel, la maintenance prédictive détermine exactement le meilleur moment pour effectuer la maintenance des équipements. Grâce à cette capacité, les responsables de la maintenance économisent à la fois du temps et des ressources.
+Quelle est la différence entre la maintenance prédictive et la maintenance préventive ?
+L’entretien préventif
+consiste à faire tout ce qui est nécessaire, quel qu’en soit le coût ou la pression sur les ressources, pour éviter une défaillance de l’équipement. La maintenance prédictive, quant à elle, vise à prendre un minimum de mesures tout en veillant à ce que les équipements puissent être utilisés plus longtemps.
+Une autre différence entre la maintenance prédictive et la maintenance préventive est que cette dernière exige des inspections fréquentes, car elles constituent la base du moment où la maintenance doit être effectuée. Avec la maintenance prédictive, l’état des équipements peut être surveillé à distance grâce à l’utilisation de capteurs et d’autres dispositifs IoT (Internet des objets).
+Quels sont les exemples de maintenance prédictive ?
+Les données sont au cœur de la maintenance prédictive. Bien que les exemples suivants ne soient pas des exemples directs de maintenance prédictive, ils montrent comment des organisations réelles appliquent et utilisent les données pour
+prendre des décisions plus éclairées et agir là où c’est nécessaire.
+Exemple 1 :
+une organisation de séparation liquide-solide dans l’industrie pétrolière et gazière, a utilisé ses données pour prédire la durée de vie des équipements. Ainsi, les travailleurs ont utilisé moins d’équipements défectueux ou en mauvais état, ce qui a entraîné une diminution des blessures liées aux équipements.
+Exemple 2 :
+, une entreprise de transport de gaz naturel et d’électricité, a utilisé ses données pour repérer les zones de mauvaise performance, les zones potentiellement à risque et les zones de bonne performance.
+En divisant ses données en catégories distinctes, l’entreprise a pu se plonger plus profondément dans les domaines de non-conformité. Dans ces domaines, ils ont identifié des problèmes à haut risque nécessitant une action immédiate. En conséquence, le comportement proactif au sein de l’entreprise a augmenté et la qualité s’est améliorée.
+Avantages de la maintenance prédictive
+Comme le montrent les exemples précédents, l’utilisation des données pour les actions et les décisions présente des avantages considérables. Étant donné l’impact des données sur les performances de l’entreprise, les responsables de la maintenance devraient envisager de poursuivre la maintenance prédictive en tant que stratégie de maintenance proactive.
+Alors que les autres types de maintenance, tels que la maintenance préventive,
+,
+planifiée
+et
+la maintenance conditionnelle
+ne seront pas obsolètes dans un avenir proche, il est sage pour les organisations de prendre une longueur d’avance en appliquant des idées novatrices à leurs processus.
+Vous trouverez ci-dessous les 5 principaux avantages de la maintenance prédictive :
+Rationalisation des coûts de maintenance
+Optimisation de la durée de vie des équipements
+Augmentation du temps de fonctionnement des équipements
+Réduction des défaillances inattendues
+Amélioration de la fiabilité des équipements
+Comment fonctionne la maintenance prédictive ?
+Si l’application de la maintenance prédictive donne des résultats concrets, comme indiqué dans la section ci-dessus, certains responsables de la maintenance peuvent la trouver trop compliquée. Pour aider à clarifier le fonctionnement de la maintenance prédictive, voici un aperçu simple du processus en 4 étapes :
+Étape 1
+:
+Les capteurs collectent des données en temps réel sur l’état des équipements
+Étape 2
+:
+Les données des capteurs sont traitées par un algorithme prédictif.
+Performance attendue
+– Par exemple, après 3 ans de fonctionnement, l’équipement devrait encore produire à un rythme de 1,5 unités par minute.
+Données sur les défaillances passées
+– Par exemple, avant de tomber en panne, l’équipement ne produisait que 0,3 unité par minute et présentait les signes de détérioration suivants
+Étape 3
+:
+Grâce à l’apprentissage automatique, l’algorithme prédictif génère des prédictions sur le moment où l’équipement tombera en panne.
+Étape 4
+:
+Sur la base de ces prédictions, les responsables programment la maintenance pour qu’elle ait lieu juste avant la défaillance de l’équipement ou au moment recommandé par l’algorithme.
+Comment se lancer dans la maintenance prédictive ?
+Bien que le fonctionnement de la maintenance prédictive ait été expliqué en termes généraux dans la section précédente, les responsables de la maintenance peuvent encore avoir des difficultés à voir comment ils peuvent appliquer une stratégie à leur flux de travail de maintenance existant.
+Ce bref guide donne aux responsables de la maintenance des options sur la façon d’utiliser la maintenance prédictive sans les ressources techniques :
+Choisir l’équipement à surveiller
+Si la maintenance prédictive présente de nombreux avantages, elle ne peut pas être appliquée à chaque équipement en service, car elle génère de grandes quantités de données issues de la surveillance quotidienne des équipements. Pour préserver les ressources de l’organisation, les responsables de la maintenance doivent commencer par ne sélectionner que quelques pièces d’équipement à surveiller. L’équipement choisi doit :
+avoir des coûts d’entretien élevés
+être sujet à des pannes d’équipement
+Les conditions causant ou menant à la défaillance peuvent être surveillées par des capteurs.
+Choisir une méthode de prédiction
+Bien que l’utilisation d’un algorithme prédictif soit la méthode de prédiction connue pour la maintenance prédictive, elle nécessite que les responsables fassent l’une des deux choses suivantes :
+a
+) Développer un algorithme prédictif par eux-mêmes
+b
+) Recruter un spécialiste des données pour développer un algorithme prédictif.
+c
+) Acheter des logiciels spécialisés pour l’analyse prédictive
+C’est pourquoi la maintenance prédictive présente généralement une barrière élevée à l’entrée. Toutefois, les responsables de la maintenance ont également la possibilité d’effectuer leur propre analyse prédictive.
+En fonction des conditions que les responsables de la maintenance souhaitent surveiller et de leurs propres préférences, une simple analyse prédictive peut évaluer un certain nombre de variables ou de facteurs qui permettront de prévoir le moment où l’équipement est le plus susceptible de tomber en panne.
+Par exemple, une analyse prédictive de base consisterait à considérer un certain nombre de problèmes de performance de l’équipement en une semaine comme un signe que l’équipement est sur le point de tomber en panne.
+Connecter les capteurs à la base de données
+Si les responsables de la maintenance ont décidé d’acheter un logiciel d’analyse prédictive, celui-ci peut également faire office de base de données stockant les données de surveillance des équipements collectées par les capteurs.
+Pour ceux qui n’ont pas acheté de logiciel d’analyse prédictive, une solution numérique alternative est un outil de maintenance prédictive comme
+.
+SafetyCulture (iAuditor)
+peut être connecté à différents types de capteurs, tels que la température, l’humidité, les particules de l’air, les gaz et la pression de l’air.
+Connecter les capteurs à l’équipement
+Une fois que les responsables de la maintenance ont connecté les capteurs à la base de données de leur choix, ils peuvent procéder à l’installation des capteurs sur les équipements.
+Après avoir vérifié que les capteurs surveillent les conditions correctes de l’équipement et envoient les données à la base de données en temps réel, les responsables de la maintenance doivent mettre en place des alertes qui les préviendront lorsque les conditions de l’équipement auront atteint un certain point.
+Maintenance programmée
+Lorsque les responsables de la maintenance reçoivent des alertes provenant de capteurs, ils peuvent faire l’une des choses suivantes :
+a
+) Planifier immédiatement la maintenance ou envoyer un technicien de maintenance sur place
+b
+) Pour ceux qui utilisent un algorithme prédictif comme méthode de prédiction, ils peuvent programmer la maintenance au moment recommandé par l’algorithme.
+c
+) Pour ceux qui utilisent leur propre analyse prédictive comme méthode de prédiction, ils peuvent évaluer ces informations par rapport à d’autres facteurs et décider ensuite du moment de la programmation de la maintenance.
+est une plateforme d’opérations numériques qui aide les équipes de maintenance à suivre ou à mettre en œuvre des normes, et à surveiller les tâches de maintenance. Grâce à SafetyCulture (iAuditor), les responsables de la maintenance peuvent attribuer des tâches de maintenance et d’autres travaux de réparation aux techniciens de service.
+Les techniciens de service sont en mesure de documenter l’achèvement des travaux de maintenance. Et les agents de maintenance sont en mesure d’effectuer des enquêtes à l’aide d’une liste de contrôle numérique.
+Saisissez rapidement les problèmes, tels que les dysfonctionnements et les défaillances des équipements. Avec SafetyCulture (iAuditor), toute l’équipe peut être habilitée à travailler ensemble et à résoudre les problèmes plus rapidement.
+Utiliser les capteurs SafetyCulture (iAuditor) ou
+d’autres marques de capteurs
+pour la surveillance continue de l’humidité, de la pression atmosphérique, de la température, de la qualité de l’air, des concentrations de gaz et d’autres conditions environnementales. Définir des seuils pour alerter les équipes lorsque les données sortent de la plage définie.
+Effectuer facilement la maintenance
+en utilisant un appareil mobile ou une tablette
+Assigner et planifier les tâches de maintenance
+Robustesse
+et
+de notification
+Forfait gratuit disponible avec
+avec le forfait Premium"

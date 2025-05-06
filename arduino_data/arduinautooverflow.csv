@@ -1,0 +1,958 @@
+texte_question
+"I am working on a simple project that involves controlling an Arduino with Python, and at the same time, the Arduino controls two servomotors. The problem is that no matter what character or number I send from Python to the Arduino, the servo moves in some way. This should not happen if the data is incorrect. It even happens that both servos move at the same time. 
+ ###python code###
+import serial
+import time
+
+def iniciar():
+    try:
+        arduino = serial.Serial(""COM7"", 9600)
+        time.sleep(2)
+
+        while True:
+            a = int(input("": ""))
+            arduino.write(b'a')
+            if a == ""x"":
+                    break
+
+    finally:
+        arduino.close()
+
+#while True:
+iniciar()
+ 
+ ###arduino code 
+ #include <Servo.h>
+Servo ON;
+Servo OFF;
+char pr;
+
+void setup() {
+Serial.begin(9600);
+
+OFF.attach(8);
+ON.attach(9);
+
+}
+
+void loop() {
+  if(Serial.available()>0){
+    pr = Serial.read();
+    if(pr == 'b'){ 
+      ON.write(0);  // tell servo to go to a particular angle
+      delay(1000);
+      ON.write(90);              
+      delay(500);
+    }
+    if(pr == 'a'){
+      OFF.write(0);  // tell servo to go to a particular angle
+      delay(1000);
+      OFF.write(90);              
+      delay(500);
+    }
+  } 
+}
+ 
+ I tried changing the type of data sent from Python, switching from 'int' to 'char'. I suppose the error might be in the use of the 'try' block, but honestly, I don't have much idea; I'm somewhat new to working with Python."
+"I have an Arduino UNO, and I'm trying to write a program in C# using VS WinForms that will send a signal to the Arduino UNO with the coordinates where the mouse cursor needs to be moved, and the Arduino UNO will emulate a mouse in response. How to do it? Which libraries should I use? Where can I get information?"
+"I'm trying to program an  EPS32  board to open and close a  linear actuator  depending of the temperature a  BME 280  sensor gets. It is for an automated gardening project :) 
+ My code is functional but I would like to perfect it. 
+ The actuator is currently connected with two GPIO pin, one to open and he other to close. 
+ GOALS: 
+ 
+ 
+ 
+ Switch off relays  when not used. 
+ 
+ 
+ 
+ 
+ Replace the use of delay() with  millis() 
+ 
+ 
+ 
+ 
+ Currently, the actuator is opening when temperature is above 27c°. Relay is on for 7 seconds which let the time to the actuator to go full course. Then, the relay is switch off.
+But if the temperature stay above 27, the ""if"" part of the loop is going on an on, meaning it turn on for 7 seconds, switch off for 7 seconds and so on... I would like to switch all relays off when not needed to  save energy and extend components life .
+I suppose there might be something to do with && or even the analogRead() function to get the state of the actuator and apply actions from that but it is too complicated for me. 
+ 
+ To open the actuator, I decided to time the course of the actuator and let the relay on for that timing with a delay() function. There is probably a different approach to this ( with analogRead() I suppose) but I find it simple and working.  I would like to replace delay() with millis()  function in order not to block the rest of the script (I plan to add fans, water valves, a float switch sensor...). 
+ 
+ 
+ May you show me the way ? 
+ #include <Adafruit_BME280.h>
+#include <WiFi.h>
+
+const char* ssid     = ""#####""; // ESP32 and ESP8266 uses 2.4GHZ wifi only
+const char* password = ""#####"";
+
+//MQTT Setup Start
+#include <PubSubClient.h>
+#define mqtt_server ""####.###.##.##""
+WiFiClient espClient;
+PubSubClient client(espClient);
+#define mqttActuator ""growShed/Acuator""
+#define mqttTemp1 ""growShed/temp1""
+
+int actuatorUp = 15; //GPIO de l'actuator
+int actuatorDown = 2; //GPIO de l'actuator
+int actuatorUpread = (!digitalRead(actuatorUp)); //read state of gpio : on or off
+int actuatorDownread = (!digitalRead(actuatorDown)); //read state of gpio : on or off
+
+//MQTT Setup End
+
+Adafruit_BME280 bme1; // I2C
+
+//utiliser les virgules sur les capteurs suivants
+float temp1, hum1, pres1;
+
+//gestion des délais entre chaque captations de data
+unsigned long millisNow1 = 0; //for delay purposes (laisser 0)
+unsigned int sendDelay1 = 2000; //delay before sending sensor info via MQTT
+
+//gestion des délais entre chaque captations de data
+unsigned long millisNow3 = 0; //for delay purposes (laisser 0)
+unsigned int sendDelay3 = 7000; //delay before sending sensor info via MQTT
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Serial.println();
+  
+  // begin Wifi connect
+  Serial.println(""Connecting to "");
+  Serial.println(ssid);
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(2000);
+  WiFi.begin(ssid, password);
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println(""."");
+  }
+
+  Serial.println("""");
+  Serial.println(""WiFi connected"");  
+  Serial.println(""IP address (wifi RaspPi) : "");
+  Serial.println(WiFi.localIP());
+  //end Wifi connect
+
+  client.setServer(mqtt_server, 1883);
+
+  //BME
+  delay(5000);
+  unsigned status;
+  status = bme1.begin(0x76); 
+    if (!status) {
+        Serial.println(""Could not find a valid BME280 sensor, check wiring, address, sensor ID!"");
+        Serial.print(""SensorID was: 0x""); Serial.println(bme1.sensorID(),16);
+        Serial.print(""        ID of 0xFF probably means a bad address, a BMP 180 or BMP 085\n"");
+        Serial.print(""   ID of 0x56-0x58 represents a BMP 280,\n"");
+        Serial.print(""        ID of 0x60 represents a BME 280.\n"");
+        Serial.print(""        ID of 0x61 represents a BME 680.\n"");
+        while (1);
+    }
+
+  //Acuator
+    pinMode(actuatorUp, OUTPUT);
+    digitalWrite(actuatorDown, HIGH); //Begin with actuator switched off
+    pinMode(actuatorDown, OUTPUT);
+    digitalWrite(actuatorUp, HIGH); //Begin with actuator switched off
+  //End Actuator
+
+}
+
+bool getValues() {
+
+  temp1 = round(bme1.readTemperature()); //rounded values
+  actuatorUpread = (digitalRead(actuatorUp)); //inverted value as the relay is inverted
+
+  Serial.print(""BME 1 Temperature = "");
+  Serial.print(temp1);
+  Serial.println("" °C"");
+
+  Serial.print(""État de l'actuator haut = "");
+  Serial.println(actuatorUpread);
+
+  Serial.print(""État de l'actuator bas = "");
+  Serial.print(actuatorDownread);
+
+  Serial.println();
+}
+
+void reconnect() {
+  
+// Loop until we're reconnected
+  int counter = 0;
+  while (!client.connected()) {
+    if (counter==5){
+      ESP.restart();
+    }
+    counter+=1;
+    Serial.println(""Attempting MQTT connection..."");
+    // Attempt to connect
+   
+    if (client.connect(""growTentController"")) {
+      Serial.println(""connected"");
+    } else {
+      Serial.println(""failed, rc="");
+      Serial.println(client.state());
+      Serial.println("" try again in 5 seconds"");
+      // Wait 10 seconds before retrying
+      delay(5000);
+    }
+  }
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+   if (!client.connected()){
+    reconnect();
+   }
+     if (millis() > millisNow1 + sendDelay1){
+    if (getValues()) {
+   client.publish(mqttTemp1, String(temp1).c_str(),true);  
+   client.publish(mqttActuator, String(actuatorUpread).c_str(),true);
+   millisNow1 = millis();
+    }
+  }
+
+ //Acuator moving according to BME280 temperature sensor
+  temp1 = bme1.readTemperature();
+  if (millis() > millisNow3 + sendDelay3){
+  if ((temp1 > 27)){
+    digitalWrite(actuatorUp, LOW);
+    delay(7000); // approx the time it take to execute the full course of the acuator.
+    digitalWrite(actuatorUp, HIGH);
+     }
+  else {
+    digitalWrite(actuatorDown, LOW);
+    delay(7000); // approx the time it take to execute the full course of the acuator
+    digitalWrite(actuatorDown, HIGH);
+    }
+    millisNow3 = millis();
+     }
+}"
+"there is an electronic compass with angles of 1-360 degrees (or 0-359, whatever) 
+ https://i.sstatic.net/Q7RmH.jpg 
+ there are variables 
+ 
+ Yaw  - compass readings degrees 
+ HDG  - established direction rudder degrees 
+ rudder  - the degrees to turn the steering wheel (need to get) 
+ 
+ 
+ variables to check 
+ HDG:20
+Yaw:340
+=need to get rudder=40 
+ HDG:50
+Yaw:90
+=need to get rudder=-40 
+ 
+ What is the formula to get the angle by which to rotate? 
+ the problem is to find the shortest turn in the right direction.. 
+ it seems simple, but it broke my mind 
+ something like 
+ 
+ 
+ if (Yaw<=180) {
+rudder=set HDG-Yaw;
+} else {
+rudder=360-Yaw+setHDG;
+} 
+ 
+ 
+ 
+ but here is an error if setHDG is 350 and Yaw=20 ... gives 330 and it should be 30"
+"I am working on a simple Arduino Uno based project called ""Waste segregation system"". For that I've used 3 different sensors (IR, Inductive Proximity and Raindrop) and 3 Micro servo motors. Basically what it does is, different servo motor rotates according to the type of object it detects from a moving conveyor (Like Non-metal, Wet or Metal). So, everything works fine but the only issue I face is, I can not hold servo motor for some time at the newer position after the sensor senses any object. It returns to it's initial position after when the object is no more in front of a sensor. 
+ I tried using delay() function at different parts of the code but it's not working properly. Like if I use delay(3000); the servo also moves 3 seconds later after sensing an object which is not desirable. 
+ I would be so grateful of you if you help me somehow. Thanks in advance :) 
+ The code I used; 
+ 
+#include <Servo.h>
+Servo tap_servo_1;
+Servo tap_servo_2;
+Servo tap_servo_3;  
+
+// here No. 1 is for Inductive sensor, No.2 is for Raindrop sensor and No.3 is for IR sensor //  
+
+int sensor_pin_1 = 4;
+int tap_servo_pin_1 =5;
+int sensor_pin_2 =2;
+int tap_servo_pin_2 =3;
+int sensor_pin_3 =8;
+int tap_servo_pin_3 =9;
+
+
+int val_1;
+int val_2;
+int val_3;
+
+
+void setup()
+{
+ pinMode(sensor_pin_1,INPUT);
+ tap_servo_1.attach(tap_servo_pin_1);
+ 
+ pinMode(sensor_pin_2,INPUT);
+ tap_servo_2.attach(tap_servo_pin_2);
+ 
+ pinMode(sensor_pin_3,INPUT);
+ tap_servo_3.attach(tap_servo_pin_3);
+}
+
+void loop()
+{
+  val_1 = digitalRead(sensor_pin_1);
+  
+  if(val_1==0)
+  {tap_servo_1.write(10);
+  }
+  if (val_1==1)
+  {tap_servo_1.write(70);
+  Serial.println(""Waste detected is: Non-Metal"");
+   
+  }
+
+  
+  val_2 = digitalRead(sensor_pin_2);
+  
+  if(val_2==0)
+  {tap_servo_2.write(0);
+  }
+ if (val_2==1)
+ {tap_servo_2.write(75);
+ Serial.println(""Waste detected is: Wet"");
+ }
+
+ 
+ val_3 = digitalRead(sensor_pin_3);
+  
+ if (val_3==0)
+  {tap_servo_3.write(10);
+ }
+ if (val_3==1)
+  {tap_servo_3.write(70);
+  Serial.println(""Waste detected is: Metal"");
+  
+  }
+ }"
+"I cannot explain to myself why this code works properly  in some cases and in some not. Here is the situation: 
+ I am trying to switch a relay with the Arduino Nano. Therefore I took the ""Blink"" example as a guide. It should switch on for like 5 minutes and switch off for like 25 minutes. Here is the code: 
+ // the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(2, OUTPUT);               // sets PIN 2 as switcher for the relay
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  int count = 0;
+  int run_pump = 300;               // 5 Min run
+  int stop_pump = 1500;             // 25 Min stop
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off (HIGH is the voltage level)
+  digitalWrite(2, HIGH);            // turn the pump on
+  while(count < run_pump) {
+    count++;
+    delay(1000);                    // wait for a second
+  }
+  
+  count = 0;              
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on by making the voltage LOW
+  digitalWrite(2, LOW);             // turn the pump off
+  while(count < stop_pump) {
+    count++;
+    delay(1000);                    // wait for a second
+  }
+}
+ 
+ if I run this code on the Arduino it will just switch on the relay forever. BUT: If I set  run_pump  and  stop_pump  for like 10 sec. it will work properly! Is there an explanation why this does not work with the bigger counters? It's so confusing.... 
+ so this code here works absolutely fine, but why does the code above not? 
+ // the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(2, OUTPUT);               // sets PIN 2 as switcher for the relay
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  int count = 0;
+  int run_pump = 5;               // 5 sec run
+  int stop_pump = 10;             // 10 sec stop
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off (HIGH is the voltage level)
+  digitalWrite(2, HIGH);            // turn the pump on
+  while(count < run_pump) {
+    count++;
+    delay(1000);                    // wait for a second
+  }
+  
+  count = 0;              
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on by making the voltage LOW
+  digitalWrite(2, LOW);             // turn the pump off
+  while(count < stop_pump) {
+    count++;
+    delay(1000);                    // wait for a second
+  }
+}
+ 
+ Hope someone has a clue.... Thanks!
+Tom"
+"import serial 
+from vpython import * 
+
+arduinoSerialData = serial.Serial('com8', 9600)
+measuringRod = cylinder( radius= .5, length=6, color=color.yellow, pos=vector(-3,0,0))
+lengthLabel = label(pos=vector(0,1,0), text='Target Distance is: ', box=False, height=30)
+while True:  
+rate(20)
+if (arduinoSerialData.inWaiting()>0): 
+    Data = arduinoSerialData.readline().strip().decode(""ascii"") 
+    print(Data) 
+    distance = float(Data) 
+    measuringRod.length=distance 
+    myLabel= 'Target Distance is: ' + Data 
+    lengthLabel.text = myLabel
+ 
+ The error on re running the program tells 
+ 11.85
+11.53
+13.07
+13.43
+11.66
+16.53
+ 
+ 
+ Traceback (most recent call last):   File
+""c:\Users\golut\OneDrive\Documents\Arduino\count\tempCodeRunnerFile.py"",
+line 12, in  
+distance = float(Data)  ValueError: could not convert string to float: '' 
+ 
+ On disconnecting and reconnecting the arduino it works perfectly but then as I stop the program and re run it, it stops running"
+"i'm building an automatic hay feeder for my horse,something like this but with just two floors
+ 
+ every 24hrs the plate in the middle should fall and let the hay fall down for the horse to eat,the interface should be very simple,3 buttons one to start the timer, one to stop it and deploy the hay and one to reset the servo in his initial position to lock the plate again, i'm having some problems with the timer,it starts when i press the green button but after it finishes to count it stops and i have to press the green button again, instead it should go endlessly unless i press the red button to reset it 
+ const int greenB = 2; 
+const int redB = 3;        
+
+int inAction = 0;
+int greenState = 0;
+int redState = 0;         
+void setup() {
+
+Serial.begin(9600);
+pinMode(greenB, INPUT);
+pinMode(redB, INPUT);
+}
+
+void loop() {
+
+  greenState = digitalRead(greenB);
+  redState = digitalRead(redB);
+
+  if(greenState == HIGH){
+    inAction = 1;
+    while(inAction == 1){
+      for(int i = 0; i<10;i++){
+        if(redState == HIGH){
+          Serial.println(""timer stopped"");
+          goto stopTimer;        
+        }
+        if(i == 9){
+          Serial.println(""Cycle completed"");
+        }
+         
+        Serial.println(""10 seconds timer"");
+        delay(1000);  
+      }
+      stopTimer: inAction = 0; 
+      
+    }
+  }
+}"
+"So basically, i am working on a  Feedback system  for  Home automation  ,which updates the state of the physical button connected to your board onto the  Blynk  app, so that you can control your lights from both - manually and through the app.I am using an  ESP32  board.The state of the physical button connected to the board is taken and is sent to the virtual button on the blynk app,using the native logic of blynk i.e param.asInt().hence i cannot use the logic of the normal switch like:  
+ if (digitalRead(PUSH_BUTTON_1) == LOW) {
+digitalWrite(RELAY_PIN_1, HIGH);
+
+// Update Button Widget
+Blynk.virtualWrite(VPIN_BUTTON_1, HIGH);}
+ 
+ as i have to use relay1State which is given as param.asInt(); to update the blynk app.Also if i use this type of code i am incurring sequential toggles in the blynk app: 
+ void checkPhysicalButton()
+{
+if (digitalRead(PUSH_BUTTON_1) == HIGH) {
+  relay1State =!relay1State;
+  digitalWrite(RELAY_PIN_1, relay1State);
+  Blynk.virtualWrite(VPIN_BUTTON_1, relay1State);
+
+}
+
+else {
+    digitalWrite(RELAY_PIN_1, relay1State);
+    Blynk.virtualWrite(VPIN_BUTTON_1, relay1State);
+
+ }}      
+ 
+ so hence i have to use my the pushbutton state logic to remove the sequential toggles .But i am unable to use it as a  ""Press for on, release for off"" switch.
+it works as a Toggle switch- ""press once to turn and press again to turn it off.""
+i want to change this logic to Press for on, release for off.Please help me.Thank you! 
+ BLYNK_WRITE(VPIN_BUTTON_1) {
+ relay1State = param.asInt();
+ digitalWrite(RELAY_PIN_1, relay1State);
+}
+
+ void checkPhysicalButton()    
+{
+ if (digitalRead(PUSH_BUTTON_1) == LOW) {
+    // pushButton1State is used to avoid sequential toggles
+  if (pushButton1State != LOW) {
+
+  // Toggle Relay state
+  relay1State = !relay1State;
+  digitalWrite(RELAY_PIN_1, relay1State);
+
+  // Update Button Widget
+  Blynk.virtualWrite(VPIN_BUTTON_1, relay1State);
+    }
+  pushButton1State = LOW;
+  } else {
+pushButton1State = HIGH;
+}"
+"I have this code that has been a colaboration with some other fine guys,  
+ here is a like to the github 
+ MQTT RELAY DRIVER CODE 
+ the issue we have is in order to have each channel turn on we need to change the value stored here 
+ setLatchChannelOn(2); // with the number being the channelID 1-16,  
+ we construct the MQTT topic like /house/switchboard/12/relay/+/command // + being relay number 
+ any help is appreaciated  
+  // TODO: This should be more generic and awesome
+
+  String tmpBuf = topic;
+  Serial.println(tmpBuf);
+  Serial.println(String(mqttTopicPrefix).length());
+  //if (strcmp(topic, ""relay1"") == 0) {
+  if (true) {
+    Serial.println(""Matched"");
+    if ((char)payload[0] == '1')
+    {
+      setLatchChannelOn(2);
+      Serial.println(""Relay 2 triggered ON"");
+      client.publish(mqttStatusTopic, '1');
+
+    }
+    else if ((char)payload[0] == '0')
+    {
+      setLatchChannelOff(2);
+      Serial.println(""Relay 2 triggered OFF"");
+      client.publish(mqttStatusTopic, '0');
+    }
+  }
+}"
+I am new to OPC UA concept. I understand the principles of it but when it comes to practical aspects I have a problem. I want to send a number to OPC UA Server using ESP32 module. ESP32 should be programmed in Arduino IDE. How can I start writing the code? I try to google it but there is nothing I found. Does anyone know how I can proceed?
+"I am new to Arduino and blynk. I was working on the automated cloth line with blynk as my mobile application and I got it partially working. I am using virtual pin to enter the loop which is working perfectly fine. But upon the same button press it is supposed to end the loop which is not happening in the current state. 
+ Seems that i am missing something simple.
+Any thoughts ? 
+ #define BLYNK_PRINT DebugSerial
+
+
+int in3 = 7;
+int in4 = 8;
+
+
+#include <SoftwareSerial.h>
+SoftwareSerial DebugSerial(2, 3); // RX, TX
+
+#include <BlynkSimpleStream.h>
+char auth[] = ""6787948d586b458a96a1bcf38a952297"";
+
+void setup()
+{
+  Serial.begin(9600);
+  Blynk.begin(Serial, auth);
+
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+
+}
+
+BLYNK_WRITE(V3) //AUTOMATIC
+{
+  int pinValue2 = param.asInt(); // assigning incoming value from pin V1 to a variable
+
+    {
+      do { 
+        if (analogRead(0) < 650) 
+          {
+            digitalWrite(8, HIGH);
+            digitalWrite(7, LOW);
+          }
+          else
+          {
+            digitalWrite(8, LOW);
+            digitalWrite(7, HIGH);
+          }
+      }
+          while (pinValue2 != 0); 
+    }        
+
+  }
+
+
+void loop()
+{
+  Blynk.run();
+}"
+"I'm trying to trigger an action using the output of the callback function in my code. Basically, I will have a door sensor on ""reedTopic"" which needs to report ""OFF"" before allowing the payload for ""topic"" to be sent. The ""topic"" payload is a toggle for a garage door opener so the data from the ""topic"" will always remain the same. 
+ The goal is for when the esp8266-01 that is plugged into my car connects to the wireless network, it will detect the status of the ""reedTopic"" and if it is not equal to ""OFF"" it will not trigger the ""topic"" payload. 
+ I want to setup this automation completely in code and not have to rely on an additional software such as Node-Red or HomeAssistant to do the job. 
+ I'm also pretty sure that I do not fully understand the callback function and how it is supposed to be used, especially in this case. I'm still bit of an Arduino newbie so this is really my first project. I'm also pretty sure that there is some garbage code in there as most of the code was spliced together from examples in the Arduino IDE for the pubsubclient handler. 
+ #include <PubSubClient.h>
+#include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
+#include <ESP8266HTTPUpdateServer.h>
+
+const char* ssid = ""******"";
+const char* password = ""******"";
+const char* host = ""CarPresence"";
+const char* update_path = ""/"";
+const char* update_username = ""*****"";
+const char* update_password = ""*****"";
+
+char* topic = ""cmnd/GarageDoor/POWER"";
+const char* willTopic = ""cmnd/GarageDoor/POWER"";
+char* reedTopic = ""cmnd/GarageDoor/POWER2"";
+char* server = ""192.168.1.138"";
+byte willQoS = 1;
+const char* willMessage = ""1"";
+boolean willRetain = false;
+boolean retained = true;
+
+ESP8266WebServer httpServer(80);
+ESP8266HTTPUpdateServer httpUpdater;
+WiFiClient wifiClient;
+PubSubClient client(server, 1883, wifiClient);
+
+void callback(char* reedTopic, byte* payload, unsigned int length) {
+  Serial.print(""Message arrived ["");
+ Serial.print(reedTopic);
+ Serial.print(""] "");
+  for (int i=0;i<length;i++) {
+    Serial.print((char)payload[i]);
+ }
+ if (strcmp((char* )reedTopic, ""OFF"") == 0) {
+  client.connect(""CarPresence"", willTopic, willQoS, willRetain, willMessage);
+    client.publish(topic, ""The Garage door is CLOSED... Opening..."");
+    client.publish(topic, ""1"");
+    while (WiFi.status() == WL_CONNECTED) {
+    delay(5000);
+    client.println(reedTopic);
+    client.publish(topic, ""Ah ah ah ah staying alive staying alive..."");
+    }
+    }
+  if (strcmp((char* )reedTopic, ""ON"") == 0) {
+    client.publish(topic, ""The Garage door is OPEN... Aborting..."");
+    while (WiFi.status() == WL_CONNECTED) {
+    delay(5000);
+    client.println(reedTopic);
+    client.publish(topic, ""Dying... I'm dying..."");
+    }
+  }
+  Serial.println();
+  }
+
+String macToStr(const uint8_t* mac)
+{
+  String result;
+  for (int i = 0; i < 6; ++i) {
+    result += String(mac[i], 16);
+    if (i < 5)
+      result += ':';
+  }
+  return result;
+}
+
+void setup() {
+  Serial.begin(115200);
+  delay(10);
+
+client.setCallback(callback);
+  Serial.println();
+  Serial.println();
+  Serial.print(""Connecting to "");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(""."");
+  }
+  client.connect(""CarPresence"");
+  client.subscribe(topic);
+  client.subscribe(reedTopic, retained);
+  Serial.println("""");
+  Serial.println(""WiFi connected"");  
+  Serial.println(""IP address: "");
+  Serial.println(WiFi.localIP());
+
+  httpUpdater.setup(&httpServer, update_path, update_username, update_password);
+  httpServer.begin();
+
+  Serial.printf(""HTTPUpdateServer ready! Open http://%s%s in your browser and login with username '%s' and password '%s'\n"", host, update_path, update_username, update_password);
+
+  // Generate client name based on MAC address and last 8 bits of microsecond counter
+  String clientName = ""CarPresence"";
+
+  Serial.print(""Connecting to "");
+  Serial.print(server);
+  Serial.print("" as "");
+  Serial.println(clientName);
+
+  if (client.connect((char*) clientName.c_str())) {
+    Serial.println(""Connected to MQTT broker"");
+    Serial.print(""Topics are: "");
+    Serial.println(topic);
+    Serial.println(reedTopic);
+
+    if (client.publish(topic, ""Hello from ESP8266"")) {
+      Serial.println(""Publish ok"");
+    }
+    else {
+      Serial.println(""Publish failed"");
+    }
+  }
+  else {
+    Serial.println(""MQTT connect failed"");
+    Serial.println(""Will reset and try again..."");
+    abort();
+  }
+}
+
+void loop() {
+
+  httpServer.handleClient();
+  client.setCallback(callback);
+
+      while (WiFi.status() != WL_CONNECTED) {
+    delay(5000);
+    Serial.print(""."");
+  }
+}
+ 
+ For the most part the code works. The biggest problem is the IF statement surrounding the reedTopic feedback. The code blows straight past it and executes the topic payload without a second glance."
+"i m using industrial PIR sensor (ekmc1603111) [link- https://www.amazon.in/Panasonic-EKMC1603111-Pir-Sensor/dp/B016KL1EQG/ref=sr_1_1?s=industrial&ie=UTF8&qid=1535017218&sr=8-1&keywords=pir+sensor+ekmc1603111] . which is digital sensor, with relay on raspberry pi for lab automation, when motion is detected lab values goes to high n relays goes to high. & when it goes to low relay also goes to low, my problem as follows, when motion is detected or human is present in lab sensor gives 4-5V value on multi meter its correct n relay goes high, but when there is no motion n no human presence sensor still gives me 2-3V rather than Zero, n here relays always set to high.(here relays have to set as  LOW  so please help me out from this, VCC-5V, GND-GND, SINGAL-GPIO 18, Relay - GPIO 5,6. Thanks in advance. below is my code. 
+ from threading import Thread, Event import time
+
+import RPi.GPIO as GPIO 
+GPIO.setmode(GPIO.BCM) 
+GPIO.setup(18,GPIO.IN) 
+GPIO.setup(5,GPIO.OUT) 
+GPIO.setup(6,GPIO.OUT)
+
+class MyThread(Thread):
+    def __init__(self, timeout=20):
+        super(MyThread, self).__init__()
+        self.intruder_spotted = Event()
+        self.timeout = timeout
+
+        self.daemon = True
+
+    def run(self):
+        while True:
+            if self.intruder_spotted.wait(self.timeout):
+                self.intruder_spotted.clear()
+                print(""Intruder"")       
+                GPIO.output(5,GPIO.HIGH)
+                GPIO.output(6,GPIO.HIGH)
+            else:
+                print(""No intruder"")                                                                               
+                GPIO.output(5,GPIO.LOW)
+                GPIO.output(6,GPIO.LOW)
+
+
+t = MyThread(20)
+
+
+try:
+    t.start()
+    while True:
+        i=GPIO.input(18)
+        if i==1:
+            t.intruder_spotted.set()
+
+        time.sleep(1)
+
+except KeyboardInterrupt:
+    GPIO.cleanup()
+    exit(0)"
+"I bought a couple of humidity sensors
+ ebay link 
+ for cheap and tried them out.
+With 2 different sets of libraries and 2 different sensors, both produce very a very incorrect humidity reading off by the same 40 points. 
+ libraries 
+ code: 
+ #include ""DHT.h""
+
+DHT dht;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println();
+  Serial.println(""Status\tHumidity (%)\tTemperature (C)\t(F)"");
+
+  dht.setup(2); // data pin 2
+}
+
+void loop()
+{
+  delay(dht.getMinimumSamplingPeriod());
+
+  float humidity = dht.getHumidity();
+  float temperature = dht.getTemperature();
+
+  Serial.print(dht.getStatusString());
+  Serial.print(""\t"");
+  Serial.print(humidity, 1);
+  Serial.print(""\t\t"");
+  Serial.print(temperature, 1);
+  Serial.print(""\t\t"");
+  Serial.println(dht.toFahrenheit(temperature), 1);
+}
+ 
+ output: 
+ 
+ I have 2 other devices and weather reports of a sticky 82% humidity.
+The device is reporting 40% humidity. off by 40 points. 
+ I didn't exactly buy top shelf gear but I am also new to the technology. 
+ Is there a calibration to be performed?
+Am I expected to slap on 40 points for the ugly hack like the pros really do and its all really just one big lie?
+or are these sensors just junk? 
+ How do I get correct humidity readings from a DHT11 sensor, or do I just need better quality gear? 
+ The temp looks correct, humidity is not.
+Remotely accurate humidity readings are needed for my project. 
+ UPDATE:
+Tried the 3rd and all 3 are identical in behavior. Same 40 point deficiency. 
+ UPDATE #2: 
+ I retried the Adafruit libraries using their test code and if I was residing on Venus, it would be dead on.
+But sadly I live on Earth and these readings won't help much either. 
+ libraries and test code used 
+ output: 
+ 
+ UPDATE 3:
+I am attempting  https://forum.mysensors.org/topic/126/calibrating-humidty 
+If no additional updates, then either this worked or I bought something else. 
+ LAST UPDATE:
+This is a CHEMISTRY issue, not a digital. The DHT11 get cut without any calibration.
+Solution?
+Swell the metal just a little.
+Salt aids in the oxidation process, just ask any boat.
+I mixed some thick salt water in a cup and suspended the sensor above the cup with a piece of paper without getting it directly wet, which also somewhat sealed/encased the sensor below cup lip level.
+With the sensor (and not the board) somewhat air tight, I allowed the salt water vapors to work at it for about 6 - 8 hours.
+On this humid day, it was still 18 points shy.
+So I heated the salt water a little because I'm impatient.
+That shot the humidity up from ~50% to 95% instantly.
+Let it sit for about an hour, sensor was still reporting high.
+After 1 hour it is now holding at about -3% off target. Which is fine. 
+ The DHT11 has to be calibrated chemically (salt water) to become accurate... 
+ FYI:
+ calibration info"
+"I'm working on a new home automation project. In a nutshell, I have some Particle Photons controlling lights, an Arduino controlling the security system (door keypad, motion sensors) and some IR devices talking to Raspberry Pi that is doing some text-to-speech. I want to add a database with an web app that would let me control everything when I'm away.  
+ I could probably do it on a Godaddy MySql server without any problem, but I was wondering if there was a better way of doing this. If I host my own server, I could probably do local network communication. But since I just have a Celeron, would it be slower ? Would MySql be the best database for my project ? 
+When the code is going to be release, I want to include  Mycroft  for controlling everything vocally. 
+I just want some leads and idea for my project.  
+ If you want to know more about my project, let me know ! 
+ Thanks !"
+"hi i am new to micro controller / arduino 
+I am planning to use Arduino and Pic microcontroller  for home automation. for light , temperature , gas leak detection,fire detection, i am thinking to do a project ,at the transmitter end sensor senses the data and  arduino sends the data to Pic micro controller (recevier), based on data user switched on / off the fan/light and display the temperature, is it possible to do like this ?"
+"I would like to execute a function for X seconds every Y seconds on Arduino. 
+ I'm trying to control a resistance to heat up some water in a constant rate (1o Celsius per minute), so what I thought was: I'll measure what is the rate when it's running for the whole minute and then I'll adjust it to the desired rate. 
+ Let's say it heats up 5o celsius per minute, so I would like to activate the resistance for 60/5 seconds, but not all at once, I was thinking about activating the resistance for 1 second every 12 seconds to keep the rate constant for no matter what (if the day is too cold, too hot, if I change my equipment etc.) 
+ Do you guys think this is possible? If not, any ideas how can I make it work? I saw the Timer.h library but it doesn't seems to solve my problem =/ 
+ Thanks in advance, please let me know if any information can be useful!"
+"I am trying to create a system for controlling my home appliances using arduino over internet.
+Arduino Uno will act as a web server and recieve the commands from remote browser. 
+ In doing to I am not sure as how to protect arduino from unauthorized requests from web.
+Is there a way to do this, or is there any library available for this. Please suggest."
+"I'm currently working on an automatic light switch. Here's my code: 
+ #include <Servo.h>
+
+boolean time = false;
+const int timeLim = 10000;
+const int delLen = 5000;
+int pirVal = 0;
+
+const int pirPin = 2;
+const int sensePin = 5;
+boolean timeRet = false;
+int lightVal;
+Servo  myServo;
+unsigned long limit;
+
+void setup() {
+
+  Serial.begin(9600);
+  pinMode(pirPin, INPUT);
+  myServo.attach(11);
+  myServo.write(40);
+
+}
+
+void loop() {
+  unsigned long Timer = millis(); 
+
+  pirVal = digitalRead(pirPin); 
+  int lightVal = analogRead(sensePin);
+
+  Serial.print(pirVal);
+  Serial.print(' ');
+  Serial.print(lightVal);
+  Serial.print(' ');
+  Serial.print(Timer);
+  Serial.print(' ');
+  Serial.print(time);
+  Serial.print(' ');
+  Serial.print(limit);
+  Serial.print(' ');
+  Serial.println(timeRet);
+
+  if ( lightVal < 400 ) {
+    time = false;
+    limit = 0;
+    timeRet = false;
+  } if ( lightVal < 400 && pirVal == 1 ) {
+    unsigned long time = false;
+    pirVal = 0;
+    myServo.write(160);
+  } if ( lightVal > 400 && pirVal == 0 && timeRet == false){
+    limit = getTimeLim( timeLim, Timer );
+    pirVal = 0;
+    timeRet = true;
+  } if ( lightVal > 400 && pirVal == 0 && timeRet == true ) {
+    time = timeStat ( limit, Timer );
+  } if ( lightVal > 400 && time == true ) {
+    myServo.write(40);
+  }
+}
+
+int getTimeLim( const int timeLim, unsigned long Timer ) {
+  unsigned long limit = Timer + timeLim;
+  return limit;
+}
+
+boolean timeStat( unsigned long limit, unsigned long Timer ) {
+
+  if ( Timer < limit ) {
+    time = false;
+  } else if ( Timer > limit ) {
+    time = true;
+  }
+  return time;
+}
+ 
+ The problem is that when you look at the serial the first time the getTimeLim function it works, but the second time is always some outrageous number (e.g. 4294937965). I don't know why it would give me this huge number. Help would be much appreciated."

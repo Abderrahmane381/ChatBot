@@ -1,0 +1,597 @@
+Titre,Contenu
+Temperature And Humidity Monitoring System,"Temperature And Humidity Monitoring System
+Using DHT11 and OLED
+Apr 5, 2022
+•
+23997 views
+•
+3 respects
+Components and supplies
+1
+Arduino UNO
+1
+Graphic OLED, 128 x 64
+1
+Breadboard (generic)
+1
+DHT11 Temperature & Humidity Sensor (3 pins)
+1
+Jumper wires (generic)
+Apps and platforms
+1
+Arduino IDE
+Project description
+Code
+The Code
+arduino
+Paste This Code In the Arduino IDE
+1
+#include
+<
+dht
+.
+h
+>
+2
+#define dht_apin
+7
+3
+dht
+DHT
+;
+4
+5
+6
+7
+#include
+<
+Wire
+.
+h
+>
+8
+#include
+<
+Adafruit_GFX
+.
+h
+>
+9
+#include
+<
+Adafruit_SSD1306
+.
+h
+>
+10
+11
+#define
+SCREEN_WIDTH
+128
+12
+#define
+SCREEN_HEIGHT
+64
+13
+14
+Adafruit_SSD1306
+oled
+(
+SCREEN_WIDTH
+,
+SCREEN_HEIGHT
+,
+&
+Wire
+,
+-
+1
+)
+;
+15
+16
+17
+18
+void
+setup
+(
+)
+{
+19
+20
+Serial
+.
+begin
+(
+9600
+)
+;
+21
+delay
+(
+500
+)
+;
+22
+Serial
+.
+println
+(
+""DHT11 Humidity & temperature Sensor\
+23
+\
+24
+""
+)
+;
+25
+delay
+(
+1000
+)
+;
+26
+27
+}
+28
+29
+void
+loop
+(
+)
+{
+30
+31
+DHT
+.
+read11
+(
+dht_apin
+)
+;
+32
+33
+Serial
+.
+print
+(
+""Current humidity = ""
+)
+;
+34
+Serial
+.
+print
+(
+DHT
+.
+humidity
+)
+;
+35
+Serial
+.
+print
+(
+""%  ""
+)
+;
+36
+Serial
+.
+print
+(
+""temperature = ""
+)
+;
+37
+Serial
+.
+print
+(
+DHT
+.
+temperature
+)
+;
+38
+Serial
+.
+println
+(
+""C  ""
+)
+;
+39
+40
+delay
+(
+2000
+)
+;
+41
+Temp_and_Humidity
+(
+)
+;
+42
+43
+44
+45
+46
+}
+47
+48
+void
+Temp_and_Humidity
+(
+)
+{
+49
+if
+(
+!
+oled
+.
+begin
+(
+SSD1306_SWITCHCAPVCC
+,
+0x3C
+)
+)
+{
+50
+Serial
+.
+println
+(
+F
+(
+""SSD1306 allocation failed""
+)
+)
+;
+51
+while
+(
+true
+)
+;
+52
+}
+53
+54
+delay
+(
+2000
+)
+;
+55
+oled
+.
+clearDisplay
+(
+)
+;
+56
+oled
+.
+setTextSize
+(
+2
+)
+;
+57
+oled
+.
+setTextColor
+(
+WHITE
+)
+;
+58
+oled
+.
+setCursor
+(
+0
+,
+10
+)
+;
+59
+oled
+.
+print
+(
+""Temp  & Humidity ""
+)
+;
+60
+61
+oled
+.
+clearDisplay
+(
+)
+;
+62
+63
+oled
+.
+setTextSize
+(
+1
+)
+;
+64
+oled
+.
+setTextColor
+(
+WHITE
+)
+;
+65
+oled
+.
+setCursor
+(
+0
+,
+10
+)
+;
+66
+oled
+.
+println
+(
+""Temp(C)  : ""
+)
+;
+67
+68
+oled
+.
+setTextSize
+(
+2
+)
+;
+69
+oled
+.
+setTextColor
+(
+WHITE
+)
+;
+70
+oled
+.
+setCursor
+(
+50
+,
+20
+)
+;
+71
+oled
+.
+println
+(
+DHT
+.
+temperature
+)
+;
+72
+73
+oled
+.
+setTextSize
+(
+1
+)
+;
+74
+oled
+.
+setTextColor
+(
+WHITE
+)
+;
+75
+oled
+.
+setCursor
+(
+0
+,
+40
+)
+;
+76
+oled
+.
+println
+(
+""Humidity(%) : ""
+)
+;
+77
+oled
+.
+setTextSize
+(
+2
+)
+;
+78
+oled
+.
+setTextColor
+(
+WHITE
+)
+;
+79
+oled
+.
+setCursor
+(
+50
+,
+50
+)
+;
+80
+oled
+.
+println
+(
+DHT
+.
+humidity
+)
+;
+81
+oled
+.
+setCursor
+(
+60
+,
+90
+)
+;
+82
+oled
+.
+println
+(
+""%""
+)
+;
+83
+oled
+.
+display
+(
+)
+;
+84
+85
+}
+86
+87
+88
+89
+90
+91
+92
+#include<dht.h>
+#define dht_apin 7
+dht DHT;
+
+
+
+#include  <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define  SCREEN_WIDTH 128 
+#define SCREEN_HEIGHT 64 
+
+Adafruit_SSD1306 oled(SCREEN_WIDTH,  SCREEN_HEIGHT, &Wire, -1);
+
+
+
+void setup(){
+ 
+  Serial.begin(9600);
+  delay(500);
+  Serial.println(""DHT11 Humidity & temperature Sensor\
+\
+"");
+  delay(1000);
+ 
+}
+ 
+void loop(){
+ 
+    DHT.read11(dht_apin);
+    
+    Serial.print(""Current humidity = "");
+    Serial.print(DHT.humidity);
+    Serial.print(""%  "");
+    Serial.print(""temperature = "");
+    Serial.print(DHT.temperature);  
+    Serial.println(""C  "");
+    
+    delay(2000);
+    Temp_and_Humidity();
+  
+
+  
+
+}
+
+void Temp_and_Humidity(){
+  if (!oled.begin(SSD1306_SWITCHCAPVCC,  0x3C)) {
+    Serial.println(F(""SSD1306 allocation failed""));
+    while (true);
+  }
+
+  delay(2000);        
+  oled.clearDisplay(); 
+  oled.setTextSize(2);          
+  oled.setTextColor(WHITE);    
+  oled.setCursor(0, 10); 
+  oled.print(""Temp  & Humidity ""); 
+
+  oled.clearDisplay(); 
+  
+  oled.setTextSize(1);          
+  oled.setTextColor(WHITE);    
+  oled.setCursor(0, 10); 
+  oled.println(""Temp(C)  : "");
+  
+  oled.setTextSize(2);          
+  oled.setTextColor(WHITE);    
+  oled.setCursor(50, 20); 
+  oled.println(DHT.temperature);
+
+  oled.setTextSize(1);          
+  oled.setTextColor(WHITE);    
+  oled.setCursor(0, 40);       
+  oled.println(""Humidity(%) : "");
+  oled.setTextSize(2);          
+  oled.setTextColor(WHITE);    
+  oled.setCursor(50, 50); 
+  oled.println(DHT.humidity);
+  oled.setCursor(60,  90);
+  oled.println(""%"");
+  oled.display(); 
+  
+}
+Downloadable files
+Circuit Diagram
+You can See from this the wiring that needs to be made
+Circuit Diagram
+Circuit Diagram
+You can See from this the wiring that needs to be made
+Circuit Diagram
+Comments
+Only logged in users can leave comments
+login
+sanithu_hemage
+0 Followers
+•
+0 Projects
+FOLLOW
+0"

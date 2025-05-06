@@ -1,0 +1,3498 @@
+mot_clé,nom_du_fichier,url,contenu
+arduino monitoring Zabbix,cve-vendor-list.txt,https://raw.githubusercontent.com/decal/werdlists/master/vuln-data/cve-vendor-list.txt,"$0.99_kindle_books_project
+1024cms
+11in1
+129zou
+12net
+133
+163
+1800contacts
+1kxun
+2g_live_tv_project
+2glux
+2rv
+30a
+3com
+3dprotect
+3ds
+3ivx
+3par
+3s-software
+3sgroup
+4t-niagara
+4you-studio
+63reasons
+6677g
+7-zip
+7725
+7_habits_personal_development_project
+7andi-fs.co
+7mediaws
+7sage
+7t
+9.dotpp.net
+90meter
+99only
+9bis
+9gag
+9jacompass
+a-pdf
+a10networks
+a9tech
+aas9
+ab_google_map_travel_project
+abb
+abbyy
+abeel
+abine
+abrahamtours
+absolute
+absolutefuturity
+absolutengine
+abtei-neuburg
+abu_ali_anasheeds_proje"
+arduino monitoring Zabbix,micro_repos_orgs_all.txt,https://raw.githubusercontent.com/xvnpw/ai-security-analyzer/main/data/micro_repos_orgs_all.txt,"abap microsoft/aisdkforsapabap
+apex google/sf-evolve-forms
+batchfile azure/azure-cosmos-db-emulator-docker
+bicep azure/aca-dotnet-workshop
+bicep azure/aca-landing-zone-accelerator
+bicep azure/aksarc
+bicep azure/appservice-landing-zone-accelerator
+bicep azure/azure-governance-visualizer-accelerator
+bicep azure/azure-openai-landing-zone
+bicep azure/azure-synapse-analytics-end2end
+bicep azure/bicep-lz-vending
+bicep azure/data-landing-zone
+bicep azure/data-management-zone
+bicep azure/gpt-rag
+bicep a"
+arduino monitoring Zabbix,subnames.txt,https://raw.githubusercontent.com/CTF-MissFeng/bayonet/master/tools/oneforall/data/subnames.txt,"www
+mail
+mx
+ns1
+ns2
+m
+ns
+mx0
+mail2
+remote
+mx1
+mailserver
+smtp
+blog
+webmail
+server
+ns3
+mx2
+mail1
+vpn
+dev
+mx7
+secure
+shop
+ns4
+cloud
+ftp
+mx01
+api
+portal
+dns1
+test
+dns2
+email
+host
+app
+support
+ww1
+mailin2
+mailin1
+pop
+bbs
+web
+forum
+owa
+localhost
+webdisk
+cpanel
+whm
+autodiscover
+autoconfig
+imap
+pop3
+www2
+admin
+news
+new
+mysql
+old
+lists
+mobile
+static
+docs
+beta
+sql
+demo
+cp
+calendar
+wiki
+media
+images
+img
+www1
+intranet
+video
+sip
+cdn
+stats
+www3
+dns
+search
+staging
+chat
+wap
+my
+svn
+sites
+proxy
+ads
+crm
+cms
+backup"
+arduino monitoring Zabbix,c100.txt,https://raw.githubusercontent.com/IntelLabs/control-flag/master/github/c100.txt,"https://github.com/git/git
+https://github.com/beanstalkd/beanstalkd
+https://github.com/sqlcipher/sqlcipher
+https://github.com/rubinius/rubinius
+https://github.com/toland/qlmarkdown
+https://github.com/IoLanguage/io
+https://github.com/lloyd/yajl
+https://github.com/darkk/redsocks
+https://github.com/PromyLOPh/pianobar
+https://github.com/codahale/bcrypt-ruby
+https://github.com/taf2/curb
+https://github.com/jwiegley/git-scripts
+https://github.com/rhomobile/rhodes
+https://github.com/FreeRADIUS/freeradiu"
+arduino monitoring Zabbix,top-10000.txt,https://raw.githubusercontent.com/insightglacier/Dictionary-Of-Pentesting/master/Subdomain/top-10000.txt,"# Generated 2020-08-19 13:12:18.747567
+count,subdomain
+24228470,www
+9028885,*
+5700863,mail
+4409072,webmail
+4148379,cpanel
+4141034,webdisk
+2281088,autodiscover
+1756921,sni
+716164,cpcontacts
+716139,cpcalendars
+333942,com
+290179,dev
+274954,test
+210600,m
+204749,staging
+178263,blog
+143616,shop
+133960,vpn
+125224,api
+120556,demo
+108634,whm
+86858,ftl
+83632,admin
+82610,store
+75206,app
+71859,storage
+68945,database
+67310,mesh
+67125,tls
+65994,cloud
+65235,ftp
+60113,ipv6
+57148,smtp
+53423,web
+52320,eu
+51998,be"
+arduino monitoring Zabbix,infos.txt,https://raw.githubusercontent.com/mqu/viessmann-mqtt/master/infos.txt,"links :
+
+metrics visualisation tools
+time series visualisation monitoring tools
+
+- http://pdacontrolen.com/esp8266-grafana-influxdb-node-red-arduino-mqtt/
+- http://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
+
+- http://docs.influxdata.com/ : chronograph, telegraph, influx-db
+- https://www.youtube.com/watch?v=WxUTYzxIDns : raspberryPI + node-red + MQTT
+
+rasp + node-red :
+- http://www.projetsdiy.fr/node-red-decouverte-sur-raspberry-pi-3-ou-2/#.WLE3W1d"
+arduino monitoring Zabbix,submitted.log,https://raw.githubusercontent.com/thoppe/orthographic-pedant/master/logs/submitted.log,"Britian ssstonebraker/braker-scripts 1443403871
+Britian ga7g08/pymapgb 1443406790
+Buddah bgbennyboy/DoubleFine-Explorer 1443407221
+Buddah schdub/tsto 1443407231
+Buddah lukezheng/Buddah 1443407241
+Buddist scoverage/scalac-scoverage-plugin 1443407252
+Cambrige erdincyilmazel/Cambridge 1443407262
+Cambrige lesfurets/lesfurets-conferences 1443407276
+Carribbean mlettini/Best-Playlist-Ever 1443407874
+Carribean Gericom/EveryFileExplorer 1443407885
+Carribean danoctavian/bit-smuggler 1443407899
+Carribean m"
+arduino monitoring Zabbix,Open Source For You_ Cloud Computing December 2017.txt,https://raw.githubusercontent.com/standardgalactic/quadrivium/main/omniology/Open Source For You_ Cloud Computing December 2017.txt,"ISSN-2456-4885
+DECEMBER 2017
+07 
+FossBytes
+  16  
+New Products
+  104  
+Tips & Tricks
+REGULAR FEATURES
+86
+38
+28
+CONTENTS
+4 | DECEMBER 2017 | OPEN SOURCE FOR YOU | www.OpenSourceForU.com
+
+
+Solus is an operating system that is designed for 
+home computing. It ships with a variety of 
+software out-of-the-box, so you can set it up 
+without too much fuss
+December 2017
+Solus 3 GNOME
+CD T
+eam
+ e-m
+ail: 
+cdtea
+m@
+efy.i
+n
+Rec
+om
+men
+ded 
+Syst
+em 
+Req
+uire
+men
+ts: P
+4, 1
+GB 
+RAM
+, DV
+D-R
+OM 
+Driv
+e
+N
+ot
+e:"
+arduino monitoring Zabbix,ChangeLog.txt,https://raw.githubusercontent.com/astlinux-project/astlinux/master/docs/ChangeLog.txt,"=========================================================
+=== ChangeLog Information for AstLinux 1.x
+===
+===
+=== docs/ChangeLog.txt
+=========================================================
+
+Additions for AstLinux 1.5.10:
+=============================
+
+Released @TBD@
+
+** System
+
+-- Linux Kernel 5.10.236-cip59, security and bug fixes.
+   Switch to using the ""Civil Infrastructure Platform"" SLTS v5.10 kernel
+   More info: https://wiki.linuxfoundation.org/civilinfrastructureplatform/start
+
+-- Add NV"
+arduino monitoring Zabbix,readme.txt,https://raw.githubusercontent.com/wick2o/gitDigger/master/V1/content/readme.txt,"846524 README
+307197 README.txt
+180319 README.md
+97364 README.rdoc
+70809 README.markdown
+53151 README_FOR_APP
+32235 README.textile
+18226 README.rst
+13610 README.html
+7917 README.mdown
+4273 README.svn-base
+3533 readme_moodle.txt
+3274 readme.mkd
+3057 README.txt.svn-base
+2367 _readme.txt
+2239 README.debian
+2070 README.mkdn
+1797 README.FIRST
+1730 Readme.htm
+1728 README.ja
+1660 README.modules
+1656 README.saa7134
+1648 README.Locking
+1630 README.drm
+1629 README.audio
+1629 README.FAQ
+1628 README.quirks
+"
+arduino monitoring Zabbix,projects.txt,https://raw.githubusercontent.com/gousiosg/pullreqs/master/doc/survey/projects.txt,"01org appframework
+01org rib
+01org web-simulator
+0xd34df00d leechcraft
+10gen-labs mongo-web-shell
+10up varying-vagrant-vagrants
+1602 compound
+1602 jugglingdb
+23 resumable.js
+2600hz kazoo
+4teamwork ftw.contentpage
+4teamwork opengever.core
+A24Group ssGWT-lib
+abarisain dmix
+Abhoryo APYDataGridBundle
+abraham twitteroauth
+acm-uiuc liquid
+acrmp chefspec
+Activiti Activiti
+adam4813 Sigma
+adambard learnxinyminutes-docs
+adaptivecomputing torque
+adboomgrp lodestar_base
+addyosmani backbone-fundamentals
+addy"
+arduino monitoring Zabbix,5000.txt,https://raw.githubusercontent.com/wangzhengya/allitebooks/master/results/5000.txt,"http://file.allitebooks.com/20171001/Java 9 Modularity Revealed.pdf
+http://file.allitebooks.com/20171002/Beginning Spring Boot 2.pdf
+http://file.allitebooks.com/20171002/Pro Functional PHP Programming.pdf
+http://file.allitebooks.com/20171004/Troubleshooting Java Performance.pdf
+http://file.allitebooks.com/20171001/Clean C.pdf
+http://file.allitebooks.com/20170929/Zabbix Network Monitoring, Second Edition.pdf
+http://file.allitebooks.com/20170930/Learning React.pdf
+http://file.allitebooks.com/20170"
+arduino monitoring Zabbix,todo.el6.txt,https://raw.githubusercontent.com/lambci/yumda/master/amazon-linux-1/todo.el6.txt,"nodejs-0.10.48-3.el6 391
+ghc-base-4.3.1.0-46.el6 131
+ghc-compiler-7.0.4-46.el6 124
+ghc-base-devel-4.3.1.0-46.el6 121
+php-channel-horde-1.0-1.el6 111
+tesseract-3.04.00-3.el6 107
+asterisk-1.8.32.3-2.el6 101
+drupal7-7.67-1.el6 97
+root-core-5.34.38-3.el6 91
+globus-common-18.5-1.el6 91
+root-cint-5.34.38-3.el6 85
+ghc-array-0.3.0.2-46.el6 82
+php-horde-Horde-Exception-2.0.8-1.el6 79
+uwsgi-plugin-common-2.0.17.1-1.el6 74
+ghc-containers-0.4.0.0-46.el6 73
+qt5-qtbase-5.6.1-3.el6 70
+python34-3.4.10-4.el6 69
+"
+arduino monitoring Zabbix,Content.txt,https://raw.githubusercontent.com/estebanways/diy-linux-book/main/Content.txt,"Current Guide Status:
+[✔] = Text Complete**, subject to future upgrades.
+[X] = Text Incomplete/Pending, or the story is made out of screenshots. The documentation is available.
+[Q] = TODO queue.
+** Complete means technically complete, but without copy editing or proofreading.
+
+CONTENT:
+
+Module 1 - Meet the software installation sources and options available
+Where can I find software for GNU/Linux?:
+[✔] Software sources available
+Alternative software deployments:
+[✔] Automated install"
+arduino monitoring Zabbix,subdomains.txt,https://raw.githubusercontent.com/raw-packet/raw-packet/master/raw_packet/Scripts/DNS/subdomains.txt,"#arguments
+#cgi
+%
+%1
+%20www
+%locale%
+%s
+%s-%s
+%v
++
+-
+0
+0-search
+0-www
+00
+001
+007
+01
+012
+02
+03
+04
+05
+06
+080
+09
+1
+10
+100
+1000
+101
+102
+103
+104
+105
+106
+107
+108
+109
+10jqka
+11
+110
+111
+1111
+112
+113
+114
+115
+116
+117
+118
+119
+12
+120
+121
+122
+123
+1234
+12345
+123456
+1234567
+125
+126
+127
+127-0-0-1
+128
+129
+13
+130
+131
+132
+133
+134
+135
+136
+138
+139
+14
+140
+145
+146
+147
+148
+149
+15
+150
+151
+152
+154
+158
+16
+160
+161
+162
+163
+164
+167
+168
+169
+17
+171
+17173
+172
+173
+174
+176
+18
+180
+183
+184
+188
+189
+18f
+19
+191
+192
+193b
+195
+196
+197
+19"
+arduino monitoring Zabbix,情感分析用词.txt,https://raw.githubusercontent.com/cassieeric/python_crawler/master/xiaoming/情感分析用词.txt,"工作 
+经验 
+能力 
+熟悉 
+负责 
+开发 
+产品 
+优先 
+设计 
+团队 
+相关 
+岗位职责 
+沟通 
+良好 
+公司 
+要求 
+以上 
+以上学历 
+互联网 
+客户 
+技术 
+具备 
+任职 
+分析 
+项目 
+运营 
+完成 
+具有 
+用户 
+进行 
+需求 
+管理 
+我们 
+熟练 
+优化 
+平台 
+合作 
+销售 
+专业 
+精通 
+系统 
+测试 
+使用 
+策划 
+推广 
+职位 
+了解 
+岗位 
+维护 
+业务 
+活动 
+行业 
+提供 
+学习 
+数据 
+软件 
+流程 
+网站 
+文档 
+制定 
+根据 
+较强 
+责任心 
+协调 
+能够 
+培训 
+移动 
+方案 
+员工 
+数据库 
+框架 
+营销 
+编写 
+市场 
+参与 
+执行 
+一定 
+熟练掌握 
+优秀 
+应用 
+本科 
+前端 
+独立 
+代码 
+各种 
+游戏 
+编程 
+Java 
+问题 
+协助 
+媒体 
+精神 
+Web 
+大专 
+描述 
+架构 
+善于 
+And"
+arduino monitoring Zabbix,to_learn.txt,https://raw.githubusercontent.com/ehmicky/Notes/master/Repository_helpers/to_learn.txt,"┏━━━━━━━━━━━━━━┓
+                                  ┃   TO_LEARN   ┃
+                                  ┗━━━━━━━━━━━━━━┛
+
+kogosoftwarellc open-api
+
+
+== INTRO ==============================================================================================================================================
+To do                 | To do, Jobs priority, Check from time to time
+To search             | Software list
+
+== LANGUAGES ==============================================================================="
+arduino monitoring Zabbix,keywords.txt,https://raw.githubusercontent.com/alingse/go-linter-runner/main/source/keywords.txt,"go
+operator
+sdk
+api
+golang
+provider
+cli
+plugin
+terraform
+client
+aws
+server
+controller
+exporter
+example
+proxy
+grpc
+cloud
+k8s
+cluster
+kube
+utils
+agent
+config
+manager
+driver
+kafka
+azure
+gin
+admin
+template
+core
+vault
+kubernetes
+http
+log
+cache
+prometheus
+docker
+clean
+metrics
+bot
+gen
+demo
+redis
+git
+test
+libp2p
+tools
+service
+auth
+csi
+gcp
+graphql
+raft
+version
+storage
+gateway
+parser
+node
+image
+github
+for
+architecture
+backup
+container
+benchmark
+machine
+cqrs
+lambda
+engine
+pool
+protoc
+framework
+rpc
+pubsub
+i"
+arduino monitoring Zabbix,ssh-usernames.txt,https://raw.githubusercontent.com/edoardottt/secfiles/main/credentials/ssh-usernames.txt,"0
+000
+0000
+000000
+0007
+001
+0028
+0101
+0179416519
+02
+09
+0x
+0xquant
+1
+10
+100
+1000
+10002
+10008
+1001
+10011
+10016
+10018
+1003
+10039
+101
+10105
+106002
+11
+111
+1111
+11111
+111111
+11111111
+111111111111
+12
+123
+123123
+12321
+1234
+12345
+123456
+1234567
+12345678
+123456789
+1234qwer
+123abcd
+123QWEasd
+125
+12qwaszx
+14
+15
+1502
+153
+18
+1987
+1996
+1broker
+1p
+1panel
+1q2w3e4r5t
+1qaz2wsx
+1user
+2
+2020
+2021
+2022
+2023
+2024
+2024enolva
+2025
+2026
+22
+222
+2222
+222222
+23
+24online
+28
+281568
+2834
+3
+3245gs5662d34
+3333
+333333
+345gs5662d34"
+arduino monitoring Zabbix,2017_02_21.txt,https://raw.githubusercontent.com/trietptm/Security-News/master/Twitter/Zube/2017/2017_02_21.txt,"0xcharlie
+
+        Gotta make my slides for the 5th #Automotive #CyberSecurity Summit next month. Use access code ACS5_CM for 20% off: http://bit.ly/2k1PytB 
+
+ADTipsTricks
+
+        Or to anybody else rather than an actual adminhttps://twitter.com/Abhishek_PC/status/833588104003014657 ... 
+
+
+ChrisJohnRiley
+
+        [SuggestedReading] SSLyze v1.0.0 Released http://ift.tt/2lA2WGD 
+        [SuggestedReading] Reflecting on one very, very strange year at Uberhttp://ift.tt/2m1ntkJ 
+        [SuggestedRe"
+arduino monitoring Zabbix,vocab.txt,https://raw.githubusercontent.com/smartshark/seBERT/main/vocab.txt,"[PAD]
+[UNK]
+[CLS]
+[SEP]
+[MASK]
+[HASH]
+[CODE]
+[USER]
+!
+""
+#
+$
+%
+&
+'
+(
+)
+*
++
+,
+-
+.
+/
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+:
+;
+<
+=
+>
+?
+@
+A
+C
+D
+E
+H
+O
+R
+S
+U
+[
+\
+]
+^
+_
+`
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+{
+|
+}
+~
+¡
+¢
+£
+¤
+¥
+¦
+§
+¨
+©
+ª
+«
+¬
+®
+¯
+°
+±
+²
+³
+´
+µ
+¶
+·
+¸
+¹
+º
+»
+¼
+½
+¾
+¿
+×
+ß
+æ
+ð
+ø
+þ
+đ
+ı
+ł
+œ
+ƒ
+ǃ
+ə
+α
+β
+γ
+δ
+ε
+η
+θ
+ι
+κ
+λ
+μ
+ν
+ο
+π
+ρ
+ς
+σ
+τ
+υ
+φ
+ω
+а
+б
+в
+г
+д
+е
+ж
+з
+и
+к
+л
+м
+н
+о
+п
+р
+с
+т
+у
+ф
+х
+ц
+ч
+ш
+щ
+ы
+ь
+э
+ю
+я
+і
+א
+ב
+ג
+ד
+ה
+ו
+ט
+י
+ל
+מ
+ן
+נ
+ס
+ק
+ר
+ש
+ת
+ا
+ب
+ت
+ج
+ح
+د
+ر
+ز
+س
+ش
+ع
+غ
+ف
+ك
+ل
+م
+ن
+ه
+و
+ي
+ک
+گ
+ی
+क
+न
+र
+ा
+ि
+া
+น
+อ
+า
+เ
+ა
+ი
+"
+arduino monitoring Zabbix,top27k-subdomains.txt,https://raw.githubusercontent.com/gatete/DomainTrail/main/wordlists/top27k-subdomains.txt,"www
+mail
+api
+m
+autodiscover
+dev
+blog
+support
+email
+mobile
+test
+sip
+help
+news
+static
+webmail
+media
+search
+staging
+beta
+go
+secure
+ftp
+login
+jobs
+cdn
+careers
+shop
+www2
+store
+vpn
+ns2
+my
+smtp
+ns1
+events
+images
+blogs
+video
+admin
+app
+info
+stage
+download
+cloud
+developer
+apps
+portal
+web
+lists
+preview
+connect
+wiki
+ns3
+status
+community
+mx
+www1
+data
+it
+de
+stats
+forum
+cms
+e
+ns
+es
+assets
+qa
+localhost
+link
+cs
+demo
+research
+lyncdiscover
+auth
+a
+home
+forums
+ns4
+imap
+live
+docs
+remote
+img
+exchange
+c
+owa
+upload
+anal"
+arduino monitoring Zabbix,devops.stackexchange.com.txt,https://raw.githubusercontent.com/UKPLab/TWEAC-qa-agent-selection/master/data/stackexchange/train/devops.stackexchange.com.txt,"How do I automate deployments with Kubernetes?
+Jenkins - sending email after build with the build version as a subject
+If a piece of work requires manual testing/QA, do we need to wait until opening PR?
+Application monitoring in multiple EC2 instances
+Windows Service installation on Docker Container
+Best practices on how to erase everything in destination deployment folder and restart the app after deployment using Appveyor
+Configuration of circuit breaker on Traefik
+List encrypted RDS snapshots"
+arduino monitoring Zabbix,paths_h1.txt,https://raw.githubusercontent.com/scumdestroy/warlusts/main/paths_h1.txt,"Set-Cookie=test=test
+
+""-->"
+arduino monitoring Zabbix,m.txt,https://raw.githubusercontent.com/0i0/deepme-crawler/master/crawled.repos/m.txt,"moki-ics/moki
+mgholam/fastBinaryJSON
+mattiasgeniar/zabbix-orphaned-data-cleanup
+maliceio/malice
+marsyy/littl_tools
+michaelnoonan/inputsimulator
+mgholam/fastJSON
+mtschoen/JSONObject
+mr-kelly/KSFramework
+mrzapp/opened
+mobnetic/BitcoinChecker
+matkoch/TestLinker
+mwaskom/seaborn-data
+magicmonty/bash-git-prompt
+moserware/Skills
+matriex/System_Extractor-WIN
+mgravell/fast-member
+mproberts/node-crashlytics
+mehdime/DbContextScope
+magicmonty/delphi-code-coverage
+mikesprague/udacity-nanodegrees
+murtaugh/HTM"
+arduino monitoring Zabbix,description.txt,https://raw.githubusercontent.com/Mondego/pyreco/master/repoData/jpmens-mqttwarn/description.txt,"# mqttwarn
+
+To _warn_, _alert_, or _notify_.
+
+![Definition by Google](assets/google-definition.jpg)
+
+This program subscribes to any number of MQTT topics (which may include wildcards) and publishes received payloads to one or more notification services, including support for notifying more than one distinct service for the same message.
+
+For example, you may wish to notify via e-mail and to Pushover of an alarm published as text to the MQTT topic `home/monitoring/+`.
+
+_mqttwarn_ suppor"
+arduino monitoring Zabbix,linkedin_skills.txt,https://raw.githubusercontent.com/maciejszewczyk/linkedin-skills/master/linkedin_skills.txt,"1031 Exchanges
+10 Key
+1H NMR
+21st Century Skills
+21 CFR
+21 CFR Part 11
+2D graphics
+360 Degree Assessment
+360 Feedback
+3Com NBX
+3D Architectural Rendering
+3D GIS
+3D Graphics
+3D Modeling
+3D Rendering
+3D Scanning
+3D Seismic Interpretation
+3D Studio Max
+3D Studio Viz
+3D Visualization
+401k Rollovers
+4th Dimension
+5.1 Mixing
+5 Why
+960 Grid System
+A3 Thinking
+AAAHC
+AAC
+AACR2
+AAMS
+AAP
+AAR
+AASHTO
+AAT
+AAUS Scientific Diver
+Abacus
+AbacusLaw
+Abandonment
+ABAP
+ABAP-OO
+ABAP Web Dynpro
+Abaqus
+Abatement
+ABBYY
+AB"
+arduino monitoring Zabbix,dev-terms-4k.txt,https://raw.githubusercontent.com/scumdestroy/warlusts/main/dev-terms-4k.txt,"1-click
+1click
+20
+2018
+32bit
+4mlinux
+53
+64bit
+a
+aa
+aaaaa
+aar
+ab
+abilities
+about
+accelerate
+accelerator
+accelerators
+access
+accessibility
+accord
+accordion
+accumulo
+acf
+acm
+actioncable
+actionscript
+actionview
+activator
+activeadmin
+activedirectory
+activemodel
+activemq
+activerecord
+activesupport
+activiti
+activity
+actor
+ad
+ad-free
+adamtaylor
+adapter
+adb
+add
+add-ons
+addon
+addons
+addoutputfilter
+adfree
+adgeneration
+admin
+administrators
+adminlte
+admob
+adobe
+adobeair
+adobeanimate
+adobexd
+advanced
+advisor"
+arduino monitoring Zabbix,pypi_pkg_without_dependency.txt,https://raw.githubusercontent.com/osssanitizer/maloss/master/src/metadata/pypi_pkg_without_dependency.txt,"cloudwork
+catnames
+altin
+cloud-crony-worker
+ampdup
+coopr.solvers
+bemo
+csvfilter
+cfpp
+collabme
+blacksheep
+asyncleverbot
+batticon
+abNester
+aioexec
+atomisator.feed
+Cohorte-Herald
+appomatic_autocomplete
+csvcompare
+coinor
+ChatRelater
+asciilove
+blackclue
+bahasa
+betterlifepsi
+bambu-pusher
+blesonwin
+ANNarchy
+cotede
+alex
+asynqp-consumer
+awsjump
+buildsystem-zip-downloader
+async-dispatch
+chewie
+cartodb
+berryinfo
+autopep8_autoline
+chat
+chandl
+collective.emaillogin
+aiomcache
+choices
+Collectors
+Bat-man
+bcsv
+b"
+arduino monitoring Zabbix,words.txt,https://raw.githubusercontent.com/dwisiswant0/nuclei-confuser/master/build/words.txt,"""tagline"" : ""You Know, for Search""
+ - Codeforces 
+ - Giters 
+ - PALnet
+ - Profile | Pinterest
+ - Аудиокниги Клуб 
+ 2015 palo alto networks, inc. 
+ : 네이버 블로그
+  平台采用最新图像化展现技术
+  3CX Webclient 
+ = function(str, key)
+ @ JustFor.Fans
+ Profile - Wowhead
+ Solare Datensysteme GmbH
+ Vids 
+ alert(""欢迎使用 【管家婆分销erp)
+ caused an error:
+ class=""coral-heading coral-heading--1""
+ collection | Bandcamp 
+ content=""轻会议""
+ en Taringa! 
+ href=""/newimages/login/logo_icon.ico
+ href=""http://www.dwcache.com""
+ href=""http://ww"
+arduino monitoring Zabbix,1e7fc091cfa89b253b59a3168481399a.txt,https://raw.githubusercontent.com/SamJoan/pwlist/master/passwords/by_client/1e7fc091cfa89b253b59a3168481399a.txt,"!@
+-
+,.
+!@#!@#!@#
+.
+0123
+01234
+098poi;lk
+09po;l
+0okm9ijn
+0okm9ijn8uhb
+0p;
+1
+1111111
+=1-203948576
+1209qwpo
+!@#123
+!@#$123
+!@#$%123
+!@#$%^123
+123!@#
+123!@#$
+123!@#$%
+123!@#$%^
+1=2-30495867
+123098qweoiu
+123098qwepoi
+123123
+123@123!@#
+123123!@#
+123123123
+123123a
+123@123a
+123123A
+123@123A
+123@123aa
+123@123aA
+123@123Aa
+123@123AA
+123123abc
+123@123abc
+123123@abc
+123123Abc
+123@123Abc
+123123@Abc
+123123qweqwe
+!@#1234
+!@#$1234
+!@#$%1234
+!@#$%^1234
+1234^%$#@!
+1234!@#
+1234!@#$
+1234!@#$%
+1234!@#$%^
+1234$#@!
+12"
+arduino monitoring Zabbix,ArchLinux.txt,https://raw.githubusercontent.com/maldenol/gnulinux-cheatsheet/main/ArchLinux.txt,"# From Beginning To The End
+# Arch Linux
+
+
+# 1. Installation
+    # see ArchWiki at https://wiki.archlinux.org/
+    ## integrity check
+        # download ISO-file and GPG-signature (check it with PGP fingerprint) from https://www.archlinux.org/download/
+        pacman-key -v archlinux- -x86_64.iso.sig # to verify the ISO image using the signature before installation
+    # boot
+    ## Internet connection
+        wifi-menu # for wireless connection
+        dhcpcd # for wired connection
+    ## disk "
+arduino monitoring Zabbix,repos.txt,https://raw.githubusercontent.com/surprisetalk/licensure/main/repos.txt,"freeCodeCamp/freeCodeCamp
+EbookFoundation/free-programming-books
+sindresorhus/awesome
+public-apis/public-apis
+jwasham/coding-interview-university
+996icu/996.ICU
+kamranahmedse/developer-roadmap
+donnemartin/system-design-primer
+codecrafters-io/build-your-own-x
+facebook/react
+vuejs/vue
+vinta/awesome-python
+tensorflow/tensorflow
+trekhleb/javascript-algorithms
+TheAlgorithms/Python
+getify/You-Dont-Know-JS
+CyC2018/CS-Notes
+twbs/bootstrap
+ohmyzsh/ohmyzsh
+awesome-selfhosted/awesome-selfhosted
+torvalds/li"
+arduino monitoring Zabbix,921.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/921.txt,"The Irish Potato Famine Essential Events
+Clarksons Invertebrate Palaeontology And Evolution
+The American Heritage Student Thesaurus
+Utah Birds A Folding Pocket Guide To Familiar Species A Pocket Naturalist Guide
+The Upanishads A New Translation By Vernon Katz And Thomas Egenes Tarcher Cornerstone Editions
+Leonard Tome 4 Hi Fi Genie
+Pierre Hadot Selected Writings
+My Experiments With Truth An Autobiography Of Mahatma Gandhi
+Astrologia Occulta
+Buckminster Fuller Ideas And Integrities A Spo"
+arduino monitoring Zabbix,plugins.txt,https://raw.githubusercontent.com/marcelmaatkamp/docker-compose-applications/master/graylog/docker-fluentd-amqp-graylog2/plugins.txt,"~ $ gem search -rd fluent-plugin
+
+*** REMOTE GEMS ***
+
+fluent-plugin-5rocks (0.0.1)
+    Author: hokuts
+
+    Fluentd plugin to store data into 5Rocks
+
+fluent-plugin-access (0.0.2)
+    Author: kkaneko
+    Homepage: https://github.com/kenjikaneko/fluent-plugin-access
+
+    filtreing access log
+
+fluent-plugin-add (0.0.6)
+    Author: yu yamada
+    Homepage: https://github.com/yu-yamada/fluent-plugin-add
+
+    Output filter plugin to add messages
+
+fluent-plugin-add_empty_array (0.0.2)
+    Author: Hiroka"
+arduino monitoring Zabbix,.skills_vocabulory.txt,https://raw.githubusercontent.com/kaushikData/proFIT.AI/master/notebooks/.skills_vocabulory.txt,".net
+.net core
+.net framework
+1 с
+10 key
+10+ years installation and troubleshooting experience in all aspects of low vol
+1031 exchanges
+1099 preparation
+10k
+10q
+13c nmr spectroscopy
+1h nmr
+21 cfr part 11
+2d
+2d animation
+2d art
+2d artist
+2d cad drawing
+2d conceptual design
+2d graphics
+2d software
+2d to 3d conversion
+2d traditinal animation
+2d-graphics
+2g
+360 feedback
+3b baskı
+3b görselleştirme
+3b modelleme
+3b oluşturma
+3cx
+3d
+3d animation
+3d architectural rendering
+3d art
+3d coat
+3d computer aide"
+arduino monitoring Zabbix,2015-03-19-passwords.txt,https://raw.githubusercontent.com/kernelzeroday/opparis/master/extra/threat_data/daily_reports/2015-03-19/2015-03-19-passwords.txt,"~!@
+=======================
+  ----  
+-
+-=
+----
+-----
+,
+,,,
+,,,,
+,,,,,,,,,
+,,..
+,.
+!
+!^)$!(*
+!^*$%^
+!!!
+!!!!#$@#%#^
+!!)
+!)
+!@
+!@#
+!@#$
+!@#$%
+!@#$%^
+!@#$%^&*()_+|
+!*
+!*@*#*$*%*^*&*
+?
+??
+????
+.....
+""
+""""""""""""
+""""""""""""""
+(!!!!!!)
+)(^&*&#@$^#
+))))))))
+@
+@@@
+@#$%^&*(
+$
+$$$
+$$$$$$$
+$$$$$$$$$
+$$$$$$$$$$
+$%&%^*&^*&(@#$
+*
+*&)&(*&*^%^#
+*&#@#&%
+\\\\
+&
+&*
+#$^^#$&^%^*
+###
+%^#$&*&$^&
+%%
+%%%%
+%%%%%
+%%%%%%%
++
+..0
+000
+00000
+000000
+000000`
+00000000000
+00000000000000
+0000000001
+00000008
+000000qaz
+000006
+000009
+00001234
+"
+arduino monitoring Zabbix,2015-07-01-passwords.txt,https://raw.githubusercontent.com/kernelzeroday/opparis/master/extra/threat_data/daily_reports/2015-07-01/2015-07-01-passwords.txt,"`
+^
+^%$
+^%$#@!
+~!@#$%^&*()_+
+======
+============================================
+ 
+ _)(*
+__--_-__-_
+-
+--
+---
+----
+-----
+,.
+!
+!^)$!(*&
+!^*$%^
+!!
+!!^*$%^
+!!~!@
+!!!
+!!!!
+!!!!!
+!!!!!!
+!!!!!!!
+!!!!!!!!
+!!!!!!!!!
+!!!!!!!!!!
+!!!!!!@@@@@@
+!!!@@@
+!!!@@@!
+!!!@@@###
+!!!**
+!!!***
+!!(
+!!)
+!!)!!)
+!!).!%
+!!@
+!!@@
+!!*!!*
+!(*^)^!^
+!@
+!@#
+!@#$
+!@#$%
+!@#$%^
+!@#$%^&
+!@#$%^&*
+!@#$%^&*(
+!@#$%^&*()
+!@#$%^&*()_+|
+!@##@!!@#
+!*
+!*@*#*$*%*^*&*
+!*@&#^$%
+?
+.
+..
+....
+......
+""""""""""""""
+(*
+(*&^%$#@!
+)
+)(
+)(^&*&#@$^#
+)(*
+)(*&^%$#@"
+arduino monitoring Zabbix,2015-03-25-passwords.txt,https://raw.githubusercontent.com/kernelzeroday/opparis/master/extra/threat_data/daily_reports/2015-03-25/2015-03-25-passwords.txt,"~!@
+ -*
+_
+-
+-=
+-------
+,
+,,,,
+,,,,,,,,,
+,.
+!
+!!
+!!!!#$@#%#^
+!!!@@@
+!!@@##
+!@
+!@$@@
+!@#
+!@#$
+!@#$%
+!@#$%^
+!@#$%^&
+!@#$%^&*
+!@#$%^&*(
+!@#$%^&*()
+!@#$%^&*()_
+!@#$%^&*()_+
+!@#$%^&*()_+|
+!*
+!*@*#*$*%*^*&*
+!#%&
+?
+????
+.
+..
+""
+""""""""""""
+""""""""""""""
+(!!!!!!)
+)(^&*&#@$^#
+@
+@@@
+@#$%^&*(
+$$$$$$$
+$$$$$$$$$$
+$%^
+$%&%^*&^*&(@#$
+*
+***
+*&)&(*&*^%^#
+*&#@#&%
+\\\\
+&
+&*
+#$^^#$&^%^*
+#&&@%#$%^$%^%$
+###
+######
+%^#$&*&$^&
+%%%%%%%
+%%%%%%%%%
++
++|{}:""<>?
+0
+00
+000
+0000
+00..00..
+00000
+000000
+000000`
+0000000
+00000000
+0000000000
+0000"
+arduino monitoring Zabbix,EA_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/EA_urls.txt,"https://plus.google.com/u/0/b/117101455580789057170/117101455580789057170
+https://www.patreon.com/rkw
+http://sanchi.tv/
+http://www.zeetv.com/shows/qubool-hai/
+http://www.bassrebels.co.uk/
+http://coursetro.com/courses/2/Design-+-Code-an-Android-App-from-Scratch
+http://www.steelorse.com/
+http://instaredirect.tristantom.com
+https://teach210.bandcamp.com/
+https://www.patreon.com/BedtimeGaming
+http://bolixyr.blogspot.com.co/2016/03/ver-tu-capitulo-completo-en-hd.html
+http://www.hobbyideas.in/
+http://"
+arduino monitoring Zabbix,2015-04-26-passwords.txt,https://raw.githubusercontent.com/kernelzeroday/opparis/master/extra/threat_data/daily_reports/2015-04-26/2015-04-26-passwords.txt,"``````
+``````````
+^
+^^^(
+^^^*
+^^^&
+^$^@#%&*(%
+^$#&*^
+^$#&#%^*&&^$
+^$#%^*&*#$@@#$%%*&
+^*
+^*(%&%^^%$
+^*%(&*(&*%^)(*
+^&@$$%&^&@!#*
+^&$#@^%^%&&
+^&*(^%^@%#$^#
+^&*(&#^^%&%^
+^&#%^*&%
+^#^&*$^&*
+^%$
+^%$@&^&#%
+^%$#@!
+^%$#*&&%*(&
+^%%#%
+~~~~~
+~!@
+~!@#$
+~!@#$%
+~!@#$%^&*()_+
+<>?
+<>?"":{}|+_
+======
+=============================
+ 
+ _)(
+ _*
+_
+-
+-=
+-=-=--=-=-=-=-
+-_-
+-_-_-
+-_-_-_
+--
+---
+------
+-----------
+-!@
+,.
+;#^$%&^
+!
+!^)$!(*&
+!~!@
+! @_
+!!
+!!~!@
+!!!
+!!!!
+!!!!!
+!!!!!!
+!!!!!!!
+!!!!!!!!
+!!!!#$@#%#^
+!!!@@@
+!!!@@@#"
+arduino monitoring Zabbix,721-794.txt,https://raw.githubusercontent.com/trevery/scrap-allitebooks/master/bookUrl/721-794.txt,"http://file.allitebooks.com/20190108/Microsoft SQL Server 2008, Second Edition.pdf
+http://file.allitebooks.com/20190108/Sams Teach Yourself Database Programming with Visual C- 6 in 21 Days.pdf
+http://file.allitebooks.com/20190108/SharePoint 2013 For Dummies.epub
+http://file.allitebooks.com/20190107/ASP.NET 3.5 Website Programming.pdf
+http://file.allitebooks.com/20190107/Visual C- 2005 Demystified.pdf
+http://file.allitebooks.com/20190106/Cisco Secure Internet Security Solutions.pdf
+http://file.al"
+arduino monitoring Zabbix,vocab.txt,https://raw.githubusercontent.com/2dubs/Job-Skills-Extraction/master/input/vocab.txt,".NET
+.NET Compact Framework
+.NET Remoting
+10BASE-T
+2.5D
+21 CFR Part 11
+2D animation
+2D computer graphics
+2G
+3D CAD
+3D animation
+3D computer graphics
+3D modeling
+3D printing
+3D rendering
+3G
+3G Bridge
+3G MIMO
+3G Studios
+3G-324M
+3GPP
+3PAR
+3PL
+4G
+4GL
+5ESS switch
+5S
+A+
+A/B testing
+ACAPS
+ACD
+ACF2
+ACH
+ACL
+ACMT
+ACORD
+ACS
+ACS Systech Integrator
+ACSLS
+ACT
+ADA
+ADABAS
+ADDIE
+ADDM
+ADF
+ADFS
+ADINA
+ADMT
+ADO
+ADO.NET
+ADP Payroll
+ADS
+ADSL
+ADSO
+ADTRAN
+AERS
+AET
+AFATDS
+AFDX
+AFM
+AFS
+AGIS
+AHLTA
+AIA
+AIM
+ALE
+ALM
+AMBA
+AME
+"
+arduino monitoring Zabbix,large_corpus.txt,https://raw.githubusercontent.com/ttrangnguyen/ARist/gh-pages/large_corpus.txt,"liaoshengv/Ant-Multiple-Package
+edu-xored/memorise
+SpikeKing/wcl-snowfall-demo
+Serchinastico/CoolSwitch
+nextcloud/android
+pure4j/pure4j
+benwilcock/microservice-sampler
+babylikebird/TinGoLife
+taoliuh/CoordinateKeyboard
+fengcunhan/Hotpatch-Sample
+ankurdave/part
+surahul/Bounce
+kiswanij/jk-faces
+shunfei/DCMonitor
+confluentinc/kafka-connect-elasticsearch
+google/google-http-java-client
+poetix/ambivalence
+npgall/concurrent-locks
+heshiweij/CycleViewPager
+pakoito/RxActions
+txusballesteros/android-bind
+Bi"
+arduino monitoring Zabbix,Additional Information.txt,https://raw.githubusercontent.com/james-see/fake-resume-generator/master/data/Additional Information.txt,"Computer Skills:
+
+Operating Systems: CentOS, Ubuntu, Debian, Fedora, OpenSuSE Leap
+
+Programming Languages: C, C++, bash PHP, Python, HTML5, CSS3, JavaScript, perl, Julia
+
+Technology vim, tmux, git, atom, sphinx, sublime text
+
+
+
+
+
+
+
+
+
+TECHNICAL SKILLS:
+
+Proficient in:
+
+• Linux Administration
+
+• VMware Administration
+
+• Microsoft Office
+
+• Microsoft Project
+
+• SharePoint
+
+• SQL Server
+
+BUSINESS SKILLS:
+
+• Proficient in Business Process Management
+
+• Highly Skilled at Business Continuity Management"
+arduino monitoring Zabbix,english.txt,https://raw.githubusercontent.com/zouning68/QueryCorrector/master/querycorrect/dict/english.txt,"compiler 20000
+peer 20000
+person 20000
+password 20000
+transistor 20000
+engine 10000
+modem 10000
+arpg 10000
+netty 10000
+cas 10000
+unreal 10000
+dubbo 10000
+fluent 10000
+delphi 10000
+mining 10000
+image 10000
+meta 10000
+cms 10000
+analyst 10000
+yii 10000
+suse 10000
+srm 10000
+iov 10000
+data 10000
+hybrid 10000
+moldflow 10000
+operation 10000
+jni 10000
+slam 10000
+dnf 10000
+plm 10000
+gpu 10000
+revit 10000
+qnx 10000
+hbase 10000
+ie 10000
+peoplesoft 10000
+lms 10000
+typescript 10000
+qc 10000
+kafka 10000
+comme"
+arduino monitoring Zabbix,dnslist.txt,https://raw.githubusercontent.com/bonino97/LemonBooster-v2/master/API-LemonBooster-v2/Common/DNSLists/dnslist.txt,"*
+0
+0-www
+00
+000
+001
+002
+01
+02
+021xs
+03
+04
+05
+07
+1
+1.oca
+10
+100
+101
+102
+103
+104
+108
+109
+10secstore
+11
+110
+111
+114
+116
+117
+118
+12
+120
+123
+125
+128
+13
+134
+135
+138
+14
+143
+146
+148
+149
+15
+150
+154
+157
+16
+160
+161
+163
+168
+17
+175
+177
+178
+18
+180
+185
+186
+19
+190
+194
+195
+198
+1c
+2
+20
+200
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+202
+2020
+2020tls
+203
+21
+212
+217
+22
+222
+224
+227
+23
+2329
+234
+24
+245
+246
+248
+25
+2553
+2557
+26
+27
+28
+29
+3
+30
+30a
+31
+32
+33
+34
+35
+36
+360
+365
+37
+38
+39
+3cx
+3d
+3dprint
+3g
+4
+40
+"
+arduino monitoring Zabbix,combined.txt,https://raw.githubusercontent.com/dwisiswant0/nuclei-confuser/master/build/combined.txt,"jobs:
+© 2602 Gogs Version: 7 Page:
+  ""tagline"" : ""You Know, for Search""
+  image:
+  ports:
+ - Codeforces 
+ - Giters 
+ - PALnet
+ - Profile | Pinterest
+ - Аудиокниги Клуб 
+ 2015 palo alto networks, inc. 
+ : 네이버 블로그
+  平台采用最新图像化展现技术
+  3CX Webclient 
+ = function(str, key)
+ @ JustFor.Fans
+ Profile - Wowhead
+ Solare Datensysteme GmbH
+ Vids 
+ alert(""欢迎使用 【管家婆分销erp)
+ caused an error:
+ class=""coral-heading coral-heading--1""
+ collection | Bandcamp 
+ content=""轻会议""
+ en Taringa! 
+ href=""/newimages/login/logo_"
+arduino monitoring Zabbix,new-10000.txt,https://raw.githubusercontent.com/bonino97/LemonBooster-v2/master/API-LemonBooster-v2/Common/DNSLists/new-10000.txt,"subdomain
+www
+*
+mail
+webmail
+cpanel
+webdisk
+autodiscover
+sni
+com
+test
+cpcontacts
+cpcalendars
+dev
+m
+blog
+staging
+vpn
+shop
+api
+demo
+whm
+ftl
+store
+admin
+app
+storage
+tls
+database
+cloud
+ipv6
+ftp
+beta
+azurecertificateservice
+magento
+web
+smtp
+prod
+old
+multidomain-prober
+eu
+1
+new
+us
+en
+p
+mobile
+support
+www.test
+core
+acmeproxy-md
+www.dev
+cdn
+wp
+secure
+in
+stage
+www.blog
+mdp
+forum
+wap
+crm
+us3
+es
+portal
+org
+*.1
+pop
+wordpress
+worker
+redirect
+net
+office
+us2
+gameflex
+mgames
+wiki
+co
+www.mail
+static
+liveupdate
+c"
+arduino monitoring Zabbix,dev-terms.txt,https://raw.githubusercontent.com/hypn/custom-wordlists/master/dev-terms.txt,"1-click
+1click
+1password
+20
+2018
+32bit
+4mlinux
+53
+64bit
+a
+aa
+aaaaa
+aar
+ab
+abilities
+about
+absaoss
+accelerate
+accelerator
+accelerators
+acceptance
+access
+accessibility
+accord
+accordion
+account
+accumulo
+acf
+aci
+acm
+action
+actioncable
+actions
+actionscript
+actionview
+activator
+activeadmin
+activedirectory
+activemodel
+activemq
+activerecord
+activesupport
+activiti
+activity
+actor
+actorinterfaces
+ad
+adamtaylor
+adapter
+adapterlibrary
+adapters
+adaptertemplate
+adb
+add
+addon
+add-ons
+addons
+addoutputfilter
+addr"
+arduino monitoring Zabbix,Education.txt,https://raw.githubusercontent.com/james-see/fake-resume-generator/master/data/Education.txt,"Engineering
+University of Kentucky
+
+  2013 to   2019
+
+Bachelor of Science in Mathematics
+University of Kentucky
+
+  2010
+
+Mathematics
+WV State College
+
+  2005
+Skills
+C++ (Less than 1 year)
+,
+HTML5 (Less than 1 year)
+,
+JavaScript (Less than 1 year)
+,
+perl (Less than 1 year)
+,
+Python (4 years)
+Additional Information
+
+Computer Skills:
+
+Operating Systems: CentOS, Ubuntu, Debian, Fedora, OpenSuSE Leap
+
+Programming Languages: C, C++, bash PHP, Python, HTML5, CSS3, JavaScript, perl, Julia
+
+Technology vi"
+arduino monitoring Zabbix,needed.txt,https://raw.githubusercontent.com/minilandl/dotfiles/master/needed.txt,"1password
+7-zip
+8188eu-aircrack-dkms-git
+8188fu-dkms-git
+8188fu-kelebek333-dkms-git
+8192eu-dkms
+86box
+aarch64-linux-musl
+absolutely-proprietary
+acestream-engine
+acestream-launcher
+acidrip
+aconfmgr-git
+act
+activate-linux
+adcli
+adguardhome
+adms
+adw-gtk3-git
+adwaita-icon-theme-git
+adwmod-theme-git
+afdko
+agregore-browser-bin
+aic94xx-firmware
+airshipper
+airspy-git
+airspyhf-git
+akonadi-calendar-git
+akonadi-calendar-tools-git
+akonadi-contacts-git
+akonadi-git
+akonadi-import-wizard-git
+akonadi-mime-git
+a"
+arduino monitoring Zabbix,livre_507.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/old/kata/livre_507.txt,"Integrales De Philo Kant Preface A La Deuxieme Edition De La Critique De La Raison Pure
+Masters Of Photography Vol 9 Living Legends English Edition
+Stoicism Introduction To The Stoic Way Of Life Stoicism Series Book 1 English Edition
+Narrazione E Intervento In Psicologia Clinica
+Quotations About Life English Edition
+A Deux Cest Mieux
+Comment Je Suis Devenu Un Fantome Tome 2 Le Chant Des Sirenes
+Lencyclopedie Berangel Des Etats Dame A Lorigine De Nos Maladies Tome 6 Les Maladies De La Peau"
+arduino monitoring Zabbix,cybermanual.txt,https://raw.githubusercontent.com/wvrld/cybertutorial/master/cybermanual.txt,"Hello, my name is wvrld, and i will share some things i know with you, since you will probably need it. 
+
+
+
+ __      ___   ___ _  _ ___ _  _  ___ 
+ \ \    / /_\ | _ \ \| |_ _| \| |/ __|
+  \ \/\/ / _ \|   / .` || || .` | (_ |
+   \_/\_/_/ \_\_|_\_|\_|___|_|\_|\___|
+                                      
+ɪғ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴀᴛ ʏᴏᴜ ᴘʟᴀɴ ᴛᴏ ᴅᴏ ᴏʀ ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴀᴛ ᴛᴏ ᴡʀɪᴛᴇ ᴀʙᴏᴜᴛ, ᴅᴏɴ'ᴛ ᴄᴏᴍᴇ ʜᴇʀᴇ. ᴛʜɪs ɪs ғᴏʀ ᴇᴅᴜᴄᴀᴛɪᴏɴᴀʟ ᴘᴜʀᴘᴏsᴇs ᴏɴʟʏ.
+
+                                                                   "
+arduino monitoring Zabbix,livre_189.txt,https://raw.githubusercontent.com/brandoncharliem/hitam/master/sitemap-folder3/livre_189.txt,"1784394513 Mastering Python for Finance
+1784394556 Working with Odoo Learn how to use Odoo a resourceful open source business application platform designed to transform and modernize your business
+1784395749 QlikView for Finance
+1784397903 Raspberry Pi for Secret Agents Second Edition
+1784399205 Raspberry Pi Home Automation with Arduino Second Edition
+1784399760 Zabbix Network Monitoring Essentials
+1784422649 Wartime Broadcasting
+1784460788 Anti Money Laundering Toolkit Law Societys Risk "
+arduino monitoring Zabbix,96.txt,https://raw.githubusercontent.com/Backlinko-LLC/2020-google-searches/master/raw_data/keywords_100_to_500/96.txt,"lakers number 6
+contemporary art ceramics
+activate my device
+fha loan gov
+best date restaurants in dallas
+dll explorer
+shark tank gifting
+paracord 1100
+minnetonka boys basketball
+ruskin florida mobile home parks
+jetsplash car wash
+terry pratchett hogfather
+black and white rain boots
+""city of st cloud, mn jobs""
+fear of god hiker
+sinclair summer 2020
+long sleeve long dress casual
+怪物猎人冰原
+made in the usa label
+intown suites coupons
+put-in-bay pizza
+twitter verification code generator
+tom brady bowma"
+arduino monitoring Zabbix,General.txt,https://raw.githubusercontent.com/yaya131/RedMi-AX6-NSS/main/Config/General.txt,"# CONFIG_PACKAGE_firewall4 is not set
+
+CONFIG_MODULES=y
+CONFIG_HAVE_DOT_CONFIG=y
+CONFIG_HOST_OS_LINUX=y
+# CONFIG_HOST_OS_MACOS is not set
+# CONFIG_TARGET_airoha is not set
+# CONFIG_TARGET_sunxi is not set
+# CONFIG_TARGET_apm821xx is not set
+# CONFIG_TARGET_armsr is not set
+# CONFIG_TARGET_ath25 is not set
+# CONFIG_TARGET_ath79 is not set
+# CONFIG_TARGET_bcm27xx is not set
+# CONFIG_TARGET_bcm53xx is not set
+# CONFIG_TARGET_bcm47xx is not set
+# CONFIG_TARGET_bcm4908 is not set
+# CO"
+arduino monitoring Zabbix,packages.txt,https://raw.githubusercontent.com/anunna/blackarch-wiki/main/scripts/packages.txt,"0d1n
+0trace
+3proxy
+3proxy-win32
+42zip
+a2sv
+abcd
+abuse-ssl-bypass-waf
+acccheck
+ace
+aclpwn
+activedirectoryenum
+ad-ldap-enum
+adape-script
+adenum
+adfind
+adfspray
+adidnsdump
+admid-pack
+adminpagefinder
+admsnmp
+aesfix
+aeskeyfind
+aespipe
+aesshell
+afflib
+aflplusplus
+aflplusplus-debug
+afpfs-ng
+agafi
+against
+aggroargs
+aiengine
+aimage
+aiodnsbrute
+air
+aircrack-ng
+aircrack-ng-beta
+airflood
+airgeddon
+airopy
+airoscript
+airpwn
+ajpfuzzer
+albatar
+allthevhosts
+altdns
+amap
+amass
+amber
+amoco
+analyzemft
+analyzepesig
+a"
+arduino monitoring Zabbix,JAVA_repos.txt,https://raw.githubusercontent.com/LiuFang816/CugLM/master/data/JAVA_repos.txt,"victordibia_GidiGames
+gmr_rabbitmq-flume-plugin
+jirkapinkas_sitemonitoring-production
+QianmiOpen_dubbo-remoting-netty4
+akexorcist_Android-RoundCornerProgressBar
+sujee81_SparkApps
+andrewrapp_xbee-api
+mscharhag_ET
+fan2597_UiAutomatorHelper
+aNNiMON_Lightweight-Stream-API
+jon-hanson_parsecj
+raymanrt_orientqb
+tianzhijiexian_Float-Bar
+spring-guides_tut-spring-security-and-angular-js
+blad_nosey
+prometheus_cloudwatch_exporter
+Raizlabs_DebugModule
+gisgraphy_gisgraphy
+WhisperSystems_gcm-sender-async
+ToDou"
+arduino monitoring Zabbix,modules.txt,https://raw.githubusercontent.com/meta-introspector/time/main/2024/05/26/modules.txt,"https://github.com/00-Evan/shattered-pixel-dungeon
+https://github.com/0voice/backend_video
+https://github.com/0xProject/0x-monorepo
+https://github.com/101tec/nutch
+https://github.com/2ndQuadrant/pg_stat_plans
+https://github.com/3ft9/TwitApps
+https://github.com/3rdparty/jsl
+https://github.com/3rdparty/libprocess
+https://github.com/3rdparty/stout
+https://github.com/42-coin/42
+https://github.com/4d47/grille
+https://github.com/4store/4store
+https://github.com/4x4falcon/fosm-merkaartor
+https://github"
+arduino monitoring Zabbix,v1579845850.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v1579845850.txt,"K.E.K.W.
+Moin Leute.
+Da bin ich.
+Genauso pepo-fett wie das letzte Mal.
+Ne, das stimmt nicht.
+Ich habe es weiter abgenommen.
+Leute, es geht immer weiter abwärts.
+Was natürlich sehr pogge ist.
+Weil ich war vorher einfach zu dick.
+Aber jetzt.
+Jetzt ist alles gut.
+Ich kann nicht reden und tippen gleichzeitig.
+Da erzähle ich einfach nur Blödsinn.
+Nicht zusammenhängende Kram.
+Denkt euch nichts dabei.
+Steinadler 5.
+7 Monate Massive Subscription.
+Dankeschön.
+Ich habe heute mal was lustiges von der Arbei"
+arduino monitoring Zabbix,tag.qiita.txt,https://raw.githubusercontent.com/yh0sh/CorrLDA/master/sample/data/tag.qiita.txt,"#
+#AWS
+#Android
+#C++
+#CSS
+#DDD
+#MySQL
+#Oculus
+#Scala
+#Ubuntu
+#VR
+#Vive
+#aj2016toyama
+#andorid
+#cmdevio2016
+#countdown
+#dddzk
+#editor
+#emacs
+#gcpja
+#gcpug
+#html
+#hubot
+#jqery
+#memo
+#pip
+#progressBar
+#slack
+#slick-codegen
+#slick3
+#カチャカチャッターン
+#サバ缶
+%記法
+(required)
+,
+,IOT
+,jasmine
+,jquery
+,php
+,pyhton
+,スクレイピング
+-
+.NET
+.NET,C#
+.NETCore
+.NETFramework
+.NETラボ
+.htaccess
+.python-version
+.ubuntu,menu,launcher
+1.4.4
+10
+16.04
+16.04LTS
+1Password
+2.0
+2.4
+200
+2016
+2018
+2D
+2ch
+2段階認証
+3
+3.0
+3.0.0
+3.2.2
+3.3.0
+304
+30日で"
+arduino monitoring Zabbix,preprocess-result-2.txt,https://raw.githubusercontent.com/lihebi/benchmark/master/github/preprocess-result-2.txt,"zserge--jsmn.zip 
+zmap--zmap.zip 
+ZipArchive--ZipArchive.zip 
+zeromq--zyre.zip 
+zenovich--runkit.zip 
+zendtech--ZendOptimizerPlus.zip 
+ZBar--ZBar.zip 
+zardus--preeny.zip 
+yrutschle--sslh.zip 
+yrp604--rappel.zip 
+yourtion--30dayMakeOS.zip 
+yarrick--pingfs.zip 
+yarrick--iodine.zip 
+yaoweibin--nginx_tcp_proxy_module.zip 
+xk--node-threads-a-gogo.zip 
+xiehuc--pidgin-lwqq.zip 
+Xfennec--progress.zip 
+xelatihy--yocto-gl.zip 
+x0r1--jellyfish.zip 
+WuBingzheng--memleax.zip 
+wmutils--core.zip 
+wishstudio--f"
+arduino monitoring Zabbix,ipq807x-nss.txt,https://raw.githubusercontent.com/yaya131/RedMi-AX6-NSS/main/Config/ipq807x-nss.txt,"# CONFIG_PACKAGE_firewall4 is not set
+#
+CONFIG_MODULES=y
+CONFIG_HAVE_DOT_CONFIG=y
+CONFIG_HOST_OS_LINUX=y
+# CONFIG_HOST_OS_MACOS is not set
+# CONFIG_TARGET_airoha is not set
+# CONFIG_TARGET_sunxi is not set
+# CONFIG_TARGET_apm821xx is not set
+# CONFIG_TARGET_armsr is not set
+# CONFIG_TARGET_ath25 is not set
+# CONFIG_TARGET_ath79 is not set
+# CONFIG_TARGET_bcm27xx is not set
+# CONFIG_TARGET_bcm53xx is not set
+# CONFIG_TARGET_bcm47xx is not set
+# CONFIG_TARGET_bcm4908 is not set
+# CONFIG_TARGET_bcm"
+arduino monitoring Zabbix,all-packages.txt,https://raw.githubusercontent.com/regehr/bulk-compiler-tests/master/all-packages.txt,"2048-in-terminal-2015-01
+2bwm
+389-ds-base
+3dpong
+4store
+8086tiny
+90secondportraits
+915resolution
+9pfs
+AMB-plugins
+ANTs
+ASynK
+Albatross
+Autofac
+Blackbird-2017-02
+Boogie-unstable-2017-01
+CUnit-2.1
+CoinMP
+CopyQ
+Dafny
+Deedle
+Dell-5130cdn-Color-Laser-1.3
+DisnixWebService
+EZTrace
+EventStore
+Excel-DNA
+Excel-DNA.Registration-git
+ExtCore
+FAKE
+FSharp.AutoComplete
+FSharp.Compiler.CodeDom
+FSharp.Compiler.Service
+FSharp.Compiler.Tools
+FSharp.Core
+FSharp.Data
+FSharp.Formatting
+Fantomas
+FlameGraph-2017-07
+Flex"
+arduino monitoring Zabbix,Part671.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/Part671.txt,"peugeot satelis 500 full service repair manual
+sony kv 36hs500 trinitron color tv service manual download
+zenith chronomaster manual
+what is equivalent to honda manual transmission fluid
+2007 mercedes benz r class r500 owners manual
+2013 nissan xterra service repair manual download
+manual garmin 5000
+cng kit repair service manual
+pgo comet workshop manual
+penguin readers summary
+olympus c5000 manual
+international 574 manual pdf
+piaggio x9 200 manual download
+tascam service manual
+g"
+arduino monitoring Zabbix,v600376156.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v600376156.txt,"Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2020
+Untertitelung des ZDF, 2"
+arduino monitoring Zabbix,starsrepos.txt,https://raw.githubusercontent.com/meta-introspector/time/main/2024/05/26/starsrepos.txt,"https://github.com/00-Evan/shattered-pixel-dungeon
+https://github.com/0-5788719150923125/vtx
+https://github.com/0voice/backend_video
+https://github.com/0xPolygon/polygon-edge
+https://github.com/0xProject/0x-monorepo
+https://github.com/101tec/nutch
+https://github.com/200ok-ch/org-parser
+https://github.com/2ndQuadrant/pg_stat_plans
+https://github.com/3ft9/TwitApps
+https://github.com/3rdparty/jsl
+https://github.com/3rdparty/libprocess
+https://github.com/3rdparty/stout
+https://github.com/42-coin/42
+"
+arduino monitoring Zabbix,preprocess-succes-2.txt,https://raw.githubusercontent.com/lihebi/benchmark/master/github/preprocess-succes-2.txt,"zserge--jsmn.zip 0m3.104s
+zmap--zmap.zip 0m45.447s
+ZipArchive--ZipArchive.zip 0m25.907s
+zeromq--zyre.zip 0m9.326s
+zenovich--runkit.zip 0m0.426s
+zendtech--ZendOptimizerPlus.zip 0m12.566s
+zardus--preeny.zip 0m2.042s
+yrutschle--sslh.zip 0m4.559s
+yrp604--rappel.zip 0m2.762s
+yourtion--30dayMakeOS.zip 0m11.979s
+yarrick--pingfs.zip 0m3.393s
+yarrick--iodine.zip 0m11.944s
+yaoweibin--nginx_tcp_proxy_module.zip 0m13.630s
+xk--node-threads-a-gogo.zip 0m1.553s
+xiehuc--pidgin-lwqq.zip 0m21.279s
+Xfennec--progre"
+arduino monitoring Zabbix,v000000210.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v000000210.txt,"Rechner anmachen. Und irgendwie bin ich leiser. Oder? Ach nee. WTF. So. Was ist das? Bildkontakte.
+Richtig. Ja. Ok. Was auch immer. Ich muss mal einen Vorschaurechner anmachen, weil ich
+sehe weder Chat noch sonst irgendwas. Vielleicht. Es ist eh noch keiner da. Das ist ja ok. Dann
+ist ja gut. Irgendwie habe ich das Problem, dass auf der linken Seite mein Headset lauter
+ist als auf der rechten. Ich glaube das ist nicht richtig angeschlossen. Oder der Wackelkontakt
+von meinem komischen Mute-Button"
+arduino monitoring Zabbix,v1539526007.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v1539526007.txt,"der
+ich glaube das ist das einzige ppe-mode was wir nicht haben
+nein, haben wir nicht, aber poggers haben wir
+ja leute heute bisschen go weiter lernen als beispielanwendung nehmen wir das gleiche was
+ich das letzte mal gebaut habe in dotnet wo ich in rust versagt habe das umzubauen
+ich muss euch aber gleich wobei ich warte ich warte erst mal ich warte erst mal kurz bis
+das stream richtig angelaufen ist jetzt schon betke hast du nur darauf gewartet dass hier
+den streamer macht dass du bett das zu"
+arduino monitoring Zabbix,projects.txt,https://raw.githubusercontent.com/ghtorrent/ghtorrent.org/master/pullreq-perf/projects.txt,"owner repo
+01org appframework
+01org rib
+01org web-simulator
+0xd34df00d leechcraft
+10gen-labs mongo-web-shell
+10up varying-vagrant-vagrants
+12meses12katas Enero-String-Calculator
+12meses12katas Marzo-FizzBuzz
+1602 compound
+1602 jugglingdb
+18F 18f.gsa.gov
+18F doi-extractives-data
+18F mirage
+18F myusa
+18F peacecorps-site
+23 resumable.js
+24pullrequests 24pullrequests
+2600hz kazoo
+28msec secxbrl.info
+365i demolab3
+4teamwork ftw.contentpage
+4teamwork opengever.core
+A24Group ssGWT-lib
+AFNetworking AFIn"
+arduino monitoring Zabbix,Part385.txt,https://raw.githubusercontent.com/rosstpark/oootraooleadfrbyk/master/kata/Part385.txt,"Petit Larousse Du Chocolat
+The Story Of Christian Music From Gregorian Chant To Black Gospel An Authoritative Illustrated Guide To All The Major Traditions Of Music For Worship
+I Cant Get Hard Unless My Wife Screws My Old Man Hot Milfs And Weak Cuckolds Book 4
+La Societa A Costo Marginale Zero Linternet Delle Cose Lascesa Del Commons Collaborativo E Leclissi Del Capitalismo
+100 Bible Verses
+Le Glaive De Shannara Terry Brooks Inedit Texte Integral
+Guide Voir Vietnam Et Angkor
+Grand Mere De"
+arduino monitoring Zabbix,preprocess-succes-IDonly-2.txt,https://raw.githubusercontent.com/lihebi/benchmark/master/github/preprocess-succes-IDonly-2.txt,"zserge--jsmn
+zmap--zmap
+ZipArchive-Archive
+zeromq--zyre
+zenovich--runkit
+zendtech--ZendOptimizerPlus
+zardus--preeny
+yrutschle--sslh
+yrp604--rappel
+yourtion--30dayMakeOS
+yarrick--pingfs
+yarrick--iodine
+yaoweibin--nginx_tcp_proxy_module
+xk--node-threads-a-gogo
+xiehuc--pidgin-lwqq
+Xfennec--progress
+x0r1--jellyfish
+WuBingzheng--memleax
+wmutils--core
+wishstudio--flinux
+WiringPi--WiringPi
+wiire--pixiewps
+wifidog--wifidog-gateway
+wg--wrk
+weibocom--nginx-upsync-module
+wandenberg--nginx-push-stream-modul"
+arduino monitoring Zabbix,skills.txt,https://raw.githubusercontent.com/StackWalls-WebApp/Resume-parser/main/skills.txt,"Adobe Photoshop
+Adobe Illustrator
+Adobe InDesign
+Adobe After Effects
+Adobe Premiere Pro
+Final Cut Pro
+Sketch
+CorelDRAW
+Figma
+Affinity Designer
+InVision
+Cinema 4D
+Blender
+Maya
+3ds Max
+AutoCAD
+Visual Communication
+Typography
+Logo Design
+Brand Identity
+Packaging Design
+Print Design
+UI Design
+UX Design
+Wireframing
+Prototyping
+Motion Graphics
+Video Editing
+Color Correction
+Animation
+Storyboarding
+HTML
+CSS
+JavaScript
+Bootstrap
+Responsive Design
+Graphic Design
+Visual Design
+Interaction Design
+User Rese"
+arduino monitoring Zabbix,iX_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/iX_urls.txt,"http://medialeaders.com/light-bright-and-polite/?utm_source=youtube&utm_medium=annotation&utm_campaign=download%2Ba%2Bfree%2Bchapter
+http://www.top-for-phone.fr/operateur-mobile
+http://www.greatercommons.com/learn/golang
+http://redirect.bundesliga.com/watchMore
+http://qq.ru/product/00000104185/
+http://www.creative-piano.de/Gedanken-am-Klavier-1
+http://concrafter.spreadshirt.de/
+http://www.RIkeLuxxBeats.com
+https://azzman.myshopify.com/
+http://www.travelannex.net
+http://www.gametrailers.com?xrs=s"
+arduino monitoring Zabbix,HT_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/HT_urls.txt,"https://tutsplus.com/courses/how-to-use-angular-2-pipes
+http://sbs.edu.ru/base/video/?utm_source=youtube&utm_medium=ada&utm_campaign=arhiv
+http://www.stoneseriespublishing.com/salvatore
+http://tynikdy.cz/shop/sortiment/desperat
+https://loudr.fm/release/honey-im-good/tvmNZ
+http://www.yazilimara.com/photofiltre.html
+https://www.patreon.com/radiowesteros
+http://www.fox.com.tr/Gorevimiz-Komedi/extravideo/5669/Nagihanin-Performansi
+http://www.myntra.com/mailers
+http://realdiscounts.ru/sp/Brandchannel"
+arduino monitoring Zabbix,On_urls.txt,https://raw.githubusercontent.com/tech234a/annotation-urls/main/On_urls.txt,"https://itunes.apple.com/tr/app/number-1/id1171453944?mt=8
+http://lantechsoft.com/pdf-to-image-23.html
+https://itunes.apple.com/album/id1226685323
+http://www.prensalibre.com/ciudades/guatemala/accidente-en-san-cristobal-entregan-cadaveres-de-menores-y-maestra-mixco-muertos-y-heridos-ruta-interamericana
+http://itvdn.com/ru/video/c-sharp-essential-express?utm_source=yb_promo_csexpress
+http://vitoriacastro.com/free-video-marketing-for-women
+http://apprendre-a-coder.com
+https://www.scotthermanfitnes"
+arduino monitoring Zabbix,v1252822335.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v1252822335.txt,"Chomp!
+Ja ich bin da, oh mein Mikrofon ist wieder zu laut.
+Und wisst ihr warum mein Mikrofon zu laut ist?
+Wer rät es als erstes, da kommt ihr nie drauf.
+Mein Mikrofon ist zu laut, weil Teams wieder dran rumgestellt hat.
+Genau.
+Weil Teams dran rumgestellt hat.
+Und Teams bedeutet auch, ich musste euch wieder arbeiten.
+Und was meint ihr, wie sehr ich darauf Bock hatte, heute morgen aufzustehen und arbeiten zu gehen?
+Wobei zu gehen ist übertrieben.
+Michael 50 Billionen, gehen ist übertrieben.
+Ich mu"
+arduino monitoring Zabbix,v557191087.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v557191087.txt,"Das war's für heute.
+Bis zum nächsten Mal.
+Das war's für heute.
+So, ich habe jetzt extra gewartet, mich zu remuten, dass ich schön das Mikrofon hpieße.
+Der Müll ist verschluckt.
+So, ich habe mal ein Foto von meinem Weinkeller gemacht
+Exzellent Weinkeller, das bin ich in meinem Weinkeller und man sieht auch die Heizung dabei
+Es wäre nur noch cooler gewesen, wenn ich anstatt die Brille so ein Monocle aufgezogen hätte
+Exquisite, exzellent, Weinkeller
+Das ist tatsächlich die richtige Heizung
+Warum h"
+arduino monitoring Zabbix,tags.txt,https://raw.githubusercontent.com/evyatarmeged/stacknotifier/master/src/static/tags.txt,"stdin
+hudson
+alertdialog
+android-custom-view
+nspredicate
+zsh
+textfield
+windows-ce
+phoenix-framework
+autohotkey
+castle-windsor
+weka
+distance
+kibana
+export-to-excel
+.net-assembly
+angular2-template
+mvvm-light
+guice
+local
+asmx
+gradient
+xib
+nsdateformatter
+postback
+oracle-apex
+codeigniter-3
+tfsbuild
+sybase
+reverse-proxy
+facebook-login
+phonegap-build
+mootools
+vertical-alignment
+device
+h2
+excel-formula
+triggers
+server
+url-rewriting
+io
+android-asynctask
+autocomp"
+arduino monitoring Zabbix,v887485163.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v887485163.txt,"So Leute, ich bin am Start. Auf geht's.
+Erstmal kurz Headset entknoten.
+Keck, what, triple U.
+So, wunderbar. Sehr schön, jetzt passt das.
+Die Hackermans sind auch schon wieder da.
+Ich sehe es 15 Uhr, normale Leute arbeiten noch, die Hackermans sind schon da.
+Was soll ich sagen, ich arbeite ja auch nicht.
+Gut, das liegt daran, weil ich heute frei habe.
+Aber, ansonsten als Studenten, stimmt.
+Lull, da habe ich jetzt ja gar nicht dran gedacht, sowas gibt es ja auch noch.
+So, ich habe heute mal zur A"
+arduino monitoring Zabbix,v598449253.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v598449253.txt,"so da bin ich soll ich was erzählen ich habe heute morgen mit dem kollege auf der arbeit
+geschwätzt über teams ist ja alles nur noch remote bei uns und er hat mir erzählt er hat
+eine tochter in war das klub kolumbien oder irgendwo südamerika und der hat gemeint er
+ist erstaunt wie gut dort online schule funktioniert und bei uns gar nicht das
+sagt doch schon mal alles oder wenn kolumbien besser online schule machen kann als wir das
+technik land kolumbien wie gesagt bei uns fehlt immer noch der sc"
+arduino monitoring Zabbix,xdu.txt,https://raw.githubusercontent.com/Bowie-State-University/CS-Courses/master/research/methodName/allMethod/unigram/xdu.txt,"start 590982
+stop 276989
+store 82207
+sort 79932
+string 55795
+split 51590
+startelement 41570
+to 34379
+state 33858
+step 28930
+changed 20601
+server 19574
+activity 18446
+startdocument 18344
+status 18224
+with 15731
+by 15180
+source 14937
+sql 14635
+stream 14619
+service 14415
+spawn 13429
+startup 12946
+starts 12398
+value 12069
+for 11523
+action 10889
+thread 10275
+test 10119
+static 10064
+and 10060
+animation 10056
+mode 9584
+timer 9183
+in 9096
+stack 8750
+str 8747
+mapping 8317
+prefix 8157
+standard 7953
+node 7"
+arduino monitoring Zabbix,v552815847.txt,https://raw.githubusercontent.com/seriousm4x/wubbl0rz-archiv-transcribe/master/transcripts/v552815847.txt,"Almost heaven, older Twitch chat, all these emotes, wondering how to spell that.
+One's moved on, but I remember Twitch chat from those days that are gone.
+Twitch emotes, long ago, made you feel, you're not a Lappapuck champ, keep a forehead, Bible thumb.
+Twitch emotes, typing Dan's games, forehead swift rage, PJ salt and fail fish.
+Twitch emotes, long ago, made you feel, you're not a Lappapuck champ, keep a forehead, Bible thumb.
+Life was easy, spamming all the time, TOS was nowhere, so everyone"
+arduino monitoring Zabbix,xcw.txt,https://raw.githubusercontent.com/Bowie-State-University/CS-Courses/master/research/methodName/allMethod/unigram/xcw.txt,"put 415370
+process 365098
+query 134873
+push 76190
+property 52556
+all 37036
+change 29341
+publish 28299
+request 24847
+message 22550
+queue 20686
+to 19423
+for 18693
+packet 16619
+provide 15934
+purge 15911
+project 15521
+array 14891
+by 14312
+value 12903
+produce 12766
+progress 12375
+protected 11942
+event 11667
+string 11338
+quit 11308
+list 11133
+prompt 11027
+int 11004
+in 10121
+properties 9923
+processinginstruction 9881
+data 9714
+long 9563
+quantity 9381
+dropped 8650
+pull 8346
+propagate 8203
+name 8165
+obje"
+arduino monitoring Zabbix,ProjectNamesList.txt,https://raw.githubusercontent.com/MagielBruntink/OhlohAnalytics/master/data/ProjectNamesList.txt,"firefox
+apache
+subversion
+mysql
+php
+linux
+firebug
+bash
+ubuntu
+openoffice
+gimp
+putty
+phpmyadmin
+gcc
+vim
+git
+tortoisesvn
+python
+grep
+vlc
+thunderbird
+sudo
+x
+jQuery
+eclipse
+tar
+openssh
+make
+sevenzip
+coreutils
+gnome
+wget
+pidgin
+grub
+filezilla
+debian
+postgres
+chrome
+cakephp
+openssl
+screen
+rsync
+notepad-plus
+tomcat
+trac
+wordpress
+man
+inkscape
+subclipse
+junit
+findutils
+sqlite
+mplayer
+bzip2
+perl
+ant
+imagemagick
+wireshark
+samba
+ruby
+gnupg
+gdb
+com
+kde
+sed
+eclipse-jdt
+maven2
+hibernate
+log4j
+cups
+emacs
+wine
+"
+arduino monitoring Zabbix,xej.txt,https://raw.githubusercontent.com/Bowie-State-University/CS-Courses/master/research/methodName/allMethod/unigram/xej.txt,"tostring 1498822
+to 494427
+transform 83869
+try 69208
+translate 57909
+string 55325
+json 49355
+toggle 39607
+xml 32297
+trim 31371
+trace 28842
+transfer 24718
+traverse 23483
+array 22714
+object 22609
+trigger 19437
+tree 18363
+touch 16955
+train 15909
+top 15381
+turn 15221
+truncate 14520
+list 14418
+track 13797
+total 13131
+hex 12450
+value 11060
+map 10378
+token 10352
+transition 9809
+in 9396
+two 9323
+human 8938
+int 8871
+from 8647
+consume 8431
+file 8351
+tokenize 7941
+long 7613
+source 7505
+name 7471
+type 7308
+"
+arduino monitoring Zabbix,2024-03-08-16_15_41.txt,https://raw.githubusercontent.com/bluskai/Actions-OpenWrt/main/config/2024-03-08-16_15_41.txt,"#
+# Automatically generated file; DO NOT EDIT.
+# OpenWrt Configuration
+#
+CONFIG_MODULES=y
+CONFIG_HAVE_DOT_CONFIG=y
+CONFIG_HOST_OS_LINUX=y
+# CONFIG_HOST_OS_MACOS is not set
+# CONFIG_TARGET_airoha is not set
+# CONFIG_TARGET_sunxi is not set
+# CONFIG_TARGET_meson is not set
+# CONFIG_TARGET_silicon is not set
+# CONFIG_TARGET_apm821xx is not set
+# CONFIG_TARGET_ath25 is not set
+# CONFIG_TARGET_ath79 is not set
+# CONFIG_TARGET_bcm27xx is not set
+# CONFIG_TARGET_bcm53xx is not set
+# CO"
+arduino monitoring Zabbix,skills_intersection_2600.txt,https://raw.githubusercontent.com/Taranveer/JobSkillRecommendation/master/skills/skills_intersection_2600.txt,"Simulink
+NoSQL
+Angular.js
+Agile
+Fortran
+Trading Systems
+captain
+integrity
+B2B
+Software Solution Architecture
+Business Cards
+Application Security
+Microsoft PowerPoint
+Moodle
+Organizational Development
+Refactoring
+matlab
+Apache
+Mobile Applications
+Software Design Patterns
+Solution Selling
+Django
+Angular 2
+C (programación)
+Military
+Linux Server
+unity3d
+Software Deployment
+baking
+Internet
+Image Editing
+Glassfish
+COBOL
+Go
+markov
+cms
+ADO.NET
+Music Industry
+Cross-functional Team Leadership
+HL7
+Manageme"
+arduino monitoring Zabbix,c-top-1000-repo-star.txt,https://raw.githubusercontent.com/jamesnhan/cs572-project/master/c-top-1000-repo-star.txt,"osxfuse--sshfs 360
+miniupnp--miniupnp 360
+planetbeing--iphonelinux 360
+TauLabs--TauLabs 359
+freebsd--crochet 359
+trenskow--AirFloat 359
+rentzsch--mach_inject 358
+rathena--rathena 358
+jabberd2--jabberd2 357
+tj--watch 357
+fabiensanglard--chocolate_duke3D 357
+synthetos--TinyG 357
+albfan--miraclecast 356
+lesovsky--pgcenter 356
+groonga--groonga 355
+renard314--textfairy 355
+osqzss--gps-sdr-sim 354
+NMSSH--NMSSH 354
+google--ngx_brotli 354
+omnirom--android_bootable_recovery 354
+bsdphk--Ntimed 354
+swoole-"
+arduino monitoring Zabbix,english.txt,https://raw.githubusercontent.com/yiwen92/my-project/master/querycorrect/dict.backup/english.txt,"pdf 30000
+james 20000
+robotics 20000
+joomla 20000
+fluid 20000
+compiler 20000
+peer 20000
+person 20000
+password 20000
+transistor 20000
+idle 20000
+papio 20000
+android 10000
+web 10000
+java 10000
+sap 10000
+ios 10000
+php 10000
+view 10000
+etl 10000
+c++ 10000
+mes 10000
+linux 10000
+it 10000
+erp 10000
+tv 10000
+hr 10000
+ebs 10000
+bi 10000
+kubernetes 10000
+html 10000
+his 10000
+js 10000
+legal 10000
+css 10000
+ibm 10000
+ic 10000
+cocos 10000
+c# 10000
+ai 10000
+mysql 10000
+cnc 10000
+oa 10000
+nodejs 10000
+charles "
+arduino monitoring Zabbix,latestReleaseVersion.rel.txt,https://raw.githubusercontent.com/BigDaMa/raha/master/supplementaries/knowledge-base/latestReleaseVersion.rel.txt,"Ada	latestReleaseVersion	Ada 2012 TC1
+AOL	latestReleaseVersion	9.8
+AOL	latestReleaseVersion	1.7
+AWK	latestReleaseVersion	IEEE Std 1003.1-2008  / 1985
+Applesoft BASIC	latestReleaseVersion	Applesoft II
+IBM AIX	latestReleaseVersion	7.2
+AutoCAD	latestReleaseVersion	2017
+Active Server Pages	latestReleaseVersion	3
+ArgoUML	latestReleaseVersion	0.34
+Bash	latestReleaseVersion	4.4
+Berkeley DB	latestReleaseVersion	6.2
+Blitz BASIC	latestReleaseVersion	1.51
+C	latestReleaseVersion	11.0
+Common Desktop Environm"
+arduino monitoring Zabbix,most_common.txt,https://raw.githubusercontent.com/NTDXYG/BASHEXPLAINER/main/nlp_tools/spellcheck/most_common.txt,"the	1392149
+and	615964
+you	460298
+stack	439645
+for	389274
+this	369129
+with	349417
+more	320276
+overflow	290007
+your	266365
+file	240435
+that	231871
+can	220238
+sign	206791
+vote	205259
+not	197280
+answer	191595
+find	186482
+using	183501
+about	179410
+what	173143
+questions	162722
+from	159533
+how	159089
+have	153438
+command	151350
+bash	147620
+question	145002
+name	142050
+help	138409
+are	131657
+files	131610
+use	127770
+documentation	125934
+ask	122937
+user	122159
+exchange	119230
+answers	118938
+add	117069
+line"
+arduino monitoring Zabbix,tags-ask-ubuntu-node-labels.txt,https://raw.githubusercontent.com/arbenson/Hyper-Evec-Centrality/master/data/tags-ask-ubuntu/tags-ask-ubuntu-node-labels.txt,"1 power-management
+2 notification
+3 software-center
+4 software-installation
+5 policykit
+6 upgrade
+7 live-cd
+8 system-installation
+9 server
+10 ssh
+11 security
+12 remote-desktop
+13 vnc
+14 community
+15 locoteams
+16 kde
+17 login-screen
+18 plymouth
+19 updates
+20 unattended-upgrades
+21 flash
+22 10.04
+23 mouse
+24 xrandr
+25 displaylink
+26 indicator
+27 panel
+28 applet
+29 lts
+30 lamp
+31 performance
+32 encryption
+33 ecryptfs
+34 email
+35 mta
+36 gnome-panel
+37 9.10
+38 kate
+39 notify-osd
+40 libnotify
+41 gnome"
+arduino monitoring Zabbix,project_names_S.txt,https://raw.githubusercontent.com/woc-hack/inflection-points/main/data/project_names_S.txt,"0-0FFF_esp_idf_rel_v3.3
+0-173_django-filer
+0-F_VsVim
+0-GoAgent-Backup-And-Shadowsocks-Backup_shadowsocks
+0-T-0_OpenRA
+0-T-0_TACTIC
+0-T-0_bokeh
+0-T-0_consul
+0-T-0_copr
+0-T-0_docker
+0-T-0_fabric
+0-T-0_foreman
+0-T-0_galera
+0-T-0_gitbook
+0-T-0_goaccess
+0-T-0_gocd
+0-T-0_influxdb
+0-T-0_julia
+0-T-0_ps4-linux
+0-T-0_sensu
+0-T-0_tuleap
+0-Yorick-0_ZF2-S-Chazallet
+0-afflatus_grail_test
+0-complexity_openvcloud
+0-erwin-li-1_travel-site
+0-possum_OhPossum
+00-Evan_shattered-pixel-dungeon
+00-Ling_datasharing
+0000"
+arduino monitoring Zabbix,arch.txt,https://raw.githubusercontent.com/thebesttv/vul-arch-package/main/arch.txt,"0ad a26-14
+0ad-data a26-1
+389-ds-base 3.0.1-3
+4ti2 1.6.10-1
+6tunnel 0.13-2
+9base 6-8
+a2jmidid 9-4
+a2ps 4.15.6-1
+a52dec 0.8.0-2
+aalib 1.4rc5-18
+aarch64-linux-gnu-binutils 2.42-1
+aarch64-linux-gnu-gcc 14.1.0-1
+aarch64-linux-gnu-gdb 14.2-2
+aarch64-linux-gnu-glibc 2.39-1
+aarch64-linux-gnu-linux-api-headers 6.7-1
+aardvark-dns 1.10.0-2
+abc 0.0.0.20221019-1
+abduco 0.6-7
+abiword 3.0.5-4
+abletonlink 3.1.1-1
+abseil-cpp 20240116.2-2
+accerciser 3.42.0+r100+g6e6256e-2
+accessibility-inspector 24.05.0-1
+accoun"
+arduino monitoring Zabbix,2013-05-13_results.txt,https://raw.githubusercontent.com/CMUSTRUDEL/toxicity-detector/master/data/dates/2013-05-13_results.txt,"['perspective_score', 'stanford_polite']
+Looping through test_issues
+tsqlt-teamcity/cprieto/1 0
+coi-services/ooici/1069 0
+Specs/CocoaPods/2145 0
+graphios/shawn-sterling/19 0
+django-cms-search/piquadrat/22 0
+coi-services/ooici/1068 0
+phpseclib/phpseclib/107 0
+News_Manager-getsimplecms/cnb/79 0
+coi-services/ooici/1067 0
+raven-ruby/getsentry/98 0
+Source-1-Games/ValveSoftware/652 0
+azure-content/WindowsAzure/1309 0
+tork/sunaku/51 0
+ansible-ccda/jmandel/1 0
+grunt-exec/jharding/15 0
+azure-content/Wind"
+arduino monitoring Zabbix,2013-10-14_results.txt,https://raw.githubusercontent.com/CMUSTRUDEL/toxicity-detector/master/data/dates/2013-10-14_results.txt,"['perspective_score', 'stanford_polite']
+Looping through test_issues
+rainyday.js/mubaidr/1 0
+khan-exercises/Khan/90324 0
+go-endpoints/crhym3/18 0
+dropzone/enyo/343 0
+adhocracy/liqd/585 0
+puppet-rvm/blt04/100 0
+Overlay/FireBurn/46 0
+pgextwlist/dimitri/13 0
+nedb/louischatriot/90 0
+graina2/GrailsInAction/51 0
+cfwheels/cfwheels/205 0
+AveryDB/dogtato/70 0
+knitr/yihui/617 0
+jekyll-picture-tag/robwierzbowski/22 0
+bunny/ruby-amqp/158 0
+fontforge/fontforge/847 0
+khan-exercises/Khan/90292 0
+ShadowDOM/Poly"
+arduino monitoring Zabbix,2013-11-11_results.txt,https://raw.githubusercontent.com/CMUSTRUDEL/toxicity-detector/master/data/dates/2013-11-11_results.txt,"['perspective_score', 'stanford_polite']
+Looping through test_issues
+meetup-api-client/rdohms/5 0
+ferenda/staffanm/4 0
+zeroclickinfo-spice/duckduckgo/322 0
+rcm/MikeNGarrett/8 0
+icc-alpha/robertocarroll/40 0
+khan-exercises/Khan/112588 0
+music21/cuthbertLab/16 0
+DnDCS/philazzi44/24 0
+docker/dotcloud/2649 0
+symfony-cmf-docs/symfony-cmf/327 0
+khan-exercises/Khan/112529 0
+android/ohmage/11 0
+khan-exercises/Khan/112500 0
+khan-exercises/Khan/112659 0
+khan-exercises/Khan/112530 0
+reset/KatieK2/1 0
+astro"

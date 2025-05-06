@@ -1,0 +1,1270 @@
+source,texte
+arduino automation chef1,Aide pour automatiser (programmer) une coupeuse de fil de fer fabrication maison
+arduino automation chef1,"Bonjour à tous,Je cherche une aide en programmation sur Arduino méga,dans le département du Gard où de l'Hérault idéalement, afin de finaliser un asservissement sur une machine que j'ai réalisée pour m'aider dans ma petite activité artisanale.Je suis pas du tout à l'aise avec le langage C++ et la programmation tout court.Pour quelqu'un qui maitrise la programmation, je pense que mon projet est pas très sorcier, mais surement nécessite de faire des crach test en live d'où l'idéal de trouver pas trop loin de chez moi.j'ai juste besoin de faire fonctionner cette machine et non de devenir programmeur.J'ai commencé un début de code avec un ami mais ça marche pas malgré beaucoup de temps passé, donc on sollicite l'aide d'une bonne âme !merci d'avance à qui repondra....à mon S.O.S..CDLT..."
+arduino automation chef1,"Comme tu ne cherches pas d'aide pour t'aider à programmer ou debugger, le mieux serait que tu poste dans la section de proposition d'emplois."
+arduino automation chef1,"Si vous ne trouvez pas, postez plus d’infos ici sur la machine et le besoin,  et éventuellement votre code (avec les balises) et dessin du circuit ça aidera à qualifier la complexité du code nécessaire"
+arduino automation chef1,"Ma machine sert à recycler du fil de fer.pour faire simple, je recupere des bobines de fil de fer de vignes arrachées et ma machine nettoie, redresse et coupe en baguette de longueur entre 30 et 99cm de long à la demande.L'asservissement, consiste en un pupitre de programmation ou je paramètre mes valeurs de coupe souhaitées, puis la machine entraine le fil au signal d'une commande par pédale switch on/off, arrête l'entrainement lorsque la longueur est atteinte et déclenche alors la coupe de la baguette, puis repart et ainsi de suite...Les composants machine sont,entraineur moteur 24vcc à balais.cisaille pneumatique commandée par un distributeur 24vcc également."
+arduino automation chef1,"La partie asservissement, Arduino Méga,1 pupitre de commande comprenant,"
+arduino automation chef1,"1 switch permanent 2 positions, pour la mise sous tension et l'arrêt de l'asservissement.1 switch permanent 2 positions, selectionneur de mode ( prog, marche auto, marche forcée)1 switch poussoir / rotatif infini, pour entrer les valeurs de coupe3 afficheurs numeriques à 2 chiffres couplés en parallelle, ( je ne veux pas forcement toujour couper des baguettes de longueurs identique, mais plutot des serie de coupe sequentielles. le premier afficheur selectionne la coupe de longeur minimale de 20à99, le second afficheur selectionne la frquence de coupe de 1à10, le troisieme afficheur selectionne la longueur max de 20à99).Ce qui donne si je fait la selection 30/4/42 que la machine coupera à 30, 34, 38, 42 puis reviendra à 30, 34...etc et realisera des boucles infini à ces valeurs.1 switch poussoir, servant de ""reset""1 afficheur numerique à 4 chiffres, compteur de coupe."
+arduino automation chef1,"coté entrée capteur,une fourche optique mesure la course de l'entraineur de fille switch pédale de commandeun fin de course pour l'état d'ouverture de la pince coupante"
+arduino automation chef1,"en sortie,relais commandant l'ouverture et fermeture de la pince coupante et entraineur."
+arduino automation chef1,"voilà, grosso modo, la description de la bête.."
+arduino automation chef1,Bonjour ducoinlucien
+arduino automation chef1,une fourche optique mesure la course de l'entraineur de fil
+arduino automation chef1,"S'il n'y a qu'une fourche, cela veut dire que la roue qui entraîne le fil a une série de trous qui permet de mesurer la quantité de fil déroulé ?"
+arduino automation chef1,Cordialementjpbbricole
+arduino automation chef1,"Quelles sont les sécurités prévues ?La machine a-t-elle besoin d'un agrément ""Ministère du Travail"" ?"
+arduino automation chef1,"Le cas sera différent si tu es le seul à manœuvrer la machine que tu as conçue pour ton usage personnel, de celui où elle sera manœuvrée par un salarié ou simplement un ami."
+arduino automation chef1,Sympa la bête
+arduino automation chef1,Où rencontrez vous des soucis de programmation?
+arduino automation chef1,"à jpbbricole, oui j'ai une roue avec des entailles, taillée dans un disque alu de disque dur SATA.85 entailles au total car la course de mon entraineur développe par tour 85mm"
+arduino automation chef1,"à 68tjs, non, pas d'agrément de sécurité, c'est vraiment pour une activité artisanale perso et les risques sont plus dans les réactions de ressort des rouleaux de fil de fer aciérés qui peuvent vite t'éborgner quand tu déroule que la machine elle même.Elle s'utilise en marche forcée pour engager le fil et après on s'occupe juste du bon déroulement de la bobine en gérant l'avalement du fil avec la pédale switch en mode auto."
+arduino automation chef1,"à J-M-L, oui la bête est pas piquée des hannetons comme on dit, entièrement moulée sur la cuisse, fabriquée avec pas mal de récup, moteur de machine à laver, réserve d'air avec bouteille de gaz fibre, carcasse avec une vielle armoire électrique, etc..toute la partie mécanique est assez fiable malgré l'apparence grosse bidouille.Là où je rencontre un soucis avec la programmation c'est que je n'y connais vraiment rien, mon ami lui bien plus que moi, c'était son boulot en programmation ordi de bord sur véhicule chez PSA mais en pleine reconversion professionnelle il doit s'occuper de ces affaires qui sont pas simples et plus trop le temps pour des récréations.il m'a fait un script prévus sur Arduino uno, mais comme on était à court de port d'entrée il avait trouvé sur des forums je pense la possibilité de passer par un serial.de plus on avait des composant de fonction genre capteur de pression de cuve, dont on les avait foutu à gérer par le script alors que c'était pas utile, rendant le script plus complexe et bouffant des entrées.Depuis je suis passé sur Arduino méga, donc plus de soucis de port, j'en ai de reste et tous les capteurs fonctionnel je les ai tous branchés en logique câblée, en série donc boucle fermée la machine avance, boucle ouverte la machine bouge pas et là un contrôle visuel permet de tout de suite voir ce qui ne va pas.Donc tout est simplifié au max avec tout de même des fonctions sympa.Mais même simple, pour moi c'est très compliqué, j'ai l'impression de devoir apprendre à parler un japonais couramment pour les besoins d'une semaine de vacance...c'est pas que c'est pas sympa le japonais, mais…Alors je me retrouve en possession d'un script en cours de modif dont je comprends 4% de son contenu, dont je pense que il y a surement pas mal de chose à conserver, mais… là je suis en mode Champollion avec la perspective d'une somme de travail à abattre colossale alors que un initié y passera peut être juste quelques heures!peut être je me trompe mais ...vraiment j'en sais rien, quand je lis des post sur ce Forum, j'ai quand même l'impression que y'a du level et que mon projet c'est pas la NASA tout de même.je vous poste le sketch là où il en est .."
+arduino automation chef1,"#include <ShiftRegister74HC595.h>
+
+// >>>>> PIN pupitre <<<<<
+// selecteur-modes
+const int mode_PROG 2
+const int mode_RUN 3
+const int mode_SOFT 4
+// reset
+const int reset 5
+// selecteur-valeurs
+const int poussoir_selecteur_valeurs 6
+const int rotatif_S1 7
+const int rotatif_S2 8
+// afficheurs-valeurs
+const int afficheur_valeurs_DATA 9
+const int afficheur_valeurs_LOAD 10
+const int afficheur_valeurs_SCLK 11
+// afficheur-compteur-coupes
+const int afficheur_compteur_coupe_DATA 12
+const int afficheur_compteur_coupe_LOAD 13
+const int afficheur_compteur_coupe_SCLK 14
+
+// >>>>> PIN entrees/sorties annexes <<<<<
+// entrees
+const int poussoir_pedale 15
+const int fourche_optique 16
+volatile int nbImpulsions = 0;
+const int capteur_fermeture_pince 17
+// sorties
+const int fermeture_pince 18
+const int ouverture_pince 19
+const int avance_moteur_entraineur 20
+// PIN non-occupees
+const int NOT_USED 21>>53
+
+// >>>>> CONSTANTES <<<<<
+// constantes selecteur modes
+const bool MODE_PROG = HIGH;
+const bool MODE_RUN = HIGH;
+const bool MODE_MARCHE FORCE = HIGH;
+// constantes afficheur
+const byte MIN_AFFICHEUR = 0;
+const byte MAX_AFFICHEUR = 1;
+const byte FREQ_AFFICHEUR = 2;
+// constante poussoir reset
+const bool reset = HIGH
+// Constantes gestion avance moteur
+const int FACTOR_CONVERT_IMPUL = 10;
+const int LENGHT_OFFSET = 10; //10 impulsions inertie moteur
+// constante poussoir-pedale
+const bool poussoir_pedale = HIGH;
+// constantes pince
+const bool fermeture_pince = HIGH;
+const bool ouverture_pince = HIGH;
+
+
+// >>>>> VARIABLES <<<<<
+// bouton rotatif variables gestion de front de signal
+bool clkState  = LOW;
+bool clkLast  = HIGH;
+bool swState  = HIGH;
+bool swLast  = HIGH;
+boolean stateBP = false;
+//variables de stockage MIN MAX FREQ
+byte rotVal  = 0;
+byte initParameter = 0;
+byte consigne_MIN = 0;
+byte consigne_FREQ = 0;
+byte consigne_MAX = 0;
+int impulsions_MIN = 0;
+int impulsions_FREQ = 0;
+int impulsions_MAX = 0;
+int impulsions_MIN_HOLD = 0;
+int impulsions_FREQ_HOLD = 0;
+int impulsions_MAX_HOLD = 0;
+int N_Segments = 0;
+//bool bp_Pressed = true;
+
+// <<<<< Creation objet de gestion des afficheurs 7 segments >>>>>
+const int DIGITS 6 // gestion de 6 digits 7 segments
+
+int value,digit1,digit2,digit3,digit4,digit5,digit6; 
+uint8_t  numberB[] = {B11000000, //0
+                      B11111001, //1 
+                      B10100100, //2
+                      B10110000, //3 
+                      B10011001, //4
+                      B10010010, //5
+                      B10000010, //6 
+                      B11111000, //7
+                      B10000000, //8
+                      B10010000, //9
+                      B01111111 //.
+                     };
+int number=10;          
+
+
+void setup() {
+ Serial.begin(9600);
+ Serial.println(F(""Initialize System""));
+ 
+// <<<<< Init Rotatifs reglage longueur frequence >>>>>
+ pinMode(clkPin_S2,INPUT);
+ pinMode(dtPin_S1,INPUT);
+ pinMode(boutonPoussoir,INPUT_PULLUP);
+ clkLast = digitalRead(clkPin_S2);
+ 
+// <<<<< fourche optique >>>>>
+ pinMode(EtatFourche, INPUT_PULLUP);
+ attachInterrupt(digitalPinToInterrupt(EtatFourche), decrementeImpulsion, RISING);
+}
+
+void loop() {
+  // <<<<< Code execute en boucle infini >>>>>
+ Serial.print(""valeur capteur : "");
+ byte capteurAndMode = readCapteurs();
+ Serial.println(capteurAndMode, BIN);
+ if ((capteurAndMode & MODE_SETUP) == MODE_SETUP)
+     {
+        readRotatif(initParameter, MODE_SETUP);
+     } 
+ else if ((capteurAndMode & MODE_RUN) == MODE_RUN)
+      {
+        if ((impulsions_MIN_HOLD != impulsions_MIN)||(impulsions_MAX_HOLD != impulsions_MAX)||(impulsions_FREQ_HOLD != impulsions_FREQ)){
+            fixLenghtMAX();
+            convertAndloadLenghtToPulse();
+            Serial.println(F(""Mode run""));
+            delay(1000);
+        }
+        fowardAndCut();
+        delay (500);
+      }
+}
+// <<<<< Fonction Avance, condition pédale >>>>>
+void fowardAndCut (){
+   byte indexCoupe = 0;
+   while (indexCoupe <= N_Segments){
+      int impulseToDecrement = impulsions_MIN_HOLD + (impulsions_FREQ * indexCoupe);
+      nbImpulsions = impulseToDecrement;
+      while (nbImpulsions>0){
+         byte capteurAndMode = readCapteurs();
+         while (poussoir_pedale = HIGH);{
+            digitalWrite(avance_moteur_entraineur, HIGH);
+         }
+      }
+      delay (2000);
+      coupe();
+      indexCoupe++;
+   }
+}
+// <<<<< Fonction coupe, condition pédale et pression >>>>>
+void coupe (){
+    byte Mode_run = readCapteurs();
+    while (poussoir_pedale, HIGH);{ 
+        digitalWrite(FERMETURE_PINCE, HIGH);
+        delay (1000);
+        digitalWrite(OUVERTURE_PINCE, HIGH);
+    }
+}
+
+// <<<<< Fonction décrémente les impulsions de la roue optique >>>>> 
+void decrementeImpulsion(){
+    nbImpulsions--;
+}
+
+// <<<<< Acquisition des valeurs MIN MAX FREQ >>>>>
+
+void readRotatif(int pParameter, int pMode) { /* function readRotary */
+   int parameter = pParameter;
+   while ((pMode & MODE_SETUP) == MODE_SETUP){
+       //bp_Pressed = true;
+       pMode = readCapteurs();
+       clkState = digitalRead(clkPin_S2);
+         if (clkLast != clkState && clkState == HIGH) {//rotary moving
+           Serial.print(""Parameter selected :  "");
+           Serial.print(parameter);
+           if (digitalRead(dtPin_S1) != clkState) {
+                 if (parameter == MIN_AFFICHEUR){
+                  consigne_MIN--;
+                  rotVal = consigne_MIN;
+                  if (rotVal<0){
+                    rotVal=0;
+                    affiche(parameter, rotVal);
+                  } else {
+                    affiche(parameter, rotVal);
+                  }
+                 } else if (parameter == MAX_AFFICHEUR){
+                  consigne_MAX--;
+                  rotVal = consigne_MAX;
+                  if (rotVal<0){
+                    rotVal=0;
+                    affiche(parameter, rotVal);
+                  } else {
+                    affiche(parameter, rotVal);
+                  }
+                 }  else if (parameter == FREQ_AFFICHEUR){
+                  consigne_FREQ--;
+                  rotVal = consigne_FREQ;
+                  if (rotVal<0){
+                    rotVal=0;
+                    affiche(parameter, rotVal);
+                  } else {
+                    affiche(parameter, rotVal);
+                  }
+                 }
+            } else {
+                if (parameter == MIN_AFFICHEUR){
+                  consigne_MIN++;
+                  rotVal = consigne_MIN;
+                  if (rotVal>99){
+                    rotVal=99;
+                    affiche(parameter, rotVal);
+                  } else {
+                    affiche(parameter, rotVal);
+                  }
+               } else if (parameter == MAX_AFFICHEUR){
+                  consigne_MAX++;
+                  rotVal = consigne_MAX;
+                  if (rotVal>99){
+                    rotVal=99;
+                    affiche(parameter, rotVal);
+                  } else {
+                    affiche(parameter, rotVal);
+                  }
+               }  else if (parameter == FREQ_AFFICHEUR){
+                  consigne_FREQ++;
+                  rotVal = consigne_FREQ;
+                  if (rotVal>99){
+                    rotVal=99;
+                    affiche(parameter, rotVal);
+                  } else {
+                    affiche(parameter, rotVal);
+                  }
+               }
+             }
+           }
+    //Serial.println(rotVal);
+    clkLast = clkState;
+    parameter = handleBpRotaParameter(parameter);
+    delay(10);
+    }
+    //bp_Pressed = true;
+  }
+
+int handleBpRotaParameter(int pParameter){
+ //bool statuToReturn = true;
+// Serial.print(""Begin handleBpRotaParameter pParameter"");
+// Serial.println(pParameter);
+ int parameterToReturn = pParameter;
+ swState = digitalRead(boutonPoussoir);
+ if (swState == LOW && swLast == HIGH) {
+   parameterToReturn = parameterToReturn+1;
+   if (parameterToReturn > 2){
+      Serial.print(""parameterToReturn > 2 return 00"");
+      Serial.println(parameterToReturn);
+      delay(200);
+      return 0;
+   }
+//   Serial.print(""Rotary pressed into handleBpRotaParameter"");
+//   Serial.println(parameterToReturn);
+   delay(200);//debounce
+   //statuToReturn = false;
+   return parameterToReturn;
+ }
+ swLast = swState;
+ rotVal = 0;
+ //delay (50);
+ return parameterToReturn;
+}
+
+// <<<<< Envoi les données de longueur en cm vers le numéro d'afficheur MIN MAX FREQ >>>>>
+void affiche (int parameter, int pValue){
+//  digit2=pValue % 10 ;
+//  digit1=(pValue / 10) % 10 ;
+//  uint8_t numberToPrint[]= {numberB[10],numberB[10],numberB[digit2],numberB[digit1]};
+  if (parameter == MIN_AFFICHEUR){
+    Serial.print(""MIN affiche parameter:"");
+    Serial.println(parameter);
+    digit2=pValue % 10 ;
+    digit1=(pValue / 10) % 10 ;
+    digit4=consigne_FREQ % 10 ;
+    digit3=(consigne_FREQ / 10) % 10 ;
+    digit6=consigne_MAX % 10 ;
+    digit5=(consigne_MAX / 10) % 10 ;
+    uint8_t numberToPrint[]= {numberB[digit6],numberB[digit5],numberB[digit4],numberB[digit3],numberB[digit2],numberB[digit1]};
+    afficheur.setAll(numberToPrint);
+
+  } else if (parameter == MAX_AFFICHEUR){
+    Serial.print(""MAX affiche parameter:"");
+    Serial.println(pValue);
+    digit2=consigne_MIN % 10 ;
+    digit1=(consigne_MIN / 10) % 10 ;
+    digit4=pValue % 10 ;
+    digit3=(pValue / 10) % 10 ;
+    digit6=consigne_FREQ % 10 ;
+    digit5=(consigne_FREQ / 10) % 10 ;
+    uint8_t numberToPrint[]= {numberB[digit6],numberB[digit5],numberB[digit4],numberB[digit3],numberB[digit2],numberB[digit1]};
+    afficheur.setAll(numberToPrint);
+    
+  } else if (parameter == FREQ_AFFICHEUR){
+    Serial.print(""FREQ affiche parameter:"");
+    Serial.println(parameter);
+    digit2=consigne_MIN % 10 ;
+    digit1=(consigne_MIN / 10) % 10 ;
+    digit4=consigne_MAX % 10 ;
+    digit3=(consigne_MAX / 10) % 10 ;
+    digit6=pValue % 10 ;
+    digit5=(pValue / 10) % 10 ;
+    uint8_t numberToPrint[]= {numberB[digit6],numberB[digit5],numberB[digit4],numberB[digit3],numberB[digit2],numberB[digit1]};
+    afficheur.setAll(numberToPrint);
+  }
+  digit1=0;
+  digit2=0;
+}
+// <<<<< corrige la longueur MAX pour affichage seulement >>>>>
+void fixLenghtMAX () {
+  int segments = 0;
+  int diff = consigne_MAX - consigne_MIN;
+  Serial.print(""Diff = "");
+  Serial.println(diff);
+  int modulo = diff*10%consigne_FREQ;
+  Serial.print(""modulo= "");
+  Serial.println(modulo);
+  if (modulo>0){
+    segments = diff*10/consigne_FREQ;
+//    Serial.print(""nombre de segments = "");
+//    Serial.println(segments);
+  }
+  N_Segments = segments+1;
+  int maxFixed = consigne_MIN*10+((segments+1)*consigne_FREQ);
+  affiche (MAX_AFFICHEUR, maxFixed/10);
+}
+
+// <<<<< Convertit et stock les longueurs en impulsions >>>>>
+void convertAndloadLenghtToPulse () {
+  impulsions_MIN = consigne_MIN*FACTOR_CONVERT_IMPUL;
+  impulsions_FREQ = consigne_FREQ*FACTOR_CONVERT_IMPUL;
+  impulsions_MAX = consigne_MAX*FACTOR_CONVERT_IMPUL;
+  //    Serial.print(""impulsions_MIN = "");
+//    Serial.println(impulsions_MIN);
+//    Serial.print(""impulsions_FREQ = "");
+//    Serial.println(impulsions_FREQ);
+//    Serial.print(""impulsions_MAX = "");
+//    Serial.println(impulsions_MAX);
+  impulsions_MIN_HOLD = impulsions_MIN;
+  impulsions_FREQ_HOLD = impulsions_FREQ;
+  impulsions_MAX_HOLD = impulsions_MAX;
+}"
+arduino automation chef1,vous pourriez nous faire un dessin du circuit ?
+arduino automation chef1,un dessin du circuit de cablage et des composant ?
+arduino automation chef1,Bonjour@ducoinlucien
+arduino automation chef1,"un schéma , même à main levée , dans lequel les élements seraient  sommairement représentés  par des rectangles avec le nom de leurs  entrées /sorties utilisées  et les liaisons entre elles."
+arduino automation chef1,"Plus un schéma de principe qu'un plan de câblageA ce stade il n'est pas esseentiel de montrer tous les fils entre les sorties HC595 et afficheurs 7 segments, il s'agit de montrer la logique d'ensemble et la confronter avec celle qui transparait dans  le programme."
+arduino automation chef1,"ok, je poste çà dans la journée, en attendant, quelques photos de la bêteP_20230102_1209311920×3413 257 KB"
+arduino automation chef1,P_20230102_1215471920×3413 508 KB
+arduino automation chef1,P_20230102_1223171920×1080 109 KB
+arduino automation chef1,schémat composants1920×1510 212 KB
+arduino automation chef1,C'est unschéma fonctionnel globaltrès utile. qui donne une bonne vue d'ensemble du système sur le plan matériel (hors alimentations en énérgie) !
+arduino automation chef1,Il pourrait être complété en donnant des vues un peu plus détaillées des liaisons entre certains   sous-ensembles  commepar exemple  l'association Arduino + Pupitre de Commande (sans aller jusqu'a représenter tous les fils)
+arduino automation chef1,Comment sont alimentés les divers éléments ?
+arduino automation chef1,il doit manquer du code car ça ne peut pas compiler tel quel
+arduino automation chef1,3 afficheurs numeriques à 2 chiffres couplés en parallelle
+arduino automation chef1,vous avez la référence ? ils ont un 74HC595 embarqué ?
+arduino automation chef1,une approche serait de commencer à faire fonctionner les sous systèmes indépendamment pour s'assurer que vous avez tout ce qu'il faut pour piloter le système
+arduino automation chef1,un LCD serait sans doute plus simple pour gérer tout l'affichage
+arduino automation chef1,"Changer le titre du sujet pourrait intéresser plus de candidats pour aider à mener à bien ce projet ...Par exemple ""Aide pour automatiser (programmer) une découpeuse de fil de fer maison""."
+arduino automation chef1,"Coté alimentation, effectivement j'ai pas précisé car j'ai pas jugé utile mais, alimentation en 8vcc pour l'Arduino méga via un transfo et pont de diode.Je récupère une sortie en 5vcc de l'Arduino pour alimenter un bornier pour tous les petits composants sous 5vcc (fourche optique, switch pupitre, afficheur...).Alimentation 24vcc pour le distributeur pneumatique, l'entraineur et son relais de puissance via un bon transfo et pont de diode également.Les afficheur sont effectivement avec 74HC595 embarqué.Entièrement d'accord avec toi J-M-L, l'idée de faire fonctionner les sous systeme indépendamment pour commencer.Déjà avoir un sketch qui me fasse tourner l'encodeur rotatif et les afficheurs serait un bon bout de plombé.Je vous mets un schéma des relations câblées pupitre/Arduino/Composants Satellites et vous donne en soirée l'organigramme du fonctionnement de la machine pour l'operateur en situation de travail.Si je peux poster, étant tout neuf sur le Forum, Je suis bridé...J'ai pas le permis qu'on me dit, pour aller vite..!relation pupitre, ARDUINO,  capteurs1160×824 234 KB"
+arduino automation chef1,vous avez mis des capa pour éviter les rebonds sur les switch ?
+arduino automation chef1,Related topics
+arduino automation chef1,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef2,Schrittmotor: Ansteuerung plus Positionskontrolle
+arduino automation chef2,"Hallo, ich bin neu hier im Forum.Ich war lange stiller Mitleser und konnte durch viele kompetente Beiträge schon eine Menge lernen.Nun stehe ich aber vor einem Problem, zu dem ich im Internet wenige Informationen finde."
+arduino automation chef2,Zur Vorgeschichte:
+arduino automation chef2,"Es geht um eine Mechanikbaugruppe in einer ausgedienten Industriemaschine.Ein Auslöser wird über einen Schrittmotor an einer Linearführung über einTrapezgewinde bewegt, nachdem er betätigt wurde, um Platz für die zu verrichtende Arbeit zu machen. Nach dem Arbeitsschritt wird er zurück in Ausgangsposition gefahren."
+arduino automation chef2,"Die Technik war leider nie sehr Präzise und Fehleranfällig. Durch Verschmutzungen und einen Mieserablen Schrittmotor kam es oft zu Fehlstellungen des Triggers. Deshalb habe ich alles komplett umgebaut. (Hiwin MGN05 Führungen, Nema8 Schrittmotor, kapazitiver Trigger, Kapazitiver Endschalter usw."
+arduino automation chef2,Leider kommt es immer noch zu Schrittverlusten durch Verschmutzungen.Der Schrittmotor kann aus Platzgründen nicht größer dimensioniert werden. Der Motorstrom ist ca 100mA über Vorgabe.
+arduino automation chef2,"Nun möchte ich einen Encoder benutzen um die Motorwelle auf ihren Drehwinkel zu überwachen. Habe mich für den AS5048 entschieden, welcher über ein Spi kommuniziert...Funktioniert auch alles, ich kann die Position auslesen, jedoch z.Z noch mit einem seperatem Arduino."
+arduino automation chef2,Nu zur Frage: Hat jemand schon einmal eine Closed loop Stepper Regelung mit einem Arduino realisiert?
+arduino automation chef2,"Der Motor dreht mit max. 750 RPM, was 150KHZ ausgangstakt für den Schrittmotor Treiber bedeutet. (Die Pins des Arduinos werden über direkte Portmanipulation angesprochen um Zeit zu sparen)"
+arduino automation chef2,"Mein Bauchgefühl sagt mir nun, dass der Prozessortakt trotzdem nicht auseichen wird, um den Schrittmotor vernünftig anzusteuern und gleichzeitig mindestens 4 mal pro Umdrehung die Position über Spi abzufragen + die nötige Arithmetik anzuwenden um die Daten zu verarbeiten..."
+arduino automation chef2,Hat jemand irgendwelche Erfahrungen in die Richtung sammeln können?
+arduino automation chef2,(Ich hoffe ihr könnt meiner wirren Beschreibung überhaupt folgen :D)
+arduino automation chef2,"Achja, es handelt sich um einen Atmega 328P.16 Mhz externer Oscilator und CH340.Quasi ein Arduino, nur auf einem anderen PCB."
+arduino automation chef2,Grüße
+arduino automation chef2,150 kHz ist jenseits von gut und böse für einen 16 MHz ArduinoUnd ein Schrittmotor Baugröße Nema 8 ist ja nun auch eher schmächtig.
+arduino automation chef2,Für 150 kHz Schrittfrequenz würde ich einen Teensy 4.0 nehmen. (CPU 600 MHz)https://www.reichelt.de/teensy-4-0-usb-mit-header-teensy-4-0-h-p318653.html
+arduino automation chef2,Wenn ich mich recht erinnere hat der Teensy 4.0 auch schon microcontroller interne Hardware zum Auswerten von encodern.
+arduino automation chef2,GitHub - mjs513/Teensy-4.x-Quad-Encoder-Library: Hardware Quadrature Library...
+arduino automation chef2,Hardware Quadrature Library for the Teensy 4.x. Contribute to mjs513/Teensy-4.x-Quad-Encoder-Library development by creating an account on GitHub.
+arduino automation chef2,100 mA Strom ist ja nun auch nicht gerade üppig Strom. Nicht mal für einen Nema 8 Schrittmotor.
+arduino automation chef2,Gibt es denn um den Schrittmotor herum nur hinten 10 mm Luft und das war's?Oderhast du etwas mehr Platz zur Verfügung?
+arduino automation chef2,"Wenn du Bilder postest wie die gesamte Mechanik aussieht, dann könnte das Forum mit überlegen wie man das lösen kann."
+arduino automation chef2,"Schon mal hier geschaut ob einer dabei ist der ""reinpassen"" würde?https://www.reichelt.de/schrittmotor-nema-08-1-8-0-6-a-4-26-v-nema08-03-p335318.html?CCOUNTRY=445&LANGUAGE=de&&r=1&PROVID=2788&gclid=Cj0KCQiA4Y-sBhC6ARIsAGXF1g7Vp0rwDiG_Agy-qDcVwAofgg3K1A6m4msJoXvWEN94HYI_Ys3vfoEaAtJyEALw_wcB"
+arduino automation chef2,Schrittmotoren werden mit Stromtreiber betrieben. Man kann durch höhere Spannung das Drehmoment etwas erhöhen.
+arduino automation chef2,Was für ein Schrittmotortreiber ist da dran?Es gibt von Trinamic Schrittmotortreiber die eine Funktion Stallguard habenHabe ich selbst noch nicht getestet aber es geht darumohneEncoder Schrittverluste zu erkennen.
+arduino automation chef2,vgs
+arduino automation chef2,"Nun möchte ich einen Encoder benutzen um die Motorwelle auf ihren Drehwinkel zu überwachen. Habe mich für den AS5048 entschieden, welcher über ein Spi kommuniziert...Funktioniert auch alles, ich kann die Position auslesen, jedoch z.Z noch mit einem seperatem Arduino."
+arduino automation chef2,Na dann würde es ja auch reichen ein paar IO-Signale auszutauschen.
+arduino automation chef2,"Schrittmotoren haben im Profibereichimmereine Möglichkeit eine Referenzfahrt zu machen. Hast du eine Referenzfahrt?Könnte man die nach jederBewegungmachen?Wie wird Referenzposition detektiert?Könnte man dieses Signal ""steht auf Referenzposition"" dem Enocder-Arduino einspeisen damit der sich nullen kann?"
+arduino automation chef2,Wie du siehst man muss noch deutlich mehr Details wissen um eine gute Lösung zu finden
+arduino automation chef2,vgs
+arduino automation chef2,Danke für deine schnelle Antwort.
+arduino automation chef2,"Tatsächlich ist das der Schrittmotor, den ich verbaut habe. Nur die Version mit der Hohlwelle. Ich meinte 100mA über Nennstrom. Also insgesamt 700mA. Die Spannung liegt bei 7V."
+arduino automation chef2,"Durch die direkte Portmanipulation habe ich am Ausgang bis zu 975 Khz erreichen können.(Mit Oszi gemessen). Die DigitalWrite() Kommandos verbraten halt unglaublich viel Zeit, weshalb ich die nicht benutze.Damals hatte ich den encoder noch nicht im Hinterkopf und dachte es reicht."
+arduino automation chef2,"Ja, das Problem mit der Baugröße ist folgendes: in der Länge habe ich noch ca 6mm, die aber der encoder jetzt beansprucht.In der Baubreite liegt der Knackpunkt. So ist alles kein Problem, allerdings sitzt die Baugruppe an einem Schwenkarm. Am knappesten Punkt (Während der Bewegung des Armes) habe ich noch ca 2mm Platz. Die würde ich gern behalten, falls mechanische Schwingungen auftreten. Der Schwenkarm wird von einem Nema 23 mit 4 Motorspulen ( 2 Stepper Treiber, 2x 8A) betrieben. Der reißt mir den kleinen Nema8 aus seiner Halterung, wenn er kollidiert."
+arduino automation chef2,Hast du einen Link zu den Treiber? Hört sich sehr interessant an.
+arduino automation chef2,"Ich poste gern ein Bild aus der CAD, wenn ich wieder zuhause bin."
+arduino automation chef2,Die Baugruppe ist zur Zeit komplett demontiert. Man würde das Problem nicht erkennen.
+arduino automation chef2,Hast du einen Link zu den Treiber? Hört sich sehr interessant an.
+arduino automation chef2,Trinamic  TMC2209
+arduino automation chef2,"Das Ziel soll sein, alles über einen uC laufen zu lassen.Klar habe ich eine Referenzfahrt. Über einen kapazitiven Sensor. Der sitzt in der Führung der Mgn Rail und detektiert den Körper des Wagens. Funktioniert auch unglaublich präzise. (0,01mm, gemessen mit Messuhr)."
+arduino automation chef2,Die Positionierung funktioniert ja auch. Nur nach mehreren (ca. 100) Auslöseprozessen weicht der Wert dann ab.
+arduino automation chef2,"Nach jeder Fahrt ein Homing auszuführen dauert zu lange, da das Homing mit reduzierter Geschwindigkeit durchgeführt werden muss. Sonst schießt der Wagen durch die Masseträgheit des Motor-Rotors übers Ziel hinaus. Der Sensor würde trotzdem sagen ""1""und würde die falsche 0-Position annehmen."
+arduino automation chef2,Außerdem würde es den Schrittverlust nach dem Homing nicht erkennen. (Der Sensor sitzt am anderen Ende der Führung)
+arduino automation chef2,Die Spannung liegt bei 7V.
+arduino automation chef2,Also der TMC2209 kann bis 29V. Wenn du da statt 7V 24V drauf gibst dann wird das Drehmoment schon etwas größer. Durch die Stromregelung wird der Strom trotzdem korrekt eingestellt / eingehalten.
+arduino automation chef2,vgs
+arduino automation chef2,Ich werd das auf jeden Fall mal versuchen.
+arduino automation chef2,"Kann sein, dass ich jetzt im Irrtum bin. :Wird durch die Stromregelung nicht die Spannung beschnitten?"
+arduino automation chef2,"Die Versorgungsspannung meines Treibers liegt auch bei 15v. (Treiber is ein DRV8825)Wenn ich bei Stillstand die Motorspannung Messe, sind es circa 7v. Ändere ich Vref am Treiber, ändert sich auch die Ausgangsspannung."
+arduino automation chef2,"Nach dem ohmschen Gesetz macht das ja auch Sinn. Der Widerstand R der Motorwicklung ist ja (halbwegs) konstant.Wenn ich den gewollten Strom I einstellen möchte, muss ich doch die Spannung anpassen."
+arduino automation chef2,"Also z. B.  10 Ohm x 0,7 A = 7V."
+arduino automation chef2,"Lasse mich aber gern eines besseren belehren. Ich hab bis jetzt einfach angenommen, dass es so ist."
+arduino automation chef2,Danke auf jeden Fall für den vielen Input.
+arduino automation chef2,Update:
+arduino automation chef2,"Habe mich geirrt.Was ich gemessen habe ist nur der Mittelwert.Die Spannung scheint gepulst zugeführt zu werden. Immer wenn der Nennstrom an der Spule erreicht ist, wird die Spannung kurz abgeschaltet.Durch die höhere Spannung wird der Nennstrom an der Wicklung aber schneller erreicht, was den Drehmomentzuwachs bedeutet."
+arduino automation chef2,"Die Spannung scheint gepulst zugeführt zu werden. Immer wenn der Nennstrom an der Spule erreicht ist, wird die Spannung kurz abgeschaltet.Durch die höhere Spannung wird der Nennstrom an der Wicklung aber schneller erreicht, was den Drehmomentzuwachs bedeutet."
+arduino automation chef2,Genau so ist es. Und dieses Steuerverhalten nennt man Stromregelung.Die Spannung wird immer nur so lange eingeschaltet damit sich aus der Einschaltdauer ein bestimmter Mittelwert des Stromes ergibt.
+arduino automation chef2,vgs
+arduino automation chef2,"@derbleibtgeheim,"
+arduino automation chef2,Im englischen Teil des Forum müssen die Beiträge und Diskussionen in englischer Sprache verfasst werden.Deswegen wurde diese Diskussion in den deutschen Teil des Forums verschoben.mfg ein Moderator.
+arduino automation chef2,"Vielen Dank fürs verschieben. Als es mir aufgefallen war, war es schon zu spät."
+arduino automation chef2,Na dann habe ich ja mal wieder was dazu gelerntSehr gut. Ich dachte bei Stromregelung immer an eine Konstantstromquelle vor ner H-Brücke. Is ja doch ne anspruchsvollere Schaltung.
+arduino automation chef2,"Whatever. Der DRV8825 scheint den Strom ja genau so zu regeln. Das mit dem TMC2209 werd ich trotzdem mal ausprobieren wegen dem Stallguard.Wäre nun interessant, ob der Treiber auch eine Rückmeldung an den uC geben kann wenn die Positionierung nicht erfolgreich war.Sonst komme ich um den Encoder trotzdem nicht herum."
+arduino automation chef2,"Hier mal noch ein Bild aus dem CAD-Programm:Den Auslöser und einige andere Teile sind ausgeblendet, sonst erkennt man nix.17031879808257553349489940964471920×2560 703 KB170318802412786071859517647652491920×2560 762 KB170318806154553999997021520076981920×2560 698 KB"
+arduino automation chef2,Ich dachte bei Stromregelung immer an eine Konstantstromquelle vor ner H-Brücke. Is ja doch ne anspruchsvollere Schaltung.
+arduino automation chef2,"Wenn Du ein wenig genauer wissen willst, wie die Stromtreiber funktionieren: Vor längerer Zeit hatte ich mal ein Thema dazu aufgemacht. Tommy56 hat das dann zusammengefasst und auf seinemServer gehostet. Ist in der Tat etwas komplexer als es im ersten Moment aussieht.Bei den Stepraten, die Du da vorhast braucht es auch unbedingt Beschleunigungs- und Bremsrampen. Ist das in deinem Sketch vorgesehen?"
+arduino automation chef2,Au Watte schrägwinklig geschossenes Handyfoto vom Bildschirm.Wiest du wie man direkte Screenshots auf dem PC macht?
+arduino automation chef2,Jetzt musste zu den Bildern aber trotzdem noch was erklären.
+arduino automation chef2,Man sieht einen Schrittmotor mit einer ziemlich langen Achse.An dem Ende der Achse das dem Schrittmotor gegenüberliegt ist ein hellgraues Bauteilwird das hellgraue Bauteil durch die Drehung der Schrittmotorachse vor/zurückbewegt?image1803×1104 285 KB
+arduino automation chef2,Wo ist der Referenzsensor?
+arduino automation chef2,750 rpm = 750 / 60 = 12.5 Umdrehungen pro Sekunde
+arduino automation chef2,Die meisten Schrittmotoren haben 200 Vollschritte pro Umdrehungmacht dann 12.5 * 200 = 2500 Vollschritte pro Sekunde
+arduino automation chef2,150 kHz = 150000 Hz = Schritte pro SekundeEin DRV8825 kann maximal 1/32 Microstepsdas macht dann2500 * 32 = 80000 Impulse pro Sekunde.Immer noch extrem hohe Frequenz für einen Arduino UnoUnd wenn ich das richtig verstehe dann fährt der Schrittmotor aus dem Stillstand an soll das bewegliche Teil verdammt schnell nach vorne bringen und auf den ca. 80 Millimetern auch wieder abbremsen.
+arduino automation chef2,Wenn das bisher ohne Beschleunigung / Abbremsen gemacht wird wundert es mich gar nicht das das Schritte verloren genen.
+arduino automation chef2,vgs
+arduino automation chef2,"Okay, wo fangen wir an..."
+arduino automation chef2,"Doch, ich weiß, wie man Screenshots macht. Das war eher eine Frage der Bequemlichkeit, weil ich auf dem Handy im Forum angemeldet war."
+arduino automation chef2,"Wie gesagt, es sind einige Komponenten ausgeblendet, um die Einsicht zu erleichtern.Das Graue Teil wird nicht von diesem Schrittmotor bewegt, sondern von einem anderen. Der ist auf der Zeichnung nicht zu sehen. An der Hiwin-Führung (das rot/grüne Teil da) ist allerdings etwas angeschraubt, was bewegt wird und den Sensor beherbergt."
+arduino automation chef2,"Die lange Motorwelle ist eigentlich ein Trapezgewinde. T3,5x2,4. Da es für das Modell nicht ausschlaggebend ist, hab ich einfach nur eine Welle modelliert."
+arduino automation chef2,Der Referenz-Sensor ist auch nicht im Modell zu sehen. Er befindet sich vor dem Motor in dem braunen Teil. Ich male es mal im Bild ein.
+arduino automation chef2,"Mit der Frequenzangabe habe ich mich ein wenig doof ausgedrückt. War auch ein Fehler. Es wären theorethisch 160.000.Ich muss den Pin ja high und danach auf low schalten. Der Treiber reagiert aber nur auf steigende Flanken, nicht auf fallende.Richtig, er läuft mit 1/32 Microstepping. Heißt ja nun, dass er 80.000 steigende und 80.000 fallende Flanken brauch."
+arduino automation chef2,"Dazu kommt noch ein mills() - Timer zwischen den Takten.Über die Timer habe ich die Acceleration und die Drehzahlbegrenzung umgesetzt.... Der Sollwert der Zeit zwischen den Flanken wird im Loop immer weiter vermindert, bis die Maximale Drehzahl erreicht ist oder wieder abgebremst werden muss. Bei der Umsetzung hatte ich mich glaube ich an der Accelstepper lib orientiert."
+arduino automation chef2,"Ich vermute, ohne Beschleunigungskontrolle würde der Stepper gar nicht beschleunigen."
+arduino automation chef2,"750RPM sind auch nur der maximal zulässige Wert. Der wird nicht erreicht. Der Motor macht nur 17 1/2 Umdrehungen (42mm), danach muss er schon wieder stehen."
+arduino automation chef2,"Da er es aber in knapp einer Sekunde schafft, sind die 750 RPM aber vielleicht gar nicht so abwegig. Wäre mal wieder eine Aufgabe fürs Speicheroszi."
+arduino automation chef2,Kann man in diesem Forum per PN Videos verschicken? Dann könnte ich dir zeigen worum es geht. Darf es halt nur nicht öffentlich machen.
+arduino automation chef2,Der rote Zylinder vor dem Motor ist der Endstopp für die Ref-Fahrt
+arduino automation chef2,170319780911243671051813269221621920×2560 1010 KB
+arduino automation chef2,"Mit der Frequenzangabe habe ich mich ein wenig doof ausgedrückt. War auch ein Fehler. Es wären theorethisch 160.000.Ich muss den Pin ja high und danach auf low schalten. Der Treiber reagiert aber nur auf steigende Flanken, nicht auf fallende.Richtig, er läuft mit 1/32 Microstepping. Heißt ja nun, dass er 80.000 steigende und 80.000 fallende Flanken brauch."
+arduino automation chef2,"Ja und eine steigendeundeine fallende Flankezusammenergeben einen Wechsel(= eine Rechteck""welle"".)"
+arduino automation chef2,Also nennen wir es die Wiederholfrequenz für das Umschalten HIGH-LOW muss 160 kHz sein damit sich einer Schrittfrequenz von 80 kHz ergibt.
+arduino automation chef2,1 / 160000 = 6.25Mikrosekunden.Mit millis() = tausendstel Sekunden ist da schon lange nichts mehr.also kann das höchstes micros() sein aber nicht millis()
+arduino automation chef2,Wenn ich mich recht entsinne dann wird micros() alle 4 µs  um 4 erhöht.Das würde heißen die Zeit beträgt entweder 4 µs oder 8µs.
+arduino automation chef2,"Aus dem, dass du den Referenzsensor eingezeichnet hast weiß man jetzt wo der Referenzsensor sitzt. Ansonsten kann ich nur mutmaßen, dass auf der Trapezgewindespindel eine Mutter sitzt die etwas bewegt was da nicht dargestellt ist."
+arduino automation chef2,Ich habe Referenzfahrten immer so programmiert: Fahre auf den Referenzsensor zu bis der Referenzsensor umschaltet. Dann fahre in langsamem Tempo wieder vom Referenzsensorherunterbis der Referenzsensorzurückschaltet und dieser Punkt an dem der Referenzsensorzurückschaltet wird als Referenzpunkt benutzt.
+arduino automation chef2,"Diese Vorgehensweise ermöglicht, dass man mit hoher Geschwindigkeit zum Referenzsensor hinfährt und nur eineganz kurzeStrecke vom Referenzsensor mit kleiner Geschwindigkeit herunterfährt. Dadurch ist die Referenzfahrt schnell erledigt."
+arduino automation chef2,vgs
+arduino automation chef2,"Ja, wie gesagt, mit der Frequenz habe ich mich ungünstig ausgedrückt."
+arduino automation chef2,Blockzitat1 / 160000 = 6.25Mikrosekunden.Mit millis() = tausendstel Sekunden ist da schon lange nichts mehr.also kann das höchstes micros() sein aber nicht millis()Wenn ich mich recht entsinne dann wird micros() alle 4 µs um 4 erhöht.Das würde heißen die Zeit beträgt entweder 4 µs oder 8µs.
+arduino automation chef2,"Gutes Argument. Ich habe tatsächlich nur mills benutzt. Für die Beschleunigungssteuerung erfüllt es aber seinen Zweck.Das werde ich ändern. Fraglich ist dabei, wie lange die ""If"" Bedingung mit Abfrage und Vergleich der beiden Zeitvariablen dauert."
+arduino automation chef2,"BlockzitatAus dem, dass du den Referenzsensor eingezeichnet hast weiß man jetzt wo der Referenzsensor sitzt. Ansonsten kann ich nur mutmaßen, dass auf der Trapezgewindespindel eine Mutter sitzt die etwas bewegt was da nicht dargestellt ist."
+arduino automation chef2,Als Referenzsensor wird dieser induktive Näherungssensor eingesetzt (kein kapazitiver) :https://www.reichelt.de/induktiver-naeherungssensor-0-6-mm-pnp-schliesser-dwad-603-m4-p151417.html?PROVID=2788&gclid=Cj0KCQiA4Y-sBhC6ARIsAGXF1g4e-x1A0yqZ-Xyi3o_RdKkdZlkkELe-H38O3vM4Lt2UrSm2fnEprgsaAr2MEALw_wcB&&r=1
+arduino automation chef2,BlockzitatIch habe Referenzfahrten immer so programmiert: Fahre auf den Referenzsensor zu bis der Referenzsensor umschaltet. Dann fahre in langsamem Tempo wieder vom Referenzsensorherunterbis der Referenzsensorzurückschaltet und dieser Punkt an dem der Referenzsensorzurückschaltet wird als Referenzpunkt benutzt.
+arduino automation chef2,"Jup. So ähnlich funktioniert das erste Homing, wenn man die Maschine anschaltet.Während der Produktion dauert das aber zu lange."
+arduino automation chef2,Die Maschine ist ein Halbautomat zum verarbeiten von Crimpkontakten.
+arduino automation chef2,"Das Teil da ist die Abisoliereinheit. Das Kabel berührt einen Sensor. Der Sensor muss augenblicklich zurückfahren, da vorn in der Einheit 2 V-Messer sitzen, die die Isolierung  der Litze einschneiden und durch die Bewegung des Schwenkarmes abziehen.Würde der Sensor in Position bleiben, würden die V-Messer ihn zerschneiden."
+arduino automation chef2,Irgendwie klappt das mit den Zitaten nicht richtig
+arduino automation chef2,OK. Es gibt sehr eng gesteckte und präzise einzuhaltende Zeitabläufe.Dieses präzise Zeiten einhalten / sofortiges reagieren erfordert den Schrittmotor mit größtmöglicher Beschleunigung zu fahren.
+arduino automation chef2,Dabei treten durch Verschmutzungen = Spindelmutter lässt sich schwerer bewegen Schrittverluste auf.   Das soll durch einen Encoder detektiert werden.
+arduino automation chef2,Da das ganze eine Produktionsmaschine ist würde ich jetzt ernsthaft darüber nachdenken statt eines 20 Euro Arduinos 16 MHz einen 45 Euro Teensy 4.0 600 MHz zu nehmen. Das sind doch keine Kosten! Du bastelst eine Stunde an der Arduino-Software rum kostet den Chef mehr.
+arduino automation chef2,"Und ich würde sogar noch über etwas zweites nachdenken:Änderung der Mechanik so das man einen kräftigeren Schrittmotor verwenden kann.Es mag sein, dass das dann gleich tausende Euro sind. Das würde ich eben dem gegenüberstellen was für Kosten entstehen wenn ein gewisser Prozentsatz Ausschuss produziert wird."
+arduino automation chef2,Bei einer Amortisationszeit von Monaten wäre das für mich überhaupt keine Frage diese Investition zu tätigen.
+arduino automation chef2,"Wenn ich das jetzt wirklich im Detail verstehen können soll, dann müsstest du ein Video und jede Menge ergänzende Erklärung posten.Das geht auch in PM-Nachrichten. Das würde ich aber selbst wenn es eine PM-Nachricht ist mit dem Chef absprechen."
+arduino automation chef2,vgs
+arduino automation chef2,Gute Zusammenfassung.
+arduino automation chef2,"Die Verschmutzungen treten nicht mal an der Spindelmutter auf, sondern einfach durch herumliegende Isolationsreste. Diese werden dann beim Verfahren irgendwo eingeklemmt. Im Prozess wird das ganze Teil zwar automatisch mit Druckluft gespült aber das begünstigt nur, dass sich die Isolationsreste an anderen Stellen in der Führung festsetzen.Deshalb wäre ein größerer Motor nur bedingt eine Abhilfe. Auch der kann die Verschmutzung nicht auf 0 komprimieren."
+arduino automation chef2,BlockzitatDa das ganze eine Produktionsmaschine ist würde ich jetzt ernsthaft darüber nachdenken statt eines 20 Euro Arduinos 16 MHz einen 45 Euro Teensy 4.0 600 MHz zu nehmen. Das sind doch keine Kosten! Du bastelst eine Stunde an der Arduino-Software rum kostet den Chef mehr..
+arduino automation chef2,"Tatsächlich is es nur ein SMD Atmega für 2€. Die Platine hatte ich herstellen lassen und hab sie bestückt, samt Treiber, Spannungsregler usw.Jeder Schrittmotor hat seinen eigenen uC.In meiner grenzenlosen Ignoranz dachte ich, das reicht auf jeden Fall. Theoretisch tut es das ja. Bloß beim Encoder bin ich mir nicht sicher. Der Reiz an dem Ding mit dem Encoder ist ja, dass es eine Rückmeldung zur Steuerung geben kann, genauso wie ein Versuch des Freifahrens, bevor die Steuerung den Produktionsablauf stoppt.Im Orginal und im Ist-Zustand kann man halt munter weiter produzieren, bis man alles in Ausschuss verwandelt hat.Die uC interpretieren zur Zeit nur die Anweisungen der orginalen Steuerung und setzen sie in Step/Dir-Signale um.Geplant ist irgendwann, die Uralt-Steuerung durch einen Esp32 o.ä. mit HMI zu ersetzen."
+arduino automation chef2,"BlockzitatWenn ich das jetzt wirklich im Detail verstehen können soll, dann müsstest du ein Video und jede Menge ergänzende Erklärung posten.Das geht auch in PM-Nachrichten. Das würde ich aber selbst wenn es eine PM-Nachricht ist mit dem Chef absprechen."
+arduino automation chef2,"Ich löse diese Aufgabe privat, weil ich Freude an sowas habe und auf Arbeit noch anderen Kram machen muss.Das einzige Slow-Motion Video was ich vom orginalen Bewegungsablauf habe, ist allerdings in der Firma gedreht. Deshalb möchte ich es nicht online stellen. Hab auch versucht, es dir zu senden. Allerdings ist das Dateiformat nicht erlaubt."
+arduino automation chef2,Allerdings ist das Dateiformat nicht erlaubt.
+arduino automation chef2,Meistens reicht es ein .txt anzuhängen...
+arduino automation chef2,Hm... :
+arduino automation chef2,"Die Verschmutzungen treten nicht mal an der Spindelmutter auf, sondern einfach durch herumliegende Isolationsreste. Diese werden dann beim Verfahren irgendwo eingeklemmt. Im Prozess wird das ganze Teil zwar automatisch mit Druckluft gespült aber das begünstigt nur, dass sich die Isolationsreste an anderen Stellen in der Führung festsetzen."
+arduino automation chef2,Die Schnipsel nicht wegpusten sondern wegsaugen ?
+arduino automation chef2,BlockzitatDie Schnipsel nicht wegpusten sondern wegsaugen ?
+arduino automation chef2,"Ist schon von Werk aus so gebaut.Über dem Trigger wird gepustet, unten wird abgesaugt."
+arduino automation chef2,Related topics
+arduino automation chef2,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef3,Sync 5 arduinos : master pour millis() ?
+arduino automation chef3,"Salut tout le monde,mes excuses si j'ai manqué un topic où cette question serait déjà traitée mais je n'ai pas trouvé:"
+arduino automation chef3,Je travaille sur un petit orchestre automatisé de marionnettes utilisant 5 arduinos.
+arduino automation chef3,Chaque Arduino nano pilote un servo moteur pour faire bouger la marionnette et un lecteur audio  (DFPLayer mini MP3) qui envoie des sons sur certains mouvements.
+arduino automation chef3,"Pour le côté multiâche, la fonction millis() s'est révélée beaucoup plus utile que delay()."
+arduino automation chef3,En somme on définit un intervalle de temps et toute les X millisecondes on déclenche un mouvement et/ou un son.
+arduino automation chef3,La question qui coince maintenant pour moi est :Comment synchroniser les 5 marionnettes pour qu'elles jouent ensemble ?  Par le port série ?
+arduino automation chef3,"Et si cela marche, vaut-il mieux ajouter un arduino chef d'orchestre qui ne s'occupe que de la fonction millis() et d'envoyer des GO et STOP aux autres,ou un des 5 arduinos peut-il avoir ce rôle ?"
+arduino automation chef3,Merci de votre aide !DT
+arduino automation chef3,Bonjour DragosT
+arduino automation chef3,Comment synchroniser les 5 marionnettes pour qu'elles jouent ensemble ? Par le port série ?
+arduino automation chef3,"Je ferais ça avecun bus i2C. Un des Arduino serait le chef. Il n'est pas nécessaire qu'un Arduino ne fasse ""que"" le chef.Pour commander le servo, pas de problème, pour le son, quelle méthode emploies tu?"
+arduino automation chef3,"Pour l'i2C, si tu veux un exemple..."
+arduino automation chef3,"PS: je me pose la question, est-ce que les Nano sont entièrement autonomes, dans ce cas un simple TOP de synchro nécessiterai  qu'une simple liaison, au quel cas le bus i2C n'est pas nécessaire.Ou le maître envoie la position du servo ainsi que quelle son jouer?"
+arduino automation chef3,Cordialementjpbbricole
+arduino automation chef3,"Et si cela marche, vaut-il mieux ajouter un arduino chef d'orchestre qui ne s'occupe que de la fonction millis() et d'envoyer des GO et STOP aux autres,ou un des 5 arduinos peut-il avoir ce rôle ?"
+arduino automation chef3,Les 2 solutions sont possibles c'est un choix en fonction de l'architecture de ton ensemble.
+arduino automation chef3,"Par contre, une chose à prévoir, la synchronisation doit se faire relativement souvent.Les cartes Arduino sont fabriquée à bas coût. En conséquence de quoi l'horloge utilise un résonateur et non un quartz. Les ""bons"" résonateurs"" ont une dispersion en fréquence de l'ordre de ±0,5%. Cela fait 0,5s de décalage au bout de 1 minute 40s de jeu. C'est juste intolérable si les instruments se décalent aussi rapidement.Cela militerait donc pour un des éléments (ou un chef d'orchestre) qui donnerait le tempo en permanence. Ce peut être tout simplement une ligne qui envoie une impulsion pour donner le rythme aux autres."
+arduino automation chef3,Tout dépend du niveau de synchronisation dont tu as besoin.Les solutions qui te sont ou te seront proposées conviendront peut-être.Je réponds sur le principe et sur des vraies synchronisations à partir de composants extérieurs.
+arduino automation chef3,"Même si les quartz de deux oscillateurs étaient exactement à la même fréquence (c'est une vue de l'esprit) il y aurait toujours un glissement en phase, ne serait-ce que parce qu'il y a des petites différences de température entre les différentes cartes."
+arduino automation chef3,Maintenir plusieurs horloges synchronisées est difficile à faire.
+arduino automation chef3,Piloter les  microcontrôleurs avec une horloge commune est plus envisageable.
+arduino automation chef3,Il faut savoir que les microcontrôleurs ont trois façons de gérer une horloge :
+arduino automation chef3,Bien évidement cela oblige à avoir un oscillateur indépendant de 16 MHZ et bricoler les circuits imprimés des cartes.
+arduino automation chef3,S'il s'agit de piloter un servo il y a peut-être une solution.Tout dépend du microcontroleur et du timer utilisé pour piloter les servos.Je donne juste une piste de réflexion.
+arduino automation chef3,"Dans un atmega328p il existe un timer qui peut accepter une horloge externe.Je ne sais pas si c'est celui qui est utilisé par la bibliothèque ""servos"" et je ne sais pas si la bibliothèque servo l'accepterait."
+arduino automation chef3,Enfin dernière solution chercher s'il n'existe pas des circuits intégrés qui puissent piloter des servos et regarder s'ils sont synchronisables aisément.CI spécialisés dans la commande de servo ou en PWM.La commande de servo est de la PWM de fréquence de récurence 50 Hz et de rapport cyclique bien précis.
+arduino automation chef3,Dans un atmega328p il existe un timer qui peut accepter une horloge externe
+arduino automation chef3,Les trois !
+arduino automation chef3,"Pourquoi utiliser 5 Arduino pour piloter pas grand chose et se taper des ennuis pour tout synchroniser, plutôt une seule carte?"
+arduino automation chef3,"Merci beaucoup jpbbricole, fdufnews, 68tjs et vileroi!"
+arduino automation chef3,"Vos informations sont précieuses, claires et me mènent à une de ces deux options options:"
+arduino automation chef3,"Utiliser un arduino nano (parce que j'en ai encore un) comme chef d'orchestre pour juste envoyer une série de TOP indexée (probalemen en boucle comme un séquenceur rythmique, module de 16 ou 32 pas par exemple) et chaque Arduino-esclave sélectionne le numéro qui le concerne pour ses opérations."
+arduino automation chef3,Acheter ou tester un arduino méga pour faire le tout. Je n'en ai jamais essayé et ne sais pas si pour une 10ain de servo moteurs et 5 lecteurs audio ça va marcher.
+arduino automation chef3,"Concenrnant la question de jppbricole sur le lecteur audio, c'est très imple parce que le DFPLayer min vient avec sabibliothéque de fonctions toutes prêtesIl faut en somme"
+arduino automation chef3,"Un grand merci à vous et je peux, si ça vous intéresse, poster des mises à jour dans code quand j'aurai avancé."
+arduino automation chef3,Bonne journéeDT
+arduino automation chef3,Bonjour DragosT
+arduino automation chef3,Acheter ou tester un arduino méga pour faire le tout. Je n'en ai jamais essayé et ne sais pas si pour une 10ain de servo moteurs et 5 lecteurs audio ça va marcher.
+arduino automation chef3,"Le problème va être le nombre de ports série pour commander les DFPLAYER. Avec de modules de ce type,SC5W:on peut commander les MP3 à jouer simplement par des états logiques sur ses entrées IO0 à IO7 (Mode 0), dans cette configuration, plus de problème de nombre de pin, le Mega en as assez."
+arduino automation chef3,Cordialementjpbbricole
+arduino automation chef3,"Bonjourjpbbricoleet merci !Je prends note, j'ajoute à ma liste et posterai des résultats (qui prennent un peu de temps pour tout un tas de raisons)."
+arduino automation chef3,Excellente jounée
+arduino automation chef3,Bonjour DragosT
+arduino automation chef3,"Encore quelques informations, pour la commande des servo, il y a lePCA9685 sur bus i2Ctu peux en avoir 64 cartes comme celle cice qui te fait 16 x 64 servo. pour seulement 2 fils (SCL SDA) sur l'Arduino, ce qui te permettrai d'avoir un ""petit"" Arduino."
+arduino automation chef3,"Pour la solution avec bibliothèque pour les servo, la ""classique""Servo.hfonctionne en mode bloquant, c'est à dire que l'on attend qu'un servo aie terminé son déplacement pour faire fonctionner le suivant, pas le pied pour ton application. Avec la bibliothèqueVarSpeedServoon peut choisirattendre ou pas. et choisir la vitesse, également."
+arduino automation chef3,"Sur ton idée de Nano séparés, ces Nano étaient indépendants au point de vue de quel mouvement/musique il devaient faire ou ils recevaient les ordres de mouvement/musique du chef?"
+arduino automation chef3,Cordialementjpbbricole
+arduino automation chef3,"Merci Jpbbricole,"
+arduino automation chef3,Je ne connaissais pas et c'est clairement intéressant.
+arduino automation chef3,"Pour l'instant, chaque Nano a  à chaque intervalle de temps décompté par millis().:"
+arduino automation chef3,ça fonctionne bien individuellement. L'étape suivant est la synchronisation.
+arduino automation chef3,"Merci, salutations !DT"
+arduino automation chef3,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino automation chef3,Related topics
+arduino automation chef3,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef4,Beginner coding for Automatic irrigation system
+arduino automation chef4,Good afternoon everyone. Apologies for being a beginner here (coding).
+arduino automation chef4,My project is as follows:
+arduino automation chef4,"Ultimately a 16 zone plant watering system for my balcony plants. Reasons: I'm lazy, live in 40+ degrees heat, not so much time on my hands, not an experienced gardener, I love automation."
+arduino automation chef4,"I work in automotive technical, auto electrician, have built some small bespoke electronics projects on occasion, but not coding, this is where my knowledge dies off."
+arduino automation chef4,"I am looking through the online training etc, but also looking at other similar projects that vary vastly in the coding (which i get confused about). I am a ""learn on the job"" kind of guy."
+arduino automation chef4,"I want to use Mega 2560 R3, Capacitance Soil Moisture Sensor, Relay Module (to run solenoids), ESP8266 wifi as I would like to get this online. I will run solenoids from the relays on their own power supply. I have a central pump for all."
+arduino automation chef4,I will start with just one moisture sensor and 1 relay.
+arduino automation chef4,I built the circuit oncircuito.ioand got the following code. I assume just some basic formality of a code.
+arduino automation chef4,"1st step/question for me is some info about the code i attached. is it relevant, necessary."
+arduino automation chef4,2nd step/question. How do i simply control the relay from the moisture sensor.
+arduino automation chef4,"// Include Libraries
+#include ""Arduino.h""
+#include ""ESP8266.h""
+#include ""GraphicLCD.h""
+#include ""SoilMoisture.h""
+
+
+// Pin Definitions
+#define GRAPHICLCD_PIN_TX 3
+#define GRAPHICLCD_PIN_RX 2
+#define RELAYMODULE4CH_PIN_IN1 4
+#define RELAYMODULE4CH_PIN_IN2 5
+#define RELAYMODULE4CH_PIN_IN4 7
+#define RELAYMODULE4CH_PIN_IN3 6
+#define SOILMOISTURE_5V1_1_PIN_SIG A10
+#define SOILMOISTURE_5V2_2_PIN_SIG A0
+#define SOILMOISTURE_5V3_3_PIN_SIG A3
+#define SOILMOISTURE_5V4_4_PIN_SIG A13
+
+
+
+// Global variables and defines
+// ====================================================================
+// vvvvvvvvvvvvvvvvvvvv ENTER YOUR WI-FI SETTINGS  vvvvvvvvvvvvvvvvvvvv
+//
+const char *SSID = ""WIFI-SSID"";     // CornishRes
+const char *PASSWORD = ""PASSWORD"";  // Crabpeople2023!!
+//
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ====================================================================
+char *const host = ""www.google.com"";
+int hostPort = 80;
+//define an array for the 4ch relay module pins
+int RelayModule4chPins[] = { RELAYMODULE4CH_PIN_IN1, RELAYMODULE4CH_PIN_IN2, RELAYMODULE4CH_PIN_IN3, RELAYMODULE4CH_PIN_IN4 };
+// object initialization
+ESP8266 wifi;
+GraphicLCD graphicLCD(GRAPHICLCD_PIN_RX, GRAPHICLCD_PIN_TX);
+SoilMoisture soilMoisture_5v1_1(SOILMOISTURE_5V1_1_PIN_SIG);
+SoilMoisture soilMoisture_5v2_2(SOILMOISTURE_5V2_2_PIN_SIG);
+SoilMoisture soilMoisture_5v3_3(SOILMOISTURE_5V3_3_PIN_SIG);
+SoilMoisture soilMoisture_5v4_4(SOILMOISTURE_5V4_4_PIN_SIG);
+
+
+// define vars for testing menu
+const int timeout = 10000;  //define timeout of 10 sec
+char menuOption = 0;
+long time0;
+
+// Setup the essentials for your circuit to work. It runs first every time your circuit is powered with electricity.
+void setup() {
+  // Setup Serial which is useful for debugging
+  // Use the Serial Monitor to view printed messages
+  Serial.begin(9600);
+  while (!Serial)
+    ;  // wait for serial port to connect. Needed for native USB
+  Serial.println(""start"");
+
+  wifi.init(SSID, PASSWORD);
+  pinMode(RELAYMODULE4CH_PIN_IN1, OUTPUT);
+  pinMode(RELAYMODULE4CH_PIN_IN2, OUTPUT);
+  pinMode(RELAYMODULE4CH_PIN_IN3, OUTPUT);
+  pinMode(RELAYMODULE4CH_PIN_IN4, OUTPUT);
+  menuOption = menu();
+}
+
+// Main logic of your circuit. It defines the interaction between the components you selected. After setup, it runs over and over again, in an eternal loop.
+void loop() {
+
+
+  if (menuOption == '1') {
+    // Logic Level Converter - Bi-Directional - Test Code
+    //Send request for www.google.com at port 80
+    wifi.httpGet(host, hostPort);
+    // get response buffer. Note that it is set to 250 bytes due to the Arduino low memory
+    char *wifiBuf = wifi.getBuffer();
+    //Comment out to print the buffer to Serial Monitor
+    //for(int i=0; i< MAX_BUFFER_SIZE ; i++)
+    //  Serial.print(wifiBuf[i]);
+    //search buffer for the date and time and print it to the serial monitor. This is GMT time!
+    char *wifiDateIdx = strstr(wifiBuf, ""Date"");
+    for (int i = 0; wifiDateIdx[i] != '\n'; i++)
+      Serial.print(wifiDateIdx[i]);
+
+  } else if (menuOption == '2') {
+    // Graphic LCD 160x128 Huge - Test Code
+    // The LCD Screen will display the text of your choice at the location (30,50) on screen. Counting from the top left corner: 30 pixels to the right and 50 pixels down
+    graphicLCD.setX(30);                     // 1. sets left-right indent for text to print. Change the value in the brackets (1 - left, 164 - right) for a different indent.
+    graphicLCD.setY(50);                     // 2. sets top-bottom height for text to print. Change the value in the brackets (1 - top, 128 - bottom) for a different height.
+    graphicLCD.print(""Circuito.io Rocks!"");  // 3. prints the text in the brackets. Modify the text to get your own unique print.
+    delay(1000);                             // 4. waits 1000 milliseconds (1 sec). Change the value in the brackets (1000) for a longer or shorter delay in milliseconds.
+    graphicLCD.clear();                      // 5. wipes the screen
+    delay(1000);                             // 6. waits 1000 milliseconds (1 sec). Change the value in the brackets (1000) for a longer or shorter delay in milliseconds.
+  } else if (menuOption == '3') {
+    // Relay Module 4-Ch - Test Code
+    //This loop will turn on and off each relay in the array for 0.5 sec
+    for (int i = 0; i < 4; i++) {
+      digitalWrite(RelayModule4chPins[i], HIGH);
+      delay(500);
+      digitalWrite(RelayModule4chPins[i], LOW);
+      delay(500);
+    }
+  } else if (menuOption == '4') {
+    // Soil Moisture Sensor #1 - Test Code
+    int soilMoisture_5v1_1Val = soilMoisture_5v1_1.read();
+    Serial.print(F(""Val: ""));
+    Serial.println(soilMoisture_5v1_1Val);
+
+  } else if (menuOption == '5') {
+    // Soil Moisture Sensor #2 - Test Code
+    int soilMoisture_5v2_2Val = soilMoisture_5v2_2.read();
+    Serial.print(F(""Val: ""));
+    Serial.println(soilMoisture_5v2_2Val);
+
+  } else if (menuOption == '6') {
+    // Soil Moisture Sensor #3 - Test Code
+    int soilMoisture_5v3_3Val = soilMoisture_5v3_3.read();
+    Serial.print(F(""Val: ""));
+    Serial.println(soilMoisture_5v3_3Val);
+
+  } else if (menuOption == '7') {
+    // Soil Moisture Sensor #4 - Test Code
+    int soilMoisture_5v4_4Val = soilMoisture_5v4_4.read();
+    Serial.print(F(""Val: ""));
+    Serial.println(soilMoisture_5v4_4Val);
+  }
+
+  if (millis() - time0 > timeout) {
+    menuOption = menu();
+  }
+}
+
+
+
+// Menu function for selecting the components to be tested
+// Follow serial monitor for instrcutions
+char menu() {
+
+  Serial.println(F(""\nWhich component would you like to test?""));
+  Serial.println(F(""(1) Logic Level Converter - Bi-Directional""));
+  Serial.println(F(""(2) Graphic LCD 160x128 Huge""));
+  Serial.println(F(""(3) Relay Module 4-Ch""));
+  Serial.println(F(""(4) Soil Moisture Sensor #1""));
+  Serial.println(F(""(5) Soil Moisture Sensor #2""));
+  Serial.println(F(""(6) Soil Moisture Sensor #3""));
+  Serial.println(F(""(7) Soil Moisture Sensor #4""));
+  Serial.println(F(""(menu) send anything else or press on board reset button\n""));
+  while (!Serial.available())
+    ;
+
+  // Read data from serial monitor if received
+  while (Serial.available()) {
+    char c = Serial.read();
+    if (isAlphaNumeric(c)) {
+
+      if (c == '1')
+        Serial.println(F(""Now Testing Logic Level Converter - Bi-Directional""));
+      else if (c == '2')
+        Serial.println(F(""Now Testing Graphic LCD 160x128 Huge""));
+      else if (c == '3')
+        Serial.println(F(""Now Testing Relay Module 4-Ch""));
+      else if (c == '4')
+        Serial.println(F(""Now Testing Soil Moisture Sensor #1""));
+      else if (c == '5')
+        Serial.println(F(""Now Testing Soil Moisture Sensor #2""));
+      else if (c == '6')
+        Serial.println(F(""Now Testing Soil Moisture Sensor #3""));
+      else if (c == '7')
+        Serial.println(F(""Now Testing Soil Moisture Sensor #4""));
+      else {
+        Serial.println(F(""illegal input!""));
+        return 0;
+      }
+      time0 = millis();
+      return c;
+    }
+  }
+}
+
+/*******************************************************
+
+*    Circuito.io is an automatic generator of schematics and code for off
+*    the shelf hardware combinations.
+
+*    Copyright (C) 2016 Roboplan Technologies Ltd.
+
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU General Public License for more details.
+
+*    You should have received a copy of the GNU General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*    In addition, and without limitation, to the disclaimers of warranties 
+*    stated above and in the GNU General Public License version 3 (or any 
+*    later version), Roboplan Technologies Ltd. (""Roboplan"") offers this 
+*    program subject to the following warranty disclaimers and by using 
+*    this program you acknowledge and agree to the following:
+*    THIS PROGRAM IS PROVIDED ON AN ""AS IS"" AND ""AS AVAILABLE"" BASIS, AND 
+*    WITHOUT WARRANTIES OF ANY KIND EITHER EXPRESS OR IMPLIED.  ROBOPLAN 
+*    HEREBY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT 
+*    NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, TITLE, FITNESS 
+*    FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND THOSE ARISING BY 
+*    STATUTE OR FROM A COURSE OF DEALING OR USAGE OF TRADE. 
+*    YOUR RELIANCE ON, OR USE OF THIS PROGRAM IS AT YOUR SOLE RISK.
+*    ROBOPLAN DOES NOT GUARANTEE THAT THE PROGRAM WILL BE FREE OF, OR NOT 
+*    SUSCEPTIBLE TO, BUGS, SECURITY BREACHES, OR VIRUSES. ROBOPLAN DOES 
+*    NOT WARRANT THAT YOUR USE OF THE PROGRAM, INCLUDING PURSUANT TO 
+*    SCHEMATICS, INSTRUCTIONS OR RECOMMENDATIONS OF ROBOPLAN, WILL BE SAFE 
+*    FOR PERSONAL USE OR FOR PRODUCTION OR COMMERCIAL USE, WILL NOT 
+*    VIOLATE ANY THIRD PARTY RIGHTS, WILL PROVIDE THE INTENDED OR DESIRED
+*    RESULTS, OR OPERATE AS YOU INTENDED OR AS MAY BE INDICATED BY ROBOPLAN. 
+*    YOU HEREBY WAIVE, AGREE NOT TO ASSERT AGAINST, AND RELEASE ROBOPLAN, 
+*    ITS LICENSORS AND AFFILIATES FROM, ANY CLAIMS IN CONNECTION WITH ANY OF 
+*    THE ABOVE. 
+********************************************************/"
+arduino automation chef4,Welcome to the forum
+arduino automation chef4,Your topic has been moved to a more relevant forum category
+arduino automation chef4,"If you do a bit of research you will find that moisture sensor mostly does not work. There are sensors that work that I just found out about, but they are 'professional' units. No idea re cost but suspect higher to much higher."
+arduino automation chef4,Thanks. Ill stick to my original approach for now as its not costly. Further down the line I can upgrade.
+arduino automation chef4,For now some feedback on the hardware selection and guidance on code is what i need
+arduino automation chef4,Thanks
+arduino automation chef4,Mark
+arduino automation chef4,"In that case, the Project Hub has 21 irrigation projects for you to learn from."
+arduino automation chef4,Apologies for being a beginner here (coding).
+arduino automation chef4,"Nothing to apologise for, this forum is for beginners like you."
+arduino automation chef4,"not coding, this is where my knowledge dies off."
+arduino automation chef4,"I work in automotive technical, auto electrician"
+arduino automation chef4,"When you first started doing that did you start with trying to understand all the electrics of a complete car? (I suspect not). If not, then why are you trying to work with what looks like an attempt at complete code for the whole thing? You have Wifi, multple soil sensors and a display in there, and I guess you don't understand any of it. The code you posted is way too complex for a beginner. Start simple, go through the beginner examples in the IDE, the tutorials on this forum and elsewhere. The first trap to avoid is using delay. Note what it does (nothing for a time) then learn how time things without delay. Second trap is 'while' loops that wait for something to happen and stop anything else happening. Learn what a state machine is. But, before that, learn the basics of code, like you (I hope) learnt the basics of electricity before being let loose on the wiring of a whole car."
+arduino automation chef4,Relay Module (to run solenoids)
+arduino automation chef4,Why? I find this an odd thing to do. What is a relay other than a solenoid that operates some contacts? Skip the relay and operate the solenoids directly from a suitable MOSFET. Too soon for that with your current knowledge? Something to think about and come back to later.
+arduino automation chef4,"Please keep us updated, I love seeing these kinds of project progress from 'I don't know how to do this' to 'look what I made'."
+arduino automation chef4,"Ha. Yes your correct, the code is a blur. The code i attached was automatically generated from thecircuito.iowebsite after designing the physical system."
+arduino automation chef4,"For now I want to leave the wifi, lcd out and just test 1 moisture sensor and 1 relay. I will use 12v solenoids so need seperate 12v supply, hence the relays. Unless you say otherwise? I can control 12v solenoid straight from Mega 2560? My understanding I cant."
+arduino automation chef4,I should probably not look at the coding created bycircuito.iothen and start from scratch.... help lol
+arduino automation chef4,Mark
+arduino automation chef4,"btw, mosfets i can do. But for now the relay board is not expensive and just simplifies things for me for now while i get around the core problem of making it run and figuring out coding."
+arduino automation chef4,I should probably not look at the coding created bycircuito.iothen and start from scratch....
+arduino automation chef4,"If you want to learn, yes, ignore it. Alternatively go thorough it line by line and learn what each line does. There are plenty of online C / C++ references to help you, for examplehttps://cplusplus.com/doc/tutorial/, but I think ignoring it is the best option."
+arduino automation chef4,"I will use 12v solenoids so need seperate 12v supply, hence the relays. Unless you say otherwise?"
+arduino automation chef4,"I don't see any need for relays for what you are trying to do, I don't see any need for isolation. One 12V power supply should be OK for the whole thing, especially if you know how to use MOSFETs. At the moment I suggest forgetting about the solenoids and just use LEDs in their place to show what is happening, add the solenoids later when you are happy that the LEDs go on and off at the right times."
+arduino automation chef4,"Ok i see. I have done the physical circuit with 12v solenoid and use of mosfet instead of relay. Ill do that at the end, will make a small pcb for that lot."
+arduino automation chef4,Back to coding...
+arduino automation chef4,Mark
+arduino automation chef4,"Which watering theory will the code represent? Some flowers need more water, some need less. Some flowers like a bath every xx day...""Code"" doesn't know that."
+arduino automation chef4,Back to coding...
+arduino automation chef4,I think at the moment you are trying to do the code equivalent of rewiring a whole car before you know how to connect a light bulb to a battery and a switch. Learn the basics first.
+arduino automation chef4,Firstly my hardware arrives today within next few hours.
+arduino automation chef4,"Step one i need simple code just to check my ""full dry"" and ""saturated"" readings from the sensor"
+arduino automation chef4,"Step 2: Code - if moisture sensor reads below ""x"" activate ""output"" until moisture sensor reads ""x"""
+arduino automation chef4,Side note: power to external pump and the arduino will only be on at 5am-6am and 7pm-8pm. This is externally controlled and only for info purposes
+arduino automation chef4,Mark
+arduino automation chef4,"I'd say it is not bad for an auto generated software.For a quick start comment the wifi.init ( in the setup ), connect the relay board and a moisture sensor and you are good to test the circuitCommands are sent trough the serial, so start the arduino serial monitor ( at 9600 baud ):"
+arduino automation chef4,"P.S.option 1 is quite funny 'Logic level converter' ( in fact test wifi that you disabled before, so don't test it... or enable it before testing )"
+arduino automation chef4,Step 1:
+arduino automation chef4,Please check code
+arduino automation chef4,This should allow me to read the sensor and activate output automatically depending on moisture.
+arduino automation chef4,Mark
+arduino automation chef4,"// Define pins
+#define SOIL_MOISTURE1_PIN A0
+#define SOLENOID1_PIN 2
+
+// Define threshold variable
+int threshold = 500; // Change this value to adjust the threshold for activating the pump
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(9600);
+  
+  // Set pump pin as output
+  pinMode(SOLENOID1_PIN, OUTPUT);
+}
+
+void loop() {
+  // Read soil moisture sensor data
+  int soil_moisture = analogRead(SOIL_MOISTURE1_PIN);
+  
+  // Print sensor data to serial monitor
+  Serial.print(""Soil Moisture: "");
+  Serial.println(soil_moisture);
+  
+  // Check if soil moisture is below threshold
+  if (soil_moisture < threshold) {
+    // Activate pump
+    digitalWrite(SOLENOID1_PIN, HIGH);
+    Serial.println(""Solenoid1 activated!"");
+  } else {
+    // Deactivate pump
+    digitalWrite(SOLENOID_PIN1, LOW);
+    Serial.println(""sOLENOID1 deactivated."");
+  }
+  
+  // Delay for 1 second
+  delay(1000);
+}"
+arduino automation chef4,"Step 2: Code - if moisture sensor reads below ""x"" activate ""output"" until moisture sensor reads ""x"""
+arduino automation chef4,"You can try how it works, but I have doubts you get good watering results.Logic could be: ...until moisture sensor reads (x+ something). Results depend on distance between sensor and water drip valve.Or time based:if moisture sensor reads <x, irrigate 5 minutes, if <y, irrigate 10 minutes, else don't irrigate"
+arduino automation chef4,It looks like it will work to test your hardware. You might consider making the delay a bit longer so you can more easily see what's going on.
+arduino automation chef4,"The capitalization for ""sOLENOID1 deactivated."" isn't what you intended I suspect. It doesn't matter at all, but it does illustrate that you need to develop an eagle eye for spotting odd things in your code for those times when a similar error actually is important."
+arduino automation chef4,yes (x+ something) is a good point and will do that
+arduino automation chef4,Thanks
+arduino automation chef4,Mark
+arduino automation chef4,"Yes, thank you. I had noticed after posting. Dont turn CAPS on is the solution there:)"
+arduino automation chef4,Related topics
+arduino automation chef4,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef5,Gérer deux matrices de leds 64x64 avec une carte Nano?
+arduino automation chef5,"Bonjour,"
+arduino automation chef5,"J'ai comme projet d'entreprise un tableau électrique comportant un automate Arduino.Cependant n'ayant jamais utilisé Arduino, rien que le fait de devoir faire ce qui m'est demandé me semble incroyablement compliqué."
+arduino automation chef5,"Donc voila mon chef m'a demander de programmer l'automate pour que dans une intervale de 30 sec un ecran affiche ""EIT Fribourg"" et ""EIT Freiburg"" et tout ca en boucle."
+arduino automation chef5,comment dois-je m'y prendre ?
+arduino automation chef5,merci de bien vouloir m'aider
+arduino automation chef5,"Comme dit dans le bar,  pour bien débuter avec l’arduino, un bon point de départ c’est de lireles tutos d’eskimon"
+arduino automation chef5,Lire aussi les recommandations listées dans «Les bonnes pratiques du Forum Francophone”
+arduino automation chef5,"Ne t'en fais pas ce n'est pas très compliqué. Si tu pars de zéro, en effet le mieux est de commencer à lire ce que@J-M-Lte propose."
+arduino automation chef5,"Ensuite, y aller pas à pas :"
+arduino automation chef5,J'ai comme projet d'entreprise un tableau électrique comportant un automate Arduino.
+arduino automation chef5,ça veux dire quoi un projet d'entreprise? C'est dans le cadre scolaire?
+arduino automation chef5,Pourquoi ton chef te demande-t-il un travail pour lequel tu n'es pas du tout formé ?Il faut lui demander une formation !
+arduino automation chef5,Pourquoi ton chef te demande-t-il un travail pour lequel tu n'es pas du tout formé ?
+arduino automation chef5,Sans doute en guise d’apprentissage ou pour juger du niveau de débrouillardise.
+arduino automation chef5,"Il faut savoir aller chercher l’information et se former de nos jours, pas forcément attendre tout de son chef… l’agilité et l’autonomie sont des critères importants pour le marché du travail."
+arduino automation chef5,La demande n’est pas super compliquée mais nécessite du boulot personnel. Le code est faisable au bout d’une journée de tutos (en gros comprendre blink et savoir gérer un LCD).
+arduino automation chef5,Bonjour brams_0110
+arduino automation chef5,De quel matériel disposes-tu?
+arduino automation chef5,"Cependant n'ayant jamais utilisé Arduino,"
+arduino automation chef5,"Asd-tu déjà installé l'Environnement Arduino?As-tu déjà fait quelques exemples afin de maîtriser le ""concept"" Arduino?"
+arduino automation chef5,Cordialementjpbbricole
+arduino automation chef5,Cependant n'ayant jamais utilisé Arduino
+arduino automation chef5,"Bonjour,"
+arduino automation chef5,"Quelle est ta formation ? Le stage est pour quel niveau ""Éducation Nationale"" ?"
+arduino automation chef5,"Ce n'est certainement pas un stage de 3ᵉ, la probabilité que tu sois passé par une STI2D ou une S-SI est forte même si ce n'est pas une obligation.Dans ce cas, tu as déjà travaillé sur Arduino ou sur PIC si ton lycée en possédait toujours."
+arduino automation chef5,Le code est faisable au bout d’une journée de tutos
+arduino automation chef5,"Ah c'est vrai que l'industrie, aujourd'hui, marche avec des stagiaires et des tutos...On n'est pas dans la mxxxx"
+arduino automation chef5,"Hum....La tâche confiée par le ""chef"""
+arduino automation chef5,"mon chef m'a demander de programmer l'automate pour que dans une intervale de 30 sec un ecran affiche ""EIT Fribourg"" et ""EIT Freiburg"" et tout ca en boucle."
+arduino automation chef5,ne semble pas super critique....
+arduino automation chef5,C'est un bon test de mise en situation d'autonomie. et comme@brams_0110ne répond pas... perso je vais quitter cette discussion.
+arduino automation chef5,"Yo les gars excusez moi de pas avoir eu le temps de repondre plus vite. J'ai regarder quelque tuto et me suis lancé dedans sans vous tenir au courant... Le fait est que je commence le projet lundi qui vient. Je ne sais encore pas quel type d'automate arduino il a commander ni quel panel. Je sais juste que je dois programmer ce que j'ai ecris plus haut et maintenant il me rajoute des leds que je devrai programmer pour qu'elles soient en couleur ""cyan"". Faire alterner les textes semble pas si difficile y a juste mettre la bonne couleur des leds qui me perturbe.Voila excusez moi de pas avoir réagis plus vite.Je vous remercie deja de la rapidité des reponses et de l'aide que vous m'apporter."
+arduino automation chef5,Vous verrez quand vous connaîtrez le matériel
+arduino automation chef5,Pour le moment continuez à faire un cours sur le C et les bases du C++ et jouer avec les tutos Arduinos
+arduino automation chef5,y a juste mettre la bonne couleur des leds qui me perturbe.
+arduino automation chef5,"Si c'est une LED cyan, c'est assez simple,va voir ici.Si c'est une LED de typeWS2812, c'est la bibliothèqueAdafruit_NeoPixel.h"
+arduino automation chef5,EIT Fribourg
+arduino automation chef5,C'est à CH-1700 Fribourg?
+arduino automation chef5,Cordialementjpbbricole
+arduino automation chef5,C'est à CH-1700 Fribourg?
+arduino automation chef5,"je pensais àEIT.fribourg-freiburgen effet. Pour les apprentis un des objectif est ""organisation des tests d'aptitude"""
+arduino automation chef5,"Si c'est une LED RGB ) 4 broches, il faut mettre la bonne combinaison de valeurs sur les 3 pins pour obtenir Cyan. il y a aussi des tutos : en voici un par exemple (premier hit google)➜https://www.carnetdumaker.net/articles/utiliser-des-leds-rgb-avec-une-carte-arduino-genuino/"
+arduino automation chef5,Oui c est 1700 Fribourg
+arduino automation chef5,Ça marche merci bcp
+arduino automation chef5,"Oui c est bien ce site la mais comme m'a expliquer mon chef ils n'ont pas reussis a se mettre d'accord sur est ce qu'il faut mettre ""ET-FRIBOURG"" ""EIT-FREIBURG"" ou juste mettre ""EIT-FR"". Et ducoup ils m'ont dis que je devrai faire alterner les deux. En tout c'est une projet de 70 heures. J'ai environ un jour et demi pour la construction du tableau et tout les restes est pour la prog et si je suis coincé une personne externe viendra m'aider mais dans ce cas la je ne gagne pas de point d'autonomie."
+arduino automation chef5,Il faudrait déjà savoir quel est le matériel utilisé.Une fois le matériel connu ce sera plus facile d'avancer.Les librairies contiennent généralement des exemples de la mise en oeuvre du périphérique.L'application que l'on te demande de réaliser ne vole pas très haut et en utilisant un exemple de base tu pourras facilement écrire un texte sur l'écran.
+arduino automation chef5,Yo les gars je viens de débuté mon projet. J ai un arduino micro processeur. Et deux panel rgb Led matrix. Et au final les bandes Led sont programmé avec une telecomande comme on peut avoir a la maison. Donc j ai juste a programmé mes panels.IMG202201171417251920×2560 243 KBIMG202201171417111920×2560 516 KBIMG202201171417071920×2560 363 KB
+arduino automation chef5,C'est un peu limite (de la folie...) que de vouloir gérer un panneau de LEDs RGB 64x64 avec un Nano... il n'y a pas assez de RAM pour représenter l'état de la matrice... donc va falloir jouer au niveau très bas pour faire quoi que ce soit...
+arduino automation chef5,il vous faut une alim 5V 4A
+arduino automation chef5,"Quel est le driver de cette matrice ? le site web n'en parle pasLED-Matrix | Joy-ITmais  pour info, la doc parle d'un RPi..."
+arduino automation chef5,RB-MatrixCtrl_Manual_2021-08-05.pdf
+arduino automation chef5,1963.89 KB
+arduino automation chef5,Related topics
+arduino automation chef5,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef6,Arduino Uno Spannung verstärken (auf 12V) Magnetventil
+arduino automation chef6,Nein nein so meine ich das nicht. Ihr versteht mich völlig falsch. Ich bin für jede Antwort auch dankbar. Habe ich bis jetzt auch nicht bestritten.
+arduino automation chef6,Das ohmsche Gesetz habe ich denke ich bis jetzt richtig abgewendet.
+arduino automation chef6,Ich weiß dass ich das Problem mit der Leistung und der Stromstärke habe.
+arduino automation chef6,"Wusste nur nicht, wie ich das in meiner Schaltung anpassen kann."
+arduino automation chef6,"Habe nur Angst gehabt, dass ich was falsch verschalte und mir was abbrennt, deswegen habe ich auch von jedem einzelnen Stück mir die Datenblätter angeguckt und dementsprechend angepasst."
+arduino automation chef6,"Und chefin, wenn jemand mir ne Antwort liefert, muss das nicht heißen, dass er automatisch richtig liegt. Habe mehrere Postings hier gelesen, die nach einer langen Diskussion gelöst wurden. Vorhin meinte mir jemand, dass ich 12V an mein Arduino schließen soll. Da wusste ich zb dass ich das am besten nicht mache, was mir auch HotSystems bestätigt hat."
+arduino automation chef6,"Ich bin natürlich hier um es zu verstehen, wenn ich klugscheißen wollen würde, hätte ich meine Frage überhaupt nicht gestellt. Meine Probleme kann auch jeder andere haben."
+arduino automation chef6,Dasselbe Problem von mir wurde in mehreren Foren gestellt. Aber irgendwie hat man nie die eindeutige Lösung gehabt.
+arduino automation chef6,"Der eine hat seinen Magnetventil mit nem seperaten Netzteil verbunden, der andere hat Relais benutzt und noch ein anderer hat stepper benutzt...."
+arduino automation chef6,Es gibt viele Möglichkeiten.
+arduino automation chef6,"Hätte ich das Problem nicht würde ich sie nicht stellen. Bitte versteht mich nicht falsch. Ich habe mehrere Möglichkeiten ausprobiert, aber ich möchte nicht, dass irgendetwas durchbrennt."
+arduino automation chef6,Related topics
+arduino automation chef6,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef7,[humour] Le cable du Conseil d'Administration.
+arduino automation chef7,Bonjour.
+arduino automation chef7,"J'ai fait une recherche sur FTDI et Gogol m'a indiqué une page d'Amazon où se vend un cable FTDI.Je ne résiste pas au plaisir de vous recopier ici une phrase de cette page, chef d'oeuvre de traduction automatique :"
+arduino automation chef7,"Ce câble a le même brochage et de fonctionnalité que notre conseil d'administration FTDI Basic Breakout, 
+vous pouvez l'utiliser pour programmer votre Arduino Pro, Pro Mini et Lilypad."
+arduino automation chef7,Related topics
+arduino automation chef7,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef8,Arduino programmable directement en python
+arduino automation chef8,Bonjour
+arduino automation chef8,J'ai entendu dire que des nouvelles versions de carte Arduino supporterait d'être programmée en python (en plus du C/C++ actuel) : je n'ai rien lu à ce sujet donc je viens me renseigner auprès de gens plus au fait des dernières nouveautés.Merci
+arduino automation chef8,Il s'agit de micropython
+arduino automation chef8,Il te faudra au minimum une carte avec un gros STM32.
+arduino automation chef8,"Unepyboardme semble plus indiquée, avec un slot SD."
+arduino automation chef8,Une carte pyboard 1.1 :168 MHz Cortex M4 CPU with hardware floating point1024KiB flash ROM and 192KiB RAM
+arduino automation chef8,"Même sur une MEGA, tu n'as pas tout ça."
+arduino automation chef8,LesEPS8266 et ESP32peuvent se programmer en micropython
+arduino automation chef8,"D'accord, donc les bruits de couloir sont fondés, il s'agit juste d'une mauvaise compréhension : il n'était pas question d'arduino uno.Merci"
+arduino automation chef8,Getting Started with MicroPython on ESP32 and ESP8266 | Random Nerd Tutorials
+arduino automation chef8,"Learn how to get started with MicroPython firmware on the ESP32 and ESP8266. After completing this guide, you'll have your first LED blinking using MicroPython."
+arduino automation chef8,"ça ne m'a convaincu: même miniaturisé, python (et ses librairies) prennent de la place ... en reste-t-il pour ce que vous voulez faire (je veux bien convenir que les librairies de python ont peut être tout ce dont vous avez besoin).L'inconvenient de python, c'est que ça vous ""oblige"" à apprendre 2 langages (c++ pour les petits arduini.... python pour les gros.) alors que, très souvent, c++ est à peine plus gourmand / moins concis en ligne que python (ex: dans un tout autre ordre d'idées,https://www.learnopencv.com/donne des exemples commentés et pédagogiques en python et en C++ pour une bibliothèque très bien écrite.)"
+arduino automation chef8,"Voir également chez Adafruit qui 'mets le paquet' sur son'CircuitPython"" (et sa série de cartes équippées de puce ARM M0)"
+arduino automation chef8,"(Certaines cartes à ESP32 ,voire même à ESP8266, sont déjà livrées avec micropython comme firmware)"
+arduino automation chef8,"Donc en prenant au sens large le terme 'carte Arduino' : oui, certaines font tourner microPython"
+arduino automation chef8,"ça peut intéresser les personnes qui trouvent dans Python une base commune entre cartes Arduino (au sens large), Raspberry Pi et Micro:bit"
+arduino automation chef8,"Dans mon cas (enseignement), la demande était pour éviter d'avoir à utiliser 2 langages de programmation : C/C++ (arduino), python (traitement des données).Compte tenu des faibles besoins, les cartes UNO sont largement suffisantes. : on se débrouillera donc avec les 2 langages."
+arduino automation chef8,Est ce que les cartes avec micropython font mieux que les cartes avec C++ (à matériel égal?)
+arduino automation chef8,"Impossible , tu le sais ,hbachettidbrion06!!"
+arduino automation chef8,Au contraire le recours à un interpréteur (et la présence de celui-ci dans la puce cible comme dans les cas évoqués ci dessus) peuvent donner une perte d'efficacité.
+arduino automation chef8,"Par contre certains programmeurs 'font mieux' avec ces cartes en micropython qu'avec C++C'est juste une autre façon de faire, façon qui convient à certains, qui se sentent plus omme c'est le cas performants..."
+arduino automation chef8,"Mon intervention dans ce fil n'a qu'un objectif : dire que ça existe, en réponse à la question posée.Je n'ai 'rien à vendre'..... et d'ailleurs je n'utilise pas micropython à ce jour... en particulier parce que la plupart de mes montrages utilisent une puce en 'sommeil profond' et qu'en micropython ""ça le ne fait pas""....."
+arduino automation chef8,"Impossible , tu le sais , hbachetti !!"
+arduino automation chef8,Je crois que tu te trompes de personne.
+arduino automation chef8,effectivement !! je suis confus....
+arduino automation chef8,effectivement !! je suis confus....
+arduino automation chef8,Cela m'est déjà arrivé
+arduino automation chef8,Est ce que les cartes avec micropython font mieux que les cartes avec C++ (à matériel égal?)
+arduino automation chef8,"Beaucoup de développeurs PYTHON profitent de la puissance du langage pour ajouter des couches logicielles, des plugins, beaucoup de paramétrage. Tout ceci alourdit beaucoup le logiciel.Exemple : les derniers horodateurs Parkeon / FlowBird / ex-Schlumberger qui ont besoin d'un processeur Exynos Samsung (proc de téléphone mobile) pour tourner correctement."
+arduino automation chef8,"Par contre ce type de produit est censé s'adapter à un nombre de clients infini, avec un paramétrage très complexe afin de gérer de multiples configs matérielles aussi bien que logicielles.Je pense qu'en C++ ce serait réalisable mais forcément plus complexe et plus cher (en temps de dev)."
+arduino automation chef8,Pour les bricoleurs je pense que PYTHON est hyper-adapté pour faire du dev sur PC ou RASPBERRY PI.La portabilité LINUX-WINDOWS est excellente.Les librairies sont très nombreuses.J'ai développé un gros serveur HTTP à base de Python + CherryPy. Première remarque de la part des gens du Data Center : très très fiable. Ils sont ravis de ne pas avoir à s'en occuper.
+arduino automation chef8,"Voir aussi pyserial qui permet de communiquer par ligne série avec un ARDUINO. Le développeur qui a écrit ce module connaît aussi bien les lignes séries sous LINUX que sous WINDOWS. Du grand art !Sous Windows, je ne connais personne qui ait écrit un module série qui fonctionne sur n'importe quel PC et sur n'importe quelle version de Windows.Rien que le fait de changer de modèle de PC portable peut engendrer des problèmes.Un jour on met tout ça à la poubelle et l'adoption de pyserial fait oublier les problèmes.Et j'en ai bouffé pendant des dizaines d'années, du côté embarqué, des protocoles série !"
+arduino automation chef8,"J'ai été très satisfait de pyserial (me permet de mettre à l'heure mon nanoPo avec une RTC et un Arduino; couplé à matplotlib -émule les superbes graphiques de matlab-, j'ai pu faire il y a 3 ans un osciilloscope très lent avec un avr arduino, le gros écran de mes xxpi -s- étant particulièrement confortable)... et je crois que je vais le rester."
+arduino automation chef8,"Un autre avantage de python :il oblige à indenter (pour un débutant, ce n'est pas nuisible; certes, l'IDE Arduino a un bouton pour indenter, mais un débutant n'y pense pas -et saute des horreurs évidentes, une fois indenté -ou passé dans astyle/indent-)"
+arduino automation chef8,"Un autre avantage (mais je ne sais pas si ça s'étend à micropython):comme tout langage interprété, il est assez facile de tester ligne après ligne (le C++ ,d'arduino n'a pas de déboggueur et il faut consacrer une ligne série à ça)."
+arduino automation chef8,"Par contre, si une bibliothèque est bien écrite -cas d'opencv- , la complexité d'un programme python ou celle d'un programme C++ faisant appel à cette bibliothèque sont équivalentes (10% de lignes en plus en C++ pour des déclarations)... C'est pour ces raisons que je préfère C++ sur RPi: j'ai plus de facilités à bidouiller sur avr-arduino"
+arduino automation chef8,"Il y a quelques années j'ai développé un logiciel de test en PYTHON qui permettait de dérouler des tests automatisés sur un périphérique à travers une ligne série, et de lui envoyer des commandes."
+arduino automation chef8,"Je l'ai développé sous LINUX, jamais testé sous Windows."
+arduino automation chef8,Un jour mon chef m'a demandé de le lui installer sur son portable Windows.J'ai remplacé /dev/ttyUSBX par COMX et le soft a fonctionné du premier coup !
+arduino automation chef8,pyserial c'est vraiment magique ...
+arduino automation chef8,"dbrion06:Un autre avantage (mais je ne sais pas si ça s'étend à micropython):comme tout langage interprété, il est assez facile de tester ligne après ligne (le C++ ,d'arduino n'a pas de déboggueur et il faut consacrer une ligne série à ça)."
+arduino automation chef8,"Avec microPython, il n'est pas nécessaire d'utiliser un IDE on branche la carte et on ouvre une console, on peut entrer du code directement. Lorsqu'on ouvre la console on a un accès à un interpréteur interactif REPL (read-eval-print-loop).La seule contrainte c'est d'avoir un processeur avec pas mal de RAM sinon la taille du code est assez limitée."
+arduino automation chef8,"Pour cela (entera autres) des cartes à ESP32 sortent maintenant avec une RAM SPI (PSRAM SPI ram ""pseudo statique' sur bus SPI)"
+arduino automation chef8,Related topics
+arduino automation chef8,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef9,Sommerzeit ja oder nein? – EU-Kommission befragt Bürger online
+arduino automation chef9,Die Umfrage läuft bis zum 16. August.
+arduino automation chef9,EUSurvey - Survey unavailable
+arduino automation chef9,"EUSurvey is an online survey-management system built for the creation and publishing of globally accessible forms, such as user satisfaction surveys and public consultations."
+arduino automation chef9,Doc_Arduino:Die Umfrage läuft bis zum 16. August.
+arduino automation chef9,https://ec.europa.eu/eusurvey/runner/2018-summertime-arrangements?surveylanguage=DE
+arduino automation chef9,Will bei mir zumindest nicht.
+arduino automation chef9,HTML-Fan:Will bei mir zumindest nicht.
+arduino automation chef9,Kann dauern - schlimmstenfalls bis zum nächstenAbsturz.
+arduino automation chef9,"Ich empfehle den Download desPDF, statt gleich Online alles auszufüllen."
+arduino automation chef9,Wer ohne Not folgenden Punkt ankreuzt :
+arduino automation chef9,Abschaffung der Zeitumstellung für alle EU-Mitgliedstaaten?
+arduino automation chef9,"... der hat vielleicht noch nicht bedacht, dass es in Europa auch verschiedene Zeitzonen gibt :"
+arduino automation chef9,"Bitte legen Sie gegebenenfalls zusätzliche Informationen oder Belege zu den Auswirkungen der derzeitigen Sommerzeitregelung und zur verfügbaren Alternative vor (d. h. harmonisierte Abschaffung der für alle EU-Mitgliedstaaten geltenden Zeitumstellung zweimal pro Jahr, wobei die Mitgliedstaaten ihre Zeitzone wählen können, und geben Sie an, ob „Winterzeit“ oder „Sommerzeit“ während des gesamtenJahres gelten sollte)."
+arduino automation chef9,Sollte also wohl doch jedes Land für sich entscheiden.
+arduino automation chef9,"Mir würde es einfach genügen, wenn endlich alle Sonnenuhren wieder ganzjährig richtig gehen."
+arduino automation chef9,"Hallo,"
+arduino automation chef9,"bitte nicht die ZeitumstellungWinterzeit <> Somerzeitmit den weltweiten Zeitzonen verwechseln. Die Zeitzonen UTC+xh bleiben auf jeden Fall herhalten. Müssen sie ja auch. Es geht nur darum ob das 2x Uhren umstellen im Jahr entfallen soll oder nicht. Es ist auch keine Abstimmung/Wahl sondern nur eine Befragung, die natürlich hoffentlich Einfluss haben wird auf die Abstimmung der EU zuständigen Leute. Jahrelang wird darüber diskutiert, jetzt hat man als Bürger wenigstens einmal die Chance seine Meinung direkt kundzutun."
+arduino automation chef9,HTML-Fan:Will bei mir zumindest nicht.
+arduino automation chef9,Im Moment läufts gerade. Ist halt arg überlastet!Gruß SG
+arduino automation chef9,Doc_Arduino:... bitte nicht die ZeitumstellungWinterzeit <> Somerzeitmit den weltweiten Zeitzonen verwechseln. Die Zeitzonen UTC+xh bleiben auf jeden Fall herhalten. Müssen sie ja auch. Es geht nur darum ob das 2x Uhren umstellen im Jahr entfallen soll oder nicht...
+arduino automation chef9,"Schade dass meine sorgfältig gewählten Auszüge aus der Befragung wohl doch nichts nützen.Jetzt versuch ich es nochmal kürzer: ""...wobei die Mitgliedstaaten ihre Zeitzone wählen können..."" soll Mitgliedstaaten offenbar die Rückkehr zur richtigen Zeit ermöglichen ohne dadurch Nachteile zu erleiden. Auch bisher waren die Zeitzonen ja nicht sklavisch an die Mittagslinien gebunden; es wär ja allzu bescheuert einen kleinen Landesteil einer anderenZeitzonezuzuordenen, nur weil der Meridian es ""verlangt""."
+arduino automation chef9,"Gescheiter wäre sicher gewesen, die Befragung in einen simplen ""Ja"" oder ""Nein"" - Teil für Hinz und Kunz und in einen anderen Teil zu trennen, wo Interessen z.B. von Speditionen (Fahrverbote) dahinter stehen."
+arduino automation chef9,Hi
+arduino automation chef9,"Nett wäre auch die Nennung gewesen, daß 'Winterzeit' unserer Normalzeit entspricht (Alpha-Zeit in Alpha-Zeitzone).GMT = +0EMZ = +1, (noch?) EMSZ =+2 (wir stellen die Stühle VOR das Eiskaffee, Uhr wird vorgestellt)..."
+arduino automation chef9,"Eine durchgehende Sommerzeit wäre 'unterm Strich' genau so gut, aber eben nicht logisch - einzige Ausnahme: Wir müssen wieder eine Sonderwurst braten."
+arduino automation chef9,"Nachdem ich NoScript ein 'temp trusted' gab, kam die Seite auch."
+arduino automation chef9,MfG
+arduino automation chef9,"Hallo,"
+arduino automation chef9,"das alte Problem zwischen Formulierung - Lesen - Verstehen.Aber alle können korrigieren.Ich denke ich weiß was du meinst.Fakt ist, die einzelnen Länder konnten auch jetzt schon ihre Zeitzone selbst festlegen. Frankreich und Spanien laufen mit uns syncron, obwohl sie laut Breitengrad wie GB zu UTC+0h gehören würden. Ist vielleicht auch historisch gewachsen, keine Ahnung. Ist jedoch erstmal so."
+arduino automation chef9,"Was passiert denn im dümmsten Fall? Erstmal müssen alle für die Abschaffung ""stimmen"", sonst passiert eh nix. Punkt 1.Punkt 2. Angenommen die Mehrheit würde sich für die dauerhafte ""Winterzeit"" entscheiden. Dann würden alle Uhren in der EU nach der aktuellen UTC Zeit + ""Zeitzonenzuschlag"" laufen in den Ländern. Also wie bisher. Für uns in D würde das dauerhafte UTC+1h bedeuten. Wäre das ein Problem? Ich sage Nein.Punkt 3. Wäre die Mehrheit für die dauerhafte ""Sommerzeit"", würden sich erstmal alle EU Uhren auf derzeitige UTC Zeit + ""Zeitzonenzuschlag"" + 1h einstellen. Für uns in D würde das dauerhafte UTC+2h bedeuten. Wäre das ein Problem? Ich sage Nein."
+arduino automation chef9,"Nur der ständige Wechsel macht keinen Sinn. Der ist in meinen Augen für die Wirtschaft sogar schädlich. Für mich auch, wenn mir im Frühjahr eine Stunde Schlaf geklaut wird. Im Frühjahr müssen wir die Anlagen nur kurz anhalten, Stellen die Uhren eine Stunde vor und weiter gehts. Im Herbst dagegen müssen wir die Anlagenuhren zurückstellen und für diese 1h angehalten lassen. Sonst kommen die Logfiles und ggf. die Anlagensoftware durcheinander wenn irgendwas den gleichen Zeitstempel hat. Effekt ist 1h Produktionsstopp."
+arduino automation chef9,"Jetzt bleiben noch die Bedenken wegen der eigenen Entscheidungsfreiheit der Länder in ihrer Zeitzone. Nur warum sollten sie ihre Zeitzone plötzlich ändern wollen? Die Winterzeit/Sommerzeit gilt EU weit. Bedeutet doch nur das entweder alle EU Länder bei der aktuellen UTC Zeit + ""Zeitzonenzuschlag"" bleiben oder alles um +1h nach rechts verschoben wird. Was anderes ist nicht möglich. Bildlich auf den Längengrad gesprochen. Die zeitlichen Zusammenhänge der Länder in der EU blieben erhalten. Egal was gemacht wird."
+arduino automation chef9,Meine weitere Überlegung dazu. An der westlichen EU Grenze spielt das alles keine Rolle. Wer weiter nach Westen reisen möchte muss sowieso die Uhr stellen. Für den Blick an die Ostgrenze der EU wäre sogar die EU weite Sommerzeit von Vorteil. Dann hätte man 2 Längengrade worin die Länder nach der gleichen Uhr ticken.
+arduino automation chef9,"Andersherum. Und wer schon einmal am Hoover Dam war, der weiß das Nevada - Arizona ... geht auch irgendwie."
+arduino automation chef9,Damit jeder weiß worum es eigentlich geht.
+arduino automation chef9,"1.) Es gibt Anhaltspunkte dafür, dass gemeinsame EU-Vorschriften in diesem Bereich sehr wichtig für das reibungsloseFunktionieren des Binnenmarkts sind. Welche der folgenden Alternativen würden Sie vorziehen, damit solchegemeinsamen Regeln auch in Zukunft gewährleistet sind:"
+arduino automation chef9,[ ] Beibehaltung der derzeitigen EU-Regelung mit Zeitumstellung zwischen Sommerzeit undWinterzeit für alle EU-Mitgliedstaaten
+arduino automation chef9,[ ] Abschaffung der Zeitumstellung für alle EU-Mitgliedstaaten?
+arduino automation chef9,"2.) Falls die Zeitumstellung abgeschafft würde, welche Option würden Sie bevorzugen?Die Zeitumstellung abschaffen und stattdessen Folgendes einführen:"
+arduino automation chef9,[ ] ständige Sommerzeit (Uhren werden gegenüber der Winterzeit um eine Stunde vorgestellt)
+arduino automation chef9,[ ] ständige Winterzeit
+arduino automation chef9,[ ] keine Meinung/weiß nicht
+arduino automation chef9,"Bitte legen Sie gegebenenfalls zusätzliche Informationen oder Belege zu den Auswirkungen der derzeitigen Sommerzeitregelung und zur verfügbaren Alternative vor (d. h. harmonisierte Abschaffung der für alle EU-Mitgliedstaaten geltenden Zeitumstellung zweimal pro Jahr, wobei die Mitgliedstaaten ihre Zeitzone wählen können, und geben Sie an, ob „Winterzeit“ oder „Sommerzeit“ während des gesamtenJahres gelten sollte)."
+arduino automation chef9,Doc_Arduino:... das alte Problem zwischen Formulierung - Lesen - Verstehen.
+arduino automation chef9,PDF zur Umstellungvon mir unter#2zum schnelleren Download bereit gestellt sollte sorgfältig gelesen werden - aber das sagte ich schon dort.
+arduino automation chef9,"Wer meint, dass alles nur mehrmals gesagt werden muss, der ist für mich auf dem Holzweg. Mehrmals lesen sollte langen. Und zu den Zeitzonen braucht es auch kein endloses Geschwafel - dazu hatte ich auch schon ein sehr gut verständliches Bild verlinkt. Bitte jetzt keine Diskussion über Portugal und Spanien anfangen, sonst landen wir noch imMittelalter, bei der Festlegung der Datumsgrenze im Pazifik usw."
+arduino automation chef9,"#7enthält einige der Widersprüche, die ich schon früher andeutete. Beispielsweise die Trennung der Befragung in quasi Normalbürger und solche mit wirtschaftlichem Interesse. Ich habe noch nie gehört, dass eine Anlage wegen der Zeitumstellung im Herbst eine Stunde angehalten wurde. Mach das mal bei einem Hochofen. Andererseits machen Leute mit pünktlichen Schlafgewohnheiten ein Mordsgeschrei, wenn LKW eine Stunde früher Krach machen dürfen oder Abends länger. Aber auch das deutete ich schon früher mit ""Speditionen"" an."
+arduino automation chef9,Mein Argument nochmal gegen dauerhafte Sommerzeit: wie will man denn mal den Kindern eine Sonnenuhr erklären und warum die Mittagslinien so heißen ?
+arduino automation chef9,"Nachtrag: ich sagte MEIN Argument. Das muss sich niemand zu eigen machen, wie mir in#9vielleicht unterstellt werden soll. Einem vierjährigen Kind würde ich auch nicht erklären können, warum in meinem Nachbarort eine Sonnenuhr an einer Hauswand installiert wurde, die nie direktem Sonnenlicht ausgesetzt war oder je sein wird. Einem Filmemacher war sie aber Anregung zum Film ""Die Schattenuhr""."
+arduino automation chef9,P_Extruder:Mein Argument nochmal gegen dauerhafte Sommerzeit: wie will man denn mal den Kindern eine Sonnenuhr erklären und warum die Mittagslinien so heißen ?
+arduino automation chef9,"also wir treffen hoffentlich keine Entscheidungen basierend darauf, ob jemand glaubt, dass Kindern erklären zu können. Für mich steckt da kein Argument drinnen, sondern nur die Aussage, dass du es nicht erklären könntest. Wenn du aber ein wenig darüber nachdenkst, wirst auch du eine kindgerechte Erklärung dafür finden,warum beispielsweise eine Sonnenuhr von 1786 dann eben 2026 etwas anderes anzeigt."
+arduino automation chef9,noiasca:... warum beispielsweise eine Sonnenuhr von 1786 dann eben 2026 etwas anderes anzeigt.
+arduino automation chef9,"Da wäre natürlich fein, wenn Du das gleich selbst erklären würdest."
+arduino automation chef9,Ob jetzt allerdings der Verweis auf EU-Befragung und deren Folge wirklich kindgerecht wäre?
+arduino automation chef9,"Ich bin übrigens froh, dass ich nur einmal irgendwo den Begriff ""Normalzeit""ahnungslos verwendet habe. Mein Heimatort liegt zwar recht genau auf diesem Meridian, aber ich meine, dass Sonnenuhren ganz pragmatisch seit eh und je am höchsten Sonnenstand ausgerichtet wurden."
+arduino automation chef9,"Hallo,"
+arduino automation chef9,"wenn die Diskussionsgrundlage so dünn wird, dann lasse ich es sein. Es ist übrigens ein Strohmann Argument zu sagen ""ich habe noch nie gehört ..."". Deine Andeutung mit ""Spedition"" war auch zu kurz gefasst um zu wissen was gemeint ist. Habe ich mich deswegen aufgeregt? Nein. Ich hatte nur für mich vermutet das es grenzüberschreitend vielleicht Probleme geben könnte. Du meinst was anderes. Auch gut. Das mit den Zeitzonen habe ich auch nicht wiederholt, sondern meine Sichtweise erstmalig dargelegt."
+arduino automation chef9,"@ alle anderennehmt die Chance wahr und gut ist, egal welche Meinung ihr dazu habt. Man kann sich hinterher nicht aufregen ""ich wurde nicht gefragt""."
+arduino automation chef9,"P_Extruder:Da wäre natürlich fein, wenn Du das gleich selbst erklären würdest."
+arduino automation chef9,Ob jetzt allerdings der Verweis auf EU-Befragung und deren Folge wirklich kindgerecht wäre?
+arduino automation chef9,"schau lieber P_Extruder. Die Sonnenuhr von 1786 wurde damals von den Leuten basierend auf der Ortszeit installiert. Die Ortszeit ist die Zeit die genau für diesen Ort gemäß Sonnenstand gilt. D.h. Mittags steht die Sonne im Zenit - das ist der höchste Punkt der Sonne.Streng genommen gilt diese Zeit aber nur für diesen Ort. Wenn wir nach Osten oder nach Westen reisen, ist Mittag etwas früher oder etwas später. Da dies aber sehr unpraktisch ist wenn jeder Ort seine eigene Zeit hat, verwenden wir heute eine gesetzliche Zeit, amtliche Zeit, amtliche Uhrzeit oder offizielle Zeit, die von unserer Ortszeit zwar abweicht, dafür aber in vielen anderen Städten und sogar Ländern auch gilt und so das Zusammenleben erleichtert."
+arduino automation chef9,"Aber lass uns mal abwarten, vieleicht willigt das Denkmalamt bei der nächsten Renovierung ein, die Skala auf die heutige gesetztliche Zeit zu ändern, dann stimmt die Sonnenuhr auch wieder zu deiner Uhrzeit."
+arduino automation chef9,"So und wenn du lust hast dann bauen wir nächsten Sommer eine Sonnenuhr, aber zuvor muss die EU noch die Sommerzeit - Umstellung abschaffen, denn sonst stimmt unsere Sonnenuhr nur im Winter."
+arduino automation chef9,Vertikale Sonnenuhr
+arduino automation chef9,Interaktive Berechnung einer vertikalen Sonnenuhr
+arduino automation chef9,noiasca:... Die Sonnenuhr von 1786 wurde damals von den Leuten basierend auf der Ortszeit installiert....
+arduino automation chef9,"""...warum beispielsweise eine Sonnenuhr von 1786 dann eben 2026 etwas anderes anzeigt."""
+arduino automation chef9,"Ich würde eher sagen, dass die Leute von 1786 ihre vielleicht erste mechanische Kirchenuhr anhand der Sonnenuhr eichten und nicht umgekehrt."
+arduino automation chef9,"Bei dem zitierten Satz bin ich allerdings davon ausgegangen, dass es sich um einunddieselbe Sonnenuhr handeln sollte, und nicht um welche an unterschiedlichen Orten."
+arduino automation chef9,Doc_Arduino:@ alle anderen
+arduino automation chef9,"""Mir würde es einfach genügen, wenn endlich alle Sonnenuhren wieder ganzjährig richtig gehen."" habe ich als Abschluss meines ersten Kommentars gesagt und ahnte nicht, dass ich das erläutern müsste. Mir behagt der Ausdruck ""Winterzeit"" nicht und inzwischen habe ich gelernt, dass ""Normalzeit"" politisch belastet ist."
+arduino automation chef9,"Falls sich doch noch jemand die Mühe macht sinnerfassend zu lesen, dann war dies meine Ansage, für die sogenannte Winterzeit zu stimmen."
+arduino automation chef9,"Im Übrigen war das in#2Gesagte und Verlinkte als Hilfestellung gemeint. Ich hatte nämlich wie der dort zitierte ""HTML-Fan"" auch sehr lange auf die Seite warten müssen."
+arduino automation chef9,"P_Extruder:... Mir würde es einfach genügen, wenn endlich alle Sonnenuhren wieder ganzjährig richtig gehen. ..."
+arduino automation chef9,"Neenee ... so einfach ist das nicht. Sonnenuhren zeigen einem die „wahre Ortszeit“, die im Osten (weiter weg als bis zur Tanke) deutlich neben dem sein kann, was die Uhr zeigt. Wenn Du Verwandte hättest, die 1000 km im Osten und andere 900 km im Westen wohnen, könntest Du ins Bett gehen, wenn die Sonne schon unter dem Horizont liegt oder Dir noch ins Gesicht scheint. Die Sonne, die im Hintern wohnt, scheint 7/24/365. Egal, wie die andere Sonne gerade steht oder liegt."
+arduino automation chef9,Gruß
+arduino automation chef9,Gregor
+arduino automation chef9,gregorss:Neenee ... Sonnenuhren zeigen einem die „wahre Ortszeit“...
+arduino automation chef9,Gruß
+arduino automation chef9,Gregor
+arduino automation chef9,"... Mir würde es einfach genügen, wenn endlich alle Sonnenuhren wieder ganzjährig richtigERgehen. ..."
+arduino automation chef9,So besser ? Bevor jetzt noch wer mit der Sternzeit aus SF-Filmen daherkommt passe ich.
+arduino automation chef9,"Habe nicht geahnt, dass ich eines meiner persönlichen Argumente derart rechtfertigen soll. Dass die Zeitumstellung irgendwas zum Nutzen von Sonnenuhren beitragen würde, das wird ja hoffentlich denn doch niemand behaupten."
+arduino automation chef9,"Aber wenn schon mein Stichwort ""Spedition"" keine Assoziation zu LKW-Fahrverbot auslöst, dann darf man sich wohl über nichts mehr wundern. Der Frischbeton-Mischerfahrer z.B., der morgens eine Stunde früher Lärm machen darf, der kriegt die selbe Schelte dann halt am Abend."
+arduino automation chef9,"Nebenbei: wer wie der Doc mit Scheinargumenten aufwartet, der kann einer Sache schaden. Ich könnte etliche ""Anlagen"" nennen, von denen manche sogar rund um die Uhr laufen, die also nicht die geringste Energieeinsparung haben. Dass so manches Programm nicht umgeschrieben werden musste bzw. wieder umgeschrieben werden muss, das würde ich nicht behaupten. Aber ich bin immer noch gespannt auf ein Beispiel, wo eine Anlage eine Stunde ruht. Nachtwächter vielleicht ? Warum sollte der schließlich zweimal die selbe Uhrzeit stechen ?"
+arduino automation chef9,Die Zeitzonen UTC+xh bleiben auf jeden Fall herhalten. Müssen sie ja auch
+arduino automation chef9,"Müssen, wieso ?"
+arduino automation chef9,"Portugiesen und Iren und meinetwegen auch (fast noch EU-)Engländer könnten prima beschliessen, auf ""permanente Sommerzeit"" umzusteigen. Finnland, die estnischen Staaten, Bulgarien, Rumänien und Griechenland müssten überzeugt/überredet werden, dann hätten wir in der ganzen EU eine einheitliche Zeitzone."
+arduino automation chef9,Das wäre noch praktischer als nur Sommerzeit abschaffen.
+arduino automation chef9,"Da ja doch keiner (zumindest nur wegen der Uhr) morgens um 6 aufsteht und abends um 6 schlafen geht, wäre mir auch UTC+0 als europäische einheitliche Zeitzone recht (natürlich ganzjährig)."
+arduino automation chef9,"P_Extruder:... Mir würde es einfach genügen, wenn endlich alle Sonnenuhren wieder ganzjährig richtigERgehen. ..."
+arduino automation chef9,So besser ? Bevor jetzt noch wer mit der Sternzeit aus SF-Filmen daherkommt passe ich.
+arduino automation chef9,"Habe nicht geahnt, dass ich eines meiner persönlichen Argumente derart rechtfertigen soll. Dass die Zeitumstellung irgendwas zum Nutzen von Sonnenuhren beitragen würde, das wird ja hoffentlich denn doch niemand behaupten."
+arduino automation chef9,Du hast das von Dir nicht zitierte Zeug nicht gelesen. Das war Ironie
+arduino automation chef9,Gruß
+arduino automation chef9,Gregor
+arduino automation chef9,"P_Extruder:""Mir würde es einfach genügen, wenn endlich alle Sonnenuhren wieder ganzjährig richtig gehen."" habe ich als Abschluss meines ersten Kommentars gesagt und ahnte nicht, dass ich das erläutern müsste. Mir behagt der Ausdruck ""Winterzeit"" nicht und inzwischen habe ich gelernt, dass ""Normalzeit"" politisch belastet ist."
+arduino automation chef9,"Falls sich doch noch jemand die Mühe macht sinnerfassend zu lesen, dann war dies meine Ansage, für die sogenannte Winterzeit zu stimmen."
+arduino automation chef9,"Im Übrigen war das in#2Gesagte und Verlinkte als Hilfestellung gemeint. Ich hatte nämlich wie der dort zitierte ""HTML-Fan"" auch sehr lange auf die Seite warten müssen."
+arduino automation chef9,"Ja jetzt geht's auch bei mir, nur dauert es trotzdem EWIG."
+arduino automation chef9,Related topics
+arduino automation chef9,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino automation chef10,Anfänger sucht Hilfe bei Motorenauswahl
+arduino automation chef10,"Ich bin absoluter Anfänger und brauche nur einen Tip für benötigte Hardware,damit ich mich weiter rein ""arbyten"" kann."
+arduino automation chef10,"Wg. mangelnder Kenntnis, habe ich leider bislang eine Menge inkompatiblen Schrott erworben."
+arduino automation chef10,Ich beschreibe einfach mal mein Vorhaben:
+arduino automation chef10,"In unserer Werkstatt grillen wir gern eimal ein paar Würste, zur Mittagspause."
+arduino automation chef10,"Unser Chef mag das natürlich nicht, das ein Mitarbeiter, 30 Minuten mit Wurstdrehen beschäftigt ist."
+arduino automation chef10,Daher würde ich dieses gern automatisieren.
+arduino automation chef10,"Die benötigte Hardware (Wurstomat) ist fast fertig, aber ich scheitere an der Auswahl der Motoren und der Prtogrammierung."
+arduino automation chef10,"Hoffe deshalb auf den notwendigen ""Arschtritt"" aus dem Forum."
+arduino automation chef10,Folgend Zustandsbeschreibung:
+arduino automation chef10,"Plan:Motor 1 dreht Spindel zum liften desRostum definierte Umdrehungen(Bspw. 4mm Steigung, 400mm Lift, 100 Umdrehungen x 4mm)Motor 2 dreht 180° zum wenden des Grillgutes.Motor 1 dreht Spindel zurück, umRosterneut auf denGrillab zu senken.(Den Weg zurück aus Schritt 1)Danach, definierte Wartezeit und Rücksprung zum Anfang."
+arduino automation chef10,"=> Motor 2 darf gern die 180° zurück drehen=> Editierbare Wartezeit (unterschiedliche Programme ?) Bspw. Wurst= 3 Minuten / Fleisch= 5 Minuten=>gernbewegen sich beide Motoren gleichzeitig, um die Unterbrechung der Garung niedrig zu haltenBedeutet:Während Motor 1 nach oben fährt, beginnt Motor 2 mit der Drehung.Am oberen Totpunkt dat die bislang erfolgte Drehung 90° von geforderten 180°Beim folgenden absenken, werden die restlichen 90° durchgeführt."
+arduino automation chef10,Im Detail:
+arduino automation chef10,"Status:Mehrere Raspberrys, einen Arduino UNO, Arduino IDE auf Linux, mehrere Lewansoul LX-16A Motoren,Lewansoul Bus servo Controller, Lewansoul Debug Board, diverse Netzteile, Adafruit PCA9685"
+arduino automation chef10,"Nicht falsch verstehen, bei guten Hinweisen, schmeisse ich den aktuellen Bestand weg."
+arduino automation chef10,"Also, Frage, was genau brauche ich?"
+arduino automation chef10,"Motoren,Treiber,Netzteil,weiteres"
+arduino automation chef10,"Hoffe wirklich auf Hilfe, stehe komplett auf dem Schlauch!"
+arduino automation chef10,Horst
+arduino automation chef10,"Hallo,"
+arduino automation chef10,hast Die die Möglichkeit mit einer Nummer kleiner anzufangen ?
+arduino automation chef10,Wenn Du dann ein paar Grundkentnisse hast kanst Du dich mit dem Thema Schrittkette oder endlicher Automat beschäftigen.
+arduino automation chef10,Du braucht sicher Motoren die die erforderlichen Drehmomente aufbringen können. Vermtlich werden Getriebemotoren in Frage kommen.
+arduino automation chef10,"Wenn sich was kontinuierlich drehen soll wurde ich einen DC Getriebemotor vorziehen. Wenn sich etwas nur für eine Teilumdrehung bewegen soll wird ein Schrittmotor ehr Sinn machen. Allerdings muss man den beim ersten Start erst mal referenzieren, dazu ist in der Regel ein Endschalter oder sowas erforderlich. Wenn man dann auch leicht zwei Endschalter anbauen kann und die Bewegung ist immer gleich macht eventuell ein DC Motor wieder mehr Sinn. Dann gibt es noch Servo-Motoren die machen meist nur 180°."
+arduino automation chef10,Also kauf Dir erst mal von jedem Typ ein kleines Exemplar und teste erst mal.
+arduino automation chef10,Heinz
+arduino automation chef10,"... und schmeiß nicht gleich Alles weg, weil's 'jetzt gerade' nicht passt - da bekomme ich Pickel am A*sch."
+arduino automation chef10,"Ganz nebenbei ist mir die Mechanik Deiner WurstWendeMaschine nicht ganz klar - bisher kamen mir nur Tofu-Stangen unter, Die man rollend hätte wenden können ... und Die kamen mir nicht auf den Grill"
+arduino automation chef10,MfG
+arduino automation chef10,"Sind die Würste in der Regel gerade, oder sind auch mal krumme Bananen dabei?Wenn die meistens gerade sind würde ich das sehr viel einfacher bauen:"
+arduino automation chef10,"Je nachdem wie viele Würste gleichzeitig gegrillt werden sollen entsprechend viele parralele Stäbe mit ca. 15mm Durchmesser, die sich alle in eine Richtung langsam drehen. Zwischen den Stangen die Würste legen. Fertig."
+arduino automation chef10,"Moin,"
+arduino automation chef10,"Ich erweitere meine Beschreibung mal, weil es einigen Foristen nicht ganz klar geworden ist, wie dasRostaussieht.=> Mein Fehler!"
+arduino automation chef10,Hier also etwas detailierter:
+arduino automation chef10,Ich benutze sowas wie einen Grillkorb:
+arduino automation chef10,z.B.780×520 141 KB
+arduino automation chef10,"Ich bin mir nicht sicher ob Links hier angezeigt werden, einfach mal nach Grillkorb suchen."
+arduino automation chef10,"Bedeutet also, dasalleWürste zugleich gewendet werden, da im Korb fixiert.(Motor 2)"
+arduino automation chef10,"(Einzeln wenden ist schon deshalb nur mit Aufwand möglich, wenn eine Wurst platzt, verändert diese ihre Position und befindet sich nicht mehr dort, wo der Roboter dieseabgelegt hat)"
+arduino automation chef10,"Wie schon geschrieben, die Hardware ist fast komplett, mit Kugelumlaufspindel für Motor 1."
+arduino automation chef10,Ich halte das auch nicht für besonders schwer.
+arduino automation chef10,Sind nur 2 Achsen (Motore)
+arduino automation chef10,Beschrieben habe ich das auch.
+arduino automation chef10,Motor 1 soll eine definierte Menge von 360° Drehungen (rechts und links) durchführen.Motor 2 180° (RE / LI oder nur eine Richtung)
+arduino automation chef10,"Die Arduino IDE verstehe ich grob, kann mich sicher weiter ein""arbyten"""
+arduino automation chef10,Sowas wie:
+arduino automation chef10,void setup()
+arduino automation chef10,void loop()
+arduino automation chef10,"Ist mir nicht fremd und ich verstehe die Syntax.(Ein mögliches Code Beispiel wäre trotzdem toll, passend zur möglichen Hardware)"
+arduino automation chef10,"Also, bereinigt:"
+arduino automation chef10,Ich brauche einen Tip für:
+arduino automation chef10,"welche Motoren (1 und 2) am besten (Muss kein Riesen Drehmoment haben[Alles mit Lagern und Kugelrollspindeln] aber mikro Spielzeug sollte es auch nicht sein. Also schon kräftig, am besten NEMA 17 Bauart)"
+arduino automation chef10,Passende Treiber dazu (brauche ich 2? Für jeden Motor einen? Kompatibel mit Arduiono UNO.
+arduino automation chef10,Passendes Netzteil für die komplette Lösung
+arduino automation chef10,hab ich was vergessen?
+arduino automation chef10,"Also einen Tip für 1,2,3,4"
+arduino automation chef10,Danke Horst
+arduino automation chef10,@ Rentner
+arduino automation chef10,Ich finde die Nummer eigentlich schon sehr klein.
+arduino automation chef10,"Von der Lewansoul Lösung bin ich weg, weil die Motoren zwar hohes Drehmoment haben, aber, so meine bescheidenen Kenntnisse, diese ein eigenes Protokoll benutzen, dafür dieses eine Board benutzt werden muss, Mit diesem lässt sich jedoch nur ein Motor ,zur Zeit, ansteuern."
+arduino automation chef10,"Müll, ich hasse closed source."
+arduino automation chef10,@postmaster-ino
+arduino automation chef10,"Bei mir auch kein Tofu, hab mir gerade einen 350 kg Smooker gebaut. (Durchmesser 600mm, 1500mm lang, 6mm Stahlblech)Wenn ich dieses hier besser verstehe, rüste ich diesen mit einer automatischen Brennstoffzufuhr nach, damit ich nachts nicht mehr raus muss, wenn ein Pulled Pork drinliegt."
+arduino automation chef10,"... Du vergast zu erwähnen, wo Dein Pulled Pork auf Abnehmer wartet ... wenn Du nicht drauf aufpasst"
+arduino automation chef10,"Dein Motor 1 bestimmt die Höhe über der Glut, Motor 2 wendet das Grillgut durchgehend.Tendenziell kannst Du dort so ziemlich Alles an Motoren nehmen, was dreht.Bei Motor 1 wäre dann wohl ein Encoder nötig, wenn die Höhe automatisch angepasst werden soll - wenn nicht ist's auch nur 'so lange Knopf X gedrückt wird, fahre in Richtung x' - Endabschaltung dann kein Muss, da der Knopfchendrücker ja auch noch da ist."
+arduino automation chef10,MfG
+arduino automation chef10,@postmaster-ino
+arduino automation chef10,"Grins, mein Pulled Pork wird beschützt. Meinem Weimaraner möchtest du zu nächtlicher Zeit, in seinem Revier, nicht begegnen."
+arduino automation chef10,682×1024 74.7 KB
+arduino automation chef10,"(ist nicht meiner. Internet Bild. Mein Basco hat einen Widerrist von 72 cm. Wenn der dir seine Vorderläufe auf die Schultern legt,glotzt der dir direkt ins Gesicht.Viel Spass dann dabei)"
+arduino automation chef10,Leider habe ich immer noch keine Einkaufsliste.
+arduino automation chef10,Greetz Horst
+arduino automation chef10,"Zum Positionieren sind Schrittmotore bestens geeignet, aber auch Gleichstrommotore mit Positionssensoren."
+arduino automation chef10,"SchrittmotorVorteil: genaue, flexible Positionierung beispielsweise über dem GrillgutNachteil: Nach dem Einschalten muß ein Referenssensor angefahren werden. Wenig Drehmoment."
+arduino automation chef10,DC-MotorVorteil: günstig viel DrehmomentNachteil: Zusätzliche Hardware zur Positionierung notwendig.
+arduino automation chef10,"Wenn Du es systematisch angehen möchtest, mußt Du zunächst die Drehmomente ermitteln oder abschätzen. Dann schaust Du nach einem passenden Schrittmotor mit Stromsteuerung (Nennspannung kleiner 6 V). Der maximale Strom bestimmt dann die Wahl des Schrittmotortreibers (zufälliges Beispiel)."
+arduino automation chef10,Bei großem Drehmoment DC-Motor mit H-Brücke.
+arduino automation chef10,feuerstein:Leider habe ich immer noch keine Einkaufsliste.
+arduino automation chef10,"""Ich brauche ein Auto, welches kannst Du mir empfehlen?"""
+arduino automation chef10,"Gegenfrage: ""Wozu möchtest Du es verwenden?"""
+arduino automation chef10,Das versuchen wir herauszufinden
+arduino automation chef10,Hi
+arduino automation chef10,Getriebe-Motor ist Getriebe-Motor - bei eBay gibt's Deren in Metall-Ausführung auch mit Encoder auf der Motorwelle - so könnte man dort die Umdrehungen mit zählen (z.B. für die Höhe über Glut) - oder - für's Quatschen beim Essen - die Umdrehungen des Grillgut ... linksdrehende Wurst-Kultur soll doch ganz gesund sein ... oder sollte ich das Werbefernsehen falsch verstanden haben?
+arduino automation chef10,"Bissle mit Hasso spielen ... warum eigentlich nicht!Solange Der kein Vegetarier ist, könnte man sich bestimmt anteilig ... einigenSelber bin ich eher per Katze - Nicht-Tierhalter könnten nun meinen, daß Diese 'einfacher' wären ... naives Volkhah.Früher hatten wir Mal einen Altdeutschen - das Vieh war auch riesig, super nett - konnte aber auch anders(z.B. den Vorbesitzer hätte Er wohl ganz gerne ... jo, durfte Er aber dann doch nicht)"
+arduino automation chef10,MfG
+arduino automation chef10,"EditV-TEC 12V 20D DC Gleichstrom Getriebe Motor Stirnradgetriebe mit Encoder 20RPM, eBayEigentlich nur '12V getriebe +Encoder' in der Suche eingegeben."
+arduino automation chef10,Danke fürs komplette ignorieren. Viel Spaß weiterhin. Ich bin raus...
+arduino automation chef10,Hi
+arduino automation chef10,"Ich mag Deinen Unmut ja verstehen - leider ist Dieser hier nicht angebracht.in#4wurde ein 'Grillkorb' zumindest ver-url-t:780×520 141 KBSomit ist's 'wurscht' wie gerade Diese ist - Sie muß Sich nicht selber drehen.Ein Motor zieht den Korb auf Abstand zur Glut, der zweite Motor dreht den Korb.Zumindest so mein bisheriger Kenntnisstand."
+arduino automation chef10,MfG
+arduino automation chef10,@postmaster-ino
+arduino automation chef10,Danke für#11
+arduino automation chef10,korrekt erkannt.
+arduino automation chef10,Dein Hinweis aus#9
+arduino automation chef10,"=>EditV-TEC 12V 20D DC Gleichstrom Getriebe Motor Stirnradgetriebe mit Encoder 20RPM, eBayEigentlich nur '12V getriebe +Encoder' in der Suche eingegeben."
+arduino automation chef10,verstehe ich nicht wirklich.
+arduino automation chef10,"Wie in meinen obigen Posts beschrieben, suche ich wirklich nur einen Tip für ein Hardware Setup."
+arduino automation chef10,2 Motoren. ansteuern.Abfolge oben in#1und#4
+arduino automation chef10,"Ich lese mich seit Wochen in das Thema ein, bin aber immer noch nicht sicher.Deshalb hoffe ich auf erfahrene Profi's hier im Forum."
+arduino automation chef10,"Ich bin totaler Anfänger in diesem Bereich, kann mich aber immer zügig einarbeiten."
+arduino automation chef10,"Ich würde Motoren bevorzugen, die ihre erreichte Position zurückmelden."
+arduino automation chef10,"I möchte das Grillgut, recht präzise auf dem Grill ablegen und keine Schleppfehler produzieren."
+arduino automation chef10,@ alle
+arduino automation chef10,Schreibe ich irgendwie wirr?(Verständnisproblem?)
+arduino automation chef10,"Benehme ich mich in diesem Forum falsch?(""Google erstmal, das wurde schon tausendmal beantwortet"")"
+arduino automation chef10,"Ich warte mal ein paar Tage ab, ob etwas in der Art kommt, wie:"
+arduino automation chef10,"""Mein Tipp, nimm 2x Motor XYZ und 2x Treiber Platine ZYX. Dazu Netzteil XZY. Das kannst du an deinen Arduino hängen und mit der Library XZX stinknormal in der IDE coden, viel Spass und viel Erfolg. Poste mal das Video, wenn es fertig ist."""
+arduino automation chef10,Das wäre wirklich cool.
+arduino automation chef10,"Ich Google mir seit Wochen den Arsch ab. Fast alles ist fertig, bis auf die beschriebene Fragestellung.Da komme ich wirklich nicht weiter."
+arduino automation chef10,Ich warte halt mal.
+arduino automation chef10,Horst
+arduino automation chef10,Da wirst Du wohl sehr lange warten müssen.
+arduino automation chef10,"Es kennt hier keiner die genauen Bedingungen (z.B. Welches Drehmoment, welche Höhenänderung, ...)Wie sollen wir da genaue Motoren und Netzteile vorschlagen?Ein gewisses Risiko ist beim Eigenbau immer dabei, das kannst im Endeffekt nur Du durchs Ausprobieren raus bekommen. Evtl. musst Du dann auch mal neue Hardware kaufen, wenn die vorherige zu schwach war."
+arduino automation chef10,Oder Moment messen oder von vornherein stark überdimensionieren.
+arduino automation chef10,Gruß Tommy
+arduino automation chef10,Hallo
+arduino automation chef10,"Was willst du noch, ich denke du hast alle Antworten bekommen"
+arduino automation chef10,Du möchtest einen Motor der seine Position zurück meldet
+arduino automation chef10,Also DC Getriebe mit Encoder
+arduino automation chef10,Motor große und Getriebe abhängig vom Drehmoment .
+arduino automation chef10,Wie sollen wir wissen es du da benötigst.
+arduino automation chef10,Treiber abhängig vom Motorstrom
+arduino automation chef10,Den Rest beantwortet Google dir
+arduino automation chef10,Heinz
+arduino automation chef10,@Tommy56steht doch alles weiter oben.#1#4
+arduino automation chef10,"(Motor 1, 100 Umdrehungen, Motor 2, 180°, Drehmoment fast vernachlässigbar, da alles mit Kugelrollspindeln und Kugellagern.Nur kein micro kleinst Kram. alles was einen 3D Drucker antreiben kann, wird auch hier passen)"
+arduino automation chef10,Trotzdem wird Dir wohl keiner die Auswahl abnehmen wollen.
+arduino automation chef10,Gruß Tommy
+arduino automation chef10,@Tommy56
+arduino automation chef10,Tommy56:Trotzdem wird Dir wohl keiner die Auswahl abnehmen wollen.
+arduino automation chef10,warum denn nur nicht?
+arduino automation chef10,"Mir geht es ja hier nicht um eine Antwort, die ich vor Gericht ahnden kann,sondern nur um einen Tip einer möglichen Hardware Zusammenstellung.Nachrecherchieren kann ich auch, ob mir jemand Bullshit verzapft hat.Aber ich habe halt keine weitere Idee, womit ich beginnen kann."
+arduino automation chef10,"Ich bin auch Experte, allerdings für andere Themen.Fragt mich wer, gebe ich auch meine persönliche Meinung kund.Ich werde jetzt aufhören damit, mich zu rechtfertigen und hoffe, das irgendwer für mich, brauchbare Informationen bereithält."
+arduino automation chef10,Horst(der gerade ein wenig verwundert ist)
+arduino automation chef10,"feuerstein:Mir geht es ja hier nicht um eine Antwort, die ich vor Gericht ahnden kann,sondern nur um einen Tip einer möglichen Hardware Zusammenstellung."
+arduino automation chef10,Na dann!
+arduino automation chef10,feuerstein:Ich brauche einen Tip für:
+arduino automation chef10,"welche Motoren (1 und 2) am besten (Muss kein Riesen Drehmoment haben[Alles mit Lagern und Kugelrollspindeln] aber mikro Spielzeug sollte es auch nicht sein. Also schon kräftig, am besten NEMA 17 Bauart)"
+arduino automation chef10,Passende Treiber dazu (brauche ich 2? Für jeden Motor einen? Kompatibel mit Arduiono UNO.
+arduino automation chef10,Passendes Netzteil für die komplette Lösung
+arduino automation chef10,hab ich was vergessen?
+arduino automation chef10,@agmue
+arduino automation chef10,"genau sowas,maximalen Dank"
+arduino automation chef10,Horst
+arduino automation chef10,Related topics
+arduino automation chef10,"Powered byDiscourse, best viewed with JavaScript enabled"

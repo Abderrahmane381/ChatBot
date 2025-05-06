@@ -1,0 +1,676 @@
+mot_clé,nom_du_fichier,url,contenu
+arduino,BUILD.txt,https://raw.githubusercontent.com/g4klx/MMDVM/master/BUILD.txt,"In order to build MMDVM, you need to tell the Arduino GUI to link with the
+CMSIS DSP library, which is doesn't do by default.
+
+My development is on Windows and so I can vouch for the following instructions.
+
+For Arduino 1.6.3 with SAM 1.6.4
+--------------------------------
+
+1. Go to the where the platform.txt file is located. On my Windows machine it's
+in:
+
+C:\Users\Jonathan\AppData\Roaming\Arduino15\packages\arduino\hardware\sam\1.6.4
+
+On Mac OS X it's located in:
+
+/Applications/Arduino.app/Con"
+arduino,vru.txt,https://raw.githubusercontent.com/n64dev/n64dev.github.io/master/vru.txt,"I have some preliminary information on the VRU that shipped with Hey You,
+Pikachu!  I have hit a stumbling block as I don't have a way to sniff the
+wire and Mess does not currently emulate Hey You, Pikachu! correctly so I
+can't trade back and forth comparing query captures in Mess to real
+hardware responses on target.  However, from the small amount that runs in
+Mess, I was able to figure out some very rudimentary things and can
+reliably detect a VRU plugged in using the detect accessory command"
+arduino,TODO.txt,https://raw.githubusercontent.com/ZakKemble/NWatch/master/TODO.txt,"global.c system.c pwrmgr.c - fix up this code! lots of little (but rare) issues with interrupts happening just before going to power down sleep
+draw.c - also fix up this, cleanup that struct image_s stuff and maybe convert draw_bitmap_do() to ASM to see if its any faster?
+millis.c/millis_isr.s - use flags that are processed in the ISR instead? also reduce millis resolution to 4ms? nothing in the code really needs 1ms res
+bool/BOOL
+
+
+Make a better readme
+Arduino stuff
+
+Alarm snooze
+Options for al"
+arduino,README.TXT,https://raw.githubusercontent.com/Adequis/DancingLEDs-Controller-Firmware-Public/master/README.TXT,"The ble_OctoWS2811.ino file requires the nrf8001_arm_support_new, TimerThree, Time, TimeAlarms, OctoWS2811 and SPI libraries to be installed.
+
+nrf8001_arm_support_new has been updated to support Teensy SPI.
+
+The TimerThree and SPI libraries may have been installed as part of the Arduino or Teensyduino installation, so make sure to replace them.  In Windows, libraries located under Program Files/Arduino/Libraries take precedence over libraries under My Documents/Arduino/Libraries.
+
+Development oc"
+arduino,todo.txt,https://raw.githubusercontent.com/chipKIT32/chipKIT32-MAX/master/todo.txt,"0150 mpide
+  
+Fix Linux make.sh, etc. scripts
+Test on Linux.
+
+AVR
+
+Ethernet library:
+ - integrate DHCP support
+ - client.connect() returns 0 when connection is successful?  http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1238295170
+ - call Server.begin() from Ethernet.begin() instead of in user's sketch?
+ - add method for receiving notification of new client connections to a server
+ - add method for receiving notification of data written to a client
+ - add method for receiving notification of cl"
+arduino,icns.txt,https://raw.githubusercontent.com/elrumo/macOS_Big_Sur_icons_replacements/master/Other/scripts/icns.txt,"0_AD,
+1.1.1.1,
+1Blocker,
+1Blocker_Alt,
+1Password,
+1Password_Alt,
+1Password_Dark,
+1Password_Light,
+4K_Video_Downloader,
+189_Cloud,
+5217,
+Ableton,
+Ableton_LIVE,
+Accessibility_Inspector,
+ACDSee_Photo_Studio_6,
+Acorn,
+Activity_Monitor_Alt,
+AdBlock,
+AdBlock_Alt,
+Adblock_Plus,
+AdGuard,
+AdGuard_Alt,
+Adobe_Acrobat,
+Adobe_Acrobat_Pro,
+Adobe_After_Effects,
+Adobe_After_Effects_Alt,
+Adobe_Animate,
+Adobe_Animate_Alt,
+Adobe_Audition,
+Adobe_Audition_Alt,
+Adobe_Bridge,
+Adobe_Bridge_Alt,
+Adobe_CC,
+Adobe_Characte"
+arduino,bom.txt,https://raw.githubusercontent.com/ole00/afterburner/master/bom.txt,"BOM for Afterburner PCB 3.2b
+============================
+* (R1 - 5x) Resistor 4k7 (TH or SMT 0805) 0.25W, 5% or better tolerance  - 5x
+* (R8, R4) Resistor 10k (TH or SMT 0805) 1% or better tolerance - 2x
+* (R5, R18) Resistor 100k (TH or SMT 0805) 1% or better tolerance - 2x
+* (R6) Resistor 20k (TH or SMT 0805) 1% or better tolerance - 1x
+* (R7, R3, R2) Resistor 3k3 (TH or SMT 0805) 1% or better tolerance - 3x
+* (R9) Cermet trimmer (TH Suntan TSR-3362P-202R 2k) - 1x
+
+* (C1, C5) Capacitor electro"
+arduino,README.txt,https://raw.githubusercontent.com/dEskoG/rDUINOScope/v2.3.1/README.txt,"#rDUINOScope
+
+THE WORLD'S FIRST STAND ALONE ARDUINO BASED TELESCOPE CONTROL GOTO (handheld controller). 
+
+rDUINOScope is an Open Source, Arduino Due based Telescope Control System (GOTO). Drafted as stand alone system, rDUINOScope does not need PC, Tablet or Cell Phone, nor Internet connection in order to operate and deliver stunning views! It does however supports Bluetooth and LX200 protocol to connect and be controlled by smart devices!
+
+
+rDUINOScope uses database with THE BEST ~250 st"
+arduino,poem.txt,https://raw.githubusercontent.com/CodingTrain/Rainbow-Poem/master/poem.txt,"Poem by tutorial watchers
+
+Ceiling to the Stars
+Up in the sky, where the stars shine bright,
+That’s where I will be;
+Enjoying the thrills of outer space,
+And all there is to see.
+
+To see the rainbow you need rain.
+To get rain you need clouds.
+(CuriousBlue)
+github is good
+p5js is great
+using them together makes me concentrate
+
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+Hallo Welt auch in Deutschland gib es einen Regenbogen ;0)
+and by knowing how to do a pull request
+it will bring color to my coding s"
+arduino,help.txt,https://raw.githubusercontent.com/BrerDawg/ti_lpc/master/help.txt,"Aug 2024 v1.08
+
+ti_lpc
+~~~~~~
+Texas Instrument Speak & Spell synthesizer, renders rom sounds/vocal hex strings to PC sound hardware/sound files. 
+
+The Speak & Spell developed in the late 1970s made use of a TMS5100 digital signal processor chip (DSP) for speech decoding. Briefly: the chip contained glottal pitch/chirp sound source(vowels), white noise source(consonants), an adjustable lattice filter and a D/A converter. Either of the 2 sound sources were fed in varying proportions to the a"
+arduino,notes.txt,https://raw.githubusercontent.com/cscott/xorduino/master/notes.txt,"Notes on XOrduino v4 boards:
+ - avoid tab on usb connector, move to body
+ - N/C jumpers turned out N/O (scratch sensor board)
+.- merge 5V and +5V nets
+ - C5/C7 too close together (and too close to C9) & need polarity marks
+ - C11/C13 needs polarity mark (or to be unpolarized)
+ - flip RN3?
+ - audio jack footprints are wrong.  and drill holes overlap for top⊥
+ - just use tip and sleeve(gnd) on audio jack (leave ring(s) disconnected)
+   use 1/8"" instead of 3/32""?
+   digikey CP1-3523N-ND $0.39480 qt"
+arduino,INFO.txt,https://raw.githubusercontent.com/ch-nry/nozoid_OCS-2/master/INFO.txt,"Compile the code :
+– get the code there : https://github.com/ch-nry/OCS/tree/master
+– get the latest version of arduinio IDE (I’m using 1.7.10 from here : http://www.arduino.org/downloads)
+– make it work (on linux, I have to change COM1 to /dev/ttyACM0 in the config file, and a $sudo usermod -a -G dialout ). The arduino community is huge, so you will find on the internet how to solve any problem you could face.
+– optimize code speed at compilation (change all 3 occurrences of “-Os” to “-O3” in t"
+arduino,log.txt,https://raw.githubusercontent.com/transistorfet/computie/main/log.txt,"2020-08-14:
+- the serial issue turns out to be a problem with the crystal for the serial chip.  It is outputting an inconsistent signal around
+  100kHz when powered through USB or power supply.  When powered by the arduino, you have to unplug and replug the serial usb cable to
+  make it work, which seems to reset the oscillator.  Connecting a 22pF capacitor across the crystal jumpstarts it, but the output is
+  a lot lower on the scope with it connected.  The datasheet says to use 15 and 5pF whic"
+arduino,BOM.txt,https://raw.githubusercontent.com/spherical-sound-society/glitch-storm/master/BOM.txt,"Resistors
+5x	15-20k	R1,R3,R7,R8,R9	1/4W (this are the led resistors, use 10k to 20k. 10K quite bright, 20K tammed
+
+Caps
+1x 100nF	C1 CERAMIC (deprecated, not needed, it produces a subtle filtering)
+1x	1uF-10uF	C5	ELECTROLITYC	 (anything from 1 to 10uf or more should work)	
+
+Hardware
+3x	POT	POT1,POT2,POT3	ALPS VERTICAL TYPE B10K LINEAR	(pretty much any linear pot will work, recommended between 10K and 100K)
+2x		SW1,SW2	SWITCH-6X6X5 milimeters, Through Hole	
+
+Misc
+1x	U1	ARDUINO_NANO (Programmed)			"
+arduino,perf.txt,https://raw.githubusercontent.com/manitou48/DUEZoo/master/perf.txt,"simple computational benchmarks
+    arduino/teensy gcc -Os,   mbed armcc -O3
+
+recursive fibonacci (fibo(26))
+	spin 10056 ms
+	 catalina 3.6 5342 ms
+	 gcc cog 486 ms
+	 gcc lmm 927 ms
+	arduino UNO (16MHz)     927 ms   32-bit int's
+	nRF51822 (16MHz)        436      mbed -O3  microbit
+	DUE (84MHz)              98 ms
+	ZERO (48MHz)            127 ms   SAMD21
+	R4 (48MHz)              122 ms
+	maple (72MHz)           104 ms
+	teensy 3 (96MHz)         82 ms   3.1 26 121393 63
+	teensy LC (48mhz)       128ms
+"
+arduino,readme.txt,https://raw.githubusercontent.com/greiman/FreeRTOS-Arduino/master/readme.txt,"This is a port of FreeRTOS as Arduino libraries.
+
+The documentation for FreeRTOS is located here:
+
+http://www.freertos.org/
+
+FreeRTOS is version 8.2.3
+
+These libraries were tested with Arduino 1.6.5 for AVR boards, Arduino 1.6.4
+for Due and the 1.26 version of the Teensy 3 software.
+
+To install these libraries and run the FreeRTOS examples, copy the
+included libraries to your libraries folder.
+
+A version of SdFat is included.  For the current version go to:
+
+https://github.com/greiman/SdFat
+
+Ple"
+arduino,boards.txt,https://raw.githubusercontent.com/sipeed/Maixduino/master/boards.txt,"menu.clksrc=CPU Clock Frequency
+menu.burn_tool_firmware=Burn Tool Firmware
+menu.burn_baudrate=Burn Baud Rate
+menu.toolsloc=Tool Install Location
+
+##################################################
+############# Sipeed Maix Amigo ###############
+
+amigo.name=Sipeed Maix Amigo
+
+## Toolchain
+amigo.menu.toolsloc.default=Default
+amigo.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+amigo.menu.clksrc.400=400MHz CPU Clock Frequency
+amigo.menu.clksrc.50"
+arduino,flow.txt,https://raw.githubusercontent.com/Chinmay072/Agriguardian/main/flow.txt,"Creating an end-to-end farming portal that helps farmers from soil assessment to crop disease detection and crop rotation recommendations can revolutionize the agricultural industry. Here’s a step-by-step outline of such a portal:
+
+1. User Registration and Profile Setup
+User Registration: Farmers can sign up using their mobile number or email.
+Profile Setup: Farmers can enter details like farm location, size, and types of crops usually grown.
+2. Soil Assessment
+Soil Type Identification:
+Manual E"
+arduino,THANKS.TXT,https://raw.githubusercontent.com/NicholasCLewis/InkShield/master/THANKS.TXT,"InkShield THANKS.TXT
+Copyright 2011, Nicholas C Lewis
+http://nicholasclewis.com/inkshield/
+
+I would like to thank all the backers who supported the launch of this project.
+The people listed below all backed my Kickstarter project allowing me to produce a production run.
+http://www.kickstarter.com/projects/1908026860/inkshield-an-open-source-inkjet-shield-for-arduino
+Without their support this would have remained a small hobby project.
+
+I hope that everyone enjoys this shield and look forward to "
+arduino,Readme.txt,https://raw.githubusercontent.com/ajay/ROSE_ElectronicArchive/master/Readme.txt,"Web app:
+Note- all index.wsgi files contain metadata used for these various applications.
+ 
+ROSE/webapp/CustomerUI/app.py: Implements the customer-side web application that allows customers to place orders for various drinks and posts them to the database.
+
+ROSE/webapp/CustomerUI/templates/index.html: HTML file to display the homepage for the customer interface.
+
+ROSE/webapp/CustomerUI/static/img: This directory contains the images used for the customer interface of the web application.
+
+ROSE/we"
+arduino,tasks.txt,https://raw.githubusercontent.com/sasmita/QuantumLight/master/tasks.txt,"1) Writing scripts to collect weather data online.(may be using python).[Betcy]
+ 2) Scripts to analyse the data using python and Parse the data to get only temperature from the lists of data.[ Betcy, Smita]
+ 3) Communicating from Computer or mobile to Arduino. [Sasmita, ]
+ 4) Classifying the temperature in different categories.[ Smita ]
+ 5) Assigning LED color to each classification basically Programming RGB LEDs to different input conditions using Arduino. [Sasmita, ]
+ 6) Programming other inpu"
+arduino,infos.txt,https://raw.githubusercontent.com/mqu/viessmann-mqtt/master/infos.txt,"links :
+
+metrics visualisation tools
+time series visualisation monitoring tools
+
+- http://pdacontrolen.com/esp8266-grafana-influxdb-node-red-arduino-mqtt/
+- http://air.imag.fr/index.php/Developing_IoT_Mashups_with_Docker,_MQTT,_Node-RED,_InfluxDB,_Grafana
+
+- http://docs.influxdata.com/ : chronograph, telegraph, influx-db
+- https://www.youtube.com/watch?v=WxUTYzxIDns : raspberryPI + node-red + MQTT
+
+rasp + node-red :
+- http://www.projetsdiy.fr/node-red-decouverte-sur-raspberry-pi-3-ou-2/#.WLE3W1d"
+arduino,info.txt,https://raw.githubusercontent.com/rmcolbert/7bot-Archive/master/info.txt,"From: http://forum.7bot.cc/read.php?1,6
+
+Well as I did not want wait for the software to play with my little robot, here is what I have found out so far.
+
+Pinout for Arduino Due is
+
+Axis 1; Readout = A0 ; ServoControl D2
+Axis 2; Readout = A1 ; ServoControl D3
+Axis 3; Readout = A2 ; ServoControl D4
+Axis 4; Readout = A3 ; ServoControl D5
+Axis 5; Readout = A4 ; ServoControl D6
+Axis 6; Readout = A5 ; ServoControl D7
+Axis 7; Readout = A6 ; ServoControl D8
+
+Pomp Valve; Control D10 ; Low "
+arduino,paint.txt,https://raw.githubusercontent.com/hpwit/ledtable/master/paint.txt,"Hello
+here is how to do it
+Create a sketch via arduino
+unzip the htmlpages.zip in the directorty Arduino/you_sketch_name/data
+you sketch should look like this
+download paint.h and put it in you sketch directory
+
+
+edit paint.h
+line 63
+replace
+    fill(CRGB(0,0,0));
+ by
+
+fill_solid(leds, NUM_LEDS, CRGB(0,0,0)); //or whateever color you prefer
+
+
+you sketch.ino should look like this
+
+
+#include  
+#include  
+#include  
+#include  
+#include  
+#include  
+
+
+#define FASTLED_ESP8266_RAW_PIN_ORDER
+#define FA"
+arduino,ABOUT.txt,https://raw.githubusercontent.com/johnsonjh/cpm-m3/master/ABOUT.txt,"Zach Zwergel   2014-09-05 21:50:16 UTC
+
+Hi,
+
+I would like to know If it is possible to port the C source of CP/M-68k
+to i386. Is it possible? If it is, What would it take to make a bootable
+floppy image (QEMU)?
+
+--
+Best Regards,
+Zach Z.
+
+--Born in the 1990s, but like older computers!--
+
+--- news://freenews.netfront.net/ - complaints: ***@netfront.net ---
+
+Roger Ivie   2014-09-06 00:06:15 UTC
+
+Post by Zach Zwergel
+
+I would like to know If it is possible to port the C source of CP/M-68k
+to i386. I"
+arduino,MD.txt,https://raw.githubusercontent.com/Prajwallh/UGV-UNMANNED-GROUND-VEHICLE/main/MD.txt,"Creating a full project with components, circuit diagram, and code requires a significant amount of information. However, I can provide a high-level overview and a basic example to get you started. You can then adapt and expand upon this foundation as needed.
+
+Components Required:
+Transmitter (Metal Sensor) Side:
+
+1. Arduino board (e.g., Arduino Uno or Nano)
+2. NRF24L01 module with antenna
+3. Metal detector sensor (e.g., a metal detector coil or similar)
+4. Jumper wires
+5. Power supply "
+arduino,kod.txt,https://raw.githubusercontent.com/hilalasli/yengec/master/kod.txt,"/* Before you can use the Motor shield, you must install the AF_Motor Arduino library
+https://github.com/adafruit/Adafruit-Motor-Shield-library 
+Install and Use Arduino Libraries -- https://youtu.be/Es8D1q_b-c4 */
+#include  
+
+/*include Servo motor library*/
+#include  
+
+/* Create the AF_DCMotor object with AF_DCMotor(motor#, frequency)
+The first is which port the motor is connected to, 1, 2, 3 or 4.
+frequency is how fast the speed controlling signal is. 
+For motors 1 and 2 you can choo"
+arduino,data.txt,https://raw.githubusercontent.com/joshua137k/MyWebSiteData/main/data.txt,"https://github.com/joshua137k/letter-League-BR/blob/main/foto.png?raw=true|letter-League-BR|Fiz um mini letter league com palavras em português|html/css/js,git|https://github.com/joshua137k/letter-League-BR
+https://sweet.ua.pt/joshuadourado/images/ft.png|ARDUINOGAMEBOY|Este projeto visa criar um console 2D usando o ESP32 como interpretador de scripts personalizados. Os scripts permitem a criação de jogos e outras aplicações visuais que são executadas diretamente no display controlado pelo ESP32."
+arduino,req.txt,https://raw.githubusercontent.com/vvilhonen/authfail/master/req.txt,"GET /signalk/v1/stream?subscribe=none HTTP/1.1
+Host: 192.168.9.134:80
+Connection: Upgrade
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Key: qkWrwdt+4fb78wgatElVRQ==
+Sec-WebSocket-Protocol: arduino
+Origin: file://
+User-Agent: arduino-WebSocket-Client
+Authorization: JWT 123456"
+arduino,NOTICE.txt,https://raw.githubusercontent.com/sonydevworld/spresense-sketches/master/NOTICE.txt,"To Whom to Submit Contribution:
+
+Thank you for your interest in our software, ""SPRESENSE Arduino Compatible"" (the ""Software"").
+
+Sony Semiconductor Solutions Corporation (""Sony"") grants the right to use the Software under such terms and conditions as described below (the ""License"").  Please refer to the terms and conditions of the License which is contained in 'COPYING' file under the same directly as this file is contained. 
+
+The License: GNU General Public License version 2
+
+When you su"
+arduino,code.txt,https://raw.githubusercontent.com/Akshityadav007/Temperature-based-automatic-fan-speed-controller-system/main/code.txt,"// header file for arduino : The LiquidCrystal library allows you to control LCD displays 
+#include  
+// defining pins for lcd screen
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+// defining variables for different purposes
+int val;
+float TEMP; // temperature
+int motorPin = 6; // arduino pin of the motor
+int speed = 0;  // speed of the motor
+
+// two types of functions are there in arduino :
+// setup() function : The Arduino program calls the setup function as the first thing when the Arduino unit pow"
+arduino,faqs.txt,https://raw.githubusercontent.com/jamesdanielv/thermal_cam_mlx90640/master/faqs.txt,"F.A.Q.'s (frequently Asked Questions)
+
+does this code work on normal arduino uno, nano, mega?
+
+Yes. this version does.
+ however it is still experimental because of single point float precision.
+there might still be math calc differences. however single point is +/- 
+0.00000011920929 2^X
+
+
+Do i need pull up resistors for project?
+
+Yes you do. if your board does not have them built in.
+i would recommend between 1.3k and 2.2k for best performance
+and i would recommend that you purchase a sensor wit"
+arduino,Readme_RFLink.txt,https://raw.githubusercontent.com/seahu/rflink/master/Readme_RFLink.txt,"! ============================================================================
+! Only for educational purposes, this source is not be synchronized with the
+! latest release! 
+! For normal operation, use the RFLink Loader that includes the latest release
+! This source code tree is made available so that you can develop your own plugins
+! ============================================================================
+
+Please note that the RFLink Gateway is a freeware project.   
+Stuntteam is "
+arduino,Notes.txt,https://raw.githubusercontent.com/katascope/LightSuit/main/Notes.txt,"Devices, Bluetooth:
+Test
+ AT+NAME=Lightsuit#
+ AT+UART=9600,0,0
+ AT+PSWD=...
+
+
+
+
+Todo:
+Build:
+ Backup device
+ Fix Burnt BEC
+Research:
+ KataTracks
+  Postponed connecting
+  ""Shimmer test"" for pre-show synchronicity
+  Multi-threaded Reconnection ability
+ Lightsuit
+  Extension cables - need newtype connector
+  X-hole connector, like leather/rubber?
+ Device
+  Redesign to protect Bluetooth module
+
+
+
+
+
+
+
+
+# KataTracks
+What it should be: Wireless light-suits precisely synchronized to events in the music."
+arduino,Guide.txt,https://raw.githubusercontent.com/koperagen/CV-robot/master/Guide.txt,"Folder ""Arduino"":
+Contains source C like codes for Arduino
+Folder ""Schemes"":
+Contains assembly schemes and list of used components
+Folder ""Orange Pi"":
+Contains Python programms to run on Orange Pi
+Folder ""Workspace"":
+Contains all necessary instruments (Or ways to install them)"
+arduino,esp32.txt,https://raw.githubusercontent.com/shaik1201/ESP32-Deterence-System/main/esp32.txt,"/*
+ WiFi Web Server LED Blink
+
+ A simple web server that lets you blink an LED via the web.
+ This sketch will print the IP address of your WiFi Shield (once connected)
+ to the Serial monitor. From there, you can open that address in a web browser
+ to turn on and off the LED on pin 5.
+
+ If the IP address of your shield is yourAddress:
+ http://yourAddress/H turns the LED on
+ http://yourAddress/L turns it off
+
+ This example is written for a network using WPA2 encryption. For insecure
+ WEP or WPA, c"
+arduino,FAQ.TXT,https://raw.githubusercontent.com/totalspectrum/zog/master/FAQ.TXT,"Cygwin
+------
+
+I just downloaded cygwin into Windows XP running in VirtualBox. Takes for ever if you install everything:) Compiling with install/bin/zpu-elf-gcc -phi hello.c just worked out of the box.
+
+
+ZPU/ZOG IO
+----------
+
+Out of the box the ZPU tool chain, is set up to support some simple  configurations of the ZPU processor core on an FPGA. It's only I/O is a console port which is memory mapped and a timer register. If you really want to get into this you would have to download the toolcha"
+arduino,kit.txt,https://raw.githubusercontent.com/RbtsEvrwhr-Riley/CellSol/main/kit.txt,"parts for the arduino/bluetooth repeater
+
+
+https://es.aliexpress.com/item/1005001580502361.html?spm=a2g0o.productlist.0.0.7eb47e3eEZIBK6&algo_pvid=fb79a3be-e708-4eb2-98bf-7c01adc16360&algo_expid=fb79a3be-e708-4eb2-98bf-7c01adc16360-0&btsid=0bb0622f16032364823726290ed073&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_ solar/usb charger
+
+https://es.aliexpress.com/item/33006101437.html?spm=a2g0o.productlist.0.0.536f3cd44jKKbg&algo_pvid=7cba21ae-0100-48d0-ba7b-39f06e673ef2&algo_expid=7cba2"
+arduino,Suite16_ReadMe.txt,https://raw.githubusercontent.com/monsonite/Suite-16/master/Suite16_ReadMe.txt,"# Suite-16
+
+Suite-16 is a project to create a working 16-bit computer system from scratch.
+
+My interest lies in developing a novel 16-bit cpu, as an exercise to further my knowledge of cpu architectures.  
+
+My approach has 4 separate stages, each intended to allow me to develop some new skills:
+
+1. Develop and debug the ISA and simulate on an ARM M7 - in this case Teensy 4.x and Nucleo STM32H743 - both of which can be programmed from Arduino IDE.
+2. Create an FPGA soft core of the cpu, "
+arduino,2020.txt,https://raw.githubusercontent.com/ntacamp/404.notrollsallowed.com/master/2020.txt,"﻿                             _  _    ___  _  _
+                            | || |  / _ \| || |
+                            | || |_| | | | || |_
+                            |__   _| | | |__   _|
+                               | | | |_| |  | |
+                               |_|  \___/   |_|
+                                Camp Not Found
+
+
+--[ DETAILS ]
+
+  Date ........................................................ July 22-26, 2020
+  Location .............................................. Somewh"
+arduino,hid.txt,https://raw.githubusercontent.com/lemonhall/node_note/master/hid.txt,"1、德州仪器的wiki页面
+==================
+http://processors.wiki.ti.com/index.php/HIDEmuKbd_SensorTag#Tutorial_Step_4:_HID_Descriptor_Tool
+
+讲解HID_Descriptor_Tool的用法
+
+http://processors.wiki.ti.com/images/4/43/Descriptor.PNG
+
+主要是看这张图
+
+
+2、node-hid的issues页面
+======================
+https://github.com/node-hid/node-hid/issues/190
+
+里面有提及chrome.hid的API使用
+
+
+3、hidapi
+=========
+编译：
+先去hidapi页面：
+
+进入mac子目录
+cd mac
+make all -f Makefile
+
+进入testgui目录
+cd testgui
+make all -f Makefile.mac
+
+两部编译完成之后
+在testgui目录下即可运行
+
+另外，这个鬼玩意的g"
+arduino,Tasks.txt,https://raw.githubusercontent.com/trevorfalls/NASGR/master/Tasks.txt,"IMU
+People: Stephen Flores
+Deliverable: Be able to request IMU data from a ROS environment on a PC through a ROS service and through rosserial_arduino.
+
+Pressure Sensor
+People: YiZhuang Garrard
+Deliverable: Be able to request pressure data from a ROS environment on a PC through a ROS service and through rosserial_arduino.
+
+Motors
+People: Andrew Mullen, YiZhuang Garrard
+Deliverable: Be able to publish thrust vector information from a ROS environment on a PC to a topic over rosserial_arduino and t"
+arduino,z_Memo_TVoutColor.txt,https://raw.githubusercontent.com/NabeRMC/TVoutColor_2013/main/z_Memo_TVoutColor.txt,"/*****************************************************************************
+    System Name : TVoutColor_NTSC
+    File Name   : z_Memo_TVoutColor.txt
+    Content     : 
+    Version     : 0.0
+    CPU board   : Arduino UNO/Duemilanove
+    Compiler    : Arduino 1.0.4
+    History     : 2013/10/04
+*****************************************************************************/
+
+*Special thanks to nekosan and KenKen
+
+http://picavr.uunyan.com/vhdl_composite.html
+http://www.ze.em-net.ne.jp/~kenken/comp"
+arduino,info.txt,https://raw.githubusercontent.com/straytech/Bliptronome/master/info.txt,"*Bliptronome_V3*
+
+ Translation of Arduinome firmware for Bliptronics 5000 
+ http://www.thinkgeek.com/electronics/musical-instruments/c4e1/
+  
+ Wil Lindsay February 6th, 2010
+
+ http://www.straytechnologies.com for hardware mods, build  information & port blog
+ contact: wil@straytechnologies.com
+  
+Based on:
+  ""ArduinomeFirmware3_2""  - With Revisions by 03/21/2009 Ben Southall
+  ""ArduinomeFirmware"" - Arduino Based Monome Clone by Owen Vallis & Jordan Hochenbaum 06/16/2008
+  A translat"
+arduino,gray.txt,https://raw.githubusercontent.com/MPETREMANN11/eForth-Web/main/gray.txt,"\ *********************************************************************
+\ Convert n to gray code value and gray value to n
+\    Filename:      gray.txt
+\    Date:          24 feb 2023
+\    Updated:       24 feb 2023
+\    File Version:  1.0
+\    MCU:           ESP32-WROOM-32
+\    Forth:         eForth all versions 7.x++
+\    Copyright:     Marc PETREMANN
+\    Author:        Marc PETREMANN
+\    GNU General Public License
+\ *********************************************************************
+
+\ mo"
+arduino,tree.txt,https://raw.githubusercontent.com/ElectricRCAircraftGuy/eRCaGuy_hello_world/master/tree.txt,".
+├── arduino
+│   └── todo.txt
+├── awk
+│   ├── awk_hello_world_SAMPLE_OUTPUT.txt
+│   ├── awk_hello_world.sh
+│   ├── awk_syntax_tests.sh
+│   └── input_file_1.txt
+├── bash
+│   ├── get_script_path.sh
+│   ├── Link to ElectricRCAircraftGuy--PDF2SearchablePDF [THIS IS A SOLID BASH EXAMPLE!].desktop
+│   ├── Link to PDF2SearchablePDF--pdf2searchablepdf.sh at master · ElectricRCAircraftGuy--PDF2SearchablePDF.desktop
+│   ├── practice
+│   │   ├── read_arrays.sh
+│   │   └── README.md
+│   ├── README.md
+│   └"
+arduino,todo.txt,https://raw.githubusercontent.com/leaflabs/maple-ide/master/todo.txt,"custom-build maple-ide
+
+COMPUTER
+
+Clear serial monitor button when the serial monitor opens.
+Disable checking for updates.
+Test the upload.using parameter to upload with a programmer.
+Add keyboard shortcut for opening the serial monitor.
+Escape characters with copy as html.
+Support libraries in the SKETCH/code folder?
+Test bootloader burning w/ an AVRISP.
+Enable verbose output if shift (or alt?) is held down when pressing run or upload.
+Add support for third-party boards in the user's sketchbook"
+arduino,plan.txt,https://raw.githubusercontent.com/eshsrobotics/2016bot/master/plan.txt,"Programming plan (in priority order)
+
+Programming team members:
+  - Margaret Knoblock [team lead] (mknoblock | mknoblock_16@esusdstudents.org)
+  - Ari Berkowicz (AppleMaster2000 | aberkowicz_17@esusdstudents.org and applemaster.ari@gmail.com)
+  - Quinn Gilbert (qgilbert-18 | qgilbert_18@esusdstudents.org)
+  - Annika Hatcher (annikhat73 | ahatcher_18@esusdstudents.org)
+  - Christian Herr (? | cherr_16@esusdstudents.org)
+  - Adrian Osorio (adrianosorio | aosorio_17@esusdstudents.org and adrianosor"
+arduino,ros.txt,https://raw.githubusercontent.com/RoboCraft/robot_4wd/master/ros.txt,"0. install OS
+Ubuntu 12.04 LTS
+
+user: user
+pswd: 1
+
+1. install 
+make cmake g++ mc openssh-server
+
+2. network
+static IP: 192.168.0.4
+
+3.
+# add user to group dialout (to work with /dev/ttyUSB0 (Arduino))
+sudo usermod -a -G dialout user
+
+
+4. Arduino naming:
+http://robocraft.ru/blog/arduino/2985.html
+
+for example:
+drive controller - ttyUSB0
+sensor controller - ttyUSB1
+
+edit configuration file:
+ros_4wd_driver\config\4wd_params.yaml
+
+set names:
+drive_port: /dev/ttyUSB0
+sensor_port: /dev/ttyUSB1
+
+
+
+5. "
+arduino,list.txt,https://raw.githubusercontent.com/NoThrowForwardIt/awesome-pentest-tools/master/list.txt,"0trace	1.5	A hop enumeration tool	http://jon.oberheide.org/0trace/
+3proxy	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+3proxy-win32	0.7.1.1	Tiny free proxy server.	http://3proxy.ru/
+42zip	42	Recursive Zip archive bomb.	http://blog.fefe.de/?ts=b6cea88d
+acccheck	0.2.1	A password dictionary attack tool that targets windows authentication via the SMB protocol.	http://labs.portcullis.co.uk/tools/acccheck/
+ace	1.10	Automated Corporate Enumerator. A simple yet powerful VoIP Corporate Directory enu"

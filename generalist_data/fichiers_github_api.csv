@@ -1,0 +1,12 @@
+Nom,Type,Lien de téléchargement
+LICENSE,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/LICENSE
+PM_test.txt,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/PM_test.txt
+PM_train.txt,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/PM_train.txt
+PM_truth.txt,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/PM_truth.txt
+README.md,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/README.md
+TTF Prediction using LSTM.ipynb,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/TTF%20Prediction%20using%20LSTM.ipynb
+flows.json,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/flows.json
+getVibrationData.ino,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/getVibrationData.ino
+requirements.txt,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/requirements.txt
+trainingDataset.csv,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/trainingDataset.csv
+vibrationAnalysis.ipynb,file,https://raw.githubusercontent.com/pritam-sethuraman/Predictive-Maintenance/main/vibrationAnalysis.ipynb

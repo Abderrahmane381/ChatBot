@@ -1,0 +1,1385 @@
+Ligne
+Chapitre5
+Contrôledessystèmestemporisés
+Cechapitretraitedelasynthèsedecontrôleurspourlessystèmestemporis és.Par
+systèmes temporisés nousentendonsles systèmes dans lesquels des co ntraintesde
+tempsquantitatives sontspéciﬁées.Lesnotionsdebasequenousutilisonsdansce
+chapitres’appuientsur les conceptsintroduitsdansles chapitre3 etcha pitre4; la
+lecturedeceschapitresestdoncrecommandéeaulecteurquineconn aitraitpasles
+fondementsdesautomatestemporisés.
+5.1. Introduction
+Onnepeutpastoujoursutiliserdutemps discretpouranalyserdessystèmescom-
+portantdescontraintestemporelles.C’estpourquoilesmodèlesàtemp sdensecomme
+lesautomatestemporisés[ALU94]sontnécessaires.L’objetdecech apitreestdedon-
+nerdesalgorithmesdesynthèsedecontrôleurspourdetelssystèmeset d’identiﬁerles
+propriétésparticulièresliéesautempsdense.
+5.1.1.Vériﬁcationdessystèmestemporisés
+"Uneapprocheclassiquedevériﬁcation,le model checking [SCH99],consisteà"
+construireunmodèlecomplet Sducomportementdusystèmeétudié(parexempleun
+"automateﬁni),àformaliserlapropriétédecorrectionattendueparunefor muleψde"
+"logique(temporelle),puisàutiliserunalgorithme(de modelchecking )pourvériﬁer"
+"queSsatisfait(ounon) ψ,cequiestnoté S|=ψ(resp. S/negationslash|=ψ).Cestechniques"
+ChapitrerédigéparFranckC ASSEZetNicolasM ARKEY.
+106 Syst.embarqués Approchesformelles
+sontmaintenantbienconnuesetcourammentutiliséesdansledomaine industriel.Ce-
+"pendant,pourcertainstypesd’applications,il est nécessaire de pren dreen compte"
+descaractéristiquestemporellesautresqueletemps logiquecapturéparunmodèle
+"dutypeautomateﬁni.Parexemple,pourdesproblèmesd’ordonnancem ent,lesdu-"
+réesdestâchesdoiventêtreprisesencompteexplicitement.Ilestpa rfoispossiblede
+serameneràunmodèle(entemps)discretmaiscelapeuts’avérerun facteurlimi-
+"tant:siunsystèmeades constantesdetempsvariantde 1à10 000,considérerune"
+horlogediscrètedegranularité 1engendreunnombred’étatsprohibitifpourlesal-
+"gorithmesde modelchecking ;d’autrepart,l’utilisationdutempsdiscretsupposeque"
+l’onconnaisseexactementlesduréesdesdiversesopérationsàréa liser.Pourprendre
+"en compte une incertitudesur ces durées (durée des tâches, des communications),"
+"onutilisedoncdesmodèlesplusﬁnsquelesautomatesﬁnis,parexempleles auto-"
+"matestemporisés [ALU94](TimedAutomata ,TA),oùl’onpeututiliserdes horloges"
+pourspéciﬁerlecomportementtemporeldusystème.Commecelaestdé critdansle
+"chapitre4,lesalgorithmesde modelchecking utiliséssurlesstructuresdiscrètes(auto-"
+"matesﬁnis,logiquetemporelle)ontétéétendusauxmodèlestemporiséseto ntconduit"
+"audéveloppementd’outilsdevériﬁcationdédiéstelsqueU PPAAL[AMN01],K RO-"
+"NOS[YOV97],C MC[LAR98,LAR05]ouencoreH YTECH[HEN97]."
+5.1.2.Leproblèmedelasynthèsedecontrôleur
+"Danslecasdumodelchecking,onditquelessystèmesconsidérésson tfermés:"
+"ontravaillesurunmodèlecompletdusystèmeincluantl’environnementà contrôler,"
+leséventuelsactionneursetlecontrôleur;cesystèmeévoluesansinﬂue nceextérieure.
+"Danslecadredelasynthèsedecontrôleurs,onpartd’unsystème ouvert,lebutétant"
+"de le fermer : si Sest un modèle du système ouvertà contrôler,on lui ajoute un"
+"contrôleur C,etC(S)représentelemodèlecompletou fermédusystème,ouencore"
+«Scontrôlépar C».
+"Silapropriétédecorrectionàsatisfaireest φ,lestechniquesde model checking"
+permettentderépondreàlaquestion«est-ceque Scontrôlépar Csatisfait φ?».Le
+problèmede modelchecking s’écritalorsformellement:
+"étantdonnés S,Cetφ,est-ceque C(S)|=φ? [MCP]"
+Cetteapprochenécessitedoncd’aborddeconstruire(éventuellemen tàlamain)
+"uncontrôleur C,demanièreàdéﬁnircomplètementlesystème,etensuiteàvériﬁer"
+lesystèmecontrôlé C(S).Cecipeuts’avérerdifﬁciledanslecasdesystèmescom-
+plexesou/etavecdespropriétésdifﬁcilesàmettreenœuvre(commepare xempledes
+"propriétésdépendantdutemps).Deplus,silapropriétéattenduen’e stpasvériﬁée,on"
+doitmodiﬁerlecontrôleuretvériﬁerdenouveaulesystèmedefaçonitérati vejusqu’à
+Contrôledessystèmestemporisés 107
+"obteniruncontrôleurcorrect1.Idéalement,onsouhaiteraitnedécrirequelesystèmeà"
+"contrôleret calculer(ousynthétiser)uncontrôleur(s’ilenexisteun),demanièreàce"
+"quelaspéciﬁcation φsoitsatisfaite.C’estlaproblématiquedu contrôle,plusgénérale"
+"quecelledu modelchecking .Leproblèmedu contrôle(ControlProblem ,CP)pourles"
+systèmesouvertsestformellementlesuivant:
+"étantdonnés Setφ,existe-t-il Ctelque C(S)|=φ? [CP]"
+Pourrépondreauproblème[CP]ilestsouventnécessairederestrein drelaclasse
+"demodèlesdanslaquelleonvachercheruncontrôleur.Parexemple,o npeutcher-"
+"cherdescontrôleursquisontdesautomatesﬁnis(doncàmémoireborn ée),oubien"
+desautomatestemporisés.Leproblèmenaturelquiseposeaprès[CP] estceluidela
+"synthèsedecontrôleur (ControllerSynthesisProblem ,CSP):"
+"Silaréponseà[CP]est«oui »,peut-onconstruireuntelcontrôleur C? [CSP]"
+Cesproblèmesontétéformalisésetétudiéspourlessystèmesﬁnisdansle stravaux
+"pionniersdeRamadgeetWonhan[RAM87,RAM89].Onpeutretrouve rcesrésultats"
+enabordantleproblèmeàl’aidede lathéoriedesjeux .
+5.1.3.Ducontrôleauxjeux
+Unproblèmedecontrôlepeutêtreformulésimplementdanslecadredela théorie
+"des jeuxdiscrets [ARN03, MCN93, RIE03, THO95] : on modélise dans ce c as"
+lesystèmeparunsystèmedetransitionsdontl’évolutionrésultedel’interac tionde
+"plusieursagents(oujoueurs).Danscecadre,lecontrôleurrecherc héestenfaitune"
+stratégiepourunagent(ouunecoalitiond’agents)leurpermettantd’assurerq ueleur
+"objectifseraatteint,quelquesoitlecomportementdesautresagents."
+"Unexempledestructuredejeuestdonnéàlaﬁgure5.1.Danscejeu,lesé tats"
+rondssont«contrôlés»parlejoueur 1(quiestalorsseulresponsableduchoixdela
+"transitionàsuivre),etlesétatscarréssontcontrôlésparlejoueur 2."
+"Considéronslastratégiesuivantepourlejoueur 1:lorsquelejeuestdansl’état /lscript0,"
+"ilprendlatransitionvers /lscript2,etsilejeuestdansl’état /lscript3,ilprendlatransitionvers"
+"l’étatFINAL.Silejoueur 1suitcettestratégie,alorsquellequesoitlastratégieadoptée"
+"parlejoueur 2,lejeuﬁniranécessairementparatteindrel’étatF INAL.Cettestratégie"
+estdoncgagnantepourlejoueur 1sisonobjectifestd’atteindrel’étatF INAL(onparle
+d’objectifd’ accessibilité).
+1.Cequipeutêtretrèslongsiuntelcontrôleurn’existepas. ..
+108 Syst.embarqués Approchesformelles
+"Siaucontrairesonobjectifestdenejamaisatteindrecetétat(objectifde sûreté),"
+"ilestfaciledevoirqu’ilaégalementunestratégiegagnante,quicons isteàtoujours"
+allerversl’état /lscript1.
+"Enﬁn,sisonobjectifestdevisiterinﬁnimentsouventl’état /lscript3(objectifd’accessibi-"
+"litérépétée,oudeBüchi),lejoueur1n’apasdestratégiegagnante:eneffet,sidans /lscript0"
+"ilchoisitd’allerdans /lscript2,lejouer2amènelesystèmedansF INAL;s’ilchoisitd’aller"
+"dans/lscript1,lejoueur2ramènelesystèmedans /lscript0."
+/lscript0 /lscript2 FINAL
+/lscript1 /lscript3
+Figure5.1. Unexempledejeu
+Pourformulerunproblèmedecontrôleoùle contrôleurdoitcontrôlerune nvi-
+"ronnement,ilsufﬁtdevoirlecontrôleurcommelejoueur1parexemple,e tl’envi-"
+ronnementcommelejoueur2.Leproblèmedecontrôledevientdonc:e xiste-t-ilune
+stratégiegagnantepourle joueur1? Une stratégiegagnantecorrespondalorsà u n
+contrôleurpermettantdecontrôlerl’environnement.
+5.1.4.Lesdifférentsobjectifsdejeux
+"Étantdonnéunjeu Getunobjectifdecontrôle φ,onconsidèrelecouple (G,φ)"
+comme la spéciﬁcation du problèmesuivant : « existe-t-il une stratégie Cpour le
+"joueur1dans Gtelleque C(G)|=φ?».Si φestunobjectifdesûreté,engénéral"
+"donnéparunensembled’étatsàéviterouàpréserver,onditq ue(G,φ)estunjeude"
+sûretéetonparlede SafetyControlProblem(SafCP) .Siφestunobjectifd’atteignabi-
+"lité,quel’onpeuttoujourssupposercommeétantunétatdésignéB UT,alors (G,BUT)"
+estunjeud’atteignabilitéetonparlede ReachabilityControlProblem(RCP) .Onpeut
+déﬁnirdesobjectifspluscompliquéscommeonl’avuprécédemment(acc essibilitéré-
+"pétéeouencoreBüchi,Co-Büchi,etc.)etdonnercesobjectifssous formedeformule"
+delogiquetemporelle(temporiséeoupas).
+5.1.5.Lesdifférentstypesdejeuxnontemporisés
+Unjeutelqueceluidelaﬁgure5.1estunjeu«àtour».Commeauxéchecs ou
+"auxdames,chacundesjoueursjouealternativement.Defaçonplusgé nérale,onpeut"
+considérerdesjeuxàtouroùlesétatssontdetypescarréourond:dan slesétatsronds
+Contrôledessystèmestemporisés 109
+"c’estlejoueur1quijoue,etdanslescarrés,lejoueur2.Danscecas ,lenumérodu"
+"joueurquijoueestdéterminéparletypedel’état,maisilnechangepasfo rcémentà"
+"chaquecoup.Siunjeuesttelque,dansunétatdonné,lesdeuxjoueur speuventjouer"
+"enmêmetemps,onaunjeu«concurrent».Lejeu«pierre,feuille,cise aux»,par"
+"exemple,estunjeuconcurrent.Nousparleronsbrièvement,àlasectio n5.10dece"
+"chapitre,del’extensiontemporiséedecesjeux."
+"Lesjeuxàtourontdebonnespropriétés.Parexemple,ilssont déterminéspourune"
+"grandeclasse Bd’objectifs2[MAR75],cequisigniﬁequesilejoueur1n’apasde"
+"stratégiepourgagner (G,φ)avecφunl’objectifde B,alorslejoueur2aunestratégie"
+"pourgagner (G,¬φ)où¬φestlecomplémentde φ.Lesjeuxconcurrentsn’ontpas,"
+"engénéral,cettepropriété."
+"Deplus,pourlesconditionsdegainquenousavonsmentionnéesci-dess us(sû-"
+"reté,accessibilité,accessibilitérépétée,etc.),lesjeux(àtourouconcur rents)quenous"
+avonsdécritsicisatisfontlespropriétéssuivantes[THO95]:
+–onpeutdéciderentempspolynomialsilejoueur1aunestratégiegagn antedans
+"lejeu(G,φ);"
+"–silejoueur1peutgagner (G,φ),alorsilpeutlefaireavecunestratégie sans"
+mémoireoupositionnelle (memorylessoupositionalenanglais);
+"–silejoueur1peutgagner (G,φ),ilexisteunestratégie«lapluspermissive»,"
+quiestégalementsansmémoire.
+Danslasection5.2onintroduitlesconceptsdebasedesjeuxtemporisésa vecles
+"déﬁnitionsformellesdesjeux,desstratégies,systèmescontrôlés.Dansla section5.3,"
+ondonnelesalgorithmesdebasepermettantderésoudreleproblèmede contrôlepour
+lesautomatestemporisés.Lessectionssuivantesabordentdesnotions plusavancées
+concernantlecontrôletemporisé.Lasection5.4montreleslimitesdesalgo rithmes
+précédents et dans la section 5.5 on s’intéresse à la notion d’ implémentabilté des
+"contrôleurs.Danslasectionsuivante5.6,onabordebrièvementlesa spectsconcernant"
+laspéciﬁcationdesobjectifsdecontrôle.Lasection5.7traiteduproblèmede contrôle
+optimalpourlesjeuxd’accessibilité.L’implémentationefﬁcacedesalgorithm esde
+synthèsedecontrôleursfaitl’objetdelasection5.8;uncomplémentàc ettesection
+"peutêtretrouvéàlaﬁnduchapitre8.Enﬁn,lasection5.10estconsacrée àuneexten-"
+siondumodèledejeutemporiséintroduitdanslasection5.2.
+5.2. Lesjeuxtemporisés
+"Cettepremièresectionapourbutdedéﬁnirlecadredesjeuxtemporisés, ainsique"
+lesnotionsconnexes.Lanotionde jeutemporisé quenousétudionsiciaétéproposée
+2.QuiinclutlesobjectifsdeBüchi.
+110 Syst.embarqués Approchesformelles
+"dans[ASA98,MAL95]:c’estunevariantedesautomatestemporisésda nslaquelle"
+"l’ensembledesactionsestpartitionnéentrelesdeuxjoueurs.Outrecesa ctions,les"
+"joueurspeuventégalementdéciderdenerienfaire:danscecas,lete mpss’écoulera"
+jusqu’àcequ’undesjoueurssouhaitefaireuneaction.
+5.2.1.Jeuxtemporisés
+DÉFINITION5.2.1(AUTOMATE TEMPORISÉ DE JEU )Unautomatetemporisédejeu
+"(oujeu temporisé ) est un 7-uplet G=(L,/lscript0, X,Σ1,Σ2, E,Inv)remplissant les"
+conditionssuivantes:
+–Σ1etΣ2sontdeuxalphabetsdisjoints;
+"–(L,/lscript0, X,Σ1∪Σ2, E,Inv)estunautomatetemporisé(suivantladéﬁnition4.2.2"
+duchapitre4).
+Un jeu temporisé est donc un automate temporisé dont l’ensemble des actio ns
+est partagé entre les deux joueurs: les transitions qui peuventêtre acti vées par le
+contrôleur(quenousappellerons contrôlables)etcellesquipeuventêtreactivéespar
+l’environnement(dites incontrôlables ).
+"Demanièreinformelle,unepartied’unjeutemporisésejouedelafaçonsu ivante:"
+"ellecommencedansl’état /lscript0avectoutesleshorlogesàzéro,etestcomposéed’une"
+successiondetransitionsetdedélaisd’attente.Lestransitionsdetempsdu rentaussi
+longtempsqu’aucundesdeuxjoueursnesouhaitefaireuneaction.Dan slecasparti-
+"culierdesjeuxàtours,ledélaid’attentedansunétatestchoisiparleseu ljoueurqui"
+contrôlecetétat.
+EXEMPLE5.2.1Unexempledejeutemporiséestreprésentéàlaﬁgure5.2[CAS05].
+"Lestraitspointilléssontlesactionsincontrôlables(alphabet Σ2),etlestraitspleins,"
+les actionscontrôlables(alphabet Σ1). Nous utiliserons cette conventiondans toute
+lasuitedecechapitre.
+"Dans cet exemple,tous les invariantssont vrais et doncon peuttoujour slaisser"
+passerdutemps.Imaginonsquelecontrôleursouhaitejouerl’action c1lorsquel’hor-
+"logexvaut1.Sil’environnementn’effectuepasl’action u2avantcettedate,c’estef-"
+"fectivementl’action c1quiseraappliquée,etlejeuarriveradansl’état /lscript1avecx=1."
+Lecontrôleurpourraalorsànouveauattendredurantundélaid’uneu nitédetemps
+"etproposerl’action c2,quilemènedansl’état BUT.Ilestànoterque,dansl’état /lscript1"
+"avecx≥1,l’environnementnepeutpasproposerd’action.Ilestcontraint d’attendre"
+quelecontrôleurfasseuneaction.
+"Bien entendu, avec l’action « jouerle coup c1lorsque x=1» choisie par le"
+"contrôleur dans l’état initial, il aurait également été possible que l’environ nement"
+Contrôledessystèmestemporisés 111
+"choisisse un délai plus court, et joue l’action u2lorsque x=0,5(l’action u1n’est"
+"pasdisponiblelorsque x≤1).Lejeuauraitalorsatteintl’état (/lscript2,x= 0)(puisque"
+l’horlogedoitêtremiseàzérosurlatransitionallantde /lscript0à/lscript2).
+/lscript0
+/lscript4x>1;u1/lscript1x≤1;c1/lscript2x<1
+u3x<1;u2;x:=0
+BUTx≥2;c2/lscript3c3
+x≤1;c4
+Figure5.2. Unexempledejeutemporisé
+Cesquelquesexemplesillustrentdemanièreinformellel’intuitionquel’onp eut
+avoirdudéroulementd’unjeutemporisé.Nousallonsmaintenantyasso cieruncadre
+"mathématique,quinouspermettraparlasuitedevériﬁerformellementdes propriétés"
+decesjeux.
+"Danslasuiteonconsidèreimplicitementlejeu G=(L,/lscript0, X,Σ1,Σ2, E,Inv)."
+5.2.2.Déroulementdujeuetstratégies
+Plusieurs sémantiques différentes ont été proposées pour les jeux temp orisés :
+l’ajoutdelacomposantetemporellenécessiteeneffetquelquesprécis ionsdansles
+« règles du jeu ». Nous commençons par étudier une sémantique assez n aturelle
+"des jeux temporisés, proposée dans [MAL95]. Nous verrons dans la section 5.10"
+lesdéfautsdecettesémantique(notammentlefaitqu’elleacceptelesstraté giesqui
+"consistentà« bloquerletemps »)etunefaçond’yremédier,proposéedans[ALF03]."
+5.2.2.1.Exécutionsd’unjeutemporisé
+Notre déﬁnitiondesexécutionsd’unjeu temporiséreprendcelle desautoma tes
+temporisés;d’aprèsla déﬁnition5.2.1un jeutemporiséestunautomatetem porisé
+danslequelonapartitionnél’ensembled’actionsenactionscontrôlablese tincontrô-
+"lables.Étantdonnél’automatedejeutemporisé G=(L,/lscript0, X,Σ1,Σ2, E,Inv),on"
+note TGle système de transitionstemporisé quidonnesa sémantique(voir le cha-
+pitre4).Uneexécutiond’unjeutemporisé Gestuneexécutiondusystèmedetransi-
+tionstemporisé TG:c’estunesuite
+ρ=s0d1−→s/prime
+0a1−→s1d2−→s/prime
+1a2−→···dn−1− − − → s/prime
+nan− − →sn···
+112 Syst.embarqués Approchesformelles
+"avecai∈Σ1∪Σ2,di∈R≥0,etoùlesconﬁgurations siets/prime"
+"isontdespaires (/lscript,v),"
+/lscript∈Letvunevaluationdeshorlogesde X.Lestransitionscontinuesalternentdonc
+aveclestransitionsdiscrètes(deuxtransitionsdetempsconsécutivespe uventtoujours
+"être regroupées,et on autorise en particulier la dernière transition d’u neexécution"
+ﬁnieàêtreunetransitiondetempsdeduréeinﬁnie).L’ensembledesexécutio nsd’un
+jeu temporisé Gest notéExec G. Nousdéﬁnissonségalementle sous-ensembledes
+exécutionsmaximales commeétantl’ensembledesexécutionsquinepeuventpasêtre
+«prolongées».Celainclutplusieurstypesd’exécutions:
+–lesexécutionscomportantunnombreinﬁnidetransitionsdiscrètes;
+–lesexécutionsﬁniesdeduréeinﬁnie;
+–lesexécutionsﬁniesseterminantdansunétatdepuislequelaucunetran sition
+(detempsoud’action)n’estpossible.
+NousnotonsExecm
+Gl’ensembledes exécutionsmaximalesde Get Execf
+Gl’en-
+sembledesexécutionsﬁnies.Lalongueurd’uneexécutionﬁnieestlenomb redetran-
+sitions(toustypesdetransitionsconfondus)quiontlieulelongdecetteex écution.
+5.2.2.2.Stratégies
+Lesstratégiessontl’élémentcentraldelathéoriedesjeux.Unestratégie ditàun
+"joueurcequ’ildoitjouer,enfonctiondel’historiquedelapartie.Danslec asdesjeux"
+"temporisés,lesjoueurssontautorisésàattendresansrienfaire(c’es tlatransition λ"
+"dansladéﬁnitionci-dessous).Commenousleverronsparlasuite,ilfaut quelesdeux"
+joueursjouentcetteactionspécialepourqueletempss’écoule.Dèsquel’ undesdeux
+"joueursdécidedejouerunetransitionquiluiestpermise,alorscettetran sitionsera"
+franchie.
+"DÉFINITION5.2.2(STRATÉGIE)Soitj∈{1,2}un joueur pour G. Unestratégie"
+pour le joueur jest une fonction s:Execf
+G→Σj∪{λ}remplissant les conditions
+"suivantes:soit ρestuneexécutionﬁnieseterminantdanslaconﬁguration q=(/lscript,v),"
+alors:
+"–sis(ρ)=aaveca∈Σ1,alorsilexisteunetransition qa− − →q/primedans TG;"
+"–sis(ρ)=λ,alorsilexiste d>0telque qd−→q/primedans TG."
+Cesconditionsexprimentquelecoupproposéparlastratégiedoitêtrea utorisédans
+lesactionspermisesparlejeu G.L’ensembledesstratégiesdujoueur jdans Gsera
+notéStrat j(G).
+"Lorsqu’unjoueurjoueselonunestratégie,ilrestreintl’ensembledese xécutions"
+possiblesdusystèmeauxexécutions conformesàcettestratégie.
+Contrôledessystèmestemporisés 113
+"DÉFINITION5.2.3(JEU CONTRÔLÉ )Soitq=(/lscript,v)unétatde G,etsunestratégie"
+pourlejoueur 1(lecasdujoueur 2estsymétrique).L’ensembledes exécutionsﬁnies
+"conformesà la stratégie sdepuis q, noté Outf(q, s), est déﬁni inductivement de la"
+façonsuivante:
+"–qestlaseuleexécutionﬁniedelongueurnulleappartenantàO utf(q, s);"
+–uneexécutionﬁniede Gdelaforme ρ=ρ/primeσ−→q/prime(doncdelongueurnonnulle)
+"appartientàOutf(q, s)si,etseulementsi, ρappartientàOutf(q, s)etl’unedestrois"
+conditionssuivanteestsatisfaite:
+-σappartientà Σ2;
+-σappartientà Σ1etσ=s(ρ);
+"-σ∈R≥0et,pourtout dtelque 0≤d<σ,ona s(ρd−→q/prime/prime)=λ."
+"L’ensembledesexécutionsmaximalesconformesà s, notéesOutm(q, s), est l’union"
+desdeuxensemblesd’exécutionssuivants:
+–l’ensembledesexécutionsmaximalesﬁniesconformesà s;
+–l’ensembledesexécutionsinﬁniesdonttouslespréﬁxessontconform esàs.
+"Commelesous-entendnotredéﬁnition,unjoueurpeutsesouvenirdel’inté gralité"
+delapartiepourdéterminerlastratégieàappliquer.Certainesstratégieson tcependant
+"laparticularitéd’êtreindépendantesdel’historiquedelapartie,etdened épendreque"
+del’étatcourant.Cesstratégiessontdites positionnelles ousansmémoire .Dansces
+"cas-là,poursimpliﬁerlesnotations,onconsidéreraquelesstratégiesson tdesappli-"
+cationsdel’ensembledesétats(etnonplusdel’ensembledesexécutions ﬁnies)dans
+l’ensembledesactionsdujoueur.L’exempleci-dessousdécritunestr atégieposition-
+nelle.
+"EXEMPLE5.2.2Reprenons l’exemple de la ﬁgure 5.2, et considérons la stratégie"
+positionnelle ˜ssuivante:
+"–dans les états (/lscript0,v)avecv(x)<1,le joueur1 (contrôleur) joue λ. Lorsque"
+"v(x) = 1il joue c1. Siv(x)>1, il propose de nouveau λpuisque c’est le seul"
+"coupquiluiestautorisé.Onpeutdéﬁnirformellement ˜s(/lscript0, x <1∨x>1) =λet"
+"˜s(/lscript0,x= 1) = c1;"
+"–dans les états (/lscript1,v), il joue λpourv(x)<2et l’action c2quand v(x)≥2"
+"c’est-à-dire ˜s(/lscript1, x <2) =λet˜s(/lscript1,x≥2) =c2;"
+"–danslesétats (/lscript2,v),iljoue c3,soit˜s(/lscript3,−)=c3;"
+"–danslesétats (/lscript3,v),siv(x)<1,iljoue λetquand v(x) = 1iljoue c4;quand"
+"v(x)>1ildoitjouer λ:˜s(/lscript3, x <1∨x>1) =λet˜s(/lscript3,x= 1) = c4;"
+"–danslesétats /lscript4etBUT,lecontrôleuragagnéetjoue λ,c’est-à-dire ˜s(/lscript4,−)="
+"λet˜s(BUT,−)=λ."
+114 Syst.embarqués Approchesformelles
+"Parmi les exécutionsissues del’état (/lscript0,0)etconformesà cettestratégie,certaines"
+"passentdirectementparl’état /lscript1,d’autrespassentparlesétats /lscript2et/lscript3(silejoueur2"
+"joueu2), mais on se convaincfacilement qu’aucunen’atteint l’état /lscript4et que toutes"
+atteignentenfaitl’état BUT.
+SoitΩun ensembled’exécutions(dites gagnantes)quidéﬁnissentl’objectifde
+contrôle.Onsupposequecetensembleestclosparsufﬁxe3. Onécritdansla suite
+"(G,Ω)pourindiquerquel’onconsidèrelejeu Gavecl’objectifdecontrôle Ω."
+"DÉFINITION5.2.4(ÉTAT GAGNANT ,STRATÉGIE GAGNANTE )Soits∈Strat j(G)"
+unestratégiepourlejoueur j. La stratégie sdu joueur jestgagnanteà partirde q
+"pourl’objectif Ωsi Outm(q, s)⊆Ω,c’est-à-diresitoutesles exécutionsmaximales"
+conformesàlastratégiesontdesexécutionsgagnantes.
+Unétat qestgagnantpourlejoueur jsicejoueuraunestratégiegagnanteàpartir
+deq.Onnote WinState j(G)l’ensembledesétatsgagnantsde Gpourlejoueur j.
+"Unestratégie sestgagnantepour (G,Ω)sielleestgagnantedepuisl’étatinitial:"
+"Outm((/lscript0,v0),s)⊆Ω.Onnote WinStrat j(G)l’ensembledesstratégiesgagnantes"
+"dujoueur j.Danslasuite,nousnousintéresseronsauxstratégiesgagnantespour le"
+"joueur 1 (contrôleur).Ainsi, on ne mentionnerapas le nom du joueur et o n écrira"
+"WinStrat (G),lorsquel’onparleradujoueur 1."
+"EXEMPLE5.2.3Dans notre exemple de la ﬁgure 5.2, l’état BUTest l’objectif que"
+le contrôleur veut atteindre. L’ensemble Ωest donc l’ensemble des exécutions qui
+contiennent l’état BUT(cet ensemble est bien clos par préﬁxe). La stratégie ˜sque
+nousavonsdécriteci-dessusestgagnantedepuisl’étatinitial.
+5.3. Calculdesétatsgagnantsetdesstratégies
+Desalgorithmespourlasynthèsedecontrôleurpourlesautomatestempor isésde
+"jeusontdonnésdans[ALF01,ALF03,ASA98,MAL95].Ilssontbasé ssurdescal-"
+culsdepointsﬁxes(commedanslecasdesjeuxnontemporisés):oncalcu lerécur-
+"sivementl’ensembledesétatsgagnantspourdespartiesdelongueur sauplus n,pour"
+"toutn.Alalimite,onauracalculél’ensembledesétatsgagnants.Laconvergenc ede"
+"3.C’est-à-direquesiuneexécutionﬁnie ρappartientà Ω,alorstouteslesexécutionsquipro-"
+longent ρappartiennentaussià Ω.
+Contrôledessystèmestemporisés 115
+cetalgorithmereposesurlefaitquelarelationd’équivalencesurlesva luationsd’hor-
+"loges,introduitedanslechapitre4pourdéﬁnirles régions,esttoujourscorrectepour"
+lesjeuxtemporisés.
+"Nousillustronscettesectionavecl’exempledelaﬁgure5.3,oùl’objectifest d’évi-"
+terl’étatB AD.Lerésultatdel’algorithmedesynthèsedecontrôleursurcetexemple
+estdonnéàlaﬁndelasection.
+/lscript0[x≤4]
+/lscript1[x≤5]
+BAD
+/lscript2
+[x≤5]x≤4;c1
+c2 c3;x:=0x>3;u
+x<2;ux:=0
+Figure5.3. Unexempledejeutemporisé–lesystèmeouvert S.
+5.3.1.Prédécesseurscontrôlables
+"Aﬁndemettreenœuvrenotrealgorithmedecalculrécursifdepointsﬁxes,n ous"
+"déﬁnissonsles prédécesseurscontrôlables d’unensembled’états:eneffet,pourga-"
+"gnerunepartieﬁnied’auplus n+1étapes,ilfautetilsufﬁtquelecontrôleuraitune"
+"stratégiepourque,enunetransition,lejeuailledansl’ensembledesétatsga gnantsen"
+"auplus nétapes,"
+"SoitGun jeu temporisé, et TGle système de transitions temporisé donnantsa"
+"sémantique.Pourunsous-ensemble Xdel’ensembled’états SdeTG,ondéﬁnitles"
+ensemblesCPre(X)etUPre(X)par:
+CPre(X)={q∈S|∃c∈Σctelque qc−→q/primeetq/prime∈X};
+UPre(X)={q∈S|∃u∈Σutelque qu− − →q/primeetq/prime∈X}.
+Cesdeuxensemblescorrespondentauxétatsàpartirdesquelsilexis teuneaction
+contrôlable(respectivementincontrôlable)quipermetaucontrôleur (respectivement
+àl’environnement)deforceràatteindrel’ensemble Xaprèslatransitioncorrespon-
+"dante.Ilnousresteàprendreencomptelestransitionsdetemps,aucou rsdesquelles"
+lesjoueursjouentl’action λ.Laﬁgure5.4décritlesconditionspourqu’unétat ssoit
+unprédécesseurcontrôlable d’unensembled’états X:ilfautquelecontrôleurpuisse
+116 Syst.embarqués Approchesformelles
+"forcerlesystèmeàallerdansunétatde X,enlaissantéventuellementpasserdutemps"
+puisenfaisantuneactioncontrôlable c;surtouslesétatsrencontréslorsdupassage
+dutempsilnedoitpassetrouverdansunétatoùl’environnementpeut l’amenerà
+"l’extérieurde X(notéX).Surlaﬁgure5.4,l’état q/primen’estpasunprédécesseurcontrô-"
+"lablede X,puisquelorsdelatransitiondedélai,lejeupassepardesétats( UPre(X)"
+d’où l’environnementpeut amener le jeu dans X. L’état qest lui un prédécesseur
+contrôlablede X.
+X
+CPre(X)
+UPre(X)q
+q/prime
+Figure5.4. Prédécesseurscontrôlables
+DÉFINITION5.3.1(PRÉDÉCESSEUR CONTRÔLABLE )Unétat qestunprédécesseur
+contrôlable deXsilesdeuxconditionssuivantessontremplies:
+1)ilexiste δ≥0telque qδ−→q/primeetq/prime∈CPre(X);
+"2)pourtout 0≤t≤δtelque qt−→qt,ona qt/negationslash∈UPre(X)."
+L’ensembledesprédécesseurscontrôlablesde Xestnoté π(X).
+"Sur le schéma de la ﬁgure5.4, la zone hachuréecorrespondauxprédé cesseurs"
+"contrôlablesde l’ensemble X. Dans l’exemplede la ﬁgure 5.3, l’état (/lscript1,x= 1)"
+"estunprédécesseurcontrôlablede (/lscript2,x= 2):onpeutlaisserpasserdutempsde"
+"(/lscript1,x= 1)jusqu’à (/lscript1,x= 2)puistirer c2de/lscript1à/lscript2.Lorsdupassagedutemps"
+aucunetransitionincontrôlablen’estfranchissable.
+REMARQUE5.3.1Onpeutremarquerquenotredéﬁnitiondesprédécesseurscontrô-
+lables ne tient pas compte de certaines particularités des modèles temporisé s. Par
+Contrôledessystèmestemporisés 117
+"exemple,sil’onaunautomatedejeu,avecobjectif BUT,etunetransitionincontrô-"
+"lable(0,x≤1, u,∅,BUT)avec l’invariant Inv (0)≡x≤1, le joueur 2 (environ-"
+nement) est obligé de jouer uau plus tard à la date 1. Ainsi toutes les exécutions
+maximalessatisfontl’objectif.Ilestpossibledeprendreencomptecesé tatsoùl’envi-
+"ronnementestforcédejouer,auprixdequelquesmodiﬁcationsdansn osdéﬁnitions."
+Lesrésultatsmentionnésdanscettesectionrestentvalidesdanscecas.No uslaissons
+cetteétudeaulecteur.
+5.3.2.Opérateurssymboliques
+"Toutcommedanslecasdu model checking d’automatestemporisés,l’ensemble"
+"desétatsd’unjeutemporiséestinﬁni,etnousdevonsdévelopperdestec hniquessym-"
+"boliques, regroupantles états par « familles» ayant les mêmes propriétés, aﬁn de"
+les analyser. Nous allons réutiliser la relation d’équivalencede la section 4.4.2 du
+"chapitre4ici.Aﬁndemontrerquecetteapprocheestcorrecte,nousde vonsmontrer"
+d’unepartquedeuxétatsd’unemêmerégionontlesmêmes«propriété s»(gagnants)
+"vis-à-visdujeu,etquenouspouvonscalculerlesprédécesseursco ntrôlablespourles"
+régions.Lelemmesuivanténoncecesdeuxrésultats.
+"LEMME5.3.1SiXestuneunionderégions(une zone),alors:"
+"P1:CPre (X),UPre (X)etπ(X)sontdesunionsderégions(doncdeszones);"
+"P2:CPre (X),UPre (X)etπ(X)sonteffectivementcalculables."
+Lapreuvedecesrésultatsnécessitel’introductiond’unopérateursymb oliqueper-
+mettantdecalculerlesprédécesseurstemporelsde CPre(X)nepassantpasdansl’en-
+sembleUPre(X).Cetopérateurestdéﬁnipar:
+"Pret(A, B)={s∈S|∃δ≥0.sδ−→s/prime∧s/prime∈A∧"
+∀0≤t≤δ.[(st−→s/prime/prime)⇒(s/prime/prime/∈B)]}.
+"EXEMPLE5.3.1Pourl’automatetemporisédelaﬁgure5.3,onaCPre (/lscript1,x≤3) ="
+"(/lscript0,x≤3)etsiZ=(/lscript0,x≤4)∪(/lscript1,x≥0)∪(/lscript2,x≥0)alorsπ(Z)=Z/primeavec"
+"Z/prime=(/lscript0,x≤3)∪(/lscript1,0≤x≤3)∪(/lscript2,x≥2)."
+5.3.3.Calculsymboliquedesétatsgagnants
+Noussommesmaintenantenmesuredecalculersymboliquementl’ense mbledes
+"étatsgagnantsd’unjeutemporisé.Sil’onconsidèreunobjectifdesûreté, déﬁnipar"
+118 Syst.embarqués Approchesformelles
+Xi /lscript0 /lscript1 /lscript2
+00≤x≤40≤x≤50≤x≤5
+10≤x≤40≤x≤32≤x≤5
+20≤x≤3––
+(a)Etatsgagnants/lscript0/lscript1/lscript2
+λx<3x<3x<5
+cx≤32≤xx≤5
+(b)Stratégielapluspermissive f∗
+Tableau5.1. Résultatsdesalgorithmespourl’exempledelaﬁgure5.3
+"ladonnéed’uneunionderégionsB ADquelecontrôleurdoitéviter,alorsl’ensemble"
+desétatsgagnantspource jeuest le plusgrandpointﬁxede lafonction h:X/mapsto→
+"BAD∩π(X). Ce pointﬁxeestbiendéﬁni,puisquela fonction hest décroissante."
+"Pourl’obtenir,oncommenceparcalculer h(S)(oùSestl’ensembledetouslesétats"
+"dujeu),puis h(h(S)),etc.Onobtientunesuitedécroissanted’unionsderégions,qui"
+convergeen unnombreﬁnid’étapespuisqu’iln’ya qu’unnombreﬁni derégions.
+L’ensembleobtenuàlalimiteestleplusgrandpointﬁxede h:c’estdoncunsous-
+"ensemblede BAD,etlecontrôleuraunestratégieluipermettantderesterdanscet"
+ensembleàlaprochainetransitiond’action.Cepointﬁxeestaussileplusg randsous-
+ensembleBADquelecontrôleurpeutforcer.
+"EXEMPLE5.3.2Dans le cas de notre exemple de la ﬁgure 5.3, on obtient itérati-"
+vementles ensembles4dutableau5.1.Pourlespropriétéspluscompliquéesquedes
+"propriétésdesûreté,lecalculdesétatsgagnantsestpluscomplexe[ALF 01,ALF03,"
+"ASA98,MAL95]."
+REMARQUE5.3.2Lecasdesobjectifsd’accessibilitésetraitedemanièresimilaire:
+"silebutestd’atteindreuneunionderégions BUT,l’ensembledesétatsgagnantsestle"
+"pluspetitpointﬁxedelafonction h:X/mapsto→BUT∪π(X).Làencore,ilestpossiblede"
+"calculercepointﬁxeitérativement,encalculant h(∅),h(h(∅)),etc.Laterminaison"
+etlacorrectiondecetprocéduresemontrentdelamêmefaçonqueci-d essus.Pourdes
+"objectifspluscompliqués(accessibilitérépétée,etc.)ondoitcalculerdesim brications"
+depointﬁxes(voir[MAL95]).
+Commeonpeutdécidersil’étatinitiald’unautomateappartientàuneun ionde
+"régions,lecalculdesétatsgagnantspermetderésoudrenotreprob lèmededépart:"
+"THÉORÈME5.3.1([ASA98,HEN99 B])LesproblèmesdecontrôleSafCPetRCP"
+sontdécidablespourlesjeuxtemporisés;ilssontEXPTIME-complets.
+4.Ledomainegagnantestdonnépourchaquelocalité /lscriptidanslacolonnecorrespondante.
+Contrôledessystèmestemporisés 119
+5.3.4.Synthèsedestratégiesgagnantes
+"Pourcequiestduproblèmedesynthèsedestratégie,danslecasd’uno bjectifde"
+"sûreté,onpeutdéﬁnirlastratégie maximaleoula pluspermissive .Entouterigueur,"
+cettestratégielapluspermissiven’estpasunestratégieausensdelapar tie5.2.2.2
+carilfaudraitqu’elleassocieuneactionde Σc∪{λ}àuneexécution.Lastratégie
+la pluspermissive f∗associe à chaqueexécution ρun sous-ensemblenonvidede
+Σc∪{λ}.Toute(sous-)stratégie f(ausensdelapartie5.2.2.2)nonbloquantetelle
+"quef(ρ)∈f∗(ρ)estunestratégiegagnante,et f∗estmaximalepourcettepropriété"
+(c’estpourquoionlaqualiﬁedestratégielapluspermissive).Concern antlasynthèse
+destratégiesonalethéorèmesuivant:
+THÉORÈME5.3.2([ASA98]) SiGestun automatetemporisédejeu telquel’état
+"initialde Gestgagnantpourunobjectifdesûreté,alorsilexisteunestratégie(lap lus"
+permissive) f∗gagnanteetsansmémoire.
+Pour calculer cette stratégie on commence par renforcer les gardes des transi-
+"tionsdetellemanièrequ’enpartantd’unétatgagnant s,sil’onfranchitunetransition"
+"contrôlabledansl’automatedejeuaveclesgardesrenforcées,alorso natteintunétat"
+gagnant.Lesrenforcementsdesgardessontdonclesplusgrandes préconditions per-
+mettantd’atteindredesétatsgagnants.Dansnotrecasondoitrenforce rlagardede c1
+"enajoutantlacontrainte x≤3,cellede c2enajoutantlacontrainte x≥2(quiindique"
+quel’onnedoitpastirertroptôt c2).Lastratégielapluspermissiveestensuitedonnée
+par:attendrepourtouslesétatsgagnants qtelsqu’ilexiste δ>0etqδ−→q/primeetq/prime
+estgagnant;faireunetransitioncontrôlable cisilagarderenforcéelepermet.Dans
+lecasdel’exempledelaﬁgure5.3lastratégielapluspermissiveestdonné edansle
+"tableau5.1.Ilfautbiennoterquepourobtenirunestratégie nonZénon,ilnefautpas"
+"choisirindéﬁniment λdans/lscript0(ou/lscript1,/lscript2),maisbientirer c1àuncertainpoint.Decette"
+"manière,onconstruitunautomatetemporisé C(donnéàlaﬁgure5.5)quireprésente"
+"lastratégielapluspermissive f∗,ettelque5G×Csatisfaitlapropriétédesûreté φ."
+"Danslecasdejeuxd’atteignabilité,lecalculd’unestratégiegagnantepeut êtreplus"
+compliqué.Unalgorithmecorrectpourcelaestdécritdans[BOU04b] .
+5.4. Stratégies«deZénon»
+"Lesalgorithmes,baséssurlecalculdepointsﬁxes,quenousavonspré sentésdans"
+lasection5.3permettentdecalculerl’ensembledesétatsgagnantsetdes ynthétiser
+"desstratégiesgagnantesassociées.Cependant,nousn’avonspasp risencomptel’effet"
+5.G×Creprésenteleproduitsynchroniséde GetC.
+120 Syst.embarqués Approchesformelles
+K0[z≤3]
+K1[z≤3]
+K2
+[2≤z≤5]z:= 0
+uu
+uz≤3;c1
+z≥2
+c2c3
+z:= 0
+Figure5.5. Lecontrôleur Clepluspermissif
+"«Zénon»:ilsepeut,etc’estlecasdel’exempledelaﬁgure5.6oùl’obje ctifestde"
+"nejamaisatteindrel’étatB AD,qu’unjeutemporisésoitgagnantuniquementpardes"
+"stratégiesnonréalistes.Danscetexemple,lastratégieducontrôleurcon sisteàprendre"
+/lscript0
+[x≤2]BAD x:= 0x>1;uc
+Figure5.6. Unjeu(avecobjectifdesûreté)gagnant
+avecunestratégiedeZénon
+latransition cinﬁnimentsouventavantquel’horloge xn’atteignelavaleur 1.
+"Demanièresymétrique,cejeun’admetpasdestratégiegagnantepourl’ environne-"
+"mentpourforcerl’étatB AD,puisque,quellequesoitlastratégiedel’environnement,"
+"celle-cinepeutqueproposer«attendre»tantque x≤1,etlecontrôleurpeutdonc"
+"prendrelatransition cauxdates 1−1/n,produisantainsiuneexécutioninﬁnien’at-"
+teignantjamaisl’étatB AD.
+Nousverronsdanslasection5.10unesolution(asseztechnique)per mettantdene
+pasprendreencomptecesstratégiesirréalistesdanslescalculsdestraté gies.
+"Cegenred’anomaliesjustiﬁequel’onétudielesproblèmesdecontrôle,enp arti-"
+"culierpourlesobjectifsdesûreté,defaçonàconstruiredescontrôleur sphysiquement"
+implémentables(etdoncnonZénon).Lasectionsuivanteestconsacr éeàcettenotion.
+Contrôledessystèmestemporisés 121
+5.5. Implémentabilité
+"Le SafCP a été formuléde manière différentedansplusieursarticles [ASA9 8,"
+"HEN99a,HEN99b,MAL95].Dansl’article[CAS02]onproposeunecla ssiﬁcation"
+decesproblèmesdecontrôlesuivantlescritèressuivants:
+–contrôleentempsdiscret:peut-oncontrôlerlesystèmeavecuncontrô leurqui
+"effectuedesactionsàintervallesréguliers,tousles βunitésdetemps?Onparlealors"
+deKnownSamplingRate (KSR)controlproblem .Unequestionplusgénéraleconsiste
+àtrouverunpasd’échantillonage βtelquelesystèmesoitcontrôlable.Onparlealors
+deUnknownSamplingRate (USR)controlproblem ;
+–danslecasducontrôleentempsdenseonpeutformulerdesproblème séqui-
+valents : si le contrôleur ne peut contrôler le temps qui passe mais juste ch oisir
+"de faire une action ou d’attendre6, on parle de Known Switch Condition (KSC)"
+control problem . Dans le cas contraire (ce qui est le contexte des articles fonda-
+"teurs[ASA98,MAL95]),onparlerade Unknown Switch Condition (USC)control"
+problem.
+LadécidabilitéduSafCPdépenddel’expressivitédumodèleutilisépourspé ciﬁer
+"lesystème.Avantdedonnerlesrésultatsdedécidabilité,onintroduitquelq uesclasses"
+d’automatesquiétendentlesTA.
+5.5.1.Classesd’automateshybrides
+LaclasselaplusgénéraleconsidéréepourleSafCPestcelledes automates hy-
+"brideslinéaires (LinearHybridAutomata ,LHA)[HEN96].Lelecteurpeutseréférer"
+auchapitre9pouruneprésentationdétailléedecesLHA.Cetteclasseéten dlesTA
+delafaçonsuivante:( i)lesdérivéesdesvariables7sontdansdesintervallesdutype
+1≤˙x≤3;(ii)lesgardesetlesremisesàjoursontdesfonctionslinéairesdutype
+2x+3y≤4etx:= 3y−7z.
+Unesous-classeintéressantedesLHAestcelledes automatesrectangulaires (Rec-
+"tangularAutomata ,RA)[HEN99b].DanslesRAlesdérivéesparrapportautemps"
+desvariablessonttoujourscontraintespardesprédicatsdutype 1≤˙x≤3maisles
+remisesàjouretlesgardesnepermettentpasdecomparerdesvariab lesentreelles:
+"ellessontdutype x≥1∧y<2etlesremisesàjourdutype x:=]2,3]pouraffec-"
+teràxunevaleurarbitraireentre 2et3.Cetteclasseadespropriétésdedécidabilité
+intéressantes[HEN99b](décidabilitéduproblèmedel’accessibilitéd’une localité).
+6.Etdanscecasc’estl’environnementquichoisitladuréequis’écoule.
+7.Onnote ˙xladérivéedelavariable x.
+122 Syst.embarqués Approchesformelles
+Uneautresous-classedesautomatesrectangulairesestcellesdesau tomatesrectangu-
+"lairesinitialisés(InitializedRectangularAutomata ,IRA):siladérivéed’unevariable"
+"changeentredeuxlocalités /lscriptet/lscript/prime,alorscettevariableestréinitialiséesurtoutetransi-"
+tionallantde /lscriptet/lscript/prime.
+Leproblèmedel’accessibilitéestdécidablepourlaclassedesRAmaispou rtoute
+surclasseildevientindécidable[HEN98].Enﬁnunedernièreclasseay antdespro-
+priétésde décidabilitéintéressanteest celledes automates o-minimaux (O-minimal
+"Automata,OminA)[LAF00]:lesdynamiquespeuventêtreriches(exponentielles par"
+exempleouune théorieo-minimale )maistouteslesvariablesdoiventêtreremisesà
+jourquandonfranchitunetransitiondiscrète.
+Lesrésultatsconcernantladécidabilitéduproblèmedecontrôle(safety) sontré-
+sumésdansletableau5.2.Lesabréviationssontdonnéespar:KSC =KnownSwitch
+"Conditionscontroller ,USC =UnknownSwitchConditionscontroller ,KSR =Known"
+"SamplingRatecontroller ,andUSR =UnknownSamplingRatecontroller .√=déci-"
+"dable,×=indécidable."
+"Unrésultatrécentde[BOU06b]estladécidabilitéduRCPdanslecasUSC, pour"
+lesautomateso-minimaux(déﬁnisavecunethéorieo-minimaledécidable).
+Descriptiondusystème KSC USC KSR USR
+TA√[MAL95]√[MAL95]√[HOF92] ×[CAS02]
+IRA√[HEN99a] ×[HEN98]√[HEN99b] ×[CAS02]
+RA ×[HEN99a] ×[HEN99a]√[HEN99b] ×[CAS02]
+Tableau5.2. Existencedesafetycontrôleurs:résultatsdedécidabilité
+5.5.2.Existencedecontrôleurscontinusnonimplémentables
+Dans[CAS02]onmontrequeleproblèmeUSR-CPestnondécidablemême pour
+laclassedesautomatestemporisés.Unautrerésultatintéressantestqu ’ilexistedes
+systèmesquisontcontrôlablesparuncontrôleurentempsdense(USC) maistelqu’au-
+cun pas d’échantillonagene permetde les contrôler(USR). Nous avons donné un
+"exempled’automatetemporisé(ﬁgure5.7),pouvantêtrecontrôléavec uncontrôleur"
+"nonZénon C.Danscetexemple,touteslestransitionssontcontrôlables.Pourcontrô-"
+"lerlesystème(USC),ilsufﬁtdenejamaistirerlestransitionsétiquetées detpourque"
+"celasoitpossiblesansbloquerlesystème,onajoutelacontrainte(invaria nt)[x<1]"
+danslalocalité /lscript2.Lecontrôleur Cdoitfairelesactions (a.b.c)ωmaisladuréeentre
+len+1-ième aetlen+1-ième bdoitêtrestrictementpluspetitequeladuréequi
+"s’estécouléeentrele n-ième aetlen-ième b.Plusprécisément,siladuréeentrele"
+Contrôledessystèmestemporisés 123
+"n-ième aetlen-ième bestδn,lecontrôleurdoitfaireensorteque/summationtext+∞"
+i=1δi≤K
+oùKestuneconstanteinférieureà 1.IlestnonZénoncarla n-ièmeaction aest
+effectuéeà ladate n. Cecimontrequela notiondecontrôleentempsdensen’im-
+pliquepasquel’onpuissetrouveruncontrôleurentempsdiscret.End’a utrestermes
+"sil’onobtientcommeréponseauUSC-CP«oui»,onn’apasforcémen tuncontrôleur"
+implémentable surunemachinedigitale.
+"x:= [0,1["
+y:= 0[x≤2]
+l0 l1
+l2BADx=1
+x:= 0
+a
+y=1
+z:= 0bz>0
+y:= 0cd
+x≥1
+d
+x≥1∧z>0d
+x≥1
+Figure5.7. Unsystèmenoncontrôlabledemanièreéchantillonée
+5.5.3.Résultatsrécentsetproblèmesouverts
+Lerésultatprincipald’indécidabilitéde[CAS02]peutêtreétenduauxinte rvalles
+"delaforme [α,β]c’est-à-direonimposequ’uneactiondecontrôleaitlieuentre [α,β]"
+unitésdetempsaprèslaprécédente.Lapreuveestdécritedans[DOY0 7].
+Cesrésultatsjustiﬁentdoncquel’ons’intéresseàlanotionde contrôleursimplé-
+mentablesetcesproblèmesontétéétudiésparJean-FrançoisRaskinetsonéquip e
+"danslesrécentsarticles[DEW04a,DEW04b,DEW05a,DEW05b].Unes ynthèse"
+estproposéedans[ALT05].
+Unproblèmeouvertestlasynthèse(directe)decontrôleursimplémenta blesouro-
+"bustesquiétendraientlesrésultatssurle modelchecking robuste[BOU06f,BOU08b]."
+5.6. Spéciﬁcationdesobjectifsdecontrôle
+"Danslessectionsprécédentes,onaconsidérédespropriétésdecontr ôledetypesa-"
+"fety(oureachability).Danscettesection,onvas’intéresseràfairevarierlespropriétés"
+decontrôlequel’onsouhaiteforcer.
+"Dans [ALF01], les auteurs donnentun algorithme pour la synthèse de contrô-"
+"leursavecdespropriétés ω-régulières.Dans[ALF03],ilsconsidèrentdespropriétés"
+124 Syst.embarqués Approchesformelles
+ω-régulièressurlesautomatestemporisésdansunesémantiqueavecsur prise(voirsec-
+tion5.10decechapitre).IlsmontrentqueleCPestEXPTIME-completda nscecas.
+Cespropriétéssontappelées internescarellesfontréférenceàdesséquencesd’états
+dusystèmeetdoncàdesséquencesdelocalitésquin’incluentpasden otiondetemps.
+Onpeutdoncspéciﬁerunepropriétédutype«àpartird’unétatsatisfaisa ntpondoit
+"forcémentpasserparunétatsatisfaisant q»,maispasdepropriétésdutype«àpartir"
+d’unétatsatisfaisant pondoitforcémentpasserparunétatsatisfaisant qenmoins
+dedunitésdetemps».Lespropriétésde safetyetreachabilitysontdespropriétésin-
+"ternes.Dans[FAE02a],lesauteursmontrentqueleCPest2EXPTIME- completpour"
+desspéciﬁcationsdonnéespardesformulesdeLTL8.
+Unefaçond’exprimerdespropriétésdecontrôletemporiséesconsiste ntàspéciﬁer
+cespropriétéspardesautomatestemporisés.Lelangage9L(A)acceptéparunauto-
+matetemporisédécritunensembledecomportementsquipeuventêtrev uscommeune
+"spéciﬁcation,lesmauvaisoulesbonscomportements:onparleraalorsde propriétés"
+externes.Onpeutainsidéﬁnirunautomatetemporisé Adquidonnentlescomporte-
+"mentspermisdusystème,etunautomatetemporisés Auquidonnentlescomporte-"
+"mentsnonpermis.Silesystèmeàcontrôlerest S,leproblèmedecontrôlepourdes"
+"spéciﬁcationsexternes( ExternalSpeciﬁcationControlProblem ,ESCP)est:"
+existe-t-il Ctelque (1)L(C(S))∩L(Au)=∅et(2)L(C(S))⊆L(Ad)? [ESCP]
+"Dansl’article[DSO02],lesauteursmontrentque:"
+1)lessous-problèmesESCP.(1)etESCP.(2)nesontpasdécidablesdan slecasoù
+AdetAusontdesautomatestemporisésnondéterministes;
+2)cesproblèmessontdécidablespour AdetAudéterministes;lesautomatestem-
+porisésdéterministessontcomplémentablesetonpeutenfaitréduirec esproblèmesà
+desproblèmesdecontrôlede safety(propriétéinterne);
+3)le problème du contrôle ESCP.(2) est décidable (2EXPTIME-complet) si
+"l’on ﬁxe les ressources maximales du contrôleur (nombre d’horloges, granularité,"
+constantesutilisées)etpour Auunautomatetemporisénondéterministe.ESCP.(1)
+resteindécidablemêmedanslecasderessourcesﬁxées.
+Les propriétésexprimablespar des automates temporisésconstituent un apport
+"dansl’expressivitédesobjectifsdecontrôle.Cependant,onestpass édespropriétés"
+"internessimples( safety,reachability)àdespropriétésexternes ω-régulières.Dansle"
+"casnontemporisé,onpeuttrouverunintermédiaire:leslogiquestempor elles,par"
+exempleLTLquiformentunesous-classedespropriétés ω-régulièresintéressantes.
+8.Cerésultatn’estpasencontradictionavec[ALF03]carlaspéciﬁcationesticiune formule
+deLTLetpasl’automatecorrespondantàcetteformule.
+9.Ils’agitdelangagesdemotsinﬁnisouencore ω-réguliers.
+Contrôledessystèmestemporisés 125
+"Dans[BOU06a],onconsidèreuneextensiontemporiséedelalogiquete mporelle"
+LTLquiestMTL[KOY90].LeCPestindécidabledanslecasgénéralp ourdespro-
+priétés de MTL mais devient décidable si l’on se restreint les ressource s (nombre
+"d’horloges,constantesutiliséesdanslesgardes)ducontrôleur:dans cecasleCPest"
+"nonprimitifrécursif.Dans[FAE02b],lesauteursutilisentTCTLsanség alitépour"
+spéciﬁerdesobjectifsdecontrôle.Ilsprouventquel’existenced’unco ntrôleurpour
+unepropriétédecetypepeutêtredécidéeentempsexponentielpourle sautomates
+temporisés.
+"Dans [BOU05b], on utilise la logiquemodale temporisée Lν(en fait un sous-"
+ensemble Ldet
+"νdeLν),quiestunfragmentdu µ-calcultemporisépermettantdespé-"
+ciﬁerdespropriétésdesûretétemporiséeetdoncausside bounded safety .Onpeut
+réduireleCPpour Ldet
+νàunproblèmede modelchecking etmontrerqueceproblème
+decontrôleestEXPTIME-complet.
+"Enﬁn,ilexisteunelogiquetemporellespécialementconçuepourspéciﬁerd espro-"
+priétéssurdessystèmesouverts: Alternating-timeTemporalLogic (ATL)[ALU02].
+"CettelogiqueestuneextensiondeCTL,danslaquellelesquantiﬁcateursdec hemin"
+sontremplacéspardes«quantiﬁcateursdestratégie».Onpeutainsisp éciﬁerdespro-
+priétéstellesque«lejoueur1aunestratégieluipermettantd’atteindreunéta tàpartir
+duquellejoueur2n’aurapluslapossibilitéd’atteindreunétatgagnant».
+Plusieurstravauxrécentsontétenduladéﬁnitionetl’étudedecettelogiqueau x
+systèmestemporisés.Onpeutainsipréciserqu’unjoueurpeutatteind reunétatga-
+gnantenmoinsdecinqunitésdetemps .Cettelogiqueaétéétudiéed’unepartpourdes
+"systèmes«àtempsdiscret»[LAR06],oùdesalgorithmesefﬁcaces(en tempspoly-"
+"nomial)sontproposés,etd’autrepartpourlesjeux«tempsréel»[B RI07,HEN06a]"
+(maisavecunesémantiquedifférentedecellequenousavonsétudiéejus qu’àmainte-
+nant;voirsection5.10).
+5.7. Contrôleoptimal
+"Sil’onconsidèrele ReachabilityControl Problem (RCP),onveutuncontrôleur"
+quiforcelesystèmeàallerversunétat(ouunelocalité)particulier.Onpe utensuite
+seposerlaquestiond’yallerleplusvitepossible.Encesensonveutunco ntrôleur
+optimalquivaamenerlesystèmedansl’étatvoululeplusvitepossible.Ceproblèm e
+detime-optimalcontrol aétérésoludans[ASA99].
+5.7.1.Automatestemporisésàcoûts.
+"Quelquesannéesplustarden2001,lesautomatestemporisésontétééten dusavec"
+desnotionsde coûts: cette extensiona été nommée priced timed automata (PTA)
+126 Syst.embarqués Approchesformelles
+"dans[BEH01a,BEH01b]et weighted timed automata (WTA)dans[ALU01]mais"
+ils’agitdesmêmesmodèles.Ces notionsdecoûtsgénéralisentla notiond etemps
+"écoulé : le coûtest une fonctionlinéaire du temps écoulé dans chaque loc alité, et"
+onpeutassocieruncoûtentieràunetransitiondiscrète.Dansl’exemple duPTA A
+"de la ﬁgure 5.8, les coûts sont indiquésavec le mot-clé cost. Lorsque le coûtest"
+"associéà unelocalité,ilindiquele coût par unité de temps quandonlaisse passer"
+"letempsdanscettelocalité.Lorsqu’ilestassociéàunetransition,ilindique lecoût"
+de franchissement decettetransition.Supposonsquel’onpasse δunitésdetempsà
+"attendredans /lscript0,etquel’onfranchisse c1.L’invariantde /lscript1imposequeletempsne"
+puissepass’écoulerdans /lscript1etdonconvasoitvers /lscript2où/lscript3.Supposonsquel’onaille
+vers/lscript2etquel’onattende δ/primeunitésdetempsavantdetirer c2.Danscecaslecoût
+decette exécutionest 5·δ+ 10 ·δ/prime+1.DanslesPTA touteslestransitionssont
+contrôlables.
+/lscript0
+cost(/lscript0) = 5/lscript1
+[y= 0]/lscript2
+cost(/lscript2) = 10
+/lscript3
+cost(/lscript3) = 1BUTx≤2;c1;y:= 0u
+ux≥2;c2;cost=1
+x≥2;c2;cost=7
+Figure5.8. LePTGA A
+"LasolutionauproblèmeducalculducoûtoptimalpourunPTA,pouratteind re"
+"unelocalité particulièrea été donnéeen mêmetempsdansdeuxarticles[ALU 01,"
+BEH01b].Elleaétéimplémentéedansuneextensiondel’outi lUPPAALquis’appelle
+"UPPAAL-CORA[BEH07b].IlfautbienremarquerquedanslesPTA,iln’yaqu’ un"
+seuljoueuretonn’apasencoreunproblèmedecontrôleoptimal.
+OnpeutconsidérerlesPTA(unseuljoueur)etvouloiroptimiserlecoût surles
+exécutionsinﬁnies.Ceproblèmeimpliquequel’ondéﬁnissedes coûtsetdesrécom-
+"penses,etlebutestdeminimiserlalimiteduratiocoût/récompensesurlesexécution s"
+"inﬁnies.Unesolutionàceproblèmeaétérésoludans[BOU04a,BOU08a]."
+"Enﬁn,onpeutaussidéﬁnirdeslogiquesintégrantcettenotiondecoûtqu igéné-"
+ralisentTCTL:ils’agitde Weighted-CTL(WCTL)introduitedans[BRI04].Avec
+cettelogiqueonpeutécriredesformulesdutype«est-ilpossibled’atteind reunétat
+qavec un coût inférieur à K». Le problème du model checking de WCTL pour
+lesPTA estindécidable(mêmedansle casdutempsdiscret).Cependantp ourune
+restrictiondeWCTLonpeutidentiﬁerdesclassesdécidablesdePTA.Plusréc em-
+ment dans [BOU07] les auteurs montrentque WCTL est décidable pou r les PTA
+Contrôledessystèmestemporisés 127
+o-minimaux.Formellementunjeutemporiséaveccoûtestdéﬁnidelama nièresui-
+vante:
+DÉFINITION5.7.1(JEU TEMPORISÉ À COÛT )Unjeutemporiséàcoût (PTGA) est
+"uncouple (G,cost)oùG=(L,/lscript0, X,Σ1,Σ2, E,Inv)estunautomatetemporiséde"
+"jeuetcostestuneunefonctiondecoût telleque: cost:L∪E→N,c’est-à-dire"
+costassocieàchaquelocalitéuncoûtparunitédetempsetà chaquetransitionu n
+coûtdefranchissement.
+"SoitTG=(Q, Q 0,Σ1,Σ2,Γ,δ)lasémantiquede G.Siρdéﬁniepar:"
+"ρ=(/lscript0,v0)(δ1,e1)− − − − − → (/lscript1,v1)(δ2,e2)− − − − − → ...(δn,en)− − − − − → (/lscriptn,vn)"
+estuneexécutionde TGonpeutdéﬁnirlecoûtde ρpar:
+Cost(ρ)=n−1/summationdisplay
+i=0/parenleftbig
+cost(/lscripti)×δi+1+cost(/lscriptiei− − →/lscripti+1)/parenrightbig
+.
+Lecoûtd’uneexécutionestdonclasommedescoûtsdestransitionsdis crètesaug-
+mentéedelasommedescoûtsdestransitionscontinues.
+5.7.2.Coûtoptimaldanslesjeuxtemporisés
+Maintenanton peut poser le problèmedu calcul du coût optimal pour les jeux
+temporisés avec coût. On considère ici des jeux d’atteignabilité (RCP). Le b ut est
+decalculerlemeilleurcoûtquel’onpeutassurerquelquesoitlecompo rtementde
+l’adversaire.UnexempledePTGAestdonnéparl’automate Adelaﬁgure.5.8.
+Lesseulestransitionsincontrôlablessontlestransitionsd’étiquettes u.Ilestaussi
+évidentqueleRCPaunesolutiondans A:ontire c1puisc2etonestsûrdepouvoir
+forcerBUT.Danslasuiteonsupposequel’onadéjàprouvéqueleRCPavaitune
+réponsepositiveetdonconpeuts’intéresseraucalculducoûtoptim al.
+Cecoûtestdéﬁnicommeétantla«valeurminimale»ducoûtquelecontrôle ur
+"peutgarantir.Parexemple,surl’automate Adelaﬁgure5.8,ilyadeuxexécutions"
+possiblesetl’uniquechoixducontrôleurestladate δàlaquelleilvatirer c1(carune
+foisdans /lscript2ou/lscript3ildoitforcémenttirerdesuite c2pourminimiserlecoût).Lesvaleurs
+"descoûtsengendréesparlesexécutionspassantpar /lscripti,i=2,3sontrespectivement"
+α2(δ) = 5 ·δ+10·(2−δ)+1etα3(δ) = 5 ·δ+1·(2−δ)+7.Lorsquelecontrôleuratiré
+"c1àladate δ,l’environnementagitcommeunadversaireetvaessayerdemaximis er"
+"lecoût:ilvadoncchoisirlalocalité /lscripti,i=2,3pourlaquelle αi(δ)estmaximal."
+128 Syst.embarqués Approchesformelles
+Lebutducontrôleurestdechoisir δdefaçonàminimiserlemaximumsurcesdeux
+chemins.
+Onobtientdonccommedéﬁnitionducoûtoptimalpour A:
+OptCost = inf
+"0≤δ≤2max(5 ·δ+ 10 ·(2−δ) + 1,5·δ+1·(2−δ) + 7) ."
+Danslecasde Acettevaleurest43
+3etilfauttirer c1àladate4
+3.Leproblèmequi
+consisteàdéterminerlecoûtoptimalpourunPTGApourunobjectifd’atteig nabilité
+estleCostOptimalReachabilityControlProblem (CO-RCP).
+Onpeutgénéraliserladéﬁnitionducoûtoptimal OptCostdonnéepourl’auto-
+mate AauxPTGA.Onretrouveleproblèmedu time optimalcontrol enprenantun
+coûtunitaireparunitédetempsdanschaquelocalitéetuncoûtnulpourle franchis-
+sementd’unetransition.
+"SoitWinStrat (q,G)l’ensembledesstratégiesgagnantesàpartirde qdansG.Etant"
+"donnéeunestratégie spourlecontrôleur,onpeutdéﬁnirlecoûtde sàpartird’unétat"
+qdeTGpar:
+"Cost(q, s) = sup {Cost(ρ)|ρ∈Outm(q, f)}."
+"DÉFINITION5.7.2(COÛT OPTIMAL )Soit(G,cost)unPTGA.OnconsidèreleRCP"
+"pour Gaveclalocalitéàforcerquiest BUT.L’ensembledescoûtspossibles ,Cost(q),"
+àpartirde qdans Gestdéﬁnipar:
+"Cost(q)={Cost(q, s)|s∈WinStrat (q,G)}."
+Lecoûtoptimalàpartirde qestOptCost (q) = inf Cost(q).Lecoûtoptimalpour
+"G,OptCost (G),estsupq∈Q0OptCost (q)."
+REMARQUE5.7.1On considère le supremum à partir des états initiaux de Gce
+qui indique que l’on suppose que le choix de l’état initial est incontrôlable. S’il
+n’y qu’un seul état initial (comme dans les exemples qui suivent) OptCost (G)=
+OptCost (q0).
+Leproblèmeducoûtoptimalpourlesjeuxtemporiséd’atteignabilité( CostOpti-
+"malReachabilityControlProblem ,CO-RCP)estdonclesuivant:"
+"étantdonnés (G,cost),calculer OptCost (G). [CO-RCP]"
+Contrôledessystèmestemporisés 129
+5.7.3.Calculducoûtoptimal
+"Unepremièresolutionauproblèmeducalculducoûtoptimal,danslesjeux tem-"
+"porisésaveccoût,aétédonnéepourlesjeuxacycliques[LAT02].Com melesystème"
+necomportepasdecyclesonpeutréduireleproblèmeàunproblèmed’ optimisation
+linéaire.
+"Si l’on s’intéresse au calcul du coût optimal pour les PTGA cycliques, le pr o-"
+blèmeestpluscomplexe.Unesolutionauproblèmegénéralducalculdu coûtopti-
+malpourlesPTGAaétédonnéesimultanémentparAlur etal.[ALU04]etBouyer
+"et al.[BOU04c,BOU05a].Dans[ALU04],ontrouvedesrésultatsdecomple xité"
+"(borneinférieure)etdans[BOU04c],uncertainnombrederésultats dedécidabilité"
+pourlesPTGAainsiquedespropriétésstructurellesdesstratégiesquipe rmettentde
+gagnercesjeux.Uneimplémentationde[BOU04c]àl’aidedeH YTECH[HEN97]
+estdécritedansl’article[BOU05a].
+Ondonneicil’algorithmede[BOU04c]pourcalculerlecoûtoptimald’un PTGA.
+L’idéedelasolution10estlasuivante:leCO-RCPpeutêtrereformuléencestermes:
+"«quelleestlaquantitéminimalederessources(temps,carburant,etc)av eclaquelleje"
+doiscommencerlejeupourpouvoirforcerlalocalitéB UTetnepasavoirconsommé
+"toutesmesressources?».PourrésoudreleCO-RCP,onpeutdoncpr océderdelafaçon"
+suivante:
+1)onpartd’unjeu Adutypedeceluidelaﬁgure5.8;
+2)ondéﬁnitunjeu HAquiestunjeu temporiséavecunevariableparticulière
+rsrc:onobtientainsiunjeutemporiséquiestdansuneclasseparticulièred’ automates
+hybrides(LHA).Cettevariablecorrespondàlaquantitéderessources dontondispose.
+Elle va doncdécroîtredansla localité /lscriptdeHAavec untaux opposéà celuide la
+localitécorrespondantdans A.
+L’automate HAassociéà Aestdonnéesurlaﬁgure5.9(lanotation ˙rsrcdénote
+ladérivéede rsrcparrapportautemps).OnpeutainsiposerleCO-RCPcommeun
+problèmedutypeRCPmaissurun automate hybride linéaire11(LHA):lalocalité
+quel’onveutatteindreestB UTetondemandeaussid’yarriveravecunevaleurde
+lavariablersrcpositiveounulle.IlsufﬁtderésoudreleRCPpourleLHA HAavec
+"l’objectifdecontrôle (BUT,rsrc≥0).Sil’onsaitcalculerlesétatsgagnantsdece"
+jeu(hybridelinéaire)onobtientenparticulierlesétatsgagnantsinitiauxdelaf orme
+"(/lscript0,Z)oùZestunpolyèdredonnantlescontraintesàrespecteraudépartpourg agner."
+10.Onsupposequel’onaauparavantprouvéqu’ilyavaitunestratégiegagn antepermettantde
+forcerBUTdanslejeuetainsilecoûtoptimalexiste.
+11.voirparagraphe5.5.1
+130 Syst.embarqués Approchesformelles
+/lscript0
+˙rsrc=−5/lscript1
+[y= 0]/lscript2
+˙rsrc=−10
+/lscript3
+˙rsrc=−1BUTx≤2;c1;y:= 0u
+ux≥2;c2
+rsrc:=rsrc−1
+x≥2;c2
+rsrc:=rsrc−7
+Figure5.9. LeLHA HAassociéà A
+"Pardéﬁnition, Zestlazonemaximalegagnantedanslesensoùl’onnepeutgagn er"
+quesil’onpartde Z.Sil’onprojette Zsurlavariable rsrconobtientl’intervalledans
+lequeldoitêtrecettevariableaudépartpourpouvoirgagnerc’est-à- direatteindreB UT
+etnepasavoirconsommétoutelaressource rsrc.Onpeutmontrerquecetintervalle
+"estdelaforme rsrc⊿/triangleleftkavec⊿/triangleleft{>,≥}etdoncpardéﬁnitionlecoûtoptimalest k."
+Onpeutensuiteétudierladécidabilitéduproblèmedecontrôleoptimalenterm es
+dedécidabilitéduRCPsurlesautomateshybrideslinéairesdutypedeceuxe ngendrés
+parnotretraduction.Lesrésultatsobtenusparcettedémarchesontless uivants:
+–sil’onprenddesPTGAbornés(toutesleshorlogessontbornées)et quesurtout
+cycledel’automatelecoûtd’uncycleestaumoins β>0(onparlede cost non-
+"ZenoPTGA),alorsonpeutcalculerlesétatsgagnantsdel’automatehybridelinéaire"
+associéauPTGAdedépart.Ilsufﬁtdeprendrel’algorithmecalculantitér ativement
+les prédécesseurscontrôlables(enutilisantdespolyèdrespourrepr ésenterlesétats
+symboliques)etcetalgorithmetermine;
+–on obtient le coût optimal en calculant la projection sur rsrcde la zone ga-
+gnantedansla localitéinitiale.Onobtienttoujoursunintervalledutype rsrc⊿/triangleleftk
+"avec⊿/triangleleft{>,≥}etkestlecoûtoptimal.Onpeutaussidéciders’ilexisteunestratégie"
+permettantd’atteindrecettevaleuroptimale:sil’intervalleestdelaforme rsrc≥k
+c’est«oui»;sil’intervalleestdelaforme rsrc>kalorsilexisteunefamillede
+stratégiespermettantderéaliserdesvaleursarbitrairementprochesd ekmaispas k.Il
+n’yadoncpasdestratégieoptimale;
+"–les stratégies optimales quand elles existent, peuventnécessiter l’inform ation"
+"correspondantaucoûtcumulédepuisquelejeuacommencé.Encese ns,lesvaleurs"
+deshorlogesnesufﬁsentpastoujourscaronpeutavoirbesoind’un einformationsup-
+plémentairedecoût.
+5.7.4.Résultatsrécentsetproblèmesouverts
+Depuiscestravauxilyaeuuncertainsnombresderésultatsnouveaux:
+Contrôledessystèmestemporisés 131
+"–dansl’article[BRI05],lesauteursmontrentquesansl’hypothèsede costnon-"
+ZenoleproblèmeducalculducoûtoptimaldanslesPTGAdevientindécidable.C eci
+montrequecettehypothèseestnécessairepourlaterminaisondel’algor ithmeprésenté
+plus haut. Cette preuve a été rafﬁnée dans [BOU06c] et le résultat le plus r écent
+est que pour un PTGA à trois horlogesle problème du calcul du coûtoptima lest
+indécidable;
+"–dans[BOU06e],lesauteursmontrentque,pourlesjeuxtemporisésà tour,on"
+peutcalculerlecoûtoptimalpourlesPTGAàunehorloge(3EXPTIME);
+–dans[BOU07]ilestmontréquelecoûtoptimalestaussicalculablepo urles
+automateso-minimaux.
+5.8. Algorithmesefﬁcacesàlavolée
+Des outils efﬁcaces ont été développéspour analyser les automates temp orisés
+"UPPAAL[AMN01,AMN07]ouK RONOS[YOV97]maisjusqu’àrécemmentaucun"
+d’euxnepermettaitdefairedelasynthèsedecontrôleur.Cecimalgréle faitquedes
+algorithmessontconnusdepuislemilieudesannées1990.
+Le succès des outils tels que U PPAALrepose sur une exploration on-the-ﬂyde
+l’espaced’états(enplusbienentendudestructuresdedonnéesadapté esetd’uneim-
+plémentationefﬁcace des algorithmes). Ces algorithmes on-the-ﬂyontaussi fait le
+succèsdemodel-checkers desystèmesﬁniscommunicantscommeS PIN[HOL07].
+L’algorithmedecalculduparagraphe5.3.3fonctionneenarrièreen partantdes
+étatsbutsetencollectantlesprédécesseurscontrôlables:onparlede backward al-
+gorithm.Undésavantagedecetalgorithmeestqu’ilneprendpasencomptel’e space
+"d’étatsréellementatteignables.Ilse peutdoncque,lorsquel’oncollec teenarrière"
+"lesétatsgagnants,onobtiennebeaucoupd’états(mêmesymboliques)qu inesontpas"
+atteignables.Evidemmentàchaqueitérationoncalculel’opérateur πengardantces
+étatsnonatteignables.
+Un problème plus gênant encore peut survenir avec des extensions s imples de
+TGA:parfoisonnepeutpluscalculerl’opérateur πoùlecalculerdevienttrèscoûteux.
+Parexemplesilestransitionscontiennentdesaffectationsdevariablesd iscrètesdu
+"typei:= 2j+k(cequiestpermisdansU PPAAL),àpartird’unétatsymboliquedu"
+"type(/lscript,j≥0∧k≥0),uncalculbackwarddoitcollectertouteslesvaleurs itelles"
+quei=2j+ketcecalculpeuts’avérercompliquéounécessiterdesreprésentatio ns
+"complexesd’ensemblesdevaleursentières.Orenpratique,sil’onex écutelesystème,"
+onvacertainementpartiravecdesvaleursparticulièrespo urjetketdonciln’yaura
+qu’unpossibilitépourlavaleurde i.
+Onpeutdansunpremiertempscalculerl’espaced’étatsatteignables R.Ensuiteà
+chaqueitérationdel’opérateur πdanslecalculdupointﬁxedel’ensembledesétats
+132 Syst.embarqués Approchesformelles
+"gagnants,onrestreintlesétatsgagnantscollectésàcetensemble R.Undésavantage"
+"estquel’onvacalculer R,lestockeralorsquecen’estpeut-êtrepasnécessairepour"
+décidersiunestratégiegagnanteexiste.
+5.8.1.Algorithmesàlavolée
+Uneimplémentationefﬁcacedansl’esprit on-the-ﬂynecalculeraitpas Rmaisde-
+vraitexplorerl’espaced’étatsàlademande.Unalgorithme on-the-ﬂyaétéproposé
+pourlesautomatestemporisésparK.AltisenetS.Tripakisdans[ALT99]. Enfait
+cetalgorithmeconsisteàcalculeruneabstractiondugraphedesrégions (quipeutêtre
+trèsgrande)etàutiliserunalgorithme on-the-ﬂysurl’automateﬁniainsiobtenu.Il
+nes’agitpasdonctoutàfaitd’unalgorithme on-the-ﬂysurl’automatetemporiséde
+départcarilnécessitedecalculeruneabstractiondel’espacedetousle sétatsattei-
+gnables.
+Pouréviterceproblèmeetobtenirunalgorithmevraiment on-the-ﬂyonpeutse
+basersurl’idéedeLiu&Smolka[LIU98]pourle modelcheckingon-the-ﬂy deLTL
+pourlesautomatesﬁnis.
+"Pourconstruirenotrealgorithme on-the-ﬂypourlesTGA,onpeutcommencerpar"
+étendrel’algorithmedeLiu&Smolka[LIU98]auRCPdanslecasdesystème sﬁnis
+(nontemporisés).
+L’idée d’unalgorithme on-the-ﬂypour décidersi l’onpeutgagnerun jeu (ﬁni)
+d’atteignabilité Aestlasuivante:onsupposequel’onadeuxensembles ToExplore
+etToBackPropagate dontlesélémentssontdestransitionsde A;ondisposeaussi
+del’ensemble Rdesétatsde Aquiontétéexplorés.Pourchaqueétat sdeAquiaété
+exploréonmaintientson statutquiestsoit gagnantsoitindéterminé.
+Pour effectuer un pas dans l’algorithme on-the-ﬂyon va prendreune transition
+"(s, a, s/prime)dansl’undecesdeuxensemblesetfairesoit(A1)sil’onaprisunetr ansition"
+deToExploreet(A2)sinon:
+"–(A1)onexplore (s, a, s/prime):"
+–si c’est la première fois que l’on rencontre s/primeon ajoute les transitions
+issues de s/primeà l’ensemble ToExplore; sis/primeest un état de B UTon met son
+statutàgagnantsinonàindéterminé;
+"–si le statut de s/primeestgagnanton ajoute ensuite (s, a, s/prime)à"
+ToBackPropagate ; sinon on retient que « le statut de sdépend de s/primepar
+"(s, a, s/prime)»;"
+"–(A2)onvapropagerenarrièredel’informationpourlatransition (s, a, s/prime).Sicelle-"
+ciestdans ToBackPropagate c’estquelestatutde s/primeestdevenugagnant.On
+vapropagercetteinformationsur s:
+Contrôledessystèmestemporisés 133
+–soitaestcontrôlableetdanscecasonincrémenteuncompteur c(s)d’une
+unité.La signiﬁcation de c(s)est «c(s)représentele nombrede transitions
+contrôlablesquipeuventamenerdansunétatgagnantàpartirde s»;
+–soit aestincontrôlable:danscecasonincrémenteuncompteur u(s).La
+signiﬁcationde u(s)est«u(s)représentelenombredetransitionsincontrô-
+lablesquiamènentdansunétatgagnant»;
+"–unefoismisàjour c(s)ouu(s),onmetéventuellementàjourlestatutde"
+s.SoitU(s)lenombredetransitionsincontrôlablesissusde sdansl’automate
+A.Sic(s)≥1etu(s)=U(s)alorsonpeutdéclarer sgagnant.Ilfautdans
+cecasplaniﬁerlamiseàjourdes statutdesétatsquidépendentde s.Onajoute
+"doncàToBackPropagate touteslestransitions (s/prime/prime, a, s)tellesquele statutde"
+"s/prime/primedépendde spar(s/prime/prime, a, s)."
+Unalgorithme on-the-ﬂypourlesjeuxd’atteignabilitétemporisésvaréaliserdans
+unordrealéatoireletraitementdestransitionsde ToExploreouToBackPropagate .
+Dèsquelestatutdel’étatinitialde Aestgagnantonpeutarrêterl’algorithmecarona
+laréponseauRCP(etonpeutextraireunestratégiegagnante).Onpeu tremarquerque
+"cetalgorithmefonctionneentempslinéaireenlatailledusystème.Eneffet,c haque"
+transitionesttraitéeauplusunefoisquandelleestdans ToExploreetaussiauplus
+unefoisquandelleest ToBackPropagate .
+Pour adaptercetalgorithmeau cas temporiséon doitconsidérerdes états sym-
+"boliques,ouzones,quisontdesunionsderégions.EtantdonnéunTGAetun état"
+"symbolique (/lscript,Z)onvaexplorerenavantunetransitionallantdelalocalité /lscriptà/lscript/prime"
+encalculantlessuccesseursdiscretsde Zparcettetransitionetenprenantlefutur
+temporel(contraintparl’invariantde /lscript/prime).Onmaintientensuitele statutdesétatssym-
+boliques.
+La versionde l’algorithme on-the-ﬂypourlesTGA ainsiquela preuvede cor-
+rectionetdeterminaisonsontdonnéesdans[CAS05].Laversiontemp oriséedecet
+algorithmen’estpaslinéaireenlatailledugraphedesrégions!Onutiliseen effetdes
+zonesetunerégionpeutêtrecontenuedansplusieurszones.Notrea lgorithmen’est
+doncpasoptimaldanslesensoùilexisteunalgorithmelinéaireenlatailledugr aphe
+desrégions[ALT99].Cependantilest vraimenton-the-ﬂy etenpratiqueonobtientde
+"bonsrésultats,commelemontrelesexpériencesconduitesaveclaversio n«jeux»de"
+UPPAALquis’appelleU PPAAL-TIGA[BEH07a]etquiestprésentéeauchapitre8.
+5.8.2.Résultatsrécentsetproblèmesouverts
+Ilestaussipossibledecalculerdescontrôleurs timeoptimal(lescoûtsassociésaux
+localitéssonttous 1etlescoûtsdestransitionsdiscrètessont 0)sil’onconnaîtune
+bornedutempsnécessairepouratteindrel’état B UT(voir[CAS05]).L’algorithme
+134 Syst.embarqués Approchesformelles
+décritdanscettesectionpourlesjeuxd’atteignabilitéadmetuneversion dualepour
+lesjeuxdesûreté.
+"Dans[CAS07b],l’algorithmeàlavoléedécritci-dessusaétéadaptéau casde"
+l’observationpartielle (voirsection5.9quisuit).Unesynthèseconcernantlesalg o-
+rithmesàlavoléepourlecastemporiséestproposéedans[CAS07a].
+Lesproblèmesouvertsconcernantcettesectionsont:
+–étendrelesalgorithmesàlavoléepourdesobjectifsautresquesûretéet acces-
+sibilité(parexempleaccessibilitérépétée).Ceciesttrèsutileenpratiqueca rdetels
+objectifspermettentdedonnerdescontraintesde non-zenoness surlecontrôleursyn-
+thétisé;
+–étendrelesalgorithmesàlavoléeetstructuresdedonnéespourobtenir desalgo-
+rithmesefﬁcacespourlecalculducoûtoptimal(voirsection5.7).
+5.9. Observationpartielle
+"Danslesproblèmesprécédents,onasupposéquelecontrôleuravaitu nevisionpar-"
+faitedel’environnement:ilpeutobservertouslesévénementsetl’éta tdusystème.
+"Danscertainscaspratiques,lecontrôleurnevoitpastouslesévéneme ntsquisontpro-"
+duitsparl’environnementetilnepeutpasnonplusobserverl’étatde l’environnement
+mais perçoitseulement un sous-ensemble des événements: les évène mentsobser-
+vables.Malgrécelaonvoudraitpouvoircontrôlerl’environnement:c’estle problème
+"ducontrôlesousobservationpartielle( ControlUnderPartialObservation ,PO)."
+Pourceproblèmeonsupposetoujoursquelesévénementssontclassés endeux
+"classes,contrôlables( Σc)etincontrôlables( Σu)maisseulementunsous-ensemble Σo"
+u
+deΣuestobservable.Lecontrôleurvapouvoirobserveruneséquenced ’événements
+"temporisés (a0,t0)(a1,t1)···(an,tn)de((Σc∪Σo"
+u)×R≥0)∗etdoitdéterminerà
+partirdecelalestransitionscontrôlablesqu’ilsouhaitejouer.
+"Entermesdestratégie,ondiraqu’unestratégieest trace-basedsipourdeuxexé-"
+cutions ρetρ/primeayantmêmetrace(visible)temporisée12f(ρ)=f(ρ/prime).
+Leproblèmedecontrôlesousobservationpartielle(PO-CP)consisteàdéter miner
+s’ilexisteunestratégie trace-based fquipermetdegagner.Uncontrôleurestune
+"stratégieetonpeutdoncparlerdecontrôleur trace-based(Trace-Based Controller ,"
+TBC)etdéﬁnirleproblèmedecontrôlesousobservationpartiellepar:
+"étantdonnés Setφ,existe-t-ilunTBC Ctelque (S/bardblC)|=φ? [PO-CP]"
+12.Latracevisibled’uneexécutionestunmottemporiséde ((Σc∪Σo
+u)×R≥0)∗.
+Contrôledessystèmestemporisés 135
+L’article[BOU05c]proposeunesynthèsesurl’observationpartielleda nslessys-
+tèmestemporisés.Silaspéciﬁcationestdonnéeparunautomatetemporiséd étermi-
+"niste,lePO-CPestindécidable[BOU03].Sil’onconsidèreleproblèmeplu scontraint"
+safetyPO-CP(PO-SCP)etquel’ondésiresynthétiseruncontrôleurquinegénère que
+"descomportementsnon-Zénon(Non-Zeno-PO-SCP),alorsceproblème resteindéci-"
+dable[BOU06d].
+"Enrevanche,sil’onﬁxelesressourcesducontrôleur,onpeutétend relapreuve"
+durésultatde[DSO02]surlasynthèsedecontrôleurpourdesspéciﬁcatio nsexternes
+(voirsection5.6)aucasdel’observabilitépartielle.Onobtientainsi:sil’ onﬁxeles
+"ressourcesducontrôleuretquel’objectifdecontrôle, φ,estdonnéeparunautomate"
+"ﬁnidéterministe,alorslePO-CPestEXPTIME-complet[BOU03]."
+"Destravauxplusrécents[CHA06,DEW06]considèrentleproblèmede l’obser-"
+vation partielle des étatsd’un système pour les systèmes ﬁnis. L’extension au cas
+temporisédecestravauxestproposéedans[CAS07b].
+5.10. Changeonslesrèglesdujeu...
+"Commenousl’avonsmentionnélorsdeladéﬁnitiondesTGA,plusieurssém an-"
+tiquesontétédéﬁniespourlesjeuxtemporisés.Nousallonsprésenterdan scettesec-
+"tionuneautresémantique,issuede[ALF03],dontleprincipalintérêtes tqu’elletient"
+comptedesstratégiesdeZénon.
+"Demanièreinformelle13,laprincipaledifférencedanslesrèglesdujeuestlasui-"
+"vante : au lieu d’avoir le choix entre attendre et jouer une transition d’action , les"
+"joueursdevrontchoisirsimultanémentlaprochaineactionqu’ilssouhaite ntjouer,ainsi"
+queledélaiqu’ilssouhaitentlaisserécouleravantdejouercetteaction.L erestedu
+jeu est identique : le joueur qui souhaite faire son action le plus tôt est autor isé à
+"l’appliquer,aprèsavoirattenduletempsqu’ilachoisi."
+"Bienqueladifférencesoitmince,cettenouvellesémantiqueaunavantage impor-"
+"tant:ellepermetdesavoirqui,ducontrôleuroudel’environnement,ac hoisiledélai"
+"lepluscourtetaainsipuappliquersonaction.Decettefaçon,siletemps convergele"
+"longd’uneexécutioninﬁnie,cettesémantiquepermetdedétecterqueljou eur(çapeut"
+"éventuellementêtrelesdeux)afaitconvergerletemps,enregardant queljoueurapu"
+"inﬁnimentsouventsuivrelatransitionqu’ilachoisie.Decettemanière,po urchaque"
+"13.Nousnedéﬁnironspaslasémantiqueformelledecesjeuxdanscechapitre,etrenv oyons"
+"lelecteurintéresséauxarticles[ALF03,BRI07,HEN06b],quiintroduisen tetutilisentcette"
+sémantique.
+136 Syst.embarqués Approchesformelles
+"exécutiondeZénon,onconsidèrequelejoueurquiapuappliquersonc hoixinﬁni-"
+"mentsouventatriché;ilestdisqualiﬁé,etquelquesoitl’objectifdejeu, l’autrejoueur"
+estdéclarévainqueurdelapartie14.
+/lscript0
+[x≤2]BAD x:= 0x>1;uc
+Figure5.10. Unjeu(avecobjectifdesûreté)gagnant
+avecunestratégiedeZénon
+"Reprenonsl’exempledelasection5.4,reproduitàlaﬁgure5.10.Cons idéronsla"
+"stratégiesuivante:dansl’état (/lscript0,x),avec x<1,lecontrôleurproposed’attendre"
+"undélai δ>0telque,aprèscedélai,l’horlogeestdelaforme 1−1/n(unetelle"
+"valeurde δexistetoujourssi x<1),etdejouerl’action caprèscedélai.Avecnotre"
+"nouvellesémantique,cettestratégien’estpasgagnante:eneffet,sil’e nvironnement"
+"jouelastratégie«attendre 1unitédetempsetjouerl’action u»,alorslecontrôleur"
+seradisqualiﬁéetperdralapartiecorrespondante.
+"Danscecadre,l’existencedestratégiesgagnantessansmémoiren’es tplusgaran-"
+"tie:dansl’étatinitial (/lscript0,0)dujeutemporisédelaﬁgure5.10(a),lejoueur 1doit"
+joueràladate 0l’action c:c’estlaseulefaçonderemplirlaconditiond’accessibi-
+"lité.Enjouantdecettefaçon,l’exécutionvarevenirdanslemêmeétat (/lscript0,0).Sile"
+"joueur 1appliquesastratégiesansmémoire,ilvatoutletempsproposerundélain ul,"
+cequiledisqualiﬁera.
+"Bienquelesjoueursnepuissentplusgagnerenfaisantconvergerlete mps,illeur"
+"estparfoisnécessaired’utiliserdesstratégies«deZénon»pourgagn er.Ainsi,sur"
+"l’exempledelaﬁgure5.10(b),unestratégiegagnante(l’objectifétantd’ atteindre /lscript1)"
+"pourlejoueur1consisteàjouerl’action cauxdates 1/2,3/4,7/8,etc.,c’est-à-dire"
+d’attendreun délai 1/2n+1entre le n-ième et le n+1-ièmecoup.Bien que cette
+"stratégiepuisseamenerdesexécutionsdeZénon,elleestgagnantepou rlejoueur1:"
+"eneffet,silapartieatteint /lscript1,lejoueur1joueraunestratégiedifférentedans /lscript1,lui"
+"assurantdenepasêtredisqualiﬁé.Silejeun’arrivejamaisdans /lscript1,celasigniﬁeque"
+"c’esttoujoursl’actiondujoueur2quiestprise,etcejoueurseradisq ualiﬁé."
+"Aveccesrèglesdujeu,laplupartdesrésultatsquenousavonsmontréa ucoursde"
+"cechapitresontpréservés.Enparticulier,onpeutadapterladéﬁnitiond esprédéces-"
+"seurscontrôlables,etmontrerquelesprédécesseurscontrôlablesd ’unezoneforment"
+"14.Ilpeutarriverquelesdeuxjoueurssoientdisqualiﬁés,auquelcasiln’yapasd egagnant."
+Contrôledessystèmestemporisés 137
+/lscript0 /lscript1
+"[x≤0]x=0,c1"
+"x=0,c1"
+(a)stratégieavecmémoire/lscript0 /lscript1
+"x>1, u, x:= 00< x < 1,c"
+(b)stratégieavec«surprise»
+Figure5.11. Exemplesdejeuxtemporisés
+"toujoursunezone.De cettefaçon,lestechniquesdecalculdepointsﬁxes peuvent"
+"toujourss’appliquer,etilenrésulteunalgorithmeentempsexponentiel."
+"Destravauxrécentsontencoreétenducesmodèlespourque,mêmes iunjoueur"
+"nechoisitpasledélailepluscourt,ilpeutnéanmoinsinﬂuersurledéroule mentdela"
+partie.Cesjeuxsontdesextensionsdes concurrentgamestructures [ALU02].Dans
+"laversiontemporisée,lesjoueursnechoisissentplusseulementundé laietuneaction,"
+maiségalementlesactionsqu’ilssouhaitenteffectuersileuradversa irechoisitundélai
+pluscourt.Latransitioneffectuéedépendalorsdel’ensembledesaction sproposées
+"par les joueurs au moment où la transition doit être effectuée. Dans [BRI 07], les"
+techniquesquenousavonsdécritesprécédemmentsontadaptéesà cecadre.
+5.11. Bibliographie
+"[ALF01] DEALFAROL., HENZINGERT.A., MAJUMDARR., «Symbolic Algorithms for"
+"Inﬁnite-State Games», Proc. 12th International Conference on Concurrency Theory"
+"(CONCUR’01) ,vol. 2154 de Lecture Notes in Computer Science , p. 536-550, Springer,"
+2001.
+"[ALF03] DEALFAROL.,FAËLLAM.,HENZINGERT.A.,MAJUMDARR.,STOELINGAM.,"
+"«The Element of Surprise in Timed Games», Proc. 14th International Conference on"
+"Concurrency Theory (CONCUR’03) , vol. 2761 de Lecture Notes in Computer Science ,"
+"p.142-156,Springer,2003."
+"[ALT99] A LTISENK., TRIPAKISS., «On-the-Fly Controller Synthesis for Discrete and"
+"Dense-TimeSystems», Proc.WorldCongress onFormalMethods intheDevelopment of"
+"ComputingSystem(FM’99) ,vol. 1708de LectureNotesinComputerScience ,p.233-252,"
+"Springer,1999."
+"[ALT05] A LTISENK.,MARKEYN.,REYNIERP.A.,TRIPAKISS.,«Implémentabilitédes"
+"automatestemporisés», A LLAH.,RUTTENÉ.(dir.),Actesdu5èmeColloquesurlaMo-"
+"délisationdes Systèmes Réactifs(MSR’05) ,p.395-406,Autrans,France,Hermès,octobre"
+2005.
+"[ALU94] A LURR., DILLD., «A Theory of Timed Automata», Theoretical Computer"
+"Science,vol.126,n°2,p.183-235,ElsevierScience,1994."
+138 Syst.embarqués Approchesformelles
+"[ALU01] A LURR.,LATORRES.,PAPPASG.J.,«OptimalPathsinWeightedTimedAu-"
+"tomata»,Proc. 4th International Workshop Hybrid Systems, Computation and Contro l"
+"(HSCC’01),vol. 2034de LectureNotesinComputerScience ,p.49-62,Springer,2001."
+"[ALU02] A LURR.,HENZINGERT.A.,KUPFERMANO.,«Alternating-timetemporallogic»,"
+"JournaloftheACM ,vol.49,p.672-713,ACMPress,2002."
+"[ALU04] A LURR.,BERNADSKYM.,MADHUSUDAN P.,«OptimalReachabilityinWeigh-"
+"ted TimedGames», Proc. 31st International Colloquium on Automata, Languages and"
+"Programming (ICALP’04) ,vol. 3142de LectureNotes inComputer Science ,p.122-133,"
+"Springer,2004."
+"[AMN01] A MNELLT., BEHRMANNG., BENGTSSONJ., D’ARGENIOP.R., DAVIDA.,"
+"FEHNKERA., HUNET., JEANNETB., LARSENK.G., MÖLLERO., PETTERSSONP.,"
+"WEISEC.,YIW.,«UPPAAL–Now,Next,andFuture», Proc. Modelling and Veriﬁca-"
+"tionof ParallelProcesses ( MOVEP2k),vol. 2067de LectureNotes inComputer Science ,"
+"p.99-124,Springer,2001."
+"[AMN07] A MNELLT., BEHRMANNG., BENGTSSONJ., D’ARGENIOP.R., DAVIDA.,"
+"FEHNKERA., HUNET., JEANNETB., LARSENK.G., MÖLLERO., PETTERSSONP.,"
+"WEISEC.,YIW.,«UPPAAL»,2007, http://www.uppaal.com."
+"[ARN03] A RNOLDA.,VINCENTA.,WALUKIEWICZ I.,«Gamesforsynthesisofcontrollers"
+"withpartialobservation», TheoreticalComputerScience ,vol.1,n°303,p.7-34,Elsevier"
+"Science,2003."
+"[ASA98] A SARINE.,MALERO.,PNUELIA.,SIFAKISJ.,«ControllerSynthesisforTimed"
+"Automata», Proc.IFACSymposiumonSystemStructureandControl ,p.469-474,Elsevier"
+"Science,1998."
+"[ASA99] A SARINE.,MALERO.,«AsSoonasPossible:TimeOptimalControlforTimed"
+"Automata», Proc.2ndInternationalWorkshopHybridSystems,ComputationandContro l"
+"(HSCC’99),vol. 1569de LectureNotesinComputerScience ,p.19-30,Springer,1999."
+"[BEH01a] B EHRMANNG.,FEHNKERA.,HUNET.,LARSENK.G.,PETTERSSONP.,RO-"
+"MIJNJ., VAANDRAGER F., «Efﬁcient Guiding Towards Cost-Optimality in U PPAAL»,"
+Proc.7thInternationalConferenceonToolsandAlgorithmsfortheC onstructionandAna-
+"lysisofSystems(TACAS’01) ,vol. 2031de LectureNotesinComputerScience ,p.174-188,"
+"Springer,2001."
+"[BEH01b] B EHRMANNG.,FEHNKERA.,HUNET.,LARSENK.G.,PETTERSSONP.,RO-"
+"MIJNJ.,VAANDRAGER F.,«Minimum-CostReachabilityforPricedTimedAutomata»,"
+"Proc. 4th International Workshop Hybrid Systems, Computation and Contro l (HSCC’01),"
+"vol. 2034de LectureNotesinComputerScience ,p.147-161,Springer,2001."
+"[BEH07a] B EHRMANNG.,COUGNARDA.,DAVIDA.,FLEURYE.,LARSENK.G.,LIME"
+"D.,«UPPAAL-TiGA»,2007, http://www.cs.aau.dk/~adavid/tiga/."
+"[BEH07b] B EHRMANNG.,LARSENK.G.,RASMUSSENJ.I., «UPPAAL-CORA»,2007,"
+http://www.cs.aau.dk/~behrmann/cora/.
+Contrôledessystèmestemporisés 139
+"[BOU03] B OUYERP.,D’SOUZAD., MADHUSUDAN P., PETITA.,«TimedControl with"
+"PartialObservability»,H UNTJRW.A.,SOMENZIF.(dir.),Proc.15thInternationalConfe-"
+"renceonComputerAidedVeriﬁcation(CAV’03) ,vol. 2725de LectureNotesinComputer"
+"Science,p.180-192,Boulder,États-Unis,Springer,juillet 2003."
+"[BOU04a] B OUYERP.,BRINKSMAE.,LARSENK.G.,«StayingAliveAsCheaplyAsPos-"
+"sible», ALURR.,PAPPASG.J.(dir.),Proc.7thInternationalConferenceHybridSystems,"
+"Computation and Control (HSCC’04) ,vol. 2993de Lecture Notes in Computer Science ,"
+"p.203-218,Philadelphie,États-Unis,Springer,mars 2004."
+"[BOU04b] B OUYERP.,CASSEZF.,FLEURYE.,LARSENK.G.,OptimalStrategiesinPriced"
+"TimedGameAutomata, BRICSReportsSeriesn°RS-04-0,BRICS,Aalborg,Dan emark,"
+"février 2004, ISSN0909-0878."
+"[BOU04c] B OUYERP.,CASSEZF.,FLEURYE.,LARSENK.G.,«OptimalStrategiesinPri-"
+"cedTimedGameAutomata», L ODAYAK.,MAHAJANM.(dir.),Proc. 24th Conference"
+"on Fundations of Software Technology and Theoretical Computer Sci ence (FSTTCS’04) ,"
+"vol. 3328 de Lecture Notes in Computer Science , p. 148-160, Chennai, Inde, Springer,"
+décembre 2004.
+"[BOU05a] B OUYERP.,CASSEZF.,FLEURYE.,LARSENK.G.,«SynthesisofOptimalStra-"
+"tegiesUsingHyTech», DEALFAROL.(dir.),Proc.WorkshoponGamesinDesignandVeri-"
+"ﬁcation(GDV’04) ,vol. 119de ElectronicNotesinTheoreticalComputerScience ,p.11-31,"
+"Boston,États-Unis,ElsevierScience,février 2005."
+"[BOU05b] B OUYERP.,CASSEZF.,LAROUSSINIE F.,«ModalLogicsforTimedControl»,"
+"ABADIM.,DEALFAROL. (dir.),Proc. 16th International Conference on Concurrency"
+"Theory (CONCUR’05) ,vol. 3653 de Lecture Notes in Computer Science , p.81-94, San"
+"Francisco,États-Unis,Springer,août 2005."
+"[BOU05c] B OUYERP.,CHEVALIERF.,KRICHENM.,TRIPAKISS.,«Observationpartielle"
+"dessystèmestemporisés»,A LLAH.,RUTTENÉ.(dir.),Actesdu5èmeColloquesurlaMo-"
+"délisationdes Systèmes Réactifs(MSR’05) ,p.381-393,Autrans,France,Hermès,octobre"
+2005.
+"[BOU06a] B OUYERP.,BOZZELLIL.,CHEVALIERF.,«ControllerSynthesisforMTLSpe-"
+"ciﬁcations», B AIERC., HERMANNSH. (dir.),Proc. 17th International Conference on"
+"Concurrency Theory (CONCUR’06) , vol. 4137 de Lecture Notes in Computer Science ,"
+"p.450-464,Bonn,Allemagne,Springer,août 2006."
+"[BOU06b] B OUYERP.,BRIHAYET.,CHEVALIERF.,«Controlino-MinimalHybridSys-"
+"tems»,Proc.21stIEEESymposiumonLogicinComputerScience(LICS’06) ,p.367-378,"
+"Seattle,États-Unis,IEEEComputerSocietyPress,août 200 6."
+"[BOU06c] B OUYERP., BRIHAYET., MARKEYN.,«Improved Undecidability Resultson"
+"WeightedTimedAutomata», Information Processing Letters ,vol.98,n°5,p.188-194,"
+"ElsevierScience,juin 2006."
+"[BOU06d] B OUYERP.,CHEVALIERF.,«OntheControlofTimedandHybridSystems»,"
+"EATCSBulletin ,vol.89,p.79-96,EuropeanAssociationforTheoreticalComputerScience,"
+juin 2006.
+140 Syst.embarqués Approchesformelles
+"[BOU06e] B OUYERP.,LARSENK.G.,MARKEYN.,RASMUSSENJ.I.,«AlmostOptimal"
+"StrategiesinOne-ClockPricedTimedAutomata», G ARGN., ARUN-KUMARS. (dir.),"
+Proc.26thConference onFoundations of SoftwareTechnology and T heoretical Computer
+"Science (FSTTCS’06) ,vol. 4337de LectureNotesinComputerScience ,p.345-356,Kol-"
+"kata,Inde,Springer,décembre 2006."
+"[BOU06f] B OUYERP.,MARKEYN.,REYNIERP.A.,«RobustModel-CheckingofLinear-"
+"TimePropertiesinTimedAutomata»,C ORREAJ.R.,HEVIAA.,KIWIM.(dir.),Proc.7th"
+"LatinAmericanSymposium onTheoreticalInformatics (LATIN’06) ,vol. 3887de Lecture"
+"NotesinComputerScience ,p.238-249,Valdivia,Chili,Springer,mars 2006."
+"[BOU07] B OUYERP.,BRIHAYET.,CHEVALIERF.,«WeightedO-MinimalHybridSystems"
+"aremoreDecidablethanWeightedTimedAutomata!», A RTEMOVS.N.(dir.), Proc.Sym-"
+"posiumonLogicalFoundationsofComputerScience(LFCS’07) ,LectureNotesinCompu-"
+"terScience,New-York,États-Unis,Springer,juin 2007."
+"[BOU08a] B OUYERP., BRINKSMAE., LARSENK.G., «Optimal Inﬁnite Scheduling for"
+"Multi-PricedTimedAutomata», Formal Methods in System Design ,vol.32,n°1,p.2-"
+"23,KluwerAcademicPublishers,février 2008."
+"[BOU08b] B OUYERP., MARKEYN., REYNIERP.A.,«Robust Analysis of Timed Auto-"
+"mataviaChannelMachines», A MADIOR.(dir.),Proc.11thInternationalConference on"
+"FoundationsofSoftwareScienceandComputationStructures(FoS SaCS’08),vol. 4962de"
+"LectureNotesinComputerScience ,p.157-171,Budapest,Hongrie,Springer,mars 2008."
+"[BRI04] B RIHAYET.,BRUYÈREV.,RASKINJ.F.,«Model-CheckingforWeightedTimed"
+"Automata», Proc. Joint International Conferences on Formal Modellingand Analysis of"
+Timed Systems (FORMATS’04) and Formal Techniques in Real-Time and Fa ult-Tolerant
+"Systems(FTRTFT’04) ,vol. 3253de LectureNotesinComputerScience ,p.277-292,Sprin-"
+"ger,2004."
+"[BRI05] B RIHAYET.,BRUYÈREV.,RASKINJ.F.,«OnOptimalTimedStrategies», Proc."
+3thInternational Conference onFormal Modelling andAnalysis of Tim edSystems (FOR-
+"MATS’05),vol. 3829de LectureNotesinComputerScience ,p.49-64,Springer,2005."
+"[BRI07] B RIHAYET., LAROUSSINIE F., MARKEYN., OREIBYG., «Timed Concur-"
+"rent Game Structures», Proc. 18th International Conference on Concurrency Theory"
+"(CONCUR’07) ,vol. 4703 de Lecture Notes in Computer Science , p. 445-459, Springer,"
+septembre 2007.
+"[CAS02] C ASSEZF.,HENZINGERT.A.,RASKINJ.F.,«AComparisonofControlProblems"
+"forTimedandHybridSystems», Proc. 5th International Workshop on Hybrid Systems,"
+"Computation and Control (HSCC’02) ,vol. 2289de Lecture Notes in Computer Science ,"
+"p.134-148,Springer,2002."
+"[CAS05] C ASSEZF.,DAVIDA.,FLEURYE.,LARSENK.G.,LIMED.,«EfﬁcientOn-The-"
+"FlyAlgorithms for the Analysis of Timed Games», A BADIM.,DEALFAROL. (dir.),"
+"Proc. 16th International Conference on Concurrency Theory (CONCUR’05) , vol. 3653"
+"deLectureNotesinComputerScience ,p.66-80,SanFrancisco,États-Unis,Springer,août"
+2005.
+Contrôledessystèmestemporisés 141
+"[CAS07a] C ASSEZF., «Efﬁcient On-the-Fly Algorithms for Partially Observable Timed"
+"Games», Proc. 5th International Conference on Formal Modeling and Analysis of T i-"
+"med Systems (FORMATS’07) ,vol. 4763de Lecture Notes in Computer Science ,p.5-24,"
+"Springer,2007."
+"[CAS07b] C ASSEZF.,DAVIDA.,LARSENK.G.,LIMED.,RASKINJ.F.,«TimedControl"
+"withObservationBasedandStutteringInvariantStrategies», Proc.5thInternationalSym-"
+"posium on Automated Technology for Veriﬁcation and Analysis (ATVA’0 7),vol. 4762de"
+"LectureNotesinComputerScience ,p.307-321,Springer,2007."
+"[CHA06] C HATTERJEEK.,DOYENL.,HENZINGERT.A.,RASKINJ.F.,«Algorithmsfor"
+"Omega-RegularGameswithImperfectInformation», Proc.20th International Workshop"
+"onComputerScienceLogic(CSL’06) ,p.287-302,2006."
+"[DEW04a] D EWULFM., DOYENL., MARKEYN., RASKINJ.F., «Robustness and Im-"
+"plementability of Timed Automata», Proc. Joint International Conferences on Formal"
+ModellingandAnalysisofTimedSystems(FORMATS’04)andFormalTechn iquesinReal-
+"Timeand Fault-Tolerant Systems (FTRTFT’04) ,vol. 3253de LectureNotes inComputer"
+"Science,p.118-133,Springer,2004."
+"[DEW04b] D EWULFM.,DOYENL.,RASKINJ.F.,«AlmostASAPSemantics:FromTimed"
+"ModelstoTimedImplementations», Proc. 7th International Workshop Hybrid Systems,"
+"Computation and Control (HSCC’04) ,vol. 2993de Lecture Notes in Computer Science ,"
+"p.296-310,Springer,2004."
+"[DEW05a] D EWULFM.,DOYENL.,RASKINJ.F.,«AlmostASAPSemantics:FromTimed"
+"ModelstoTimedImplementations», FormalAspectsofComputing ,vol.17,n°3,p.319-"
+"341,Springer,2005."
+"[DEW05b] D EWULFM.,DOYENL.,RASKINJ.F.,«SystematicImplementationofReal-"
+"Time Models», Proc. International Symposium of Formal Methods Europe (FM’05) ,"
+"vol. 3582de LectureNotesinComputerScience ,p.139-156,Springer,2005."
+"[DEW06] D EWULFM.,DOYENL.,RASKINJ.,«ALatticeTheoryforSolvingGamesof"
+"ImperfectInformation», Proc.9thInternational Workshop HybridSystems,Computation"
+"andControl(HSCC’06) ,p.153-168,2006."
+"[DOY07] D OYENL.,«RobustParametricReachabilityforTimedAutomata», Information"
+"ProcessingLetters ,vol.102,n°5,p.208-213,ElsevierScience,2007."
+"[DSO02] D‘S OUZAD.,MADHUSUDAN P.,«TimedControlSynthesisforExternalSpeciﬁ-"
+"cations»,Proc.19thInternationalSymposiumonTheoreticalAspectsofComputerSci ence"
+"(STACS’02),vol. 2285de LectureNotesinComputerScience ,p.571-582,Springer,2002."
+"[FAE02a] F AËLLAM.,LATORRES.,MURANOA.,«Automata-TheoreticDecisionofTi-"
+"med Games», Proc. 3rd International Workshop on Veriﬁcation, Model Checking, and"
+"Abstract Interpretation (VMCAI’02) , vol. 2294 de Lecture Notes in Computer Science ,"
+"p.240-254,Venise,Italie,janvier 2002."
+"[FAE02b] F AËLLAM.,LATORRES.,MURANOA.,«DenseReal-TimeGames», Proc.17th"
+"IEEE Symposium on Logic in Computer Science (LICS’02) ,p.167-176, IEEEComputer"
+"SocietyPress,2002."
+142 Syst.embarqués Approchesformelles
+"[HEN96] H ENZINGERT.A.,«TheTheoryofHybridAutomata», Proc.11thIEEESympo-"
+"siumonLogicinComputerScience(LICS’96) ,p.278-292,IEEEComputerSocietyPress,"
+1996.
+"[HEN97] H ENZINGERT.A., HOP.H., WONG-TOIH., «HYTECH:A Model-Checker for"
+"HybridSystems», JournalonSoftwareToolsforTechnologyTransfer ,vol.1,n°1-2,p.110-"
+"122,Springer,1997."
+"[HEN98] H ENZINGERT.A.,KOPKEP.W.,PURIA.,VARAIYAP.,«What’sdecidableabout"
+"hybridautomata?», JournalofComputerandSystemSciences ,vol.57,p.94-124,Elsevier"
+"Science,1998."
+"[HEN99a] H ENZINGERT.A., HOROWITZB., MAJUMDARR., «Rectangular Hybrid"
+"Games»,Proc. 10th International Conference on Concurrency Theory (CONCUR’99) ,"
+"vol. 1664de LectureNotesinComputerScience ,p.320-335,Springer,1999."
+"[HEN99b] H ENZINGERT.A., KOPKEP.W.,«Discrete-timecontrol for rectangular hybrid"
+"automata», TheoreticalComputerScience ,vol.221,p.369-392,ElsevierScience,1999."
+"[HEN06a] H ENZINGERT.A.,PRABHUV.S.,«TimedAlternating-TimeTemporalLogic»,"
+"ASARINE.,BOUYERP.(dir.),Proc.4thInternational Conferences onFormalModelling"
+"andAnalysisofTimedSystems,(FORMATS’06) ,vol. 4202de LectureNotesinComputer"
+"Science,p.1-17,Springer,septembre 2006."
+"[HEN06b] H ENZINGERT.A.,PRABHUV.S.,«TimedAlternating-TimeTemporalLogic»,"
+"Proc.4thInternationalConferencesonFormalModellingandAnalysisof TimedSystems,"
+"(FORMATS’06) ,vol. 4202de LectureNotesinComputerScience ,p.1-17,Springer-Verlag,"
+septembre 2006.
+"[HOF92] H OFFMANNG.,WONG-TOIH.,«Theinput-outputcontrolofreal-timediscrete-"
+"eventsystems», Proc.13thAnnualReal-timeSystemsSymposium ,p.256-265,IEEECom-"
+"puterSocietyPress,1992."
+"[HOL07] H OLTZMANNG.,«SPIN»,2007, http://spinroot.com."
+"[KOY90] K OYMANSR.,«SpecifyingReal-TimePropertieswithMetricTemporalLogic»,"
+"Real-TimeSystems ,vol.2,n°4,p.255-299,1990."
+"[LAF00] L AFFERRIERE G.,PAPPASG.,SASTRYS.,«O-minimalhybridsystems», Mathe-"
+"maticsofControlSignalsandSystems ,vol.13,n°1,p.1-21,2000."
+"[LAR98] L AROUSSINIE F., LARSENK.G., «CMC: A Tool for Compositional Model-"
+"Checking of Real-Time Systems», Proc. IFIP Joint International Conference on For-"
+"mal Description Techniques & Protocol Speciﬁcation, Testing, and Veriﬁcati on (FORTE-"
+"PSTV’98),p.439-456,KluwerAcademic,1998."
+"[LAR05] L AROUSSINIE F.,«CMC»,2005, http://www.lsv.ens-cachan.fr/~ﬂ/cmcweb.html."
+"[LAR06] L AROUSSINIE F., MARKEYN., OREIBYG.,«Model Checking Timed ATL for"
+"DurationalConcurrentGameStructures», A SARINE.,BOUYERP.(dir.),Proc.4thInter-"
+"nationalConferenceonFormalModellingandAnalysisofTimedSystems(F ORMATS’06) ,"
+"vol. 4202de LectureNotesinComputerScience ,p.245-259,Paris,France,Springer,sep-"
+tembre 2006.
+Contrôledessystèmestemporisés 143
+"[LAT02] L ATORRES., MUKHOPADHYAY S., MURANOA., «Optimal-Reachability and"
+"ControlforAcyclicWeightedTimedAutomata», Proc.2ndIFIPInternationalConference"
+"on Theoretical Computer Science (TCS’02) , vol. 223 de IFIP Conference Proceedings ,"
+"p.485-497,Kluwer,2002."
+"[LIU98] L IUX., SMOLKAS.A., «Simple Linear-Time Algorithm for Minimal Fixed"
+"Points»,Proc.26thInternationalConferenceonAutomata,LanguagesandPr ogramming"
+"(ICALP’98),vol. 1443de Lecture Notes in Computer Science ,p.53-66,Aalborg,Dane-"
+"mark,Springer,1998."
+"[MAL95] M ALERO., PNUELIA., SIFAKISJ.,«OntheSynthesisof DiscreteControllers"
+"forTimedSystems», Proc.12th Annual Symposium onTheoretical Aspects of Computer"
+"Science(STACS’95) ,vol. 900de LectureNotesinComputerScience ,p.229-242,Springer,"
+1995.
+"[MAR75] M ARTIND.A., «Borel determinacy», Annals of Mathematics , vol. 102, n° 2,"
+"p.363-371,1975."
+"[MCN93] M CNAUGHTONR.,«InﬁniteGamesPlayedonFiniteGraphs», Annals of Pure"
+"andAppliedLogic ,vol.65,n°2,p.149-184,ElsevierScience,1993."
+"[RAM87] R AMADGEP.J.,WONHAMW.M.,«Supervisory Control of aClassof Discrete"
+"EventProcesses», SIAMJournalofControlandOptimization ,vol.25,n°1,p.1202-1218,"
+1987.
+"[RAM89] R AMADGEP.J.,WONHAMW.M.,«TheControlofDiscreteEventSystems», Pro-"
+"ceedingsoftheIEEE ,vol.77,n°1,p.81-98,1989."
+"[RIE03] R IEDWEGS., PINCHINATS., «Quantiﬁed Mu-Calculus for Control Synthesis»,"
+Proc. 28th International Symposium on Mathematical Foundations of Computer Science
+"(MFCS’03),vol. 2747de LectureNotesinComputerScience ,p.642-651,Springer,2003."
+"[SCH99] S CHNOEBELEN P.,BÉRARDB.,BIDOITM.,LAROUSSINIE F.,PETITA.,Vériﬁ-"
+"cationdelogiciels:Techniquesetoutilsdemodel-checking , Vuibert,Paris,1999."
+"[THO95] T HOMASW.,«OntheSynthesisofStrategiesinInﬁniteGames», Proc.12thAn-"
+"nual Symposium on Theoretical Aspects of Computer Science (STACS’95) , vol. 900 de"
+"LectureNotesinComputerScience ,p.1-13,Springer,1995."
+"[YOV97] Y OVINES.,«KRONOS:AVeriﬁcationToolforReal-TimeSystems», Journal of"
+"SoftwareToolsforTechnologyTransfer ,vol.1,n°1-2,p.123-133,Springer,1997."

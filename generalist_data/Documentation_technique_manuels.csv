@@ -1,0 +1,1468 @@
+Titre,Contenu
+Les micro-contrÃ´leurs dans les systÃ¨mes embarquÃ©s,"Les micro-contrÃ´leurs dans les systÃ¨mes embarquÃ©s
+Table des matières
+Ce cours traite les thÃ¨mes suivants :
+systÃ¨mes embarquÃ©s ;
+mÃ©thodes de design ;
+sÃ©curitÃ© et fiabilitÃ© des systÃ¨mes Ã  microprocesseur ;
+connexions aux composants pÃ©riphÃ©riques ;
+communication avec les autres systÃ¨mes Ã  microprocesseur.
+N'hÃ©sitez pas Ã  commenter cet article !
+Article lu
+fois.
+L'auteur
+Elham Firouzi
+L'article
+Publié le
+1
+er
+Â janvierÂ 2011Â
+- Mis à jour le
+30Â marsÂ 2014Â
+,
+et
+Liens sociaux
+I. Introduction
+I-A. Structure du cours
+Le premier chapitre de ce cours traite les domaines d'application des microcontrÃ´leurs embarquÃ©s, leurs caractÃ©ristiques typiques et les outils de dÃ©veloppement des logiciels. Le second chapitre fournit d'importantes notions de base, qui sont essentielles Ã  la comprÃ©hension de ce module. Le chapitre trois traite un des aspects les plus importants du dÃ©veloppement de logiciels embarquÃ©s : la conception (
+design
+). Le quatriÃ¨me chapitre se concentre sur la sÃ©curitÃ© et la fiabilitÃ© des systÃ¨mes Ã  microprocesseur. En effet, les erreurs logicielles dans les systÃ¨mes embarquÃ©s peuvent gÃ©nÃ©rer de sÃ©rieux problÃ¨mes. Le cinquiÃ¨me chapitre traite de la communication dans son ensemble. Il montre, d'une part, comment les composants pÃ©riphÃ©riques peuvent Ãªtre connectÃ©s Ã  un microcontrÃ´leur embarquÃ© et, d'autre part, comment les systÃ¨mes peuvent communiquer les uns avec les autres.
+Les deux thÃ¨mes suivants sont explicitement exclus de ce cours bien que faisant partie du domaine de l'embarquÃ© : RTOS (
+Real-Time Operating
+System ou SystÃ¨me d'exploitation temps rÃ©el) et le serveur Web intÃ©grÃ© (connexion Internet de l'Ã©quipement et la machinerie).
+I-B. Domaine d'application des microcontrÃ´leurs
+Le choix du microcontrÃ´leur 8 bits, 16 bits ou 32 bits dÃ©pend de la complexitÃ© de l'application embarquÃ©e. La notion de systÃ¨mes embarquÃ©s est traitÃ©e plus en dÃ©tail au
+. Ces derniers sont essentiellement constituÃ©s d'une partie matÃ©rielle (
+hardware
+) et d'une partie logicielle (
+software
+). Leurs domaines d'applications sont les suivants :
+SystÃ¨me de communication :
+Les microcontrÃ´leurs 8 bits sont souvent utilisÃ©s pour les tÃ©lÃ©phones portables simples et la tÃ©lÃ©phonie fixe alors que les microcontrÃ´leurs 32 bits se retrouvent plutÃ´t dans les smartphones et les PDA.
+Les processeurs 8 bits ou 32 bits sont utilisÃ©s pour le raccordement des capteurs et actionneurs aux systÃ¨mes de bus en fonction de la complexitÃ© du bus et de l'application.
+Technique mÃ©dicinale :
+Les instruments de mesure (par exemple mesure de la glycÃ©mie), les organes artificiels, etc. Selon la complexitÃ© de l'application, microcontrÃ´leurs 8 bits, 16 bits ou 32 bits
+.
+Les technologies de la sÃ©curitÃ© :
+Les systÃ¨mes pour gÃ©rer la sÃ©curitÃ© dans les moyens de transport (par exemple : les passages Ã  niveau), dans les bÃ¢timents (par exemple : alarme incendie, effractions), etc.
+Les microcontrÃ´leurs 8 bits sont utilisÃ©s en particulier dans les appareils pÃ©riphÃ©riques alors que les microcontrÃ´leurs 32 bits assument les tÃ¢ches de contrÃ´le et de gestion.
+MÃ©catronique et automation industrielle :
+Installation pour la production de biens, pour la logistique, etc. Les microcontrÃ´leurs 8 bits sont utilisÃ©s en particulier pour les capteurs et actionneurs alors que les microcontrÃ´leurs 32 bits assument les tÃ¢ches de contrÃ´le et de gestion.
+Moyens de transport :
+Autos, avions, vÃ©lo Ã©lectrique, etc.
+Ãlectronique de consommation :
+Appareil Hifi, TV, vidÃ©o, beamer, tÃ©lÃ©commande, etc.
+Application basse consommation :
+Les appareils Ã  piles, tels que ceux dÃ©veloppÃ©s par la HESB pour la station ornithologique suisse, qui permettent d'enregistrer des donnÃ©es spatiales et tÃ©lÃ©mÃ©triques. Le choix des microcontrÃ´leurs se limite principalement Ã  8 bits en raison de la faible consommation d'Ã©nergie et de la petite taille. Toutefois, ce dernier peut Ãªtre remplacÃ© par un microcontrÃ´leur Ã  16 voire 32 bits lorsque la puissance de calcul n'est pas suffisante.
+I-C. Les caractÃ©ristiques des microcontrÃ´leurs
+La tendance actuelle est de s'Ã©loigner de plus en plus des microcontrÃ´leurs 8 bits afin de s'approcher des microcontrÃ´leurs 32 bits. Les processeurs 8 bits sont utilisÃ©s dans les applications qui ont pour critÃ¨res principaux la consommation et le coÃ»t. Les processeurs 16 bits sont relativement peu rÃ©pandus. Il existe nÃ©anmoins quelques exemples comme le MSP430 de TI. Le prix des processeurs 32 bits actuels, comme le Cortex-M3, est devenu tellement intÃ©ressant que ces derniers remplacent de plus en plus les processeurs 8 bits.
+Les processeurs 32 bits les moins chers coÃ»tent environ un euro.
+Les microcontrÃ´leurs 8 bits prÃ©sentent les avantages suivants faces aux microcontrÃ´leurs 32 bits :
+faible consommation ;
+bas coÃ»t ;
+dimension rÃ©duite.
+Les microcontrÃ´leurs 32 bits prÃ©sentent les avantages suivants faces aux microcontrÃ´leurs 8 bits :
+puissance et vitesse de calcul supÃ©rieures ;
+convient pour l'utilisation d'un systÃ¨me d'exploitation. En effet les performances de la CPU et la taille de la mÃ©moire sont suffisantes ;
+espace d'adressage plus grand.
+Taille de mÃ©moire requise pour les microcontrÃ´leurs dans les systÃ¨mes embarquÃ©s :
+la taille de la mÃ©moire programme s'Ã©tend typiquement de quelques kilooctets Ã  quelques centaines de kilooctets. Cette rÃ¨gle est valable pour les microcontrÃ´leurs 8 et 32 bits ;
+la taille de la mÃ©moire pour les donnÃ©es s'Ã©tend de quelques centaines d'octets Ã  quelques centaines de kilooctets ;
+Le portage d'un systÃ¨me d'exploitation embarquÃ© comme celui de Linux ou de Windows CE augmente considÃ©rablement l'exigence concernant la mÃ©moire programme ou de donnÃ©es Ã  quelques mÃ©gaoctets.
+I-D. Les langages de programmation
+I-D-1. C
+Le langage de programmation C est la rÃ©fÃ©rence pour programmer les microcontrÃ´leurs avec des exigences temps rÃ©el (voir
+). En effet, ce dernier prÃ©sente l'avantage d'Ãªtre un langage de programmation orientÃ© matÃ©riel. Le code machine gÃ©nÃ©rÃ© par le compilateur est presque optimal en ce qui concerne d'une part la taille de la mÃ©moire requise et d'autre part la vitesse d'exÃ©cution du programme. Par consÃ©quent, environ 65 % des applications embarquÃ©es sont programmÃ©es en C. Toutefois, le langage C prÃ©sente Ã©galement des inconvÃ©nients qui seront traitÃ©s dans la section
+de ce cours.
+I-D-2. C++
+C ++ nÃ©cessite plus de ressources (utilisation de la mÃ©moire, la puissance du processeur) que C (environ 20 %).
+Cela dÃ©pend essentiellement de comment le programme a Ã©tÃ© dÃ©fini en C++. Est-ce que ce dernier utilise le polymorphisme ou non ? Le Â« C++ embarquÃ© Â» est une version plus dÃ©pouillÃ©e du C++.
+C++ prÃ©sente les avantages de la programmation orientÃ©e objet, ce qui est particuliÃ¨rement intÃ©ressant pour les applications plus complexes. Environ 25 % des applications embarquÃ©es sont programmÃ©es en C++.
+I-D-3. Assembleur
+Les applications programmÃ©es uniquement en assembleur sont relativement rares. Par contre, l'assembleur est souvent combinÃ© avec du C ou du C++. Ce langage est principalement utilisÃ© pour optimiser individuellement les fonctions. Par exemple pour les drivers (accÃ¨s direct au
+hardware
+) ou les algorithmes qui nÃ©cessitent des calculs intensifs. Moins de 10 % de toutes les applications embarquÃ©es sont programmÃ©es (du moins partiellement) en assembleur.
+I-D-4. Java
+Java est aujourd'hui rarement utilisÃ© pour programmer les applications embarquÃ©es (moins de 3 %). Java n'est pas adÃ©quat pour les applications temps rÃ©els. En effet, ce langage est interprÃ©tÃ© (lent) et le comportement temporel du Â« rÃ©cupÃ©rateur de place Â» (anglais :
+Garbage Collector
+) n'est pas reproductible.
+I-E. Environnements et outils de dÃ©veloppement
+Les outils CASE, les Ã©diteurs, les compilateurs/compilateurs croisÃ©s (anglais :
+cross compiler
+) et les relieurs (anglais :
+linker
+) sont utilisÃ©s pour dÃ©velopper les logiciels. Cette section s'intÃ©resse en particulier aux diffÃ©rentes possibilitÃ©s de dÃ©bogage qui existent dans le domaine embarquÃ©. Les variantes suivantes sont mises Ã  disposition en fonction des environnements de dÃ©veloppement et des types de microcontrÃ´leurs :
+Simulator.
+ROM-Monitor.
+Background Debug Mode.
+Ãmulateur.
+Programmation et test direct sur ROM / Flash.
+I-E-1. Simulateur
+Le simulateur permet de tester le code sans que la partie matÃ©rielle ne soit disponible. Le comportement du microcontrÃ´leur et des composants de stockage RAM / ROM est simulÃ© sur le PC. La plupart des simulateurs permettent Ã©galement de commander le comportement des
+pins
+d'entrÃ©e et de sortie de faÃ§on limitÃ©e.
+Les simulateurs sont souvent utilisÃ©s dans la phase de dÃ©marrage du dÃ©veloppement, jusqu'Ã  ce que les prototypes de la partie matÃ©rielle soient disponibles. Ces derniers permettent Ã©galement de tester les performances des algorithmes.
+I-E-2. Moniteur ROM
+Le moniteur ROM (anglais :
+ROM-Monitor
+) est la mÃ©thode plus simple pour tester une application embarquÃ©e.
+Un programme moniteur (anglais :
+Rom-Monitor
+) est exÃ©cutÃ© pour cela sur la partie matÃ©rielle. Ce dernier communique avec l'environnement de dÃ©veloppement et assure les tÃ¢ches suivantes :
+tÃ©lÃ©chargement du code Ã  partir de l'environnement de dÃ©veloppement dans la RAM ;
+insertion des points d'arrÃªts (anglais :
+break points
+) ;
+exÃ©cution du code pas Ã  pas ;
+affichage du contenu des variables.
+Le dÃ©savantage du moniteur ROM rÃ©side dans le temps de calcul de la CPU et les ressources matÃ©rielles supplÃ©mentaires (mÃ©moire, interface sÃ©rielle), qui sont nÃ©cessaires Ã  l'exÃ©cution de ce dernier. Toutefois, le moniteur ROM est souvent utilisÃ© Ã  cause de son prix.
+I-E-3. Interface JTAG
+Certains microcontrÃ´leurs possÃ¨dent une interface JTAG intÃ©grÃ©e pour dÃ©boguer (ARM par exemple / XScale).
+La communication entre le PC et la platine de test est assurÃ©e par un
+wiggler
+. Ce dernier est connectÃ© d'une part au port USB du PC (ou une autre interface comme RS232) et d'autre part Ã  l'interface JTAG du microcontrÃ´leur.
+Le dÃ©bogage avec l'interface JTAG ne nÃ©cessite pas de puissance de calcul supplÃ©mentaire. Ce qui constitue incontestablement un avantage. NÃ©anmoins, les dÃ©savantages de cette interface sont d'une part l'augmentation du prix du microcontrÃ´leur (plus de silicium) et d'autre part la nÃ©cessitÃ© de travailler avec un
+wiggler
+. En ce qui concerne les fonctionnalitÃ©s mises Ã  disposition, l'interface JTAG se comporte comme le moniteur ROM.
+I-E-4. Ãmulateur
+Le microcontrÃ´leur est remplacÃ© par un Ã©mulateur, qui permet de simuler ce dernier. L'Ã©mulateur est souvent rÃ©alisÃ© avec des versions spÃ©ciales des microcontrÃ´leurs, appelÃ©es puces
+bond out
+. Les Ã©mulateurs sont chers mais ils permettent de rÃ©aliser un dÃ©bogage temps rÃ©el sans restriction.
+I-E-5. Programmation et test direct de ROM / Flash
+Les ingÃ©nieurs en gÃ©nie logiciel qui n'ont pas de ressources pour l'installation d'un environnement de test sont Ã  plaindre. Ces derniers n'ont pas d'autre choix que de tÃ©lÃ©charger et de tester le code Ã  partir de la Flash. Les tests sont alors effectuÃ©s avec la fonction
+printf()
+afin d'afficher le comportement de l'application sur un terminal.
+Les tests effectuÃ©s de cette maniÃ¨re nÃ©cessitent en gÃ©nÃ©ral beaucoup plus de temps. Par consÃ©quent, mÃªme dans de petits projets, un environnement de dÃ©veloppement avec un moniteur ROM ou une interface sont rapidement rentabilisÃ©s.
+II. GÃ©nÃ©ralitÃ©s
+Ce chapitre introduit des notions de base pour les systÃ¨mes embarquÃ©s.
+II-A. Les systÃ¨mes embarquÃ©s
+La littÃ©rature fournit pour la notion de Â« systÃ¨me embarquÃ© Â» les dÃ©finitions suivantes :
+Laplante :
+Â« A software system that is completely encapsulated. Â»
+Douglass :
+Â« â¦ the computational system exists inside a larger system to achieve its overall responsibility Â»
+Les systÃ¨mes embarquÃ©s (en anglais :
+embedded systems
+) sont composÃ©s d'une partie matÃ©rielle (
+hardware
+) et d'une partie logicielle (
+software
+). Ils sont intÃ©grÃ©s ou embarquÃ©s dans un produit.
+Ces produits sont par exemple un robot, une auto, un tÃ©lÃ©phone portable, un agenda Ã©lectronique, une machine Ã  cafÃ©, etc. Le systÃ¨me embarquÃ© est en gÃ©nÃ©ral responsable du contrÃ´le, du traitement du signal et de la surveillance des diffÃ©rents composants du produit ou du produit dans son ensemble. La fonctionnalitÃ© d'un systÃ¨me embarquÃ© se limite Ã  l'exÃ©cution d'une ou quelques tÃ¢ches dÃ©diÃ©es.
+II-B. Les systÃ¨mes temps rÃ©el
+La littÃ©rature fournit pour la notion de Â« systÃ¨me temps rÃ©el Â» la dÃ©finition suivante :
+Laplante :
+Â« A real-time system is a system that must satisfy explicit (bounded) response-time constraints or risk severe consequences, including failures. A failed system is a system which cannot satisfy one or more of the requirements laid out in the formal system specification. Â»
+Un systÃ¨me temps rÃ©el doit toujours livrer des rÃ©ponses correctes dans des dÃ©lais prÃ©dÃ©finis. Le dÃ©passement de ces dÃ©lais se traduit par un dysfonctionnement du systÃ¨me. Par consÃ©quent, dans un systÃ¨me temps rÃ©el, non seulement le rÃ©sultat mais aussi l'instant auquel ce dernier est livrÃ© sont dÃ©terminants. Remarque : la dÃ©finition n'aborde pas le dÃ©lai en soi. Selon les types de spÃ©cification, ce dernier peut correspondre Ã  quelques microsecondes, millisecondes voire secondes. Il est seulement important que le rÃ©sultat soit fourni Ã  la limite de temps dÃ©finie !
+Contraintes temps rÃ©el mou/dur
+Dans les systÃ¨mes temps rÃ©el, on distingue souvent entre les contraintes temps rÃ©el mou et temps rÃ©el dur.
+On parle de contrainte temps rÃ©el mou (souple) lorsque le systÃ¨me respecte souvent la spÃ©cification temporelle mais pas toujours. Dans ce cas le comportement temporel n'est pas toujours prÃ©visible. Les consÃ©quences de la non-conformitÃ© sont ennuyeuses mais pas graves. Exemple : la diffusion d'un film sur un appareil portatif qui s'effectue de faÃ§on Â« saccadÃ©e Â».
+On parle de contrainte temps rÃ©el dur lorsque le systÃ¨me respecte toujours les spÃ©cifications temporelles. Le systÃ¨me prÃ©sente alors un comportement temporel dÃ©terministe. L'automation industrielle et les applications liÃ©es Ã  la sÃ©curitÃ© constituent les domaines typiques pour les systÃ¨mes temps rÃ©el dur (ex. airbag).
+RÃ©alisation des contraintes temps rÃ©el
+Les conditions suivantes doivent Ãªtre remplies afin de pouvoir respecter les temps de rÃ©ponse requis :
+Un design Ã©purÃ© et rÃ©flÃ©chi qui prend en compte les exigences temps rÃ©el.
+Des basses latences d'interruption. Cela nÃ©cessite que :
+Les interruptions ne doivent Ãªtre dÃ©sactivÃ©es que trÃ¨s briÃ¨vement.
+Les routines de service d'interruption doivent Ãªtre aussi courtes que possible.
+Un code compact et rapide. Cela affecte Ã©galement le choix du langage de programmation (C-Code, Ã©galement C++ en fonction de la CPU, Ã©ventuelles optimisations des points critiques en assembleur).
+Des tests approfondis qui tiennent compte de toutes les situations et conditions possibles. La capacitÃ© temps rÃ©el est trÃ¨s difficile Ã  dÃ©montrer !
+II-C. Le processus technique
+Ce terme apparaÃ®t principalement dans le cadre d'automation industrielle. Voici une brÃ¨ve synthÃ¨se :
+DÃ©finitions du Â« processus Â» selon DIN 6620 :
+Un processus est une transformation/transport de matiÃ¨re/Ã©nergie/information.
+L'Ã©tat du processus technique peut Ãªtre mesurÃ©, contrÃ´lÃ© et gÃ©rÃ© par des moyens techniques.
+La figure suivante montre l'interface entre un systÃ¨me embarquÃ© et un processus technique. Selon les applications, le systÃ¨me embarquÃ© peut Ãªtre Ã©quipÃ© d'une interface utilisateur ou d'une connexion Ã  d'autres systÃ¨mes :
+Figure 1 : Interface entre l'ordinateur temps rÃ©el et le processus technique.
+Le processus technique est la source et la destination des donnÃ©es techniques. Le systÃ¨me embarquÃ© lit l'Ã©tat du processus Ã  l'aide des capteurs et il influence cet Ã©tat Ã  l'aide des actionneurs, du point de vue du systÃ¨me embarquÃ©.
+Exemples de capteur :
+interrupteur mÃ©canique, inductif ou optique ;
+convertisseur A/D ;
+sonde de tempÃ©rature, sonde de pression.
+Exemples d'actionneur :
+soupape ;
+moteur ;
+Ã©cran, LED ;
+relais ;
+convertisseur D/A ;
+La figure suivante montre en dÃ©tail les transferts de donnÃ©es entre l'ordinateur temps rÃ©el et le processus technique.
+Figure 2 : Transfert de donnÃ©es entre un ordinateur temps rÃ©el et le processus technique.
+Le processus technique possÃ¨de des entrÃ©es et des sorties, qui peuvent Ãªtre soit de l'information, soit du matÃ©riel.
+Les contre-rÃ©actions ou les valeurs de dÃ©rangement influencent Ã©galement le processus technique. Des paramÃ¨tres caractÃ©ristiques peuvent Ãªtre transmis au processus technique.
+L'ordinateur temps rÃ©el analyse le processus technique en lisant les valeurs de mesure Ã  des instants prÃ©cis, qui sont dÃ©finis par les occurrences des Ã©vÃ©nements. Les algorithmes de contrÃ´le permettent alors de dÃ©finir des valeurs de contrÃ´le afin d'assurer le fonctionnement correct du processus technique.
+II-D. Les systÃ¨mes de communication industriels
+II-D-1. La structures des systÃ¨mes de production industriels
+Des systÃ¨mes industriels sont souvent organisÃ©s de maniÃ¨re hiÃ©rarchique. Dans la figure suivante, nous trouvons un exemple simple et trÃ¨s gÃ©nÃ©ral :
+Figure 3 : La hiÃ©rarchie dans un systÃ¨me industriel
+Un systÃ¨me industriel consiste en plusieurs calculateurs et/ou systÃ¨mes imbriquÃ©s sur diffÃ©rents niveaux hiÃ©rarchiques. De plus, il y a un ou plusieurs systÃ¨mes de communication pour Ã©changer les donnÃ©es.
+Le systÃ¨me reprÃ©sentÃ© Ã  la Figure 3 a Ã©tÃ© partagÃ© en trois niveaux, qui possÃ¨dent les tÃ¢ches suivantes :
+Niveau de commande :
+Ce niveau est responsable de l'analyse des donnÃ©es systÃ¨mes (coordination et planification), qui est essentiellement rÃ©alisÃ©e avec des microprocesseurs 32 et 64 bits.
+Niveau de contrÃ´le :
+Les diffÃ©rents processus techniques sont contrÃ´lÃ©s ou gÃ©rÃ©s (systÃ¨me asservi) Ã  ce niveau. On se sert de microcontrÃ´leurs 32 bits ou de microprocesseurs.
+Niveau processus :
+Sur ce niveau, on trouve les capteurs qui lisent les donnÃ©es processus, ainsi que les acteurs qui influencent directement le processus. Des microcontrÃ´leurs 8 bits sont utilisÃ©s principalement Ã  ce niveau. Toutefois, des microcontrÃ´leurs 32 bits sont de plus en plus utilisÃ©s Ã  ce niveau. En effet les prix de ce type de processeur ont fortement diminuÃ© alors que les exigences pour la communication entre les diffÃ©rents nÅuds ont augmentÃ©.
+Suivant la complexitÃ© du systÃ¨me, on a Ã©galement plus de trois niveaux. Souvent ce sont :
+niveau de contrÃ´le d'entreprise ;
+niveau de finition ;
+niveau d'installation ;
+niveau cellulaire ;
+niveau de champ ;
+niveau processus.
+II-D-2. Les critÃ¨res pour la communication
+Les critÃ¨res pour la transmission de lâinformation dans un systÃ¨me de production industriel, comme celui dÃ©crit au
+peuvent varier considÃ©rablement. En effet ces derniers dÃ©pendent d'une part de l'application et d'autre part du niveau hiÃ©rarchique. Les principaux critÃ¨res sont les suivants :
+capacitÃ© temps rÃ©el pour les niveaux processus et contrÃ´le ;
+taux de transfert ;
+standards industriels / degrÃ© d'utilisation ;
+fonctionnalitÃ© ;
+tolÃ©rance erreurs / fiabilitÃ© / immunitÃ© contre des perturbations ;
+Ã©conomie (optimisation des coÃ»ts).
+Les deux critÃ¨res les plus importants sont la capacitÃ© temps rÃ©el et le taux de transfert. Ces derniers sont illustrÃ©s graphiquement Ã  l'aide de pyramide de communication :
+Figure 4 : La pyramide de communication.
+Le
+aborde certains systÃ¨mes de communication plus en dÃ©tail.
+III. MÃ©thodes de conception
+La fonctionnalitÃ© d'un systÃ¨me peut toujours Ãªtre dÃ©composÃ©e en sous-fonctions (modularisation). Il existe plusieurs stratÃ©gies pour exÃ©cuter ces sous-fonctions (ex. : dÃ©roulement cyclique, RTOS, etc.). Les diffÃ©rentes approches sont discutÃ©es dans les sections suivantes. Il est crucial d'analyser le dÃ©roulement du programme durant la phase de conception afin de pouvoir dÃ©finir une structure adÃ©quate pour ce dernier.
+III-A. DÃ©roulement cyclique
+Toutes les fonctions du programme sont exÃ©cutÃ©es l'une aprÃ¨s l'autre dans l'approche cyclique. Lorsque la derniÃ¨re fonction du cycle a Ã©tÃ© exÃ©cutÃ©e, le programme continue avec l'exÃ©cution de la premiÃ¨re fonction de ce dernier. L'intervalle de temps nÃ©cessaire pour exÃ©cuter un cycle entier dÃ©pend essentiellement du temps requis pour exÃ©cuter ses diffÃ©rentes fonctions.
+Figure 5 : ReprÃ©sentation schÃ©matique du dÃ©roulement cyclique
+La programmation de l'approche cyclique est relativement simple. Les fonctions sont appelÃ©es l'une aprÃ¨s l'autre dans la boucle principale de la fonction
+main()
+. Les Ã©vÃ©nements (par exemple, l'actionnement d'un commutateur ou la rÃ©ception de donnÃ©es via l'interface sÃ©rie) sont scrutÃ©s pÃ©riodiquement dans cette boucle (anglais :
+polling
+). NÃ©anmoins, les spÃ©cifications pour les applications embarquÃ©es exigent souvent que les Ã©vÃ©nements soient traitÃ©s dans un dÃ©lai trÃ¨s court, ce qui n'est pas forcÃ©ment possible avec l'approche cyclique dÃ©crite ici.
+III-B. DÃ©roulement quasi parallÃ¨le et Ã©vÃ©nementiel
+Les Ã©vÃ©nements peuvent interrompre le processus cyclique en dÃ©clenchant une interruption. La routine de service d'interruption (abrÃ©viation en anglais : ISR) est ainsi appelÃ©e en temps rÃ©el pour traiter l'Ã©vÃ©nement. Le dÃ©roulement du programme devient ainsi quasi parallÃ¨le et Ã©vÃ©nementiel.
+Figure 6 : DÃ©roulement quasi parallÃ¨le avec des Ã©vÃ©nements.
+Cette approche est souvent utilisÃ©e dans les systÃ¨mes embarquÃ©s. En effet, les interruptions sont relativement faciles Ã  programmer. Les critÃ¨res temps rÃ©el du systÃ¨me sont ainsi bien remplis. NÃ©anmoins, il subsiste le problÃ¨me de la communication entre l'ISR et les fonctions de la boucle principale. En effet, cette communication nÃ©cessite le recours aux variables globales. Il est important d'exclure les accÃ¨s mutuels Ã  ce genre de variable de sorte qu'une partie du programme ne puisse y accÃ©der Ã  un instant donnÃ©. Cela signifie qu'une fonction de la boucle principale doit verrouiller l'interruption (dont la routine de service pourrait Ã©galement accÃ©der Ã  cette variable) durant l'accÃ¨s Ã  cette variable. Pour des applications plus complexes, qui nÃ©cessitent plusieurs interruptions et variables globales, cela peut conduire Ã  des interdÃ©pendances dissimulÃ©es et entraÃ®ner des crashs du systÃ¨me. Des exemples pour ce genre de problÃ¨me, qui peuvent engendrer des conditions dites de course, sont fournis Ã  la section
+.
+III-C. DÃ©roulement quasi parallÃ¨le avec RTOS
+Les applications embarquÃ©es plus complexes sont souvent rÃ©alisÃ©es avec des systÃ¨mes d'exploitation temps rÃ©el (abrÃ©viation anglaise : RTOS). Bien que ces systÃ¨mes nÃ©cessitent plus de ressources que l'approche quasi parallÃ¨le et Ã©vÃ©nementielle, ils offrent nÃ©anmoins des outils supplÃ©mentaires pour rÃ©soudre les problÃ¨mes dÃ©crits dans la section prÃ©cÃ©dente. Les RTOS ne sont pas traitÃ©s dans ce cours.
+III-D. State-Event
+III-D-1. Introduction
+Le comportement de la plupart des systÃ¨mes techniques peut Ãªtre dÃ©crit avec des machines d'Ã©tat (anglais :
+State Machine
+). Ce chapitre traite la conception d'une machine d'Ã©tat Ã  l'aide de diagramme d'Ã©tat et sa programmation en C. Les exemples illustratifs se basent sur une connexion tÃ©lÃ©phonique simplifiÃ©e
+.
+Les systÃ¨mes techniques possÃ¨dent un nombre fini d'Ã©tats, dans lequel ils peuvent se trouver Ã  un instant donnÃ©. Ils rÃ©agissent Ã  des Ã©vÃ©nements qui peuvent se produire durant leur fonctionnement. En fonction de l'Ã©tat actuel du systÃ¨me, ces Ã©vÃ©nements peuvent dÃ©clencher des activitÃ©s et Ã©ventuellement gÃ©nÃ©rer un changement d'Ã©tat de ce dernier
+.
+DÃ©finitions :
+Un
+Ã©tat
+(
+s
+tate
+) est une disposition, dans laquelle le systÃ¨me entre durant une pÃ©riode limitÃ©e. DiffÃ©rentes
+activitÃ©s
+(
+a
+ctivity
+) peuvent Ãªtre exÃ©cutÃ©es au sein d'un Ã©tat. Exemples d'Ã©tat : Â« Sonnerie Â», Â« Conversation Â», etc.
+Un
+Ã©vÃ©nement
+(
+e
+vent
+) est une influence extÃ©rieure sur le systÃ¨me ou un changement dans le systÃ¨me. Un Ã©vÃ©nement est de courte durÃ©e (quantitÃ© de temps nÃ©gligeable) et a toujours un impact sur le systÃ¨me. Exemples d'Ã©vÃ©nements : Â« combinÃ© est dÃ©crochÃ© Â», Â« numÃ©ro est sÃ©lectionnÃ© Â», etc
+.
+Une
+transition
+dÃ©crit le passage d'un Ã©tat Ã  un autre. Une transition est toujours dÃ©clenchÃ©e par un Ã©vÃ©nement. Exemple de transition : Le dÃ©crochement du combinÃ© (Ã©vÃ©nement) change l'Ã©tat du systÃ¨me de
+Â«
+TÃ©lÃ©phone libre Â» Ã
+Â«
+Saisir le numÃ©ro Â».
+Une
+action
+est exÃ©cutÃ©e au cours d'une transition. La transition Â« TÃ©lÃ©phone libre Â» Ã  Â« Saisir le numÃ©ro Â» augmente la tonalitÃ©.
+III-D-2. Conception
+III-D-2-a. Tableau d'Ã©tats
+Les tableaux d'Ã©tats constituent un moyen simple mais pas trÃ¨s comprÃ©hensifs de dÃ©crire les Ã©tats d'un systÃ¨me. Tous les Ã©tats, Ã©vÃ©nements, actions et les transitions sont dÃ©finis sous forme texte dans un tableau. Les tableaux d'Ã©tats permettent de dÃ©crire entiÃ¨rement le comportement d'un systÃ¨me.
+Tableau 1 : Tableau d'Ã©tats pour le dÃ©roulement d'une communication au tÃ©lÃ©phone.
+Ãtat actuel
+ÃvÃ©nement
+Action
+Nouvel Ã©tat
+TÃ©lÃ©phone libre
+CombinÃ© est dÃ©crochÃ©
+Activer la tonalitÃ© bip
+Saisir le numÃ©ro
+Saisir le numÃ©ro
+CombinÃ© est raccrochÃ©
+Pause
+TÃ©lÃ©phone libre
+Chiffre est sÃ©lectionnÃ©
+Transmettre le chiffre
+Saisir le numÃ©ro
+NumÃ©ro libre est sÃ©lectionnÃ©
+Activer la tonalitÃ© d'appel
+Sonnerie
+NumÃ©ro occupÃ© est sÃ©lectionnÃ©
+Activer la tonalitÃ© occupÃ©e
+OccupÃ©
+Sonnerie
+CombinÃ© est dÃ©crochÃ©
+Pause
+TÃ©lÃ©phone libre
+Correspondant s'annonce
+-
+Conversation
+OccupÃ©
+CombinÃ© est raccrochÃ©
+Pause
+TÃ©lÃ©phone libre
+Conversation
+CombinÃ© est raccrochÃ©
+Pause
+TÃ©lÃ©phone libre
+III-D-2-b. Diagramme d'Ã©tat
+Les diagrammes d'Ã©tat permettent de reprÃ©senter les diffÃ©rents Ã©tats et transitions du systÃ¨me sous forme graphique. Par consÃ©quent, ces derniers sont beaucoup plus comprÃ©hensifs que les tableaux d'Ã©tats. Il existe diffÃ©rentes approches pour la reprÃ©sentation graphique. Ce cours se base sur le standard UML (V2.0), avec lequel deux Ã©tats et une transition seront reprÃ©sentÃ©s de la maniÃ¨re suivante :
+Figure 7 : Diagramme d'Ã©tat simplifiÃ© selon le standard UML (V2.0).
+Les Ã©tats sont reprÃ©sentÃ©s par des rectangles arrondis qui contiennent leur nom. Les activitÃ©s, qui sont exÃ©cutÃ©es dans un Ã©tat donnÃ©, sont indiquÃ©es en dessous du nom.
+Les transitions sont indiquÃ©es par des flÃ¨ches entre les Ã©tats. Une transition est exÃ©cutÃ©e lorsqu'un Ã©vÃ©nement se produit et que la condition requise se rÃ©alise. Une action peut Ãªtre Ã©galement dÃ©finie pour les transitions.
+La dÃ©finition des actions, des conditions et des activitÃ©s est en option.
+Notre exemple d'appel tÃ©lÃ©phonique peut Ãªtre reprÃ©sentÃ© de la maniÃ¨re suivante avec un diagramme d'Ã©tat :
+Figure 8 : Diagramme d'Ã©tat pour le dÃ©roulement d'une communication au tÃ©lÃ©phone.
+Les diagrammes d'Ã©tat peuvent Ã©galement Ãªtre imbriquÃ©s l'un dans l'autre. Cela est particuliÃ¨rement utile quand, comme ci-dessus, les mÃªmes Ã©vÃ©nements (CombinÃ© est raccrochÃ©) permettent d'accÃ©der Ã  partir de plusieurs Ã©tats Ã  un seul Ã©tat (TÃ©lÃ©phone libre). La reprÃ©sentation peut Ãªtre ainsi simplifiÃ©e.
+Figure 9 : Diagramme d'Ã©tat emboÃ®tÃ© pour le dÃ©roulement d'une communication au tÃ©lÃ©phone.
+III-D-3. ImplÃ©mentation de diagrammes d'Ã©tat
+Il existe plusieurs approches pour implÃ©menter les diagrammes d'Ã©tat. Deux d'entre elles sont briÃ¨vement abordÃ©s dans ce chapitre. Si vous dÃ©finissez un projet en C++, vous avez la possibilitÃ© d'utiliser les modÃ¨les de conception d'Ã©tat (anglais :
+State Design Pattern
+). Ces derniers ne sont pas abordÃ©s dans ce cours.
+III-D-3-a. Instructions switch emboÃ®tÃ©es
+Une bonne approche et couramment utilisÃ©e pour programmer les machines d'Ã©tat est l'imbrication de deux structures
+switch
+. La structure externe permet de gÃ©rer les Ã©tats possibles alors que la structure interne est responsable du traitement des diffÃ©rents Ã©vÃ©nements. Le code C se prÃ©sente ainsi de la maniÃ¨re suivante :
+Sélectionnez
+switch
+(
+state)
+{
+case
+STATE_1:
+switch
+(
+event)
+{
+case
+EVENT_1:
+action_1
+(
+);
+                state
+=
+STATE_V;
+break
+;
+case
+EVENT_2:
+action_2
+(
+);
+                state
+=
+STATE_W;
+break
+;
+            â¦
+}
+break
+;
+case
+STATE_2:
+switch
+(
+event)
+{
+case
+EVENT_3:
+action_3
+(
+);
+                    state
+=
+STATE_X;
+break
+;
+case
+EVENT_4:
+action_4
+(
+);
+                    state
+=
+STATE_Y;
+break
+;
+                â¦
+}
+break
+;
+            â¦
+}
+III-D-3-b. Les tableaux
+Une maniÃ¨re Ã©lÃ©gante consiste Ã  stocker toutes les actions et les Ã©tats suivants dans un tableau Ã  deux dimensions. Le tableau a la structure suivante :
+E1
+E2
+â¦
+En
+E1 â¦ En : ÃvÃ©nement
+A1/Sv
+â¦
+â¦
+â¦
+S1
+S1 â¦ Sn : Ãtat
+â¦
+â¦
+â¦
+â¦
+S2
+A1 â¦ An : Action
+â¦
+â¦
+â¦
+â¦
+â¦
+Sv : Ãtat suivant
+â¦
+â¦
+â¦
+â¦
+Sn
+Ce tableau contient pour chaque combinaison possible d'Ã©vÃ©nements et d'Ã©tats une structure. Cette structure quant Ã  elle contient une information concernant l'action Ã  exÃ©cuter et l'Ã©tat suivant. Le code C se prÃ©sente en gÃ©nÃ©ral comme suit :
+Sélectionnez
+// typedef pour State et Event
+typedef
+enum
+{
+S1, S2, S3
+}
+StateType;
+typedef
+enum
+{
+E1, E2, E3, E4, E5, E6, E7, E8, E9
+}
+EventType;
+/* DÃ©claration d'un Ã©lÃ©ment du tableau d'Ã©tats,
+qui contient l'action Ã  exÃ©cuter et l'Ã©tat suivant */
+typedef
+struct
+tab
+{
+int
+(*
+action)
+(
+void
+*
+);
+    StateType nextState;
+}
+TabElement;
+// DÃ©claration de toutes les actions
+int
+Action1
+(
+void
+*
+para);
+int
+Action2
+(
+void
+*
+para);
+int
+Action3
+(
+void
+*
+para);
+â¦
+// La dÃ©finition du tableau d'Ã©tats
+TabElement stateTable[
+3
+][
+3
+]
+=
+{
+// E1 E2 E3
+{
+{
+Action1,S2
+}
+,
+{
+Action2,S2
+}
+,
+{
+Action3,S3
+}
+}
+,
+// S1
+{
+{
+Action4,S1
+}
+,
+{
+Action5,S3
+}
+,
+{
+Action6,S3
+}
+}
+,
+// S2
+{
+{
+Action7,S1
+}
+,
+{
+Action8,S2
+}
+,
+{
+Action9,S3
+}
+}
+,
+// S3
+}
+;
+// La dÃ©finition des actions
+int
+Action1
+(
+void
+*
+para)
+{
+...
+return
+(
+0
+);
+}
+int
+Action2
+(
+void
+*
+para)
+{
+...
+return
+(
+0
+);
+}
+int
+Action3
+(
+void
+*
+para)
+{
+...
+return
+(
+0
+);
+}
+...
+void
+main
+(
+void
+)
+{
+int
+para
+=
+0
+;
+// ÃvÃ©nement et Ã©tat de dÃ©part
+EventType event
+=
+E1;
+    StateType state
+=
+S1;
+while
+(
+1
+)
+{
+// Code Ã  exÃ©cuter Ã  chaque Ã©vÃ©nement
+(*(
+stateTable[state][event]).action)
+(&
+para);
+// ExÃ©cuter l'action
+state
+=
+(
+stateTable[state][event]).nextState;
+/* Lire le prochain Ã©tat */
+}
+}
+IV. SÃ©curitÃ© des systÃ¨mes
+IV-A. Introduction
+Les exigences de qualitÃ© pour les systÃ¨mes embarquÃ©s sont trÃ¨s Ã©levÃ©es. Ces exigences concernent le Â« cycle de vie Â» complet du produit : depuis la planification en passant par le dÃ©veloppement jusqu'Ã  la formation des clients. Voici quelques commentaires concernant la partie matÃ©rielle (
+hardware
+) et la partie logicielle (
+software
+).
+IV-A-1. Hardware
+La qualitÃ© de la partie matÃ©rielle (
+hardware
+) peut Ãªtre dÃ©terminÃ©e statistiquement. Les probabilitÃ©s de dÃ©faillance (MTTF
+Mean Time To Fail
+, ou MTBF,
+Mean Time Between Failure
+) des composants sont en gÃ©nÃ©ral connues. Cela permet de dÃ©finir la probabilitÃ© de dÃ©faillance du systÃ¨me en entier ou le temps nÃ©cessaire pour que celui-ci atteigne un Ã©tat jugÃ© comme Ã©tant dangereux.
+La qualitÃ© de la partie matÃ©rielle peut Ãªtre augmentÃ©e grÃ¢ce Ã  la redondance. La notion de Â«
+fail-safe mechanism
+Â» est Ã©galement utilisÃ©e dans ce genre de systÃ¨me. La redondance vise principalement Ã  rÃ©aliser des systÃ¨mes (
+hardware
+et
+software
+) sÃ»rs et fiables. Ces notions sont souvent utilisÃ©es mais elles n'ont pas les mÃªmes significations. Les systÃ¨mes sÃ»rs sont destinÃ©s Ã  protÃ©ger les Hommes. Quant aux systÃ¨mes fiables, ils doivent uniquement rÃ©duire leur probabilitÃ© de dÃ©faillance afin de rÃ©duire les coÃ»ts. Ce qui ne signifie pas nÃ©cessairement plus de sÃ©curitÃ©. Les options suivantes peuvent Ãªtre envisagÃ©es en fonction des champs d'application :
+surveillance de la partie logicielle Ã  l'aide d'un
+Watchdog
+(voir
+) ;
+surveillance de la partie matÃ©rielle (horloge et alimentation) par des composants supplÃ©mentaires ;
+surveillance de la partie matÃ©rielle par la partie logicielle (CRC, Test de la RAM, etc.) ;
+partie matÃ©rielle redondante (dÃ©doublement d'entrÃ©e/sortie, deux processeurs en parallÃ¨le ou trois avec une stratÃ©gie de dÃ©cision majoritaire) ;
+partie logicielle redondante (des programmes diffÃ©rents sont exÃ©cutÃ©s sur des processeurs diffÃ©rents).
+IV-A-2. Software
+Le dÃ©veloppement du logiciel peut Ãªtre amÃ©liorÃ© qualitativement par des mesures appropriÃ©es. Contrairement aux logiciels bureautiques, oÃ¹ les utilisateurs se sont rÃ©signÃ©s aux problÃ¨mes de logiciels (le nom du systÃ¨me d'exploitation a Ã©tÃ© dÃ©libÃ©rÃ©ment omis ici), la fiabilitÃ© des logiciels embarquÃ©s doit Ãªtre trÃ¨s Ã©levÃ©e. Ces exigences sont encore plus importantes pour les applications liÃ©es Ã  la sÃ©curitÃ©. Le dÃ©veloppement de logiciels de bonne qualitÃ© n'est possible qu'avec plusieurs mesures :
+des ingÃ©nieurs bien formÃ©s et qualifiÃ©s qui ont une bonne connaissance des piÃ¨ges courants ;
+rÃ©vision des spÃ©cifications, de la conception et du code ;
+une conception du logiciel de haute qualitÃ© ;
+code de haute qualitÃ© grÃ¢ce Ã  l'utilisation des normes et des directives SW ;
+mÃ©canismes de dÃ©tection d'erreur dans le logiciel ;
+utilisation des outils d'analyse de code statique ;
+des tests approfondis durant la phase de dÃ©veloppement ;
+tests du systÃ¨me complet avant et pendant la mise en service ;
+une documentation complÃ¨te, comprÃ©hensible et actualisÃ©e.
+IV-B. Le langage de programmation C
+Un critÃ¨re (mais pas le seul) pour la qualitÃ© des logiciels est le langage de programmation. Le langage C, qui est le plus couramment utilisÃ© dans les systÃ¨mes embarquÃ©s, n'est malheureusement pas sÃ»r au niveau des types et prÃ©sente Ã©galement de nombreux autres piÃ¨ges. Par exemple, les pointeurs en C ont dÃ©jÃ  inquiÃ©tÃ© de nombreux experts en sÃ©curitÃ© (et Ã©galement les programmeurs). Toutefois, tout n'est pas perdu, si en tant que programmeur, vous Ãªtes conscient du problÃ¨me. En effet, il faut prendre les prÃ©cautions nÃ©cessaires durant la programmation. Par exemple, il est fortement recommandÃ© de ne jamais utiliser qu'un sous-ensemble du langage de programmation C. Cette recommandation est valable, non seulement pour des systÃ¨mes de sÃ©curitÃ©, mais pour tous les programmes d'utilitÃ© gÃ©nÃ©rale. Une liste exhaustive de telles recommandations est fournie par l'association MISRA-C [
+]. Certaines d'entre elles sont dÃ©crites dans la section suivante.
+La question qui pourrait Ãªtre posÃ©e ici est la suivante : pourquoi faut-il utiliser le langage C pour programmer les systÃ¨mes embarquÃ©s, alors que ce dernier est lacunaire. Pour cela, il y a deux raisons importantes :
+PremiÃ¨rement, dans domaine de la programmation des microcontrÃ´leurs, il n'existe (presque) pas d'alternative. Il faut donc composer avec cela.
+DeuxiÃ¨mement, il est plus opportun d'utiliser un langage de programmation que l'on connaÃ®t (en particulier ses faiblesses), pour lequel il existe de bons compilateurs, qu'un langage qui n'est pas rÃ©pandu et pour lequel il n'existe que de mauvais outils de dÃ©veloppement.
+IV-B-1. MISRA-C
+L'association MISRA-C (
+Motor Industry Software Reliability Association
+) dÃ©finit les directives pour l'utilisation du langage de programmation C dans l'industrie automobile, qui prÃ©valent Ã©galement dans d'autres secteurs de l'industrie
+.
+Le titre officiel est Â«
+Guidelines for the use of the C langage in critical systems
+Â».
+MISRA-C 122 dÃ©finit les rÃ¨gles Â« nÃ©cessaires Â» et 20 rÃ¨gles Â« consultatives Â». La figure ci-dessous illustre deux de ces rÃ¨gles
+.
+Toutes les rÃ¨gles doivent Ãªtre respectÃ©es pour pouvoir Ãªtre conformes aux directives MISRA.
+Figure 10 : Exemples de rÃ¨gle MISRA-C.
+IV-B-2. Analyse de code statique
+Les compilateurs C sont en gÃ©nÃ©ral trÃ¨s tolÃ©rants (ou conviviaux) durant la compilation. Ils Â« ferment plusieurs fois les yeux Â» pour que le code puisse Ãªtre compilÃ© et ainsi s'exÃ©cuter plus rapidement. Mais cela peut s'avÃ©rer fatal durant le fonctionnement ! Ce qui est bien entendu beaucoup moins convivial et trÃ¨s fÃ¢cheux en termes de qualitÃ©
+.
+Il existe diffÃ©rents outils (vÃ©rificateurs de syntaxe) sur le marchÃ©, qui permettent d'effectuer des analyses statiques du code afin de fournir des messages d'erreurs, des avertissements ou des informations gÃ©nÃ©rales sur le code.
+Une bonne approche consiste Ã  faire contrÃ´ler votre code Ã  l'aide d'un vÃ©rificateur de syntaxe
+.
+Les nombreuses rÃ©clamations fournies par ce dernier vont peut-Ãªtre vous Ã©tonner. Ne soyez toutefois pas frustrÃ© mais montrez-vous au contraire reconnaissant : en effet la phase de test sera d'autant plus facile. Les analyses du code Ã  l'aide d'un vÃ©rificateur de syntaxe devrait commencer au dÃ©but - et non Ã  la fin - de la phase de programmation afin d'Ã©viter un flot trop important d'avertissements
+.
+Il existe plusieurs produits sur le marchÃ© comme Â« PC-Lint Â» de Gimpel
+.
+De tels outils permettent Ã©galement d'examiner si les rÃ¨gles de MISRA-C sont respectÃ©es (pas forcÃ©ment toutes les rÃ¨gles, mais la plupart qui sont spÃ©cifiÃ©es par le fabricant).
+IV-C. Murphy et le langage de programmation C
+Ce chapitre rÃ©pertorie quelques problÃ¨mes typiques, qui peuvent survenir avec le langage de programmation C.
+Ces indications ne sont pas exhaustives. Elles illustrent cependant quelques-uns des principaux problÃ¨mes de ce langage.
+IV-C-1. DÃ©passement de capacitÃ© dans les tableaux
+En C, vous pouvez accÃ©der Ã  un tableau en dehors de ses limites, sans que vous puissiez vous en rendre compte (ou juste avant un crash du systÃ¨me). ConsidÃ©rez par exemple le code suivant qui est syntaxiquement correct (c'est-Ã -dire que le compilateur va probablement le compiler sans avertissement) :
+Sélectionnez
+char
+array[
+10
+];
+char
+counter
+=
+0
+;
+â¦
+for
+(
+counter
+=
+0
+; counter
+<=
+10
+; counter
+++
+)
+{
+array[counter]
+=
+0
+;
+}
+Dans le code ci-dessus, vous dÃ©passez les limites du tableau Â«
+array
+Â» lorsque Â«
+counter = 10
+Â». Quelle est la consÃ©quence de cela ? Dans le pire de cas, le relieur (anglais :
+linker
+) rÃ©serve de l'espace mÃ©moire pour la variable
+counter
+directement Ã  la suite du tableau
+array
+.
+Dans ce cas l'instruction
+Â«
+array[counter] = 0
+Â» efface systÃ©matiquement le contenu de la variable
+counter
+. La boucle
+for
+devient ainsi une boucle infinie. Ã cet Ã©gard, il se peut que vous ayez de la chance et que vous trouviez cette erreur durant les premiÃ¨res phases de test. Dans d'autres cas, l'identification du problÃ¨me peut s'avÃ©rer beaucoup plus chÃ¨re.
+Il existe deux approches pour rÃ©soudre ce problÃ¨me :
+Vous portez une attention particuliÃ¨re aux limites du tableau pendant le codage. Vous pouvez Ã©galement contrÃ´ler
+l'
+index du tableau avant d'accÃ©der Ã  ce dernier. Vous pouvez Ã©galement dÃ©montrer que vous n'avez pas dÃ©passÃ© les limites du tableau Ã  l'aide de tests approfondis. Malheureusement, une certaine incertitude demeure toujours.
+Ajoutez un Ã©lÃ©ment supplÃ©mentaire au tableau, que vous initialiserez avec une valeur spÃ©cifique (par ex.
+0x55
+). Testez Ã  prÃ©sent le systÃ¨me et contrÃ´lez ensuite si la valeur de ce dernier Ã©lÃ©ment n'a pas Ã©tÃ© modifiÃ©e.
+IV-C-2. DÃ©passement de capacitÃ© dans la pile (anglais : stack)
+Ce problÃ¨me est identique Ã  celui liÃ© aux dÃ©passements de capacitÃ© dans les tableaux. Lorsque vous dÃ©passez les limites de votre pile (trop d'appels de fonctions imbriquÃ©es ou trop de variables locales), vous risquez d'accÃ©der aux segments de la RAM qui contiennent des variables. Les choses peuvent encore se gÃ¢ter lorsque le programme est exÃ©cutÃ© Ã  partir d'une RAM. En effet, dans ce cas, vous risquez d'Ã©crire par-dessus le code.
+Les erreurs qui rÃ©sultent de ce genre de dÃ©passement vont se manifester Ã  un instant donnÃ© (en fonction des objets rÃ©Ã©crits et de l'utilisation de ces derniers). Ce qui rend la recherche de telles erreurs encore plus difficile.
+Comment un dÃ©bordement de la pile peut-il Ãªtre dÃ©terminÃ© ?
+Initialisez votre pile au dÃ©marrage du systÃ¨me avec des valeurs spÃ©cifiques, par exemple
+0x55
+. AprÃ¨s un test exhaustif du systÃ¨me, vous pouvez alors dÃ©terminer la part de la pile qui a Ã©tÃ© utilisÃ©e par votre programme (la limite se situe Ã  l'endroit oÃ¹ les valeurs spÃ©cifiques d'initialisation
+0x55
+ont Ã©tÃ© rÃ©Ã©crites).
+Quelles sont les solutions pour rÃ©soudre ces problÃ¨mes ?
+Agrandissement de la taille de la pile. De nombreux environnements de dÃ©veloppement permettent de dÃ©finir la taille de la pile Ã  l'aide d'options pour le relieur (anglais :
+linker
+).
+RÃ©duction de la taille des variables locales dans vos fonctions.
+Ãvitez les appels de fonction rÃ©cursive !
+IV-C-3. Pointeur NULL
+Un pointeur qui n'est pas initialisÃ© adresse la case mÃ©moire
+NULL
+(oÃ¹ mÃªme quelque part ailleurs). Une allocation de mÃ©moire pour construire une liste dynamique, qui Ã©choue par manque de mÃ©moire disponible, retourne Ã©galement l'adresse
+NULL
+. Le premier cas est une erreur de programmation classique. Le deuxiÃ¨me cas n'est pas une erreur, mais il peut se produire Ã  n'importe quel instant.
+Quelles sont les solutions pour rÃ©soudre ces problÃ¨mes ?
+Il faut comparer la valeur de chaque pointeur avec l'adresse
+NULL
+avant de l'utiliser ! Cette vÃ©rification peut se rÃ©aliser soit avec :
+if
+(pointer != NULL)
+, ou avec :
+assert
+(pointer != NULL)
+.
+IV-C-4. Les interruptions
+Un microcontrÃ´leur possÃ¨de de nombreux vecteurs d'interruption, qui sont rassemblÃ©s dans son tableau des vecteurs d'interruption. Normalement, seule une partie de ces vecteurs est utilisÃ©e par votre programme (
+Timer
+, interface sÃ©rie et peut-Ãªtre encore deux ou trois ports IRQ) alors que la grande partie restante ne l'est pas. Que se passe-t-il alors quand apparaÃ®t une interruption qui n'a pas Ã©tÃ© prÃ©vue et n'est par consÃ©quent pas traitÃ©e (par exemple la division par zÃ©ro) ? Dans ce cas, le contrÃ´leur va accÃ©der au tableau des vecteurs d'interruptions afin de charger l'instruction correspondant Ã  cette interruption. Ce vecteur peut contenir avec de la chance la valeur zÃ©ro. Le programme fait ainsi un saut Ã  l'adresse
+NULL
+, ce qui correspond en gÃ©nÃ©ral Ã  une rÃ©initialisation du systÃ¨me (anglais :
+reset
+). Toutefois ce vecteur peut Ã©galement contenir une valeur diffÃ©rente de zÃ©ro. Le programme fait dans ce second cas un saut Ã  une adresse inconnue, qui engendrera probablement un crash du systÃ¨me.
+Quelles sont les solutions pour rÃ©soudre ce problÃ¨me ?
+Il faut toujours initialiser tous les vecteurs d'interruption. Si vous n'utilisez pas une interruption donnÃ©e, implÃ©mentez pour cette derniÃ¨re une routine de traitement d'interruption (anglais :
+ISR
+) par dÃ©faut. Dans cette routine de service, vous pouvez afficher un message d'erreur ou implÃ©menter une boucle infinie pour le dÃ©bogage.
+IV-C-5. Allocation de mÃ©moire dynamique
+La mÃ©moire est allouÃ©e dynamiquement dans les programmes afin de gÃ©nÃ©rer des listes. Cela marche bien tant que la mÃ©moire disponible est suffisante. Des problÃ¨mes apparaissent inÃ©vitablement lorsque la mÃ©moire requise n'est plus disponible. En d'autres termes, le programme n'a plus de ressource en mÃ©moire. Un autre problÃ¨me est la fragmentation de la mÃ©moire qui peut survenir avec l'allocation de la mÃ©moire dynamique.
+Quelles sont les solutions pour rÃ©soudre ce problÃ¨me ?
+Essayez de dÃ©finir les structures de donnÃ©es autant que possible de faÃ§on statique.
+Assurez-vous que la mÃ©moire, qui a Ã©tÃ© allouÃ©e dynamiquement, soit Ã©galement de nouveau libÃ©rÃ©e.
+Vous devez vous en occuper vous-mÃªme en C et en C++.
+Testez le systÃ¨me Ã©galement en termes de ressources en mÃ©moire : exÃ©cutez votre programme durant des heures ou des jours et regardez ensuite si l'espace mÃ©moire disponible reste constant.
+IV-C-6. Les conditions de course
+Les conditions de course (anglais :
+race condition
+) signifient les situations de course. Lorsque les conditions de course sont remplies, les rÃ©sultats du programme dÃ©pendent du comportement temporel de ce dernier. Les situations de course surviennent lorsqu'il y a une interaction asynchrone entre la partie matÃ©rielle (
+hardware
+) et la partie logicielle (
+software
+). C'est le cas par exemple avec les
+Timers
+ou les convertisseurs A/D. Dans ces cas, les conditions de course se produisent lorsque les donnÃ©es sont lues systÃ©matiquement par le logiciel, alors qu'elles ont Ã©tÃ© changÃ©es de maniÃ¨re asynchrone par le
+hardware
+.
+Exemple
+Timer
+: Le code suivant gÃ©nÃ¨re des conditions de course (rÃ©fÃ©rence : [
+]) :
+Sélectionnez
+unsigned
+int
+timer_hi;
+interrupt
+timer
+(
+)
+{
+++
+timer_hi
+}
+unsigned
+long
+read_timer
+(
+void
+)
+{
+unsigned
+int
+low, high;
+    low
+=
+read_word
+(
+timer_register);
+    high
+=
+timer_hi;
+return
+(((
+unsigned
+long
+)high)
+<<
+16
++
+(
+unsigned
+long
+)low);
+}
+Le code ci-dessus est erronÃ©. En effet, admettons que l'on commence par lire la valeur du registre Â«
+timer_register
+Â». Ce registre contient une information sur la partie fractionnaire du temps qui s'Ã©coule.
+Supposons qu'ensuite se produit un dÃ©passement de capacitÃ© engendrant l'incrÃ©mentation de la variable Â«
+timer_hi
+Â». Cette variable contient une information sur la partie entiÃ¨re du temps. La combinaison de ces deux variables conduit ainsi Ã  une information erronÃ©e sur le temps.
+Le problÃ¨me peut Ãªtre rÃ©solu Ã  l'aide d'approches diffÃ©rentes :
+considÃ©ration du problÃ¨me dans la phase de conception (anglais :
+design
+) ;
+dÃ©sactiver systÃ©matiquement les interruptions durant les accÃ¨s au matÃ©riel (anglais :
+hardware
+) ;
+utilisation des Â« registres de capture Â» (anglais :
+Capture-Register
+).
+Les conditions de course sont souvent Ã  l'origine d'erreurs logicielles, qui sont trÃ¨s difficiles Ã  localiser (exemple du
+Timer
+ci-dessus) !
+IV-C-7. Code rÃ©entrant
+Les applications embarquÃ©es sont toujours programmÃ©es Ã  l'aide d'interruptions ou parfois Ã©galement avec des systÃ¨mes d'exploitation temps rÃ©el. Cela signifie qu'une fonction peut Ãªtre interrompue Ã  tout instant par une interruption ou par une autre tÃ¢che (anglais :
+task
+). Le chaos est assurÃ© Ã  partir du moment oÃ¹ les diffÃ©rentes parties du programme accÃ¨dent sans prÃ©cautions spÃ©cifiques aux mÃªmes ressources (interfaces matÃ©rielles, variables globales). Par consÃ©quent, les fonctions doivent Ãªtre programmÃ©es afin qu'elles soient rÃ©entrantes. C'est-Ã -dire que :
+les variables globales ne doivent Ãªtre accessibles que de faÃ§on exclusive (Â« atomique Â») ;
+il ne faut pas appeler les fonctions non rÃ©entrantes (attention avec les fonctions des librairies standard) ;
+les interfaces matÃ©rielles (anglais :
+hardware interfaces
+) ne doivent Ãªtre accessibles que de faÃ§on exclusive.
+La meilleure faÃ§on d'obtenir l'accÃ¨s exclusif, c'est de dÃ©sactiver les interruptions durant l'accÃ¨s
+.
+Toutefois, cela implique une augmentation des temps de latence pour le traitement des interruptions. Par consÃ©quent, les accÃ¨s doivent Ãªtre aussi courts que possibles.
+Dans ce contexte la rÃ¨gle importante Ã  respecter est la suivante :
+Â« Share the code, not the data Â» !
+IV-C-8. Programmation dÃ©fensive
+La programmation dÃ©fensive signifie que l'on considÃ¨re toutes les Ã©ventualitÃ©s : arguments transmis aux fonctions non plausibles, transmission de donnÃ©es erronÃ©es, sÃ©quences temporelles non prÃ©vues, etc.). Lorsque vous programmez de faÃ§on dÃ©fensive, ce qui est particuliÃ¨rement recommandÃ© pour des systÃ¨mes oÃ¹ la sÃ©curitÃ© est essentielle, vÃ©rifiez tout auparavant. Cela signifie en particulier que :
+la gamme de valeur des arguments transmis aux fonctions doit Ãªtre contrÃ´lÃ©e au dÃ©but de ces derniÃ¨res ;
+les transmissions de donnÃ©es doivent Ãªtre vÃ©rifiÃ©es systÃ©matiquement (
+Check sum
+) ;
+la plausibilitÃ© des rÃ©sultats doit Ãªtre vÃ©rifiÃ©e.
+La programmation dÃ©fensive permet d'augmenter la sÃ©curitÃ© du systÃ¨me. Cela n'est cependant pas gratuit. En effet cette approche nÃ©cessite plus de code et, par consÃ©quent, plus de puissance de calcul, plus de capacitÃ© de stockage et plus de dÃ©veloppement.
+IV-C-9. assert()
+assert()
+est une macro de la bibliothÃ¨que standard.
+assert()
+permet d'Ã©valuer de faÃ§on trÃ¨s simple et efficace diverses conditions durant l'exÃ©cution du programme :
+Sélectionnez
+assert
+(
+expression);
+Lorsque la condition Ã©valuÃ©e se rÃ©vÃ¨le Ãªtre fausse (valeur nulle), la macro
+assert()
+livre un message d'erreur Ã  travers le canal
+stderr
+. Ce message a typiquement la forme suivante :
+Sélectionnez
+Assertion failed: expression, file filename, line nnn
+La macro
+assert()
+sera ignorÃ©e lorsque la macro NDEBUG est dÃ©finie avant l'inclusion de la bibliothÃ¨que standard
+<assert.h>
+.
+Les exemples d'application de la macro
+assert()
+sont les tests de pointeur (pointeur non nul) ou de gamme de valeurs pour les paramÃ¨tres, etc.
+IV-C-10. Optimisation du code C
+Les compilateurs C essayent de gÃ©nÃ©rer un code objet le plus optimisÃ© possible. Cela signifie que ce dernier doit Ãªtre Ã  la fois aussi rapide et compact que possible. Le rÃ©sultat du compilateur peut Ã©galement Ãªtre influencÃ© de faÃ§on significative par la maniÃ¨re dont le code C est dÃ©fini :
+Essayez d'Ã©viter autant que possible les variables globales. DÃ©finissez plutÃ´t les variables locales Ã  l'intÃ©rieur des fonctions. Le compilateur peut ainsi stocker ces derniÃ¨res dans des registres locaux - plutÃ´t que de les placer dans la mÃ©moire externe (RAM), ce qui diminue le temps d'accÃ¨s aux variables. Essayez Ã©galement de rÃ©duire autant que possible le nombre de variables locales. En effet, le nombre de registres est limitÃ© et les variables, qui ne peuvent pas Ãªtre stockÃ©es dans des registres, sont placÃ©es sur les piles. Cependant, si vous avez toujours besoin de nombreuses variables locales, essayez d'utiliser ces derniÃ¨res de faÃ§on limitÃ©e Ã  l'intÃ©rieur de la fonction. Ainsi, le compilateur peut attribuer un seul registre aux diverses variables durant l'exÃ©cution de la fonction
+.
+Ãvitez les opÃ©rations de prises d'adresse avec les variables locales. En effet, cela empÃªche le compilateur de les stocker dans des registres.
+L'assembleur en ligne ne devrait Ãªtre utilisÃ© qu'en dernier recours. En effet, le compilateur n'a pas le droit d'optimiser le code C autour de ces derniers. Utilisez plutÃ´t les sous-routines en assembleur.
+Ãvitez de dÃ©finir des fonctions avec des listes de
+pa
+ramÃ¨tres variables (comme
+printf
+). En effet, l'appel de ces fonctions nÃ©cessite en gÃ©nÃ©ral plus de ressources systÃ¨mes.
+Remplacez les fonctions trÃ¨s courtes (1 Ã  3 lignes de code) par des macros ou des fonctions en ligne. Les ressources systÃ¨mes nÃ©cessaires Ã  l'appel des fonctions peuvent ainsi Ãªtre rÃ©duites au maximum. En effet, le compilateur copie littÃ©ralement les lignes de code des fonctions en ligne aux endroits appropriÃ©s dans le programme. Ce qui d'une part augmente considÃ©rablement la vitesse d'exÃ©cution du programme et d'autre part - surtout avec les fonctions trÃ¨s courtes - rÃ©duit le nombre d'instructions assembleur.
+La transmission des arguments aux fonctions devrait Ãªtre rÃ©alisÃ©e Ã  l'aide de paramÃ¨tres au lieu de variables globales. En effet, dans le premier cas, le compilateur utilise les registres pour transmettre les arguments. Cette procÃ©dure est beaucoup plus rapide que l'accÃ¨s systÃ©matique aux variables globales, qui sont stockÃ©es dans la mÃ©moire externe (RAM). Les premiers arguments sont en gÃ©nÃ©ral transmis avec des registres et les suivants avec la pile (anglais :
+stack
+). Par consÃ©quent, il faut faire Ã©galement attention au nombre d'arguments qui vont Ãªtre transmis Ã  la fonction.
+Si vous souhaitez transmettre des structures de donnÃ©es comme paramÃ¨tre Ã  des fonctions, transmettez ces derniÃ¨res avec des pointeurs constants (avec le mot clÃ© Â«
+const
+Â»). Le compilateur dÃ©poserait autrement la structure entiÃ¨rement sur la pile.
+Utilisez le mot-clÃ© Â«
+volatile
+Â» pour indiquer au compilateur que la variable ne peut pas Ãªtre stockÃ©e dans un registre. Cette derniÃ¨re sera ainsi toujours dÃ©posÃ©e dans la mÃ©moire externe (RAM). Cette dÃ©finition est mÃªme indispensable pour les variables qui permettent d'accÃ©der Ã  la partie matÃ©rielle (anglais :
+hardware
+) comme le Â«
+Timer
+Â».
+Essayez les diffÃ©rents niveaux d'optimisation du compilateur. Le niveau le plus haut ne gÃ©nÃ¨re ici pas forcÃ©ment le code le plus rapide ou le plus compact.
+Utilisez toujours, pour la dÃ©finition des variables, le type de donnÃ©es le plus adÃ©quat en fonction de la taille de la CPU (8, 16 ou 32 bits). Autrement, le compilateur doit effectuer une, voire plusieurs opÃ©rations
+cast
+. Les opÃ©rations arithmÃ©tiques avec le type
+char
+sont en principe trÃ¨s efficaces sur les microcontrÃ´leurs 8 bits. Avec ces derniers, les opÃ©rations 16 ou 32 bits nÃ©cessitent des fonctions de la bibliothÃ¨que standard, ce qui n'est pas efficace. Un microcontrÃ´leur 8 bits est en gÃ©nÃ©ral dÃ©passÃ© avec les calculs Ã  virgule flottante
+.
+Les fonctions de la bibliothÃ¨que standard sont alors trÃ¨s complexes et leur temps d'exÃ©cution trÃ¨s long.
+Les microcontrÃ´leurs 32 bits possÃ¨dent souvent des contraintes d'alignement pour les adresses des variables. Essayez de dÃ©clarer systÃ©matiquement les membres 32 bits en premier, les membres 16 bits en second et les membres 8 bits Ã  la fin dans les structures de donnÃ©es. Cela empÃªche le compilateur de devoir insÃ©rer des espaces libres (Â«
+padding
+Â») entre les diffÃ©rents types de membres, ce qui a tendance Ã  augmenter la taille de la structure de donnÃ©es.
+Ne dÃ©finissez pas de code Â« intelligent Â», qui n'est pas comprÃ©hensible pour votre collÃ¨gue (et pour vous aprÃ¨s quelques jours). Le compilateur ne comprend pas ce code et ne peut donc l'optimiser. DÃ©finissez votre code plutÃ´t de faÃ§on Â« simple et continue Â».
+Â«
+Write simple and understandable code
+Â»
+!
+DÃ©finissez une structure Â«Â switchÂ Â» au lieu d'un tableau de saut (anglais :
+Jump-Table
+). En effet, le compilateur va gÃ©nÃ©rer un tableau de saut optimal pour le microcontrÃ´leur sÃ©lectionnÃ© pour cette instruction. Le code reste ainsi parfaitement portable.
+IV-D. SÃ©curitÃ© au niveau du systÃ¨me
+Les parties matÃ©rielles et logicielles ne sont pas uniquement critiques pour la sÃ©curitÃ© du systÃ¨me. En effet, cette derniÃ¨re dÃ©pend du cycle de vie complet du produit, depuis sa spÃ©cification jusqu'Ã  la formation des clients.
+Les paragraphes suivants traitent quelques points qui concernent surtout la phase de dÃ©veloppement.
+IV-D-1. La conception
+Comment les amÃ©liorations peuvent-elles Ãªtre intÃ©grÃ©es sans problÃ¨mes ? La structure finale d'un programme dÃ©pend de plusieurs critÃ¨res. Le critÃ¨re le plus important est celui de la mise en Åuvre des spÃ©cifications. Toutefois, la conception peut Ã©galement Ãªtre influencÃ©e par le programmeur lui-mÃªme. Les expÃ©riences et les compÃ©tences de ce dernier jouent ici un rÃ´le majeur. C'est un peu la discipline reine de l'ingÃ©nieur logiciel, la suite n'est plus que du codage et des tests. Les erreurs de conception sont en gÃ©nÃ©ral trÃ¨s problÃ©matiques. La correction de ces derniÃ¨res nÃ©cessite souvent beaucoup d'efforts. En effet, une grande partie du code doit Ãªtre modifiÃ©e et les tests doivent Ãªtre effectuÃ©s Ã  nouveau.
+La conception a un impact majeur sur la qualitÃ© du code. Cette phase doit inclure les Ã©lÃ©ments suivants :
+la modularisation de votre systÃ¨me en fichiers / classes / tÃ¢ches ;
+la description des interfaces de ces modules ;
+la communication entre ces modules ;
+le comportement temporel des diffÃ©rents modules et de l'ensemble du systÃ¨me ;
+les interfaces au processus technique et Ã  l'utilisateur.
+IV-D-2. SpÃ©cification et exÃ©cution des tests
+Les tests ne devraient pas Ãªtre simplement rÃ©alisÃ©s Ã  la fin du projet avec la devise : dÃ©marrer le systÃ¨me - ce dernier fonctionne - donc tout est bon. Les tests doivent plutÃ´t Ãªtre spÃ©cifiÃ©s durant la conception du systÃ¨me.
+Cette spÃ©cification doit contenir les types, les procÃ©dures et les paramÃ¨tres des tests. Elle peut Ãªtre obtenue Ã  partir des spÃ©cifications du systÃ¨me. La rÃ©daction des spÃ©cifications de test devrait Ãªtre rÃ©alisÃ©e de prÃ©fÃ©rence durant la phase de conception du systÃ¨me ou, dans tous les cas, avant la phase de codage.
+Des tests sont particuliÃ¨rement importants pour les systÃ¨mes embarquÃ©s. Les erreurs, qui ne sont pas trouvÃ©es durant la phase des tests, sont trÃ¨s coÃ»teuses, voire dangereuses. Dans ce cas, vous devez rappeler les systÃ¨mes vendus (en effet, vous ne pouvez pas envoyer simplement une mise Ã  jour du logiciel) ou installer une nouvelle version du logiciel chez le client.
+La rÃ¨gle d'or stipule que si vous avez programmÃ© durant un mois, vous devriez Ã©galement tester durant un mois
+!
+Les tests sont toujours rÃ©alisÃ©s sur plusieurs niveaux : ils sont effectuÃ©s individuellement sur les fonctions au niveau des modules ; puis sur les diffÃ©rentes parties du systÃ¨me et finalement sur le systÃ¨me dans son ensemble dans un environnement rÃ©el. Les ingÃ©nieurs logiciels sont en gÃ©nÃ©ral beaucoup trop indulgents face Ã  leur propre code. Mais ces derniers souhaitent-ils vraiment que quelqu'un d'autre trouve les erreurs Ã  leur place ? Les grandes entreprises emploient des ingÃ©nieurs de test : ces derniers se rÃ©jouissent toujours lorsqu'ils trouvent de nouvelles erreurs. Mais, il est en gÃ©nÃ©ral beaucoup plus agrÃ©able de trouver ses erreurs soi-mÃªme.
+Par consÃ©quent : essayez de vraiment torturer votre logiciel et d'aller Ã  ses limites. Ici vous serez certainement beaucoup plus crÃ©atif ou plutÃ´t plus destructif qu'une personne tierce.
+Des nombreux ouvrages ont Ã©tÃ© publiÃ©s sur les modÃ¨les et les procÃ©dures de tests. Voici quelques points clÃ©s en bref :
+VÃ©rifier en particulier les interfaces pour les utilisateurs et pour le processus technique (les capteurs, les convertisseurs, les interfaces utilisateur d'entrÃ©e et de sortie, etc.). Vous ne pouvez sÃ»rement pas tester toutes les combinaisons possibles d'interfaces utilisateur. Mais quelques types de clavier devraient par exemple Ãªtre possibles.
+VÃ©rifier en profondeur les interfaces de communication. Si vous avez par exemple une interface sÃ©rielle, alors bombardez votre systÃ¨me avec des demandes, envoyez-lui Ã©galement des protocoles non dÃ©finis, etc.
+VÃ©rifier le comportement de votre systÃ¨me mÃªme en cas de surcharge.
+Une bonne approche consiste Ã  travailler avec deux versions du code : une version pour un fonctionnement standard et une version pour le dÃ©bogage. Cette derniÃ¨re contient du code supplÃ©mentaire pour exÃ©cuter les tests. Cela peut Ãªtre dÃ©fini en C avec une macro de la maniÃ¨re suivante :
+Sélectionnez
+#define _DEBUG
+...
+statement;
+...
+#ifdef _DEBUG
+// additional testing and error messages output
+#endif
+Vous pouvez commuter entre les versions en commentant l'instruction Â«
+#define
+_DEBUG Â»
+. Le code pour les deux versions est ainsi dÃ©fini dans les mÃªmes fichiers.
+Il existe de nombreuses normes et directives pour effectuer des tests logiciels, dont les plus recommandÃ©es sont les suivantes :
+IEEE 829, Standard for Software Test Documentation ;
+IEEE 1008, Standard for Software Unit Testing ;
+IEEE 1012, Standard for Software Verification and Validation.
+IV-D-3. La documentation
+Une bonne documentation permet de s'assurer que :
+les changements ou les amÃ©liorations peuvent Ãªtre effectuÃ©s sans erreurs ;
+toutes les erreurs peuvent Ãªtre localisÃ©es plus facilement ;
+vos collÃ¨gues peuvent Ãªtre intÃ©grÃ©s dans le dÃ©veloppement logiciel, sans que ces derniers ne vous posent continuellement des questions (et sans que ces derniers ne vous dÃ©rangent) ;
+les tests peuvent Ãªtre rÃ©pÃ©tÃ©s ou complÃ©tÃ©s.
+La documentation est votre carte de visite. Si, par manque de temps ou de ressources, vous renoncez Ã  dÃ©finir une documentation, vous le regretterez plus tard (par exemple, lorsque vous devez remettre Ã  jour votre code).
+Si, par manque de temps ou de ressources, vos supÃ©rieurs exigent une documentation rÃ©duite, alors dÃ©fendez-vous dans votre propre intÃ©rÃªt.
+Une bonne documentation constitue un autre avantage Ã  ne pas sous-estimer. Si une erreur de votre logiciel a causÃ© des dommages Ã  des biens ou des personnes, vous vous trouverez en tant que dÃ©veloppeur sans bonne documentation en manque de preuve. Aujourd'hui, les erreurs logicielles ne peuvent pas Ãªtre exclues. Mais une bonne conception, un bon rapport et des tests bien documentÃ©s peuvent prouver que vous avez fait tout votre possible pour Ã©viter les erreurs
+.
+La forme de la documentation est secondaire. L'important est que
+tout
+y est dÃ©crit. Cela commence par la conception, en incluant les diffÃ©rentes variantes et leur Ã©valuation. Cette derniÃ¨re est suivie par la description du code sans oublier la description comprÃ©hensible des tests.
+IV-D-4. Reviews
+Effectuez rÃ©guliÃ¨rement des rÃ©examens (
+reviews
+) durant le dÃ©veloppement du projet. Cela s'applique aux spÃ©cifications (en incluant Ã©galement les spÃ©cifications de test), la conception et le code.
+Les rÃ©examens du code ne sont pas effectuÃ©s dans de nombreuses entreprises Â« par manque de temps Â». C'est trÃ¨s dommage. En effet, le temps investi dans les rÃ©examens est gagnÃ© par la suite durant le dÃ©bogage. Certaines erreurs typiques, telles que les conditions de course, ne peuvent Ãªtre isolÃ©es par les dÃ©veloppeurs expÃ©rimentÃ©s que durant les phases de rÃ©examens. Un autre avantage des rÃ©examens est l'Ã©change de connaissances entre les dÃ©veloppeurs
+.
+IV-E. Watchdog
+IV-E-1. Introduction
+La tÃ¢che du
+Watchdog
+(franÃ§ais : horloge de surveillance) est de rÃ©initialiser un microcontrÃ´leur (c'est-Ã -dire de ramener le systÃ¨me Ã  un Ã©tat dÃ©fini) Ã  partir d'un Ã©tat indÃ©fini. Cet Ã©tat est souvent le rÃ©sultat d'un comportement erronÃ© du programme, par exemple une boucle infinie. Dans le langage courant, on appelle cela un plantage informatique (anglais :
+system crash
+).
+L'utilisation d'un
+watchdog
+est fortement recommandÃ©e pour tous les systÃ¨mes (mÃªme avec des applications trÃ¨s simples). Par consÃ©quent, de nombreux microcontrÃ´leurs contiennent un
+watchdog
+interne.
+IV-E-2. Le watchdog externe
+Les
+watchdogs
+externes peuvent exÃ©cuter - en complÃ©ment des applications de surveillance du processeur - les tÃ¢ches suivantes :
+Surveillance de l'alimentation du systÃ¨me.
+Surveillance de l'horloge du systÃ¨me.
+Les courtes interruptions d'alimentation sont en gÃ©nÃ©ral trÃ¨s dangereuses pour les systÃ¨mes Ã  microprocesseur.
+En effet, ces derniÃ¨res peuvent faire entrer le processeur dans des Ã©tats non dÃ©finis. Les
+watchdogs
+externes surveillent Ã©galement l'alimentation et gÃ©nÃ¨rent un
+reset
+en cas de problÃ¨me. Cette fonctionnalitÃ© peut Ã©galement Ãªtre reprise par le module
+reset
+.
+Les
+watchdogs
+externes possÃ¨dent en gÃ©nÃ©ral leur propre base de temps. Ce qui leur permet de surveiller Ã©galement l'horloge du systÃ¨me.
+Le circuit de
+watchdog
+externe est rÃ©alisÃ© typiquement de la maniÃ¨re suivante :
+Figure 11 : Le watchdog externe
+IV-E-3. Le watchdog interne
+Un
+watchdog
+interne (c'est-Ã -dire intÃ©grÃ© dans un microcontrÃ´leur) gÃ©nÃ¨re Ã©galement un
+reset
+en cas d'erreur. Un tel
+reset
+ne se distingue en gÃ©nÃ©ral pas de celui qui est gÃ©nÃ©rÃ© de faÃ§on externe.
+Selon la famille des microcontrÃ´leurs, il existe des
+watchdogs
+internes qui possÃ¨dent leur propre base de temps.
+Cette derniÃ¨re est en gÃ©nÃ©ral produite Ã  l'aide d'un circuit RC.
+IV-E-4. Fonctionnement du watchdog
+Le cÅur du
+watchdog
+est un registre compteur, qui est remis Ã  zÃ©ro pÃ©riodiquement par le logiciel. Un dysfonctionnement dans cette procÃ©dure de rafraÃ®chissement engendre un dÃ©passement de capacitÃ© du compteur et dÃ©clenche une rÃ©initialisation du systÃ¨me.
+La figure suivante illustre la structure de base d'un
+watchdog
+:
+Figure 12 : Fonctionnement du watchdog
+IV-E-5. DÃ©marrage du watchdog
+Le dÃ©marrage du
+watchdog
+s'effectue de deux maniÃ¨res :
+De faÃ§on
+hardware
+aprÃ¨s le
+reset
+. Cela prÃ©sente l'avantage que le processus de contrÃ´le du microcontrÃ´leur dÃ©bute Ã  son dÃ©marrage.
+De faÃ§on
+software
+en fixant la valeur des bits de contrÃ´le appropriÃ©s. Cela devrait Ãªtre rÃ©alisÃ© le plus tÃ´t possible dans le code (c'est-Ã -dire avant l'initialisation du systÃ¨me).
+IV-E-6. RafraÃ®chissement du watchdog
+Le rafraÃ®chissement du
+watchdog
+s'effectue Ã©galement de faÃ§on logicielle en fixant la valeur des indicateurs (anglais :
+flag
+) appropriÃ©s. Dans ce contexte, il est trÃ¨s important que les opÃ©rations de rafraÃ®chissement ne soient pas Ã©parpillÃ©es au hasard dans le code. En effet, il est plutÃ´t recommandÃ© d'effectuer ces opÃ©rations une seule fois par cycle d'exÃ©cution du programme, par exemple Ã  la fin de la boucle principale
+main()
+.
+La procÃ©dure de rafraÃ®chissement peut Ãªtre combinÃ©e avec des clÃ©s afin d'augmenter encore plus la sÃ©curitÃ© du systÃ¨me. La combinaison des clÃ©s avec un
+watchdog
+permet de rÃ©aliser les fonctionnalitÃ©s suivantes :
+contrÃ´ler le comportement temporel d'un programme ;
+vÃ©rifier si les fonctions les plus importantes ont effectivement Ã©tÃ© exÃ©cutÃ©es.
+La procÃ©dure est la suivante : une ou plusieurs clÃ©s sont nÃ©cessaires. Les clÃ©s sont des variables communes, qui permettent de contrÃ´ler le dÃ©roulement du programme. Une valeur spÃ©cifique est attribuÃ©e Ã  une clÃ© dans toutes les fonctions importantes du systÃ¨me. Si votre programme comporte de nombreux points Ã  contrÃ´ler, vous pouvez Ã©galement utiliser une seule variable clÃ©. Dans ce cas, vous pouvez systÃ©matiquement changer la valeur de votre clÃ© Ã  l'aide d'un polynÃ´me de CRC. Ã la fin d'un cycle d'exÃ©cution du programme, la valeur de la clÃ© vous assurera systÃ©matiquement que toutes les fonctions importantes ont Ã©tÃ© appelÃ©es dans un ordre adÃ©quat. En effet, si cette derniÃ¨re est correcte, vous pouvez effacer son contenu et rafraÃ®chir le
+watchdog
+. Toutefois, si la clÃ© est erronÃ©e, cela signifie que le programme s'est comportÃ© de faÃ§on erronÃ©e. Dans ce cas, le
+watchdog
+ne doit pas Ãªtre rafraÃ®chi afin d'engendrer le redÃ©marrage du systÃ¨me avec un
+reset
+.
+V. Connexion de la pÃ©riphÃ©rie
+Ce chapitre traite la connexion du microcontrÃ´leur aux composants pÃ©riphÃ©riques, tels que les capteurs, actionneurs et Ã©lÃ©ments de commande.
+V-A. Bus d'adresse / de donnÃ©es
+C'est la maniÃ¨re la plus simple d'ajouter des composants pÃ©riphÃ©riques qui ne sont pas disponibles dans le microcontrÃ´leur. Des fonctionnalitÃ©s supplÃ©mentaires peuvent ainsi Ãªtre ajoutÃ©es aux systÃ¨mes embarquÃ©s comme : les convertisseurs A/D, les contrÃ´leurs USB ou CAN. La communication entre le microcontrÃ´leur et les composants pÃ©riphÃ©riques s'effectue alors avec les bus d'adresse et de donnÃ©es. Par consÃ©quent, il leur faut Ã©galement attribuer des plages d'adresse dans le plan de mÃ©moire.
+Figure 13 : Connexion des composants pÃ©riphÃ©riques avec les bus d'adresse et de donnÃ©es
+V-B. Port d'entrÃ©e et de sortie numÃ©rique
+Beaucoup de microcontrÃ´leurs proposent des ports d'entrÃ©e et de sortie numÃ©riques (GPIO :
+General Purpose Input/Output
+). Ces derniers sont en gÃ©nÃ©ral des entrÃ©es ou des sorties multifonctionnelles et sont parfois regroupÃ©s par groupe de huit ports (1 octet).
+Ces ports permettent de lire directement les signaux numÃ©riques Ã  leur entrÃ©e ou de piloter des Ã©tages d'amplification de sortie.
+Lorsque des composants externes doivent Ãªtre pilotÃ©s Ã  l'aide des ports GPIO, il faut vÃ©rifier dans la fiche technique du microcontrÃ´leur que ces derniers sont capables de fournir le courant nÃ©cessaire. En effet, le courant fourni par ces ports ne se limite en gÃ©nÃ©ral qu'Ã  quelques mA. Par consÃ©quent, dans certains cas il faut ajouter un Ã©tage d'amplification externe.
+Les ports doivent toujours Ãªtre complÃ©tÃ©s de circuits de protection d'entrÃ©e et de sortie afin d'optimiser au mieux leur compatibilitÃ© Ã©lectromagnÃ©tique (CEM).
+Figure 14 : Utilisation de ports d'entrÃ©e et de sortie numÃ©riques
+L'accÃ¨s aux ports est relativement simple en C :
+Les diffÃ©rents
+pins
+d'un port peuvent Ãªtre mis Ã  1 ou Ã  0 de faÃ§on individuelle avec des opÃ©rations logiques binaires ET ou OU. Par exemple :
+P1 |= 0x01;
+met le
+pin
+P1.0 Ã  1. Remarque : cette opÃ©ration lit d'abord l'Ã©tat actuel du port P1 avant de mettre le
+pin
+P1.0 Ã  1.
+Certains microcontrÃ´leurs permettent de programmer les
+pins
+des ports bit par bit. Ce genre d'opÃ©rations peut Ãªtre rÃ©alisÃ© soit Ã  l'aide d'instructions en Assembleur (ces instructions sont alors Ã©galement soutenues par les compilateurs C :
+P1_0 = 1;
+met par exemple le
+pin
+P1.0 Ã  1) ou elles sont soutenues directement par le
+hardware
+(ex.
+bit-banding
+avec ARM).
+V-C. RS232
+L'interface RS232 est trÃ¨s rÃ©pandue dans le domaine embarquÃ©. Cette interface permet par exemple de gÃ©rer des affichages LCD ou des lignes de commande (
+Command Line Interface
+). La plupart des microcontrÃ´leurs possÃ¨dent dÃ©jÃ  une interface RS232. Toutefois, les tensions de sortie de ces derniÃ¨res correspondent au niveau TTL. Par consÃ©quent, un convertisseur de tension externe doit Ãªtre ajoutÃ© au systÃ¨me.
+Les interfaces RS232 sont accessibles Ã  l'aide de registres.
+Les tampons de transmission et de rÃ©ception contiennent systÃ©matiquement 1 octet. Les deux tampons possÃ¨dent souvent la mÃªme adresse, car il n'est possible d'Ã©crire que dans le tampon de transmission et de lire qu'Ã  partir du tampon de rÃ©ception.
+Les registres de contrÃ´le, qui permettent de dÃ©finir les modes de fonctionnement (la frÃ©quence de transmission (
+baud rate
+), le format des donnÃ©es, le bit de paritÃ©, etc.) et les interruptions.
+Les interfaces RS232 soutiennent diffÃ©rents modes de fonctionnement. Par exemple, ils peuvent fonctionner soit en mode synchrone ou en mode asynchrone. La frÃ©quence de transmission est souvent dÃ©finie avec un
+Timer
+standard. Certaines interfaces RS232 possÃ¨dent toutefois leur propre gÃ©nÃ©rateur de frÃ©quence. Le
+Timer
+peut ainsi Ãªtre utilisÃ© pour d'autres applications.
+Le schÃ©ma bloc de l'interface RS232 est typiquement le suivant :
+Figure 15 : SchÃ©ma bloc d'un module RS232
+V-D. SPI
+L'interface SPI (
+Serial Peripheral Interface
+) est un bus sÃ©riel Ã  haut dÃ©bit, destinÃ© Ã  la communication entre le microcontrÃ´leur et la pÃ©riphÃ©rie. Ce dernier est souvent utilisÃ© pour la communication avec des extensions d'entrÃ©e et de sortie, des affichages LCD ainsi que des convertisseurs A/D et D/A. Il peut Ã©galement Ãªtre utilisÃ© pour la communication entre microcontrÃ´leurs.
+La figure suivante illustre le principe de fonctionnement du SPI :
+Figure 16 : Principe d'une connexion SPI
+L'interface SPI est toujours utilisÃ©e en mode maÃ®tre-esclave. Le maÃ®tre est alors responsable de la gÃ©nÃ©ration de la frÃ©quence d'horloge. Le SPI peut travailler de faÃ§on duplex Ã  l'aide de deux lignes de transmission : MOSI (
+Master Out Slave In
+) et MISO (
+Master In Slave Out
+). Les esclaves peuvent Ãªtre connectÃ©s soit de faÃ§on parallÃ¨le (c'est-Ã -dire que toutes les sorties des esclaves sont rassemblÃ©es et connectÃ©es Ã  l'entrÃ© MISO du maÃ®tre) ou de faÃ§on sÃ©rielle (la sortie d'un esclave est connectÃ©e Ã  l'entrÃ©e du prochain esclave et la sortie du dernier esclave est connectÃ©e Ã  l'entrÃ©e MISO du maÃ®tre).
+Le microcontrÃ´leur Ã©crit les donnÃ©es Ã  transmettre dans un tampon de transmission. Ces derniÃ¨res sont sÃ©rialisÃ©es Ã  l'aide d'un registre Ã  dÃ©calage (comme une transmission RS232). Les donnÃ©es reÃ§ues sont Ã©galement converties Ã  l'aide d'un registre Ã  dÃ©calage. Le microcontrÃ´leur peut alors lire ces donnÃ©es de faÃ§on parallÃ¨le dans le tampon de rÃ©ception. Du fait que les interfaces SPI ont une bande passante relativement Ã©levÃ©e, les tampons de transmission et de rÃ©ception contiennent souvent plusieurs octets.
+Figure 17 : SPI avec maÃ®tre et 2 esclaves
+V-E. I2C
+V-E-1. AperÃ§u
+Le bus I2C (
+Inter Integrated Circuit
+) a Ã©tÃ© dÃ©veloppÃ© par l'entreprise Philips. Ce bus est utilisÃ© pour connecter les composants pÃ©riphÃ©riques comme l'EEPROM, les affichages LCD ou RTC (
+Real Time Clock
+) au microcontrÃ´leur.
+Le bus I2C est composÃ© de deux fils, ce qui rÃ©duit la partie
+hardware
+de faÃ§on drastique. Ce bus comprend une ligne d'horloge SCL (
+Serial Clock
+) et une ligne de donnÃ©es SDA (
+Serial Data
+). La communication est par consÃ©quent synchrone. Son mode d'utilisation est souvent du type maÃ®tre et esclave. Cependant, il soutient Ã©galement le mode multimaÃ®tre.
+La figure suivante illustre une application typique avec le bus I2C :
+Figure 18 : Application avec un bus I2C.
+Source : Philips, The I2C-Bus Specification, V2.1, Jan 2000
+V-E-2. Protocole
+Le protocole du bus est dÃ©fini de la maniÃ¨re suivante :
+Figure 19 : Le maÃ®tre (Ã©metteur) adresse l'esclave (rÃ©cepteur) avec une adresse 7 bits et envoie 2 octets de donnÃ©es.
+Source : Philips, The I2C-Bus Specification, V2.1, Jan 2000
+Le transfert de donnÃ©es entre le maÃ®tre et l'esclave s'effectue de la maniÃ¨re suivante :
+Le maÃ®tre dÃ©marre le transfert des donnÃ©es en envoyant le bit
+de dÃ©marrage
+. Tous les esclaves entrent ainsi dans un Ã©tat passif d'Ã©coute.
+Le maÃ®tre envoie ensuite l'
+adresse
+de l'esclave avec lequel il aimerait communiquer. Cette adresse est composÃ©e de 7 bits.
+Le maÃ®tre envoie le bit
+R/W
+, qui fixe le sens de la communication : Ã©criture depuis le maÃ®tre Ã  l'esclave ou lecture depuis l'esclave au maÃ®tre.
+Le protocole I
+2
+C exige des confirmations (
+acknowledge
+) aprÃ¨s chaque transmission d'un octet. L'esclave accrÃ©dite avec le premier bit de confirmation qu'il est prÃªt pour la communication.
+Le transfert de donnÃ©es a lieu entre le maÃ®tre et l'esclave. Un bit de confirmation est Ã©galement Ã©changÃ© ici aprÃ¨s chaque transmission d'un octet. Ce bit est fourni par le maÃ®tre dans le mode lecture et par l'esclave dans le mode Ã©criture.
+Le transfert se termine avec un bit d'
+arrÃªt
+.
+Le nombre d'octets Ã  transmettre et le sens de la transmission varie en fonction des composants pÃ©riphÃ©riques.
+Ces informations sont fournies en gÃ©nÃ©ral par la documentation de ces derniers. Le maÃ®tre n'Ã©crit par exemple qu'un octet dans un convertisseur D/A. Alors qu'avec une EEPROM, qui possÃ¨de un espace d'adressage interne, le maÃ®tre doit d'abord envoyer avec le champ Â«
+Offset
+Â» l'adresse de la case mÃ©moire Ã  accÃ©der. Le transfert de donnÃ©es n'est effectuÃ© qu'ensuite jusqu'au bit ArrÃªt.
+Le tableau suivant contient quelques exemples de transmissions (le bit de confirmation n'y est pas affichÃ©) :
+Tableau 2 : Exemple de protocole I2C
+Composant
+Protocole
+Convertisseur D/A
+DÃ©marrage
+Adresse de l'esclave
+Wr
+DonnÃ©es
+ArrÃªt
+Ecriture RAM
+DÃ©marrage
+Adresse de l'esclave
+Wr
+DonnÃ©es
+DonnÃ©es
+Lecture RAM
+DÃ©marrage
+Adresse de l'esclave
+Wr
+DonnÃ©es
+ArrÃªt
+DÃ©marrage
+Adresse de l'esclave
+Rd
+DonnÃ©es
+ArrÃªt
+Le protocole I
+2
+C est dÃ©fini au niveau bit de la maniÃ¨re suivante :
+Niveau de pause :
+Le niveau de pause est
+high
+.
+Condition de dÃ©marrage :
+La condition de dÃ©marrage est dÃ©finie par un flanc descendant sur SDA, suivi d'un flanc descendant sur SCL. Ce signal est univoque et n'apparaÃ®t pas durant une transmission normale.
+Condition d'arrÃªt:
+La condition d'arrÃªt est dÃ©finie par un flanc montant sur SCL, suivi d'un flanc montant sur SDA. Ce signal est Ã©galement univoque et n'apparaÃ®t pas durant une transmission normale.
+Figure 20 : Condition de dÃ©marrage et d'arrÃªt
+Les bits de donnÃ©es :
+La valeur du signal SDA est fixÃ©e en fonction du bit Ã  transmettre : 0 =
+low
+, 1 =
+high
+. La validitÃ© est signalÃ©e avec un flanc montant du signal SCL. La lecture et l'Ã©criture des bits de donnÃ©es ont toujours lieu pendant que le signal SCL est haut.
+ACK :
+Le bit de confirmation (
+Acknowledge
+) veut dire que la rÃ©ception est bonne ou que le rÃ©cepteur est prÃªt pour des transmissions supplÃ©mentaires. Du point de vue du maÃ®tre, l'esclave doit confirmer chaque octet Ã©crit. Du point de vue de l'esclave, le maÃ®tre doit confirmer chaque octet lu. Si ces confirmations n'ont pas lieu, le processus de transmission sera rompu avec le bit d'arrÃªt.
+NACK :
+Not Acknowledged
+signale une erreur de transmission ou la fin de la disposition Ã  recevoir.
+Figure 21 : Transmission au niveau bit
+Dans la Figure 21, le maÃ®tre envoie en premier la condition de dÃ©marrage, ensuite il envoie l'adresse de l'esclave (1001011) et pour finir le bit R/W. L'esclave doit signaler sa prÃ©sence avec le bit de confirmation. Il est important que le maÃ®tre maintienne le SDA Ã  un Ã©tat de haute impÃ©dance durant cette phase. Les donnÃ©es peuvent Ãªtre transmises aprÃ¨s le bit de confirmation (cela n'est pas montrÃ© dans la figure). La communication est interrompue avec le bit d'arrÃªt.
+Admettons que l'on veuille connecter un Ã©metteur Ã  plusieurs participants avec un bus I2C. Dans ce cas, tous les participants doivent se mettre dans un Ã©tat de haute impÃ©dance. Certains microcontrÃ´leurs peuvent configurer leurs sorties en
+tri state
+. Si cela n'est pas possible, il faut configurer les
+pins
+SCL et SDA en entrÃ©e.
+V-E-3. ImplÃ©mentation
+Certains microcontrÃ´leurs possÃ¨dent une interface I2C intÃ©grÃ©e. La programmation du composant pÃ©riphÃ©rique se rÃ©alise alors avec des registres.
+Toutefois, dans certains cas, la rÃ©alisation de l'interface I
+2
+C ne peut s'effectuer qu'Ã  l'aide de deux ports d'entrÃ©e/sortie numÃ©riques et du code. Cette rÃ©alisation peut nÃ©anmoins varier selon le type de contrÃ´leur. Dans ce cas, on commence idÃ©alement par la dÃ©finition des ports SDA et SCL ainsi que l'Ã©numÃ©ration des diffÃ©rents codes d'erreurs de la maniÃ¨re suivante :
+Sélectionnez
+#define SDA P4_2
+#define SCL P4_1
+typedef
+enum
+{
+I2C_OK, I2C_ACK_ERROR, I2C_BUS_ERROR
+}
+I2C_Error;
+Les fonctions
+I2C_Init()
+,
+I2C_Start()
+,
+I2C_Stop()
+,
+I2C_Write()
+et
+I2C_Read()
+sont alors implÃ©mentÃ©es par la suite.
+Ces fonctions doivent pourvoir accÃ©der aux ports SCA et SCL. Il est Ã©galement recommandÃ© de retourner des messages d'erreurs en cas de problÃ¨me.
+Exemple de code pour la fonction
+I2C_Start()
+:
+Sélectionnez
+I2C_Error
+I2C_Start
+(
+void
+)
+{
+I2C_Error error
+=
+I2C_OK;
+    SDA
+=
+1
+;
+// Initial state
+SCL
+=
+1
+;
+if
+(!
+SDA
+||!
+SCL)
+{
+// Test the bus levels
+error
+=
+I2C_BUS_ERROR;
+}
+else
+{
+SDA
+=
+0
+;
+// Start condition
+...
+// Insert eventually a delay
+SCL
+=
+0
+;
+}
+return
+(
+error);
+}
+V-F. Timer
+V-F-1. Introduction
+La plupart des microcontrÃ´leurs possÃ¨dent aujourd'hui un ou plusieurs Â«
+Timer/Counter
+Â» (franÃ§ais : minuterie/compteur) intÃ©grÃ©s. Des fonctionnalitÃ©s supplÃ©mentaires, comme celle de Â« Compare/Capture Â», permettent d'Ã©largir encore plus les applications de ces contrÃ´leurs. Ce chapitre donne un aperÃ§u gÃ©nÃ©ral sur ce sujet
+.
+Les applications du
+Timer/Counter
+sont les suivantes :
+gÃ©nÃ©ration de frÃ©quence d'horloge (ex. dÃ©bit en Baud pour la communication sÃ©rielle) ;
+compteur d'Ã©vÃ©nements externes ;
+gÃ©nÃ©ration de signaux PWM (ou convertisseur D/A) ;
+mesure du temps.
+V-F-2. Timer/Counter
+En gÃ©nÃ©ral, des registres de 8 ou 16 bits sont utilisÃ©s dans les modules
+Timer/Counter
+. Dans le mode
+Timer
+, ces registres sont incrÃ©mentÃ©s pÃ©riodiquement Ã  l'aide de l'horloge interne du systÃ¨me. Dans le mode
+Counter
+, cette incrÃ©mentation s'effectue en fonction de signaux externes.
+Figure 22 : Timer/Counter Mode
+Lorsqu'il y a dÃ©passement de capacitÃ© (c'est-Ã -dire au passage de 0xFFFF Ã  0x0000 avec un registre de 16 bits), le drapeau (
+flag
+) d'
+overflow
+est mis Ã  un. Ce dernier peut Ãªtre observÃ© Ã  l'aide d'une boucle software (
+polling
+) ou il peut gÃ©nÃ©rer une interruption.
+Remarque : le contenu du registre
+Timer
+est dÃ©crÃ©mentÃ© avec certains contrÃ´leurs.
+V-F-3. Timer avec recharge automatique
+L'option Â« d'autorechargement Â» (anglais :
+auto reload
+) du
+Timer
+permet de gÃ©nÃ©rer une frÃ©quence d'horloge avec une pÃ©riodicitÃ© prÃ©dÃ©finie.
+Le mode d'autorechargement permet d'initialiser Ã©galement le registre du
+Timer
+avec une valeur prÃ©dÃ©finie.
+Cette derniÃ¨re est stockÃ©e dans le Â« registre de rechargement Â» (anglais :
+reload register
+). Ce mÃ©canisme permet de gÃ©nÃ©rer des frÃ©quences d'horloge de pÃ©riodicitÃ© variable.
+Figure 23 : Timer dans le mode auto chargement
+V-F-4. UnitÃ© comparatrice
+L'unitÃ© comparatrice (anglais :
+Compare Unit
+) permet de comparer la valeur du registre compteur (
+Timer Register
+) avec celle du registre comparateur (anglais :
+Comparator Register
+).
+Figure 24 : UnitÃ© comparatrice
+L'unitÃ© comparatrice permet ainsi de gÃ©nÃ©rer des signaux PWM sans demander de la puissance de calcul au CPU. Le signal de sortie du comparateur et l'indicateur de dÃ©passement (anglais :
+overflow flag
+) commutent un port de sortie numÃ©rique. Le
+latch
+est rÃ©initialisÃ© lorsqu'il y a dÃ©passement de capacitÃ© du registre compteur, ce qui met le port au niveau logique 0. Ce mÃªme
+latch
+est mis Ã  1 lorsque le compteur du
+Timer
+atteint la valeur du registre comparateur, ce qui met le port au niveau logique 1. Ce mÃ©canisme est illustrÃ© dans la figure suivante :
+Figure 25 : Comportement du port de sortie dans le mode Compare
+La Figure 25 se base sur un compteur qui compte vers le haut en mode
+Count-Up
+. Une variante ici est un compteur qui compte vers le bas en mode
+Count-Down
+. La valeur du registre compteur est alors comparÃ©e avec la valeur nulle. Ã chaque passage par zÃ©ro, le registre compteur est alors initialisÃ© avec une valeur de rechargement prÃ©dÃ©finie.
+V-F-5. EntitÃ© de capture
+En mode capture, un signal de dÃ©clenchement (anglais :
+trigger
+) provoque un transfert de la valeur du registre compteur (
+Timer Register
+) dans le registre de capture (
+Capture Register
+). Le signal de dÃ©clenchement peut Ãªtre fourni soit par la partie logicielle (
+SW trigger
+) soit par la partie matÃ©rielle (
+HW trigger
+).
+Figure 26 : EntitÃ© de capture
+V-G. CAN
+CAN (
+Controller Area Network
+) a Ã©tÃ© dÃ©veloppÃ© en 1981 par la maison Robert Bosch et Intel. Il a Ã©tÃ© prÃ©vu pour l'industrie automobile uniquement. Actuellement, CAN s'est Ã©galement Ã©tabli dans l'automation industrielle.
+GrÃ¢ce au grand nombre de chips CAN produits, l'accÃ¨s au bus CAN est devenu relativement bon marchÃ©. On peut les trouver aussi bien comme Ã©lÃ©ments pÃ©riphÃ©riques externes sur des systÃ¨mes Ã  microprocesseurs ou comme modules internes Ã  un microcontrÃ´leur.
+L'organisation d'utilisateurs CiA (
+CAN in Automation
+) a dÃ©fini plusieurs standards pour son application dans le domaine de Â« l'automation industrielle Â». Ce qui a conduit Ã  un bon accueil du bus CAN. Le site suivant peut Ãªtre consultÃ© Ã  titre d'information :
+.
+Avec quelques restrictions, CAN peut Ãªtre utilisÃ© pour des applications temps rÃ©el. Les temps de rÃ©action sont garantis pour des messages avec un ID de haute prioritÃ©.
+VI. RÃ©fÃ©rences
+Tableau 3 : LittÃ©rature
+Nom
+Auteur
+RÃ©fÃ©rence
+MISRA-C:2004 (Guidelines for the use of the C
+language in critical systems)
+ISBN 978-0-9524156-2-6
+Misra
+[
+]
+The Firmware Handbook
+Jack Ganssle
+ISBN 978-0-7506-7606-9
+Newness
+[
+]
+Embedded Software, The Works
+Colin Walls
+ISBN 0-7506-7954-9
+Newness
+[]
+VII. Remerciements Developpez
+L'Ã©quipe de rÃ©daction
+tient Ã  remercier Dr Elham Firouzi pour ce tutoriel. Merci Ã©galement Ã  F-leb et Ã  Winjerome pour leurs grands efforts fournis dans la gabarisation et la relecture.
+Vous avez aimÃ© ce tutorielÂ ? Alors partagez-le en cliquant sur les boutons suivantsÂ :"

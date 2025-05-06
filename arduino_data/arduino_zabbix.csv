@@ -1,0 +1,999 @@
+source,texte
+arduino monitoring zabbix1,Arduíno e Zabbix (Monitoramento de Data Center)
+arduino monitoring zabbix1,"Olá pessoal, estou trabalhando em um projeto onde o objetivo é monitorar a temperatura e umidade em um ambiente de TI utilizando o arduino para coleta de dados através de um sensor DHT11 e enviando esses dados através de do SNMP TRAP para o Zabbix."
+arduino monitoring zabbix1,Material utilizado no ambiente de laboratório:Zabbix 2.2Arduino UNOShield Ethernet W5100Sensor de temperatura e umidade DHT11
+arduino monitoring zabbix1,"Encontrei um código aqui mesmo neste site do arduino que se propôs a atender minha necessidade, segui as orientações e não funciona, no monitor serial escreve que está enviando dados ao servidor zabbix porém não visualizo nada nos gráficos.Obs no site relata versão anterior do zabbix 2.2"
+arduino monitoring zabbix1,Segue código:
+arduino monitoring zabbix1,//-----------------INCLUDES--------------------#include<SPI.h>#include<Ethernet.h>#include<Base64.h>
+arduino monitoring zabbix1,"//--------------------------------------------byte mac[] = { 0xDE, 0xAA, 0xBB, 0xEF, 0xFE, 0x92 };"
+arduino monitoring zabbix1,"IPAddress ip(192, 168, 1, 60); // ip address arduinoIPAddress gateway(192, 168, 1, 1);IPAddress subnet(255, 255, 255, 0);"
+arduino monitoring zabbix1,"IPAddress zabbix(192,168,1,50); // you're zabbix server"
+arduino monitoring zabbix1,"char host[] = ""zabbix-01""; // hostname zabbixchar base64host[200];"
+arduino monitoring zabbix1,"char key1[] = ""counter""; // item zabbixchar base64key1[200];"
+arduino monitoring zabbix1,char value1[10]; // value of counterchar base64value1[200];
+arduino monitoring zabbix1,int counter;
+arduino monitoring zabbix1,EthernetClient zabclient ;
+arduino monitoring zabbix1,void setup(){
+arduino monitoring zabbix1,"counter = 1 ; // init the counterEthernet.begin(mac, ip, gateway, subnet);Serial.begin(9600);}"
+arduino monitoring zabbix1,void loop()
+arduino monitoring zabbix1,{sendzabbix(); // send counter value to zabbixdelay(60000); // wait one minutecounter = counter + 1;
+arduino monitoring zabbix1,}
+arduino monitoring zabbix1,//--------------------------------------------
+arduino monitoring zabbix1,"void sendzabbix(){if (zabclient.connect(zabbix,10051)){base64_encode(base64host , host , sizeof(host)-1);base64_encode(base64key1 , key1 , sizeof(key1)-1);"
+arduino monitoring zabbix1,"itoa(counter,value1,10); // transform int to char"
+arduino monitoring zabbix1,"base64_encode(base64value1 , value1 , sizeof(value1)-1);"
+arduino monitoring zabbix1,"Serial.println(""Connected with zabbix , sending info"");"
+arduino monitoring zabbix1,"zabclient.write(""\n"");zabclient.write("" "");zabclient.write(base64host);zabclient.write(""\n"");zabclient.write("" "");zabclient.print(base64key1);zabclient.write(""\n"");zabclient.write("" "");zabclient.write(base64value1);zabclient.write(""\n"");zabclient.write(""\n"");delay(1);zabclient.stop();}}"
+arduino monitoring zabbix1,"// end of code , have fun"
+arduino monitoring zabbix1,=================================================================
+arduino monitoring zabbix1,A parte do código abaixo
+arduino monitoring zabbix1,"zabclient.write(""\n"");.................."
+arduino monitoring zabbix1,"está um pouco nebulosa, tenho duvidas em o que se está enviando ao Zabbix via rede. necessito que seja enviado apenas os valores de uma porta analógica A0 ou A1... no qual o sensor DHT11 está conectado.Não consigo visualizar nada nos gráficos do contador."
+arduino monitoring zabbix1,Obs.: Para o código rodar tem que adicionar a biblioteca base64
+arduino monitoring zabbix1,Obrigado
+arduino monitoring zabbix1,Tenho a impressão que isso não é SNMP Trap. O SNMP Trap usa a porta UDP 162 e 160 para SNMP.
+arduino monitoring zabbix1,"Este código parece que manda uma espécie de XML para o Zabbix, ele deve ter uma forma de receber estes dados sem ser via trap."
+arduino monitoring zabbix1,"Pode fazer o contrário, colocar os valores em um MIB SNMP e o Zabbix consulta. Tem uma biblioteca SNMP pra Arduino:https://code.google.com/p/agentuino/"
+arduino monitoring zabbix1,"Tenho interesse no resultado, vai postando aqui, por favor."
+arduino monitoring zabbix1,"Olá Amigo Lago, agradeço a ajuda, vou pesquisar uma forma que o zabbix colete dados em uma MIB no arduíno que contenha o valor da porta no qual o sensor DHT11 está conectado."
+arduino monitoring zabbix1,Eu possuo um livro de zabbix e estudei um pouco sobre o funcionamento do SNMP em questão.
+arduino monitoring zabbix1,"No SNMP ""convencional"" o Arduino ou dispositivo de rede a ser monitorado trabalha como um servidor SNMP e o Zabbix como um cliente SNMP. Assim o zabbix envia uma consulta ao servidor SNMP ""arduino"" que reporta um resultado utilizando a porta 161 UDP."
+arduino monitoring zabbix1,"Já o SNMP TRAP o dispositivo ou arduino a ser monitorado trabalha como um agente SNMP. O arduino ou dispositivo de rede fica responsável por encaminhar os dados ao zabbix que por sua vez apenas fica aguardando os dados, nesse ambiente é utilizado a porta 162 UDP."
+arduino monitoring zabbix1,"Sua colocação sobre o método de envio de dados ao zabbix parece ser correta pois no código tem a seguinte linha ""if (zabclient.connect(zabbix,10051))"". A porta 10051 é a porta no qual o zabbix trabalha por padrão com seu agente que é instalado em servidores a serem monitorados."
+arduino monitoring zabbix1,"Eu pensei que fosse SNMP TRAP pois no artigo:Sending Arduino data to Zabbix ( zabbixsender / zabbixtrapper) - Networking, Protocols, and Devices - Arduino Forum"
+arduino monitoring zabbix1,no inicio do código relata a criação de um item no zabbix utilizando o Zabbix TRAPPER para a coleta.
+arduino monitoring zabbix1,Obrigado
+arduino monitoring zabbix1,char base64host[200];...char base64key1[200];
+arduino monitoring zabbix1,char value1[10];char base64value1[200];
+arduino monitoring zabbix1,O atmega 328 tem de SRAM 2 KB. Apenas te quero alertar que com com estes arrays acabaste de ocupar 610 bytes que representa cerca de 30% da RAM disponivel
+arduino monitoring zabbix1,"Isto pode nao ser um problema, apenas tem isso em mente!Quanto ao teu problema porque nao ""snifar"" o trafego gerado pelo teu arduino com o wireshark a ver o que ele esta a mandar e com que protocolo"
+arduino monitoring zabbix1,"Encontrei um exemplo na internet onde o arduino funciona como um dispositivo SNMP ""Agentuino"". Link:Arduino - Projetos e Experiências: agosto 2014Código:"
+arduino monitoring zabbix1,/**
+arduino monitoring zabbix1,"*/#include<Streaming.h> // Include the Streaming library#include<Ethernet.h> // Include the Ethernet library#include<SPI.h>#include<MemoryFree.h>#include<Agentuino.h>#include<Flash.h>//#defineDEBUG//static byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };static byte ip[] = { 192, 168, 2, 64 };static byte gateway[] = { 192, 168, 2, 1 };static byte subnet[] = { 255, 255, 255, 0 };//// tkmib - linux mib browser//// RFC1213-MIB OIDs// .iso (.1)// .iso.org (.1.3)// .iso.org.dod (.1.3.6)// .iso.org.dod.internet (.1.3.6.1)// .iso.org.dod.internet.mgmt (.1.3.6.1.2)// .iso.org.dod.internet.mgmt.mib-2 (.1.3.6.1.2.1)// .iso.org.dod.internet.mgmt.mib-2.system (.1.3.6.1.2.1.1)// .iso.org.dod.internet.mgmt.mib-2.system.sysDescr (.1.3.6.1.2.1.1.1)static char sysDescr[] PROGMEM = ""1.3.6.1.2.1.1.1.0""; // read-only (DisplayString)// .iso.org.dod.internet.mgmt.mib-2.system.sysObjectID (.1.3.6.1.2.1.1.2)static char sysObjectID[] PROGMEM = ""1.3.6.1.2.1.1.2.0""; // read-only (ObjectIdentifier)// .iso.org.dod.internet.mgmt.mib-2.system.sysUpTime (.1.3.6.1.2.1.1.3)static char sysUpTime[] PROGMEM = ""1.3.6.1.2.1.1.3.0""; // read-only (TimeTicks)// .iso.org.dod.internet.mgmt.mib-2.system.sysContact (.1.3.6.1.2.1.1.4)static char sysContact[] PROGMEM = ""1.3.6.1.2.1.1.4.0""; // read-write (DisplayString)// .iso.org.dod.internet.mgmt.mib-2.system.sysName (.1.3.6.1.2.1.1.5)static char sysName[] PROGMEM = ""1.3.6.1.2.1.1.5.0""; // read-write (DisplayString)// .iso.org.dod.internet.mgmt.mib-2.system.sysLocation (.1.3.6.1.2.1.1.6)static char sysLocation[] PROGMEM = ""1.3.6.1.2.1.1.6.0""; // read-write (DisplayString)// .iso.org.dod.internet.mgmt.mib-2.system.sysServices (.1.3.6.1.2.1.1.7)static char sysServices[] PROGMEM = ""1.3.6.1.2.1.1.7.0""; // read-only (Integer)//// Arduino defined OIDs// .iso.org.dod.internet.private (.1.3.6.1.4)// .iso.org.dod.internet.private.enterprises (.1.3.6.1.4.1)// .iso.org.dod.internet.private.enterprises.arduino (.1.3.6.1.4.1.36582)////// RFC1213 local valuesstatic char locDescr[] = ""Agentuino, a light-weight SNMP Agent.""; // read-only (static)static char locObjectID[] = ""1.3.6.1.3.2009.0""; // read-only (static)static uint32_t locUpTime = 0; // read-only (static)static char locContact[20] = ""Eric Gionet""; // should be stored/read from EEPROM - read/write (not done for simplicity)static char locName[20] = ""Agentuino""; // should be stored/read from EEPROM - read/write (not done for simplicity)static char locLocation[20] = ""Nova Scotia, CA""; // should be stored/read from EEPROM - read/write (not done for simplicity)static int32_t locServices = 7; // read-only (static)"
+arduino monitoring zabbix1,uint32_t prevMillis = millis();char oid[SNMP_MAX_OID_LEN];SNMP_API_STAT_CODES api_status;SNMP_ERR_CODES status;
+arduino monitoring zabbix1,"void pduReceived(){SNMP_PDU pdu;//#ifdefDEBUGSerial << F(""UDP Packet Received Start.."") << F("" RAM:"") << freeMemory() << endl;#endif//api_status = Agentuino.requestPdu(&pdu);//if ( pdu.type == SNMP_PDU_GET || pdu.type == SNMP_PDU_GET_NEXT || pdu.type == SNMP_PDU_SET&& pdu.error == SNMP_ERR_NO_ERROR && api_status == SNMP_API_STAT_SUCCESS ) {//pdu.OID.toString(oid);////Serial << ""OID: "" << oid << endl;//if ( strcmp_P(oid, sysDescr ) == 0 ) {// handle sysDescr (set/get) requestsif ( pdu.type == SNMP_PDU_SET ) {// response packet from set-request - object is read-onlypdu.type = SNMP_PDU_RESPONSE;pdu.error = SNMP_ERR_READ_ONLY;} else {// response packet from get-request - locDescrstatus = pdu.VALUE.encode(SNMP_SYNTAX_OCTETS, locDescr);pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;}//#ifdefDEBUGSerial << F(""sysDescr..."") << locDescr << F("" "") << pdu.VALUE.size << endl;#endif} else if ( strcmp_P(oid, sysUpTime ) == 0 ) {// handle sysName (set/get) requestsif ( pdu.type == SNMP_PDU_SET ) {// response packet from set-request - object is read-onlypdu.type = SNMP_PDU_RESPONSE;pdu.error = SNMP_ERR_READ_ONLY;} else {// response packet from get-request - locUpTimestatus = pdu.VALUE.encode(SNMP_SYNTAX_TIME_TICKS, locUpTime);pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;}//#ifdefDEBUGSerial << F(""sysUpTime..."") << locUpTime << F("" "") << pdu.VALUE.size << endl;#endif} else if ( strcmp_P(oid, sysName ) == 0 ) {// handle sysName (set/get) requestsif ( pdu.type == SNMP_PDU_SET ) {// response packet from set-request - object is read/writestatus = pdu.VALUE.decode(locName, strlen(locName));pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;} else {// response packet from get-request - locNamestatus = pdu.VALUE.encode(SNMP_SYNTAX_OCTETS, locName);pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;}//#ifdefDEBUGSerial << F(""sysName..."") << locName << F("" "") << pdu.VALUE.size << endl;#endif} else if ( strcmp_P(oid, sysContact ) == 0 ) {// handle sysContact (set/get) requestsif ( pdu.type == SNMP_PDU_SET ) {// response packet from set-request - object is read/writestatus = pdu.VALUE.decode(locContact, strlen(locContact));pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;} else {// response packet from get-request - locContactstatus = pdu.VALUE.encode(SNMP_SYNTAX_OCTETS, locContact);pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;}//#ifdefDEBUGSerial << F(""sysContact..."") << locContact << F("" "") << pdu.VALUE.size << endl;#endif} else if ( strcmp_P(oid, sysLocation ) == 0 ) {// handle sysLocation (set/get) requestsif ( pdu.type == SNMP_PDU_SET ) {// response packet from set-request - object is read/writestatus = pdu.VALUE.decode(locLocation, strlen(locLocation));pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;} else {// response packet from get-request - locLocationstatus = pdu.VALUE.encode(SNMP_SYNTAX_OCTETS, locLocation);pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;}//#ifdefDEBUGSerial << F(""sysLocation..."") << locLocation << F("" "") << pdu.VALUE.size << endl;#endif} else if ( strcmp_P(oid, sysServices) == 0 ) {// handle sysServices (set/get) requestsif ( pdu.type == SNMP_PDU_SET ) {// response packet from set-request - object is read-onlypdu.type = SNMP_PDU_RESPONSE;pdu.error = SNMP_ERR_READ_ONLY;} else {// response packet from get-request - locServicesstatus = pdu.VALUE.encode(SNMP_SYNTAX_INT, locServices);pdu.type = SNMP_PDU_RESPONSE;pdu.error = status;}//#ifdefDEBUGSerial << F(""locServices..."") << locServices << F("" "") << pdu.VALUE.size << endl;#endif} else {// oid does not exist//// response packet - object not foundpdu.type = SNMP_PDU_RESPONSE;pdu.error = SNMP_ERR_NO_SUCH_NAME;}//Agentuino.responsePdu(&pdu);}//Agentuino.freePdu(&pdu);////Serial << ""UDP Packet Received End.."" << "" RAM:"" << freeMemory() << endl;}"
+arduino monitoring zabbix1,"void setup(){Serial.begin(9600);Ethernet.begin(mac, ip);//api_status = Agentuino.begin();//if ( api_status == SNMP_API_STAT_SUCCESS ) {//Agentuino.onPduReceive(pduReceived);//delay(10);//Serial << F(""SNMP Agent Initalized..."") << endl;//return;}//delay(10);//Serial << F(""SNMP Agent Initalization Problem..."") << status << endl;}"
+arduino monitoring zabbix1,void loop(){// listen/handle for incoming SNMP requestsAgentuino.listen();//// sysUpTime - The time (in hundredths of a second) since// the network management portion of the system was last// re-initialized.if ( millis() - prevMillis > 1000 ) {// increment previous millisecondsprevMillis += 1000;//// increment up-time counterlocUpTime += 100;}}
+arduino monitoring zabbix1,"porem ao efetuar o ""verify"" surge os erros:Segue alguns:"
+arduino monitoring zabbix1,sketch_mar01a:62: error: 'SNMP_MAX_OID_LEN' was not declared in this scopesketch_mar01a:63: error: 'SNMP_API_STAT_CODES' does not name a typesketch_mar01a:64: error: 'SNMP_ERR_CODES' does not name a type
+arduino monitoring zabbix1,"porem ao efetuar o ""verify"" surge os erros:Segue alguns:"
+arduino monitoring zabbix1,sketch_mar01a:62: error: 'SNMP_MAX_OID_LEN' was not declared in this scopesketch_mar01a:63: error: 'SNMP_API_STAT_CODES' does not name a typesketch_mar01a:64: error: 'SNMP_ERR_CODES' does not name a type
+arduino monitoring zabbix1,Esta te a dizer que nao conhece esses tipos de dados nem essas variaveis.O motivo mais provavel é que nao estejas a colocar bem a biblioteca.Ja agora passa os olhos nas regras do forum e formata bem o teu post
+arduino monitoring zabbix1,Related topics
+arduino monitoring zabbix1,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix2,A hardware ZABBIX  Agent made with Arduino Mega
+arduino monitoring zabbix2,"Hi all,"
+arduino monitoring zabbix2,"I created a stand alone, hardware ZABBIX (Monitoring System) Agent (running Zabbix Agent-like firmware directly on micro-controller) using Arduino Mega 2560 Board + Ethernet Shield (Wiznet W5100). This device equipped with DHT22 temperature-humidity sensor."
+arduino monitoring zabbix2,Current (ZSA1-E model) Features:
+arduino monitoring zabbix2,"It's firmware and design will be free and open source. Also Wi-Fi version (with the same form factor) and support for additional sensors (dust, motion, light, Co2..etc) will be implemented in near future."
+arduino monitoring zabbix2,Pictures and Screenshots:
+arduino monitoring zabbix2,Source code:
+arduino monitoring zabbix2,"/*****************************************************************************************
+ * Purpose : Zabbix Sensor Agent - Environmental Monitoring Solution                     *
+ * Author  : Evgeny Levkov                                                               *
+ * Credits:                                                                              *
+ *           JO3RI www.JO3RI.be/arduino - for web based ethernet config with EEPROM code *
+ *           Rob Faludi http://www.faludi.com - for free memory test code                *
+ *****************************************************************************************/
+
+// ZSA1-E
+//Credits: 
+// JO3RI www.JO3RI.be/arduino - for web based ethernet config with EEPROM code
+// Rob Faludi http://www.faludi.com - for free memory test code
+// Evgeny Levkov - Zabbix Agent implementation http://www.sensor.im
+
+//-----------------INCLUDES--------------------
+#include <SPI.h>
+#include <Ethernet.h>
+#include <EEPROM.h>
+#include ""DHT.h""         // Download at https://github.com/adafruit/DHT-sensor-library
+#include <TextFinder.h>  // Download at http://www.arduino.cc/playground/Code/TextFinder"
+arduino monitoring zabbix2,Electronic Diagram:
+arduino monitoring zabbix2,Electronic Diagram
+arduino monitoring zabbix2,Embedded Zabbix Agent Sensor. Contribute to levkov/sensor.im development by creating an account on GitHub.
+arduino monitoring zabbix2,"Thanks to Evengy Levkov,"
+arduino monitoring zabbix2,"I made some modifications in the code , made it more basics , this was tested with arduino uno and5100 ethernet shield."
+arduino monitoring zabbix2,here the source :
+arduino monitoring zabbix2,//*****************************************************************************************//* Purpose : Zabbix Sensor Agent - Environmental Monitoring Solution *//* Author : Evgeny Levkov *//* Adapted to basics : Schotte Vincent *//* Credits: *
+arduino monitoring zabbix2,//-----------------INCLUDES--------------------#include<SPI.h>#include<Ethernet.h>
+arduino monitoring zabbix2,//--------------------------------------------#defineMAX_CMD_LENGTH 25
+arduino monitoring zabbix2,"//--------------------------------------------byte mac[] = { 0x90, 0xA2, 0xDA, 0x00, 0xE3, 0x5B };"
+arduino monitoring zabbix2,"IPAddress ip(192, 168, 1, 93);IPAddress gateway(192, 168, 1, 1);IPAddress subnet(255, 255, 255, 0);"
+arduino monitoring zabbix2,EthernetServer server = EthernetServer(10050); //Zabbix Agent port //Zabbix agent port
+arduino monitoring zabbix2,EthernetClient client;
+arduino monitoring zabbix2,boolean connected = false;//--------------------------------------------
+arduino monitoring zabbix2,//--------------------------------------------String cmd; //FOR ZABBIX COMMANDint led = 2; //LED PORT TO BLINK AFTER RECIEVING ZABBIX COMMANDint counter = 1; // For testing//--------------------------------------------
+arduino monitoring zabbix2,"void setup(){Ethernet.begin(mac, ip, gateway, subnet);server.begin();pinMode(led, OUTPUT);digitalWrite(led, LOW);"
+arduino monitoring zabbix2,}
+arduino monitoring zabbix2,void loop(){//--------------------------------------------client = server.available();if (client == true) {if (!connected) {client.flush();connected = true;}if (client.available() > 0) {readTelnetCommand(client.read());}}}//--------------------------------------------
+arduino monitoring zabbix2,void readTelnetCommand(char c) {
+arduino monitoring zabbix2,"if(cmd.length() == MAX_CMD_LENGTH) {cmd = """";}cmd += c;if(c == '\n') {if(cmd.length() > 2) {// remove \r and \n from the stringcmd = cmd.substring(0,cmd.length() - 1);parseCommand();}}}//--------------------------------------------void parseCommand() { //Commands recieved by agent on port 10050 parsing"
+arduino monitoring zabbix2,counter = counter + 1;
+arduino monitoring zabbix2,"// AGENT pingif(cmd.equals(""ping"")) {server.println(""1"");client.stop();// connected = false;"
+arduino monitoring zabbix2,"// AGENT version} else if(cmd.equals(""version"")) {server.println(""ArduinZabbixVini.1.0"");client.stop();// connected = false;"
+arduino monitoring zabbix2,"// AGENT sensor1} else if(cmd.equals(""sensor1"")) {float h = 99;server.println(h);client.stop();"
+arduino monitoring zabbix2,"// AGENT sensor2} else if(cmd.equals(""sensor2"")) {float t = 20;server.println(t );client.stop();"
+arduino monitoring zabbix2,"}// AGENT counterelse if(cmd.equals(""counter"")) {float t = 20;server.println(counter );client.stop();"
+arduino monitoring zabbix2,"// NOT SUPPORTED} else {// server.println(""ZBXDZBX_NOTSUPPORTED"");server.println(cmd);client.stop();}cmd = """";}//--------------------------------------------"
+arduino monitoring zabbix2,In Zabbix just do the following ;
+arduino monitoring zabbix2,Have fun
+arduino monitoring zabbix2,"Hi Arduinovini, I use your code and everything is fine! Thanks!"
+arduino monitoring zabbix2,"But, I include de DHT library for ""real"" values and get a error message:"
+arduino monitoring zabbix2,"sensor2.cpp.o: In functionsetup': /usr/share/arduino/hardware/arduino/cores/arduino/IPAddress.h:33: undefined reference toDHT::DHT(unsigned char, unsigned char, unsigned char)'"
+arduino monitoring zabbix2,"//*****************************************************************************************
+//* Purpose : Zabbix Sensor Agent - Environmental Monitoring Solution *
+//* Author : Evgeny Levkov *
+//* Adapted to basics : Schotte Vincent *
+//* Credits: *
+
+//-----------------INCLUDES--------------------
+#include ""DHT1.h""
+#include <SPI.h>
+#include <Ethernet.h>
+#define DHTPIN 7
+#define DHTTYPE DHT22
+#define MAX_CMD_LENGTH 25
+
+DHT dht(DHTPIN, DHTTYPE);
+
+//--------------------------------------------
+byte mac[] = { 0x90, 0xA2, 0xDA, 0x00, 0xE3, 0x5B };
+
+IPAddress ip(10, 0, 1, 3);
+IPAddress gateway(10, 0, 1, 1);
+IPAddress subnet(255, 255, 255, 0);
+EthernetServer server = EthernetServer(10050); //Zabbix Agent port //Zabbix agent port
+EthernetClient client;
+boolean connected = false;
+
+//--------------------------------------------
+String cmd; //FOR ZABBIX COMMAND
+//int led = 2; //LED PORT TO BLINK AFTER RECIEVING ZABBIX COMMAND
+int counter = 1;  // For testing
+//--------------------------------------------
+
+
+void setup()
+{
+     Ethernet.begin(mac, ip, gateway, subnet); 
+     server.begin();
+     //dht.begin();
+     //pinMode(led, OUTPUT);
+     //digitalWrite(led, LOW);
+ 
+}
+
+void loop()
+{
+//--------------------------------------------
+  client = server.available();
+  if (client == true) {
+    if (!connected) {
+      client.flush();
+      connected = true;
+    }
+    if (client.available() > 0) {
+      readTelnetCommand(client.read());
+      }
+    }
+}
+//--------------------------------------------
+
+
+void readTelnetCommand(char c) {
+
+  if(cmd.length() == MAX_CMD_LENGTH) {
+    cmd = """";
+  }
+  cmd += c;
+  if(c == '\n') {
+    if(cmd.length() > 2) {
+      // remove \r and \n from the string
+      cmd = cmd.substring(0,cmd.length() - 1);
+      parseCommand();
+    }
+  }
+}
+//--------------------------------------------
+void parseCommand() { //Commands recieved by agent on port 10050 parsing
+
+   counter = counter + 1;
+
+
+  // AGENT ping
+  if(cmd.equals(""ping"")) {
+      server.println(""1"");
+      client.stop();
+// connected = false;
+
+ // AGENT version
+   } else if(cmd.equals(""version"")) {
+      server.println(""ArduinZabbixVini.1.0"");
+      client.stop();
+// connected = false;
+
+     
+// AGENT sensor1
+} else if(cmd.equals(""sensor1"")) {
+      //float h = 68;
+      float h = dht.readHumidity();
+      server.println(h );
+      client.stop();
+      delay(2000);
+
+// AGENT sensor2
+} else if(cmd.equals(""sensor2"")) {
+      //float t = 22;
+      float t = dht.readTemperature();
+      server.println(t );
+      client.stop();
+      delay(2000);
+     
+}     
+// AGENT counter
+ else if(cmd.equals(""counter"")) {
+      //float t = 20;
+      server.println(counter );
+      client.stop();
+     
+// NOT SUPPORTED
+} else {
+    // server.println(""ZBXDZBX_NOTSUPPORTED"");
+    server.println(cmd);
+    client.stop();
+  }
+  cmd = """";
+}"
+arduino monitoring zabbix2,Debug message is attached.
+arduino monitoring zabbix2,Any help?
+arduino monitoring zabbix2,debug-sensor2.log(6.27 KB)
+arduino monitoring zabbix2,"Hi,Problem: DHT22 library is not to Arduino 1.0.Solution: attached"
+arduino monitoring zabbix2,sensor_local.tar.gz(4.8 KB)
+arduino monitoring zabbix2,Thank you guys for all the useful info!With one DHT22 it works like a charm!
+arduino monitoring zabbix2,Now I encounter an issue when trying to use multiple DHT22's.
+arduino monitoring zabbix2,"For some reason it only shows a maximum of 2 inputs in zabbix at the same time, sometimes it switches between the four(2x humidity measurement and 2x temperature measurement)."
+arduino monitoring zabbix2,Can someone please tell me what I'm doing wrong?
+arduino monitoring zabbix2,In the picture attached there is some interruptions that are just me reuploading a different script trying to figure out what's wrong
+arduino monitoring zabbix2,//* Purpose : Zabbix Sensor Agent - Environmental Monitoring Solution *//* Author : Evgeny Levkov *//* Adapted to basics : Schotte Vincent *//* DHT22 implementation to Arduino 1.0 : Carlos Eduardo de Siqueira *//* Credits: *
+arduino monitoring zabbix2,"//-----------------INCLUDES--------------------#include""DHT22.h""// Only used for sprintf#include<stdio.h>"
+arduino monitoring zabbix2,// Data wire is plugged into port 7 on the Arduino// Connect a 4.7K resistor between VCC and the data pin (strong pullup)#defineDHT22_1_PIN 7#defineDHT22_2_PIN 8
+arduino monitoring zabbix2,// Setup a DHT22 instanceDHT22 dht(DHT22_1_PIN);DHT22 dht2(DHT22_2_PIN);
+arduino monitoring zabbix2,"#include<SPI.h>#include<Ethernet.h>#defineMAX_CMD_LENGTH 25//--------------------------------------------byte mac[] = { 0x90, 0xA2, 0xDA, 0x00, 0xE3, 0x5B };"
+arduino monitoring zabbix2,"IPAddress ip(10, 0, 30, 15);IPAddress subnet(255, 255, 255, 0);"
+arduino monitoring zabbix2,EthernetServer server = EthernetServer(10050); //Zabbix Agent port //Zabbix agent portEthernetClient client;boolean connected = false;
+arduino monitoring zabbix2,//--------------------------------------------String cmd; //FOR ZABBIX COMMAND//int led = 2; //LED PORT TO BLINK AFTER RECIEVING ZABBIX COMMANDint counter = 1; // For testing//-------
+arduino monitoring zabbix2,"void setup(void){// start serial port//Serial.begin(9600);//Serial.println(""DHT22 Library Demo"");Ethernet.begin(mac, ip, subnet);server.begin();}"
+arduino monitoring zabbix2,void loop(void){//--------------------------------------------client = server.available();if (client == true) {if (!connected) {client.flush();connected = true;}if (client.available() > 0) {readTelnetCommand(client.read());}}}
+arduino monitoring zabbix2,"void readTelnetCommand(char c) {if(cmd.length() == MAX_CMD_LENGTH) {cmd = """";}cmd += c;if(c == '\n') {if(cmd.length() > 2) {// remove \r and \n from the stringcmd = cmd.substring(0,cmd.length() - 1);parseCommand();}}"
+arduino monitoring zabbix2,}
+arduino monitoring zabbix2,//--------------------------------------------void parseCommand() { //Commands recieved by agent on port 10050 parsing
+arduino monitoring zabbix2,DHT22_ERROR_t errorCode;
+arduino monitoring zabbix2,"// The sensor can only be read from every 1-2s, and requires a minimum// 2s warm-up after power-on.//delay(2000);//counter = counter + 1;"
+arduino monitoring zabbix2,delay(2000);errorCode = dht.readData();
+arduino monitoring zabbix2,"if (errorCode == DHT_ERROR_NONE){if (cmd.equals(""humid"")) {server.print(dht.getHumidity());client.stop();} elseif (cmd.equals(""temp"")) {server.print(dht.getTemperatureC());client.stop();}"
+arduino monitoring zabbix2,delay(2000);errorCode = dht2.readData();
+arduino monitoring zabbix2,"if (errorCode == DHT_ERROR_NONE){if (cmd.equals(""humid2"")) {server.print(dht2.getHumidity());client.stop();} elseif (cmd.equals(""temp2"")) {server.print(dht2.getTemperatureC());client.stop();}}cmd = """";"
+arduino monitoring zabbix2,}}
+arduino monitoring zabbix2,zabbix.jpg1680×1050 291 KB
+arduino monitoring zabbix2,Related topics
+arduino monitoring zabbix2,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix3,arduino + shield W5100 travando
+arduino monitoring zabbix3,"ola,consegui fazer a comunicação delphi -- arduino, fazendo um browser dentro do meu programa (ultilizando soket internet).ae apareceu outro problema é seguinte o arduino trava, as vez funciona horas, dias...; e as vez segundos, então trava. Nao consigo nem pingar, volta a pingar quando reset arduino e as vez também necessário reset roteador, já outras vez necessário reset varias vez ate uma hora ele conseguir pingar.Sera incompatibilidade com o roteador? estou com 2 arduino + shield ethernet. uso para controlar reles. (ex1.: 192.168.1.50/r1on … ex2.: 192.168.1.50/r1off …. ex3.: 192.168.1.60/r15on…. )sera programação?? Na rede (192.168.1.50 e o 192.168.1.60) um deles trava muito mais que o outro (na verdade o 50 quase não trava)A programação é a mesma nos 2 arduinos, mudando apenas o endereço IP.(já troquei um pelo outro, mudando apenas a programação de um no outro) (problema de hardware esta descartado, pois coloquei um 3º kit e mesmo assim ele trava)Ruim porque quando trava desliga os reles que estavam ligados quando reset."
+arduino monitoring zabbix3,Programação é o mais provável... Mete aqui o programa.
+arduino monitoring zabbix3,Nao sei como colocar codigo aqui.
+arduino monitoring zabbix3,#include<SPI.h>#include<Ethernet.h>
+arduino monitoring zabbix3,"byte mac[] = {0xDB, 0xAD, 0xBC, 0xEF, 0xAE, 0xEC };IPAddress ip(192,168,1,60);byte gateway[] = { 192,168,1, 1 };byte subnet[] = { 255, 255, 255, 0 };"
+arduino monitoring zabbix3,EthernetServer server(80);
+arduino monitoring zabbix3,const int rele1 = 2;const int rele2 = 3;const int rele3 = 4;const int rele4 = 5;const int rele5 = 6;const int rele6 = 7;const int rele7 = 8;const int rele8 = 9;const int rele9 = A0;const int rele10 = A1;const int rele11 = A2;const int rele12 = A3;const int rele13 = A4;const int rele14 = A5;
+arduino monitoring zabbix3,void setup() {
+arduino monitoring zabbix3,"Serial.begin(9600);Ethernet.begin(mac, ip, gateway, subnet);server.begin();"
+arduino monitoring zabbix3,"pinMode(rele1, OUTPUT);pinMode(rele2, OUTPUT);pinMode(rele3, OUTPUT);pinMode(rele4, OUTPUT);pinMode(rele5, OUTPUT);pinMode(rele6, OUTPUT);pinMode(rele7, OUTPUT);pinMode(rele8, OUTPUT);pinMode(rele9, OUTPUT);pinMode(rele10, OUTPUT);pinMode(rele11, OUTPUT);pinMode(rele12, OUTPUT);pinMode(rele13, OUTPUT);pinMode(rele14, OUTPUT);"
+arduino monitoring zabbix3,}
+arduino monitoring zabbix3,"void loop() {
+
+EthernetClient client = server.available();
+if (client) {
+Serial.println(""new client"");
+
+boolean currentLineIsBlank = true;
+String vars;
+int varOnOff = 0 ;
+while (client.connected()) {
+if (client.available()) {
+char c = client.read();
+Serial.print(c);
+
+vars.concat(c);
+
+ if ( vars.endsWith(  ""r1on"" ))
+          {    
+           varOnOff = 1 ;
+                        
+          }
+              if( vars.endsWith(  ""r1off"" ))
+          {
+           
+            varOnOff = 2 ;
+            
+          }
+       
+             if ( vars.endsWith(  ""r2on"" ))
+          {    
+            varOnOff = 3  ;
+            
+            
+          }
+              if( vars.endsWith(  ""r2off"" ))
+          {
+           
+            varOnOff = 4 ;
+            
+          }
+
+              if ( vars.endsWith(  ""r3on"" ))
+          {    
+            varOnOff = 5 ;
+            
+            
+          }
+              if( vars.endsWith(  ""r3off"" ))
+          {
+            
+          varOnOff = 6 ;
+            
+          }
+
+            if( vars.endsWith(  ""r4on"" ))     
+          {    
+            varOnOff = 7 ;
+            
+            
+          }
+              if ( vars.endsWith(  ""r4off"" ))
+          {
+            
+           varOnOff =8  ;
+            
+          }
+          
+            if( vars.endsWith(  ""r5on"" ))
+          {    
+            varOnOff = 9 ;
+            
+            
+          }
+              if( vars.endsWith(  ""r5off"" ))
+          {
+            
+           varOnOff = 10 ;
+            
+          }
+          
+            if( vars.endsWith(  ""r6on"" ))
+          {    
+            varOnOff = 11 ;
+            
+            
+          }
+              if( vars.endsWith(  ""r6off"" ))
+          {
+            varOnOff =  12;
+            
+          }
+
+            if( vars.endsWith(  ""r7on"" ))
+          {    
+            varOnOff = 13 ;
+            
+            
+          }
+              if( vars.endsWith(  ""r7off"" ))
+          {
+            
+            varOnOff =14  ;
+           
+          }
+
+            if( vars.endsWith(  ""r8on"" ))
+          {    
+            varOnOff = 15 ;
+            
+            
+          }
+          
+              if( vars.endsWith(  ""r8off"" ))
+          {
+            
+            varOnOff = 16 ;
+            
+          } 
+    
+              if( vars.endsWith(  ""r9on"" ))
+          {
+            
+            varOnOff = 17 ;
+            
+          }
+          
+              if( vars.endsWith(  ""r9off"" ))
+          {
+            
+            varOnOff =18  ;
+            
+          }
+
+              if( vars.endsWith(  ""r10on"" ))
+          {    
+           varOnOff = 19 ;
+            
+            
+          }
+          
+             if( vars.endsWith(  ""r10off"" ))
+          {
+            
+          varOnOff = 20 ;
+            
+          }
+
+              if( vars.endsWith(  ""r11on"" ))
+          {    
+           varOnOff = 21 ;
+            
+            
+          }
+             if( vars.endsWith(  ""r11off"" ))
+          {
+           
+            varOnOff = 22 ;
+            
+          }
+
+             if( vars.endsWith(  ""r12on"" ))
+          {    
+            varOnOff = 23 ;
+            
+          }
+             if( vars.endsWith(  ""r12off"" ))
+          {
+            
+            varOnOff = 24 ;
+          }
+          
+            if( vars.endsWith(  ""r13on"" ))
+          {    
+            varOnOff = 25 ;
+            
+            
+          }
+              if( vars.endsWith(  ""r13off"" ))
+          {
+            
+            varOnOff = 26 ;
+            
+          }
+          
+           if( vars.endsWith(  ""r14on"" ))
+          {    
+           varOnOff =  27;
+            
+            
+          }
+              if( vars.endsWith(  ""r14off"" ))
+          {
+            
+          varOnOff =  28;
+            
+          }
+          
+          if( vars.endsWith(  ""rton"" ))
+          {    
+            varOnOff = 33 ;
+            
+            
+          }
+              if( vars.endsWith(  ""rtoff"" ))
+          {
+            
+            varOnOff =34  ;
+           
+          }"
+arduino monitoring zabbix3,"if (c == '\n' && currentLineIsBlank) {
+client.println(""HTTP/1.1 200 OK"");
+client.println(""Content-Type: text/html"");
+client.println(""Connnection: close"");
+client.println();
+
+ if ( varOnOff == 1 )
+          {    
+            digitalWrite(rele1, HIGH);            
+            client.println(""Ligando Rele 1"");
+                        
+          }
+              if( varOnOff ==2)
+          {
+           
+            digitalWrite(rele1, LOW);    
+            client.println(""Desligando Rele 1"");
+            
+          }
+       
+             if ( varOnOff ==3)
+          {    
+            digitalWrite(rele2, HIGH);            
+            client.println(""Ligando Rele 2"");
+            
+            
+          }
+              if(varOnOff ==4)
+          {
+           
+            digitalWrite(rele2, LOW);    
+            client.println(""Desligando Rele 2"");
+            
+          }
+
+              if ( varOnOff ==5)
+          {    
+            digitalWrite(rele3, HIGH);            
+            client.println(""Ligando Rele 3"");
+            
+            
+          }
+              if(varOnOff ==6)
+          {
+            
+            digitalWrite(rele3, LOW);    
+            client.println(""Desligando Rele 3"");
+            
+          }
+
+            if( varOnOff ==7)     
+          {    
+            digitalWrite(rele4, HIGH);           
+            client.println(""Ligando Rele 4"");
+            
+            
+          }
+              if ( varOnOff ==8)
+          {
+            
+            digitalWrite(rele4, LOW);    
+            client.println(""Desligando Rele 4"");
+            
+          }
+          
+            if( varOnOff ==9)
+          {    
+            digitalWrite(rele5, HIGH);            
+            client.println(""Ligando Rele 5"");
+            
+            
+          }
+              if( varOnOff ==10)
+          {
+            
+            digitalWrite(rele5, LOW);    
+            client.println(""Desligando Rele 5"");
+            
+          }
+          
+            if( varOnOff ==11)
+          {    
+            digitalWrite(rele6, HIGH);            
+            client.println(""Ligando Rele 6"");
+            
+            
+          }
+              if( varOnOff ==12)
+          {
+            
+            digitalWrite(rele6, LOW);    
+            client.println(""Desligando Rele 6"");
+            
+          }
+
+            if( varOnOff ==13)
+          {    
+            digitalWrite(rele7, HIGH);            
+            client.println(""Ligando Rele 7"");
+            
+            
+          }
+              if( varOnOff ==14)
+          {
+            
+            digitalWrite(rele7, LOW);   
+            client.println(""Desligando Rele 7"");
+           
+          }
+
+            if(varOnOff ==15)
+          {    
+            digitalWrite(rele8, HIGH);            
+            client.println(""Ligando Rele 8"");
+            
+            
+          }
+          
+              if( varOnOff ==16)
+          {
+            
+            digitalWrite(rele8, LOW);   
+            client.println(""Desligando Rele 8"");
+            
+          } 
+    
+              if( varOnOff ==17)
+          {
+            
+            digitalWrite(rele9, HIGH);    
+            client.println(""Ligando Rele 9"");
+            
+          }
+          
+              if( varOnOff ==18)
+          {
+            
+            digitalWrite(rele9, LOW);    
+            client.println(""Desligando Rele 9"");
+            
+          }
+
+              if( varOnOff ==19)
+          {    
+            digitalWrite(rele10, HIGH);           
+            client.println(""Ligando Rele 10"");
+            
+            
+          }
+          
+             if( varOnOff ==20)
+          {
+            
+            digitalWrite(rele10, LOW);    
+            client.println(""Desligando Rele 10"");
+            
+          }
+
+              if( varOnOff ==21)
+          {    
+            digitalWrite(rele11, HIGH);         
+            client.println(""Ligando Rele 11"");
+            
+            
+          }
+             if( varOnOff ==22)
+          {
+           
+            digitalWrite(rele11, LOW);    
+            client.println(""Desligando Rele 11"");
+            
+          }
+
+             if(varOnOff ==23)
+          {    
+            digitalWrite(rele12, HIGH);           
+            client.println(""Ligando Rele 12"");
+            
+            
+          }
+             if( varOnOff ==24)
+          {
+            
+            digitalWrite(rele12, LOW);    
+            client.println(""Desligando Rele 12"");
+            
+          }
+          
+            if( varOnOff ==25)
+          {    
+            digitalWrite(rele13, HIGH);          
+            client.println(""Ligando Rele 13"");
+            
+            
+          }
+              if( varOnOff ==26)
+          {
+            
+            digitalWrite(rele13, LOW);   
+            client.println(""Desligando Rele 13"");
+            
+          }
+          
+           if( varOnOff ==27)
+          {    
+            digitalWrite(rele14, HIGH);           
+            client.println(""Ligando Rele 14"");
+            
+            
+          }
+              if( varOnOff ==28)
+          {
+            
+            digitalWrite(rele14, LOW);   
+            client.println(""Desligando Rele 14"");
+            
+          }
+
+             
+
+         if( varOnOff ==33)
+          {    
+            digitalWrite(rele1, HIGH);   digitalWrite(rele2, HIGH);digitalWrite(rele3, HIGH); digitalWrite(rele4, HIGH); digitalWrite(rele5, HIGH);                                                                                    digitalWrite(rele6, HIGH); 
+           digitalWrite(rele7, HIGH);   digitalWrite(rele8, HIGH);digitalWrite(rele9, HIGH); digitalWrite(rele10, HIGH); digitalWrite(rele11, HIGH); digitalWrite(rele12, HIGH);
+           digitalWrite(rele13, HIGH);   digitalWrite(rele14, HIGH);           
+            client.println(""Ligando Rele Todos"");
+                
+          }
+              if( varOnOff ==34)
+          {
+            
+            digitalWrite(rele1, LOW);   digitalWrite(rele2, LOW);digitalWrite(rele3, LOW); digitalWrite(rele4, LOW); digitalWrite(rele5, LOW); digitalWrite(rele6, LOW); 
+           digitalWrite(rele7, LOW);   digitalWrite(rele8, LOW);digitalWrite(rele9, LOW); digitalWrite(rele10, LOW); digitalWrite(rele11, LOW); digitalWrite(rele12, LOW);
+           digitalWrite(rele13, LOW);   digitalWrite(rele14, LOW);             
+            client.println(""Desligando Rele Todos"");
+           
+          }
+ 
+break;
+}
+if (c == '\n') {
+
+currentLineIsBlank = true;
+} 
+else if (c != '\r') {
+
+currentLineIsBlank = false;
+}
+}
+}
+
+delay(1);
+
+client.stop();
+Serial.println(""client disonnected"");
+}
+}"
+arduino monitoring zabbix3,"Coloquei o gateway e submascara ontem ainda nao testei, tb nao sei se muda muita coisa. (outra coisa que fiz foi colocar no roteador o mac dos arduino e fixando o ip)"
+arduino monitoring zabbix3,Se puder me ajudar agradeço.
+arduino monitoring zabbix3,Estás a usar um mega?
+arduino monitoring zabbix3,Nao é um arduino uno
+arduino monitoring zabbix3,arduino.txt(12.5 KB)
+arduino monitoring zabbix3,E isso cabe tudo lá????
+arduino monitoring zabbix3,"Podes estar a ficar sem memória... reparei que estás a usar a String e isso pode acontecer. No entanto, o shield bloqueia se tiver dados numa socket que não foram lidos."
+arduino monitoring zabbix3,Então convém garantir que não tens nada numa socket antes de fechares a ligacão. Estás a fazer isso aqui?
+arduino monitoring zabbix3,"Bubulindo,"
+arduino monitoring zabbix3,nao sei como fazer isso que voce disse.
+arduino monitoring zabbix3,os dados que mando é com se fosse pelo browser (192.168.1.50/comando) (exemplo de comando: r1on ou 1off)
+arduino monitoring zabbix3,"No meu programa (delphi) tenha a funçao de salvar o ultimo estado de cada porta (rele). Quando mando essa funçao de verificar (varrer) os reles que estavam ligados e então religalos, é quando ele mais trava. Nao sei se é informaçao de mais pra ele nesse momento. (apesar de ter um delay entre cada comando de ligar)."
+arduino monitoring zabbix3,Em relação a memoria ele ultiliza 16.222bytes (maximo 32.256 bytes) Ultilizo metade da memoria.
+arduino monitoring zabbix3,Quem te dera que o chip tivesse 32k de memória RAM...
+arduino monitoring zabbix3,Tem muito menos e pode ser isso que te está a bloquear o programa.
+arduino monitoring zabbix3,client.flush();
+arduino monitoring zabbix3,Limpa o buffer do client. Ou então podes fazeR:
+arduino monitoring zabbix3,while (client.available() >0) client.read();
+arduino monitoring zabbix3,em qual parte do meu codigo eu uso o: client.flush();
+arduino monitoring zabbix3,Antes do client.stop()...
+arduino monitoring zabbix3,"Ok, eu posso colocar cartao de memria no w5100 para resolver problema de memoria?Colocando esse cartao eu irei ocupar a porta 4?"
+arduino monitoring zabbix3,"Não sabes o significado de memoria RAM, pois não?"
+arduino monitoring zabbix3,Random-access memory
+arduino monitoring zabbix3,"Random-access memory (RAM; /ræm/) is a form of computer memory that can be read and changed in any order, typically used to store working data and machine code. A random-access memory device allows data items to be read or written in almost the same amount of time irrespective of the physical location of data inside the memory, in contrast with other direct-access data storage media (such as hard disks, CD-RWs, DVD-RWs and the older magnetic tapes and drum memory), where the time required t RAM..."
+arduino monitoring zabbix3,"Ok, eu acha que estavamos falando de mem. rom."
+arduino monitoring zabbix3,"Coloquei o flush, ta em teste. Em relaçao ao resto da programaçao esta ok? (pois vc disse que o problema poderia ser a programaçao)"
+arduino monitoring zabbix3,Em outro forum de indicaram os seguintes teste: (pode me disser se cabe fazer realmente algum desses teste)
+arduino monitoring zabbix3,O condensador é a única que me parece realmente poder causar o que vês... o watchdog está desactivado de certeza.
+arduino monitoring zabbix3,Galera estou com o seguinte problema:
+arduino monitoring zabbix3,"O meu Ethernet Shield está travando e não sei o motivo, estou monitorando o Arduino através de rede local com o Zabbix.Observe no gráfico do zabbix as falhas de conexão:"
+arduino monitoring zabbix3,"Se alguém puder ajudar, eu envio o código utilizado...Obrigado."
+arduino monitoring zabbix3,patrickcassaro:Galera estou com o seguinte problema:
+arduino monitoring zabbix3,"O meu Ethernet Shield está travando e não sei o motivo, estou monitorando o Arduino através de rede local com o Zabbix.Observe no gráfico do zabbix as falhas de conexão:"
+arduino monitoring zabbix3,"Se alguém puder ajudar, eu envio o código utilizado...Obrigado."
+arduino monitoring zabbix3,//Programa : Arduino Ethernet Shield W5100 e HC-SR04//Alteracoes e adaptacoes : FILIPEFLOP////Baseado no programa exemplo de//by David A. Mellis e Tom Igoe
+arduino monitoring zabbix3,#include<SPI.h>#include<Ethernet.h>#defineMAX_CMD_LENGTH 25
+arduino monitoring zabbix3,"//Definicoes de IP, mascara de rede e gatewaybyte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };IPAddress ip(192,168,25,64); //Define o endereco IPIPAddress gateway(192,168,25,1); //Define o gatewayIPAddress subnet(255,255,255,0); //Define a máscara de rede"
+arduino monitoring zabbix3,//Inicializa o servidor web na porta 10050EthernetServer servidor(10051);EthernetClient cliente;
+arduino monitoring zabbix3,String cmd; //Recebe o comando do zabbixboolean conectado=false;float contador=0;float pinoPluviometro=13;int pinoLed=7;
+arduino monitoring zabbix3,"void setup(){pinMode(13, INPUT);//Inicializa a interface de redeEthernet.begin(mac, ip, gateway, subnet);"
+arduino monitoring zabbix3,servidor.begin();Serial.begin(9600);
+arduino monitoring zabbix3,}
+arduino monitoring zabbix3,void loop() {
+arduino monitoring zabbix3,"//Aguarda conexao do browsercliente = servidor.available();calcularChuva();if (cliente) {if(!conectado){cliente.flush();conectado=true;Serial.println(""Conectado"");}"
+arduino monitoring zabbix3,if(cliente.available()>0){recebeComando(cliente.read());
+arduino monitoring zabbix3,}}}
+arduino monitoring zabbix3,"void calcularChuva(){if (digitalRead(pinoPluviometro)==HIGH) {Serial.println(""Calculando chuva"");if (digitalRead(pinoPluviometro)==LOW){contador += 0.28;delay(100);"
+arduino monitoring zabbix3,}}}
+arduino monitoring zabbix3,"void recebeComando(char c){if(cmd.length() == MAX_CMD_LENGTH) {cmd = """";}cmd += c;if(c == '\n') {if(cmd.length() > 2) {// remove \r and \n from the stringSerial.println(cmd);cmd = cmd.substring(0,cmd.length() - 1);tratarComando();"
+arduino monitoring zabbix3,}}}
+arduino monitoring zabbix3,"void tratarComando(){// if(cmd.equals(""agent.ping"")){// servidor.println(""1"");// Serial.println(""Ping: 1"");// cliente.stop();// }// else if(cmd.equals(""version"")){// servidor.println(""1.1"");// cliente.stop();// }if(cmd.equals(""chuva"")){Serial.println(""String recebida !"");float c = contador;//servidor.println(contador);servidor.println(c);Serial.println(c);Serial.println(""mm"");"
+arduino monitoring zabbix3,"cliente.stop();delay(100);}else {servidor.println(""ZBX_NOTSUPPORTED"");cliente.stop();Serial.println(""ZBX_NOTSUPPORTED"");Serial.println(cmd);}cmd="""";}"
+arduino monitoring zabbix3,"Consegui resolver meu problema com o W5100 travando da seguinte forma, baixando a velocidade de comunicação ICSP entre o arduino e o W5100 mudei de 14MHz para 8MHz é so alterar o arquivo W5100.h#defineSPI_ETHERNET_SETTINGS SPISettings(8000000, MSBFIRST, SPI_MODE0) dentro da biblioteca ETHERNET na IDE do arduino."
+arduino monitoring zabbix3,Related topics
+arduino monitoring zabbix3,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix4,"Projet ""domotique"", faisabilité"
+arduino monitoring zabbix4,"Bonjour,"
+arduino monitoring zabbix4,"dans le but de remplacer l'automate industrielle qui pilote ma maison, j'envisage une solution PC fanless + carte d'E/S.La solution arduino est séduisante car elle me permettrait d'avoir un mode dégradé en cas de problème avec le PC, en redonnant la main à la carte d'E/S pour assurer un service minimum (pas question que mon épouse reboote le pc dans le noir lol)"
+arduino monitoring zabbix4,Mais mon besoin en E/s dépasse le nombre d'E/S disponible sur une seule carte.
+arduino monitoring zabbix4,Ma première question sera donc:
+arduino monitoring zabbix4,"_peut-on facilement faire communiquer plusieurs cartes entre elle, afin d'avoir une seule carte ""maitre"" qui communiquerait avec le PC d'un coté, et les autres cartes de l'autre côté ?"
+arduino monitoring zabbix4,"Enfin, quelqu'un a-t-il déjà réalisé ce type de projet domotique basé totalement ou en partie sur des arduino ?"
+arduino monitoring zabbix4,"Précision: je suis automaticien à la base, pas expert en électronique, ni même en informatique, mais j'aime les défis et je préfère 1000 fois une solution ""home made"" à une solution 100% tout fait. Je suis touche à tout, comme tout le monde ici je pense."
+arduino monitoring zabbix4,Merci d'avance pour vos réponses
+arduino monitoring zabbix4,Gromain59
+arduino monitoring zabbix4,il existe la platine wirring qui a plus d'entree et de sortie
+arduino monitoring zabbix4,"Il existe des circuits qui permettent d'étendre le nombre d'entrées/sorties et qui se pilotent via I2C : comme c'est un bus adressable, on peut utiliser plusieurs de ces circuits pour multiplier les I/O."
+arduino monitoring zabbix4,"Par contre, ce sera des I/O numériques simples : du fait de la liaison I2C, impossible de les utiliser en PWM ou avec un timer, mais pour de la domotique cela me semble l'idéal !"
+arduino monitoring zabbix4,"Exemple : le PCF8574 ou mieux (parait-il), le PCA9554."
+arduino monitoring zabbix4,"Merci gearmat, mais quelle est cette carte ? une arduino ? as tu plus d'info ?"
+arduino monitoring zabbix4,je pense qu'il doit etre possible d'utiliser plusieurs Diecimila ou Duemilanove ensemble pour étendre le nombre d'E/S disponible ?
+arduino monitoring zabbix4,"Concernant l'I2C, je vais me renseigner, car je n'ai besoin que d'I/O numerique. Et si en plus cela me permet de répartir les besoins dans toute la maison au moyen d'un bus, c tout bon !"
+arduino monitoring zabbix4,Gromain59
+arduino monitoring zabbix4,"Wiring est le nom d'une carte similaire à l'Arduino mais avec plus de pattes (d'ailleurs le logiciel Arduino est issu d'une partie du logiciel Wiring il me semble). Avec un seul ""r"", tu trouveras des références (sur le site de Make:zine par exemple)."
+arduino monitoring zabbix4,"Ton besoin est exactement celui-là : un expander de GPIO numériques. Si tu veux câbler toute ta maison, il faudra des répéteurs pour allonger la liaison I2C à son maximum (mais le mieux reste plusieurs Arduino connectées sans fil via XBee, grâce au multipoint 802.15.4)"
+arduino monitoring zabbix4,Encore mieux : 15 I/O en un seul circuit :http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1231672744
+arduino monitoring zabbix4,"Je me suis un peu renseigné sur Wiring. Effectivement le nombre d'E/S est nettement plus important. Par contre, je ne suis pas sur de pouvoir bénéficier du même support technique en français qu'ici ?"
+arduino monitoring zabbix4,"Les solutions I2C et XBee me plaisent bien, mais les temps de réponses ne sont pas trop allongés ?"
+arduino monitoring zabbix4,"J'ai chez moi un réseau de capteurs de temperature 1-wire, et les temps de réponse sont assez long. Mais ce n'est peut etre pas comparable. D'ailleurs, j'ai été surpris de voir que l'arduino savait parfaitement gérer du1-wire ! c'est un plus."
+arduino monitoring zabbix4,Une idée de la portée max de l'I2C sans répéteur ?
+arduino monitoring zabbix4,"Enfin, j'ai trouvé ceci:http://www.arduino.cc/en/Tutorial/ShiftOutpour une extension de sortiehttp://www.arduino.cc/en/Tutorial/ShiftInpour une extension d'entrée"
+arduino monitoring zabbix4,Pour les capteurs de températures ds1820 il y a unsujet.
+arduino monitoring zabbix4,"Pour un bus I2C standard à 100 kHz, ne compte pas plus de 3 mètres, et encore ça dépend du câble utilisé (avec blindage, paires torsadées, etc..)."
+arduino monitoring zabbix4,"Jean-Francois,je me servirai largement de ton travail pour implementer mes capteurs de température dans mon projet Arduino. Merci pour le lien."
+arduino monitoring zabbix4,"Luj06,effectivement, l'I2C sera ok pour étendre mes E/S mais en restant à proximité."
+arduino monitoring zabbix4,"Avez-vous une idée de solution autre que sans fil pour déporter des E/S ? (et or I2C, vu la portée). Il doit bien exister un bus longue distance que la carte saurait gérer. (exemple RS485 ici:http://gdallaire.net/blog/?tag=network"
+arduino monitoring zabbix4,"Quand je parlais de répéteur, c'est pas la seule solution. On peut placer une puce au début de la ligne pour réduire l'impédance et permettre une plus longue distance."
+arduino monitoring zabbix4,"Et pour allonger la distance simplement, utilise une paire de fils torsadés avec un blindage."
+arduino monitoring zabbix4,"Sur la page I2C de notre site (I2C - PoBot), tu trouveras la datasheet du P82B715 de Philips."
+arduino monitoring zabbix4,"Pour avoir une carte mère qui pilote les autres, c'est faisable:http://www.liquidware.com/shop/show/QCT/QuadCore+Tower+Kitpour avoir plus d'E/S d'origine, il y a la sanguino :Contact SupportElle n'est pas 100% compatible mais tres proche.Sinon la wiring doit être est bien mais un peu chère a mon gout ."
+arduino monitoring zabbix4,Merci pour ces liens.
+arduino monitoring zabbix4,"avec toutes ces infos, difficile de faire un choix...sanguino me tente bien, mais je pense qu'il est plus raisonnable que je me fasse la main sur arduino d'abord. Surtout qu'en electronique je suis un peu beaucoup limite."
+arduino monitoring zabbix4,"Pouvez vous me conseiller sur ce qu'il me faudrait comme type de composants et accessoires courant pour commencer, genre la boite à outil du parfait petit électronicien ? je pense notamment à ces plaques d'essais (breadboard) qui ont l'air bien pratique.L'idée est de pouvoir interfacer les entrées/sorties en 12 ou 24V, donc résistances, optocoupleur ou transistor..."
+arduino monitoring zabbix4,Merci...
+arduino monitoring zabbix4,en 12 et 24 volts c'est carrément des relais !
+arduino monitoring zabbix4,"Oui, il te faut une breadboard (plaque d'essai) et des ponts déjà tout fait à différentes longueurs."
+arduino monitoring zabbix4,"Avec l'Arduino, il existe des ""shield"" qui se branchent sur le dessus. J'ai utilisé un shield ""protoshield"" et mis une mini breadboard dessus, c'est vraiment chouette car compact et pratique à la fois."
+arduino monitoring zabbix4,"Les transistors Tip120 (NPN) et Tip125 (PNP) supportent 60 volts et 5 Ampères, les Tip122 et Tip127, 100 volts et 5 Ampères également, 8 Ampères en pointe pour les deux séries, suivant l'utilisation en 12/24 volts cela peut suffire sans relais."
+arduino monitoring zabbix4,Pour le bread-board c'est effectivement indispensable.
+arduino monitoring zabbix4,"Merci pour l'info Jean-François, je ne savais pas car mon réflexe est de passer aux relais. Toutes mes excuses !"
+arduino monitoring zabbix4,La commande de ma maison est actuellement en 24 volts (automate industriel oblige).L'automate commande l'éclairage 220V~ via des relais 24VDC. Je peux les remplacer par des 12VDC à terme.Il me faudra donc concevoir une interface entre les sorties de l'arduino et ces relais. Il me semble avoir vu un exemple de montage sur le site.Je vais voir pour ces transistors (des exemples ?)
+arduino monitoring zabbix4,Merci pour vos réponses. Je vais bientôt passer commande (probablementnkcelectronics.com?)
+arduino monitoring zabbix4,"plus je me renseigne, plus les possibilités offertes par cette carte m'épate..."
+arduino monitoring zabbix4,"Aucun soucis LUJ06... pour le peu que je connais en électronique, je pense que tu m'en apprendra bien plus."
+arduino monitoring zabbix4,Par contre Gromain il ne faut pas hésiter à rechercher des datasheets et à les consulter
+arduino monitoring zabbix4,"J'achète pas mal de chose sur Ebay, les vendeurs chinois en plus de faire des prix dérisoire souvent offre le port, c'est assez intéressant."
+arduino monitoring zabbix4,Autrement un Ebayer italien m'a vendu 300 optocoupleurs pour quelques Euros...
+arduino monitoring zabbix4,"Vous achetez où vos arduino et accessoires, directement sur ebay ? j'ai un peu de mal avec... je n'ai jamais osé y acheté, qui plus est chez les chinois."
+arduino monitoring zabbix4,"Mais c'est vrai que pour des composants électronique, ils sont imbattables."
+arduino monitoring zabbix4,"J'ai acheté des Arduino chez un fournisseur italien, mais j'ai été un peu déçu, maintenant j'ai trouvé un fournisseur en Suisse qui me convient très bien, en France je ne sais pas."
+arduino monitoring zabbix4,Regarde également sur le site deMaxim.
+arduino monitoring zabbix4,"J'achète essentiellement sur Sparkfun pour les composants ""modernes"" (Arduino, cartes, capteurs) et Gotronic pour les composants électroniques de base et les produits de chez Devantech."
+arduino monitoring zabbix4,Related topics
+arduino monitoring zabbix4,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix5,Arduino  + ENC28J60 +SNMP  +Zabbix
+arduino monitoring zabbix5,I have a bundle :Arduino UNO R3 2014 - ATmega328P AU AVRDS18B20 -sensor temperatureEthernet ENC28J60
+arduino monitoring zabbix5,There is a task - monitoring the value through zabbixHow can such an interaction be organized?
+arduino monitoring zabbix5,what can you advise?
+arduino monitoring zabbix5,DON'T CROSS POST!!!!!!!!!!!!!!!!!!!!http://forum.arduino.cc/index.php?topic=567300I HAVE REPORTED THIS THREAD TO THE MODERATORS
+arduino monitoring zabbix5,Related topics
+arduino monitoring zabbix5,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix6,Projekt: Arduino in Haus und Garten
+arduino monitoring zabbix6,"Hallo zusammen,"
+arduino monitoring zabbix6,"nachdem ich mich ein wenig mit dem Arduino vertraut gemacht habe (433MHz Funkthermometer decodieren, Funksteckdosen schalten, 1-Wire Sensoren auslesen, all das via UDP unicast/broadcast ans Heimnetz anbinden etc.), will ich mein erstes ""großes"" Projekt starten: Stück für Stück will ich das Haus und den Garten mit Sensorik und teils auch Steuerung (z.B. Jalousien wetterabhängig) ausstatten. Angehen will ich zunächst die Thematik der Temperatursensoren."
+arduino monitoring zabbix6,"Nachdem ich mit billigen Funk-Sensoren rumgetestet habe, bin ich davon wieder abgekommen. Einerseits ist die Genauigkeit nicht besonders hoch (+-2 °C - da zeigen zwei nebeneinanderliegende Sensoren auch mal knapp 4°C Differenz an). Anderseits ist die Haltbarkeit im Außeneinsatz recht begrenzt: Die Batterien machen schnell schlapp, die Kontakte korrodieren schon nach 1/2 Jahr deutlich, die Reichweite bei voller Batterie ist inzwischen drastisch gesunken. Kurzum, sie sollen durch Arduinos ersetzt werden. Als Sensoren sollen 1-Wire-Sensoren eingesetzt werden (DS1820 oder DS18B20)."
+arduino monitoring zabbix6,"Momentan plane ich ein System mit verteilten Arduinos:Ein Arduino sitzt in einem (trockenen und frostfreien) Schuppen. Dieser misst die Innentemperatur (und soll später nen Heizlüfter ansteuern um Frostfreiheit zu erhalten). Zusätzlich werden mind. 2 Sensoren herausgeführt, um einen ""ordentlichen"" Außentemperaturwert zu erhalten: das Minimum aus den Außensensoren, so dass der Effekt direkter Sonneneinstrahlung kompensiert wird. Ein weiterer Sensor wird zum Pool geführt und misst die Temperatur dort. Allerdings ist die Leitung dort hin mind. 30m lang - je nachdem, wo ich die langlege - keine Ahnung, ob darüber das 1-Wire funktioniert."
+arduino monitoring zabbix6,"Ein weiterer Arduino könnte statt der ""langen Leitung"" direkt beim am Pool verbaut werden und die Temperatur direkt dort messen."
+arduino monitoring zabbix6,"Der dritte Arduino läuft im Haus, sammelt dort Temperaturen und empfängt die Werte der anderen Arduinos via 433 MHz oder ähnlichem. Dieser hängt via Ethernet Shield am LAN und broadcasted alle eingehenden Messwerte ca. 1x pro Minute via UDP. Die Arduinos laufen also als eine Art 1-Wire zu Ethernet Gateway - zwischendurch ggf. noch mit einer Funk-Strecke. Ein kleiner Server im Haus sammelt die Temperaturwerte ein und verarbeitet/visualisiert etc. den kram. Hier steckt später die ganze ""Intelligenz""."
+arduino monitoring zabbix6,"Soweit der Plan. Ich habe ein paar Detail-Fragen und Ideen, die ich ich eigenen Threads diskutieren würde. In diesem Thread will ich über die gefundenen Lösungen berichten, Erfahrungen austauschen und freue mich natürlich über alle Kommentare und Ideen dazu."
+arduino monitoring zabbix6,"Viele Grüße,Michael."
+arduino monitoring zabbix6,"Hallo,"
+arduino monitoring zabbix6,ein Ähnliches Projekt habe ich auch in meiner Planung. Ich will zum Beispiel für mein Zimmer im Haus einen Arduino Server installieren. Denke da auch an einen 1-Wire Temperatursensor der da auch so 5-10 M entfernt aus dem Fenster hängen sollte.
+arduino monitoring zabbix6,"Sowas sollte locker realisierbar sein oder sehe ich das schon falsch?? hast du da schon erfahrungen sammeln können wegen der Strecke?Eine Idee für deine Übertragung wäre auch die einer via optischer Lichtleiter, denen große entfernungen nichts ausmachen und auch recht dünne kabel sein können. Da könntest du eventuell sogar nur einen Arduino brauchen ^^"
+arduino monitoring zabbix6,"Ich habe auch noch in Planung Fenstermagnet Klips zu befestigen, die dann zum beispiel bei 2 Tage ungeöffnetem Zustand alarm via Twitter schlagen. Eine LED leiste, die sich farblich verändern kann steht auch ganz oben auf meiner to-do liste. Um diese steuern zu können bräuchte ich aber auch gut 2-5 m Kabel an den Verschiedenen Abschnitte. Sollten solche entfernungen realisierbar ein? Unteranderem müsste da 12V durchgeschleußt werden."
+arduino monitoring zabbix6,"Eine Idee / frage wäre noch, wie die deine Daten dann abrufst? Man könnte da jetzt zum beispiel auch eine Smartphone Steuerung drauf aufbauen. Das ist eines meiner Ziele, für Apple geräte zumindest"
+arduino monitoring zabbix6,Gruß Flo
+arduino monitoring zabbix6,1-Wire
+arduino monitoring zabbix6,"1-Wire bzw. One-Wire oder Eindraht-Bus beschreibt eine serielle Schnittstelle der Firma Dallas Semiconductor Corp. (Maxim Integrated, heute Analog Devices), die mit einer Datenader (DQ) auskommt, die sowohl als Stromversorgung als auch als Sende- und Empfangsleitung genutzt wird. Der Begriff 1-Wire ist irreführend, weil zudem noch eine Masse-Verbindung (GND) erforderlich ist. Diese Masseverbindung wird bei Knopf-förmigen Anordnungen über eine gegenseitige Isolation der Gehäusehälften erreicht. Ta..."
+arduino monitoring zabbix6,Die paar Meter sollten kein Problem sein.
+arduino monitoring zabbix6,"Mobilzugriff würde ich persönlich primär als Webseite realisieren. Die kann man ja mobilgerätetauglich aufbauen, spart sich aber plattformspezifische Apps und den ganzen Prozess die evtl. in den App-Store zu bringen. Undhttps://cosm.com/gibts ja auch noch..."
+arduino monitoring zabbix6,"So, inzwischen bin ich mit dem Projekt schon etwas weiter. Ich kann Signale halbwegs stabil vom Schuppen zum Haus senden (siehehttp://arduino.cc/forum/index.php/topic,145980.0.html). Im Schuppen tut schon ein DS1820 Teperatursensor seinen Dienst."
+arduino monitoring zabbix6,"Derzeit sorgt ein Heizkörper im Schuppen für Frost-Freiheit, damit unsere Marmeladen dort nicht einfrieren (und auch nicht die Wasserleitung). Diesen hatte ich bisher via Zeitschaltuhr gesteuert - mit der Konsequenz, dass die Temperaturen bei den aktuellen Außentemperaturen von -8 bis +3 °C im Schuppen zwischen 3 und 12 Grad schwanken. Hier verschenke ich also bares Geld mit der Heizung."
+arduino monitoring zabbix6,Daher habe ich nun das Projekt um eine Arduino Heizungssteuerung erweitert:
+arduino monitoring zabbix6,Bauteile:
+arduino monitoring zabbix6,Arduino-Libs:
+arduino monitoring zabbix6,Den DS1820 Teil hatte ich ja schon am laufen. Den Sketch habe ich um 2 Funktionen erweitert:
+arduino monitoring zabbix6,"void switchUpdateValue(unsigned int sensorId, float temp)
+{
+  if (sensorId==switchSensorId)
+  {
+    if (temp>=switchOffLowTemp) switchState=false;
+    else if (temp<=switchOnLowTemp) switchState=true;
+  }
+}"
+arduino monitoring zabbix6,"Die Funktion wird mit jedem neuen Sensorwert aufgerufen. Stimmt die ID des Sensors mit ""switchSensorId"" überein, wird die Temperature ausgewertet. Damit die Heizung nicht dauernd an/aus geht, kommt eine ""Hysterese"" zum Einsatz: Fällt die Temperatur unter ""switchOnLowTemp"" (4 Grad bei mir), wechselt der Zustand auf ""AN"" (switchState==true). Steigt sie über switchOffLowTemp (5 Grad), wechselt der Zustand auf ""aus""."
+arduino monitoring zabbix6,"Im Loop prüfe ich, dass ca. 30s vergangen sind (Code wie blink without delay), dann sende ich den Schaltbefehl zur Steckdose."
+arduino monitoring zabbix6,"void switchSendValues()
+{
+  Serial.print(""Switch: SystemCode "");
+  Serial.print(switchSystemCode);
+  Serial.print("", Channel "");
+  Serial.print(switchChannelCode);
+  Serial.print("": "");
+  if (switchState) Serial.println(""On""); else Serial.println(""Off""); 
+  vw_wait_tx();
+  delay(10); // 10 ms extra
+  switchTransmitter.sendSignal(switchSystemCode,switchChannelCode,switchState);
+  delay(100); // 100 ms for signal
+  
+  char *msg = ""b____"";
+  msg[ 1]=(switchState)?1:0;
+  msg[ 2]=switchSystemCode;
+  msg[ 3]=switchChannelCode;
+                                                      msg[ 4]=messageNum++;
+  
+  vw_send((uint8_t *)msg, strlen(msg));
+  vw_send((uint8_t *)msg, strlen(msg));
+}"
+arduino monitoring zabbix6,"Den Schaltcode sende ich ständig (alle 30s), damit stelle ich sicher, dass die Steckdose auch wirklich an/aus geht. Alle Befehle mit ""vw_"" gehören nicht zur Steuerung sondern senden Status-Infos zum Haus. Dort empfange ich, ob der Arduino im Schuppen die Heizung an oder aus schalten will."
+arduino monitoring zabbix6,"Die nächsten Nächte wird es wieder richtig kalt - ich poste mal, welche Heiz-Ersparnis ich mit dem Setup habe. Mit der Schaltuhr-Variante verbrate ich 2-3 kWh pro Tag."
+arduino monitoring zabbix6,"Die Heizungssteuerung funktioniert schonmal super. Ich sende alle Daten an einen Zabbix-Monitoring-Server, dann kann ich auf bestimmte Daten reagieren. Außerdem lassen sich recht einfach Diagramme erstellen.Hier mal die Temperaturemessung der letzten paar Tage. Der rote Block unten ist die Heizung - diese braucht ziemlich genau 30 Minuten, um den Raum von 4 auf 5 Grad zu erwärmen. Je nach Außentemperatur ist die Heizung 3 oder 4 mal pro Tag an (500W *1,5h) - ich spare damit also ca. 2 kWh pro Tag"
+arduino monitoring zabbix6,chart2.png1269×288 7.74 KB
+arduino monitoring zabbix6,Related topics
+arduino monitoring zabbix6,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix7,ENC28J60 - Como chequeo la conexion?
+arduino monitoring zabbix7,"Buenas gente, como andan?"
+arduino monitoring zabbix7,"Soy nuevo por aquí, espero no romper ninguna regla al hacer este posteo y en dicho caso, díganmelo para corregir mis errores."
+arduino monitoring zabbix7,"Soy bastante bruto con la programación, se muy bien la lógica pero me cuesta mucho llevarlo al código."
+arduino monitoring zabbix7,"Tengo un proyecto donde uso un ENC28J60 para conectarme a Internet, uso mi arduino mega como un Web Client."
+arduino monitoring zabbix7,Luego de arduos meses pude terminar bien mi código y cumplir con las funciones que esperaba.
+arduino monitoring zabbix7,Cual es el problema?
+arduino monitoring zabbix7,"Sencillo, cuando se corta la luz (o se corta Internet y luego vuelve), el arduino no conecta nunca a Internet, parece ser que quiere arrancar mas rápido de lo que arranca el módem, por ende entra en un loop del cual nunca sale y queda bugeado."
+arduino monitoring zabbix7,"La solución a mi entender es bastante sencilla en cuanto a su lógica, en el loop, antes de comenzar a funcionar como web client y ejecutar la acción, que chequee que la conexión este establecida y de lo contrario conectarse nuevamente."
+arduino monitoring zabbix7,"Como dije antes, sencilla la solución hablando lógicamente pero en cuanto a códigos soy bastante bruto. Alquilen seria tan amable de explicarme como escribo correctamente un If para evaluar el estado de conexión de mi ethernet?"
+arduino monitoring zabbix7,Uso la librería EtherCard.
+arduino monitoring zabbix7,Agregale un delay largo en el arranque a ver. Probalo apagando el modem y reiniciándolos juntos.
+arduino monitoring zabbix7,De lo contrario y de acuerdo a tu nivel en programación acá hay una nota de unproblema que puede ayudarte.Existe en esta librería (del problema) una instrucción .init que reinicia el ENC28J60
+arduino monitoring zabbix7,"I use ATmega328-based Arduino & ENC28J60 (revision 6) & Arduino_UIP (fix_errata1…2) in my hobby project for a long time. My device(s) handles requests from the monitoring service (Zabbix).  But i can't achieve stable operation of the device. It can work two weeks on the production (noisy) network and hang then, or work only 2...3 hours and hang again. Also it can work for a month on the home network. I'll try to change power supply, set additional capacitors, give more RAM (~250 bytes free in the work state) and so... I have no luck in all cases - activity led is blink, but no any data in the _ethClient.read()_ 
+
+Nevertheless, any attempts to hang module by hand was failed too ;) I have used flood-attacks without success - the module stops to answer for a few time and works again when attack is off.
+
+After that i have add ENC28J60 registers state output in my sketch, connect device to noisy network and began to wait. When module is freeze, i have connected to the UART and saw that ECON1=00000000b.
+
+ECON1 contain the RXEN bit : Receive Enable bit. If its 1 - packets which pass the current filter configuration will be written into the receive buffer. 0 - All packets received will be ignored. 
+
+Seems that cleared RXEN bit is the reason for such behavior - recieving no data with activity led blinking.
+
+In the Arduino_UIP code, i did not find the RXEN bit cleaning operations. Now i'll try to call _Enc28J60.init()_ when 0 == ECON1.RXEN. 
+
+I hope that the information was helpful And may be someone will found workaround to get more stability with ENC28J60."
+arduino monitoring zabbix7,Es algo que podrias probar
+arduino monitoring zabbix7,Related topics
+arduino monitoring zabbix7,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino monitoring zabbix8,ENC28J60 - Como chequeo la conexion?
+arduino monitoring zabbix8,"Buenas gente, como andan?"
+arduino monitoring zabbix8,"Soy nuevo por aquí, espero no romper ninguna regla al hacer este posteo y en dicho caso, díganmelo para corregir mis errores."
+arduino monitoring zabbix8,"Soy bastante bruto con la programación, se muy bien la lógica pero me cuesta mucho llevarlo al código."
+arduino monitoring zabbix8,"Tengo un proyecto donde uso un ENC28J60 para conectarme a Internet, uso mi arduino mega como un Web Client."
+arduino monitoring zabbix8,Luego de arduos meses pude terminar bien mi código y cumplir con las funciones que esperaba.
+arduino monitoring zabbix8,Cual es el problema?
+arduino monitoring zabbix8,"Sencillo, cuando se corta la luz (o se corta Internet y luego vuelve), el arduino no conecta nunca a Internet, parece ser que quiere arrancar mas rápido de lo que arranca el módem, por ende entra en un loop del cual nunca sale y queda bugeado."
+arduino monitoring zabbix8,"La solución a mi entender es bastante sencilla en cuanto a su lógica, en el loop, antes de comenzar a funcionar como web client y ejecutar la acción, que chequee que la conexión este establecida y de lo contrario conectarse nuevamente."
+arduino monitoring zabbix8,"Como dije antes, sencilla la solución hablando lógicamente pero en cuanto a códigos soy bastante bruto. Alquilen seria tan amable de explicarme como escribo correctamente un If para evaluar el estado de conexión de mi ethernet?"
+arduino monitoring zabbix8,Uso la librería EtherCard.
+arduino monitoring zabbix8,Agregale un delay largo en el arranque a ver. Probalo apagando el modem y reiniciándolos juntos.
+arduino monitoring zabbix8,De lo contrario y de acuerdo a tu nivel en programación acá hay una nota de unproblema que puede ayudarte.Existe en esta librería (del problema) una instrucción .init que reinicia el ENC28J60
+arduino monitoring zabbix8,"I use ATmega328-based Arduino & ENC28J60 (revision 6) & Arduino_UIP (fix_errata1…2) in my hobby project for a long time. My device(s) handles requests from the monitoring service (Zabbix).  But i can't achieve stable operation of the device. It can work two weeks on the production (noisy) network and hang then, or work only 2...3 hours and hang again. Also it can work for a month on the home network. I'll try to change power supply, set additional capacitors, give more RAM (~250 bytes free in the work state) and so... I have no luck in all cases - activity led is blink, but no any data in the _ethClient.read()_ 
+
+Nevertheless, any attempts to hang module by hand was failed too ;) I have used flood-attacks without success - the module stops to answer for a few time and works again when attack is off.
+
+After that i have add ENC28J60 registers state output in my sketch, connect device to noisy network and began to wait. When module is freeze, i have connected to the UART and saw that ECON1=00000000b.
+
+ECON1 contain the RXEN bit : Receive Enable bit. If its 1 - packets which pass the current filter configuration will be written into the receive buffer. 0 - All packets received will be ignored. 
+
+Seems that cleared RXEN bit is the reason for such behavior - recieving no data with activity led blinking.
+
+In the Arduino_UIP code, i did not find the RXEN bit cleaning operations. Now i'll try to call _Enc28J60.init()_ when 0 == ECON1.RXEN. 
+
+I hope that the information was helpful And may be someone will found workaround to get more stability with ENC28J60."
+arduino monitoring zabbix8,Es algo que podrias probar
+arduino monitoring zabbix8,Related topics
+arduino monitoring zabbix8,"Powered byDiscourse, best viewed with JavaScript enabled"

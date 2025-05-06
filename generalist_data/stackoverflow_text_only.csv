@@ -1,0 +1,1262 @@
+texte_question
+"I'm working on a concept for a local, real-time Bluetooth intercom system based on a Raspberry Pi 5. The main idea is to simultaneously connect multiple Bluetooth headsets (with built-in microphones) to a Raspberry Pi 5 (using only its integrated Bluetooth) to establish shared bidirectional audio communication. 
+ I've managed to establish connections and get audio flowing with three headsets simultaneously, but I'm encountering unexpected errors and unstable behavior. As a novice in this area, I'd like to ask for your expertise on the technical feasibility and potential solutions to the following issues. My current implementation involves these core libraries: 
+ 
+ DBus/BlueZ: For Bluetooth communications 
+ GLib/GObject: For event loop management (via threading) 
+ PulseAudio (via pulsectl): For audio routing and management 
+ asyncio: For asynchronous operations and concurrency 
+ 
+ Despite using these, I'm facing the following challenges: 
+ 
+ Simultaneous Management of Multiple Stable Bidirectional Bluetooth Audio Connections (HSP/HFP profile or equivalent) with the Raspberry Pi 5's Integrated Bluetooth . While I've successfully connected three headsets using BlueZ, the connections seem fragile and prone to unexpected disconnections. Are there known limitations regarding the number of simultaneous bidirectional audio connections and the stability of these connections using the Raspberry Pi 5's integrated Bluetooth when managed via BlueZ? Recommendations for optimizing stability within this setup would be greatly appreciated. 
+ 
+ Real-Time Audio Routing and Mixing for Multiple Bluetooth Audio Streams on Raspberry Pi 5 using PulseAudio (via pulsectl) . I've attempted to configure PulseAudio to route audio from each headset to a shared stream, but I'm running into problems such as: 
+ 
+ 
+ 
+ Unwanted audio feedback loops (loopback). 
+ One headset hearing its own audio in its earpieces. 
+ Difficulties in correctly mixing the incoming audio streams for simultaneous broadcasting to the other headsets using pulsectl. 
+ 
+ Given my use of PulseAudio and pulsectl for audio management, are there specific patterns or configurations known to work well for this type of real-time bidirectional audio routing with multiple Bluetooth sources? Any insights into common pitfalls or best practices when using pulsectl in this context would be very helpful. 
+ I'm looking to assess the technical viability of such a system and understand how to resolve these stability and audio configuration problems within my current technological choices. Any information, example configurations using these libraries, or troubleshooting tips would be greatly appreciated."
+"I have used python for a while now, however, I am new to using a Raspberry Pi and things such as GPIO pins. I recently bought a Freenove Ultrasonic starter kit to help me learn. They have a tutorial included that I am following. In the program I keep getting this error message: 
+ lgpio.error 'gpio busy'
+ 
+ I have tried loads of things. I know it could be a few things:
+In a previous project I didn't cleanup the GPIO pins properly or
+I exported the pins and didn't reverse it. 
+ I have tried numerous commands and script to cleanup the code but it wont work.
+I also rebooted the Raspberry Pi5 a few times.
+Here is the code I used for my project: 
+ from gpiozero import LED, Button
+import time
+
+
+led = LED(17)  # define LED pin according to BCM Numbering
+button = Button(18)  # define Button pin according to BCM Numbering
+
+
+def onButtonPressed():
+    # When button is pressed, this function will be executed
+    led.toggle()
+
+    if led.is_lit:
+        print(""Led turned on >>>"")
+    else:
+        print(""Led turned off <<<"")
+
+
+def loop():
+    # Button detect
+    button.when_pressed = onButtonPressed
+    while True:
+        time.sleep(1)
+
+
+def destroy():
+    led.close()
+    button.close()
+
+
+if __name__ == '__main__':
+    # Program entrance
+
+    print('Program is starting...')
+    try:
+        loop()
+
+    except KeyboardInterrupt:
+        # Press ctrl-c to end the program.
+        destroy()
+        print(""Ending program"")"
+"I am trying to get pynput working on my raspberry pi 4. I tried using the example ""monitoring keyboard"" script from pynput and I am getting exactly the same issue as in this post. I am using the same scripts that are used in the problem and solution sections.
+ Python script locked by thread . 
+ In both cases, the terminal does not recognize the key strokes - e.g. when I press 'q', nothing happens. When I cancel the script, it says 
+ wait gotit = waiter.acquire(True,timeout) 
+ What am I doing wrong and how can I further diagnose the issue? I don't really understand how to resolve this part of thread. 
+ Specs: 
+ 
+ Raspberry pi4 running raspberry pi OS with desktop 
+ Pynput version 1.8.1"
+"I'm running a remote monitoring system on a Raspberry Pi, which handles real-time data from telecom site devices like DC plants, energy meters, HVAC systems, and rectifiers. The backend uses Flask and Python, while the frontend is built with React.js. The system processes large amounts of data and stores it in InfluxDB and Redis, using Modbus and SNMP for device communication. 
+ However, I'm facing frequent SD card corruption or failure after about 6-8 months of operation, causing system disruptions (e.g., kernel panics, blank screens). The SD card is under heavy read/write load, and I've tried using a bash script to monitor write cycles, but it doesn't seem feasible to track such metrics effectively. 
+ What I've Tried: 
+ Bash script to monitor read/write cycles (not fully effective and accurate). 
+ Need a solution to predict SD card life or track its health accurately or monitor read/write cycles causing SD card wear. 
+ What I'm Looking For: 
+ Any script/tool through which i can monitor what are the actual read/write operations being performed on the sd card in a specific time period. (eg. i'll observe for a day and from there i can predict on that basis that for how long is the card gonna last) 
+ Tools to monitor SD card health. 
+ Techniques to reduce write load (e.g., log rotation, offloading logs). 
+ Any insights on extending the SD card’s lifespan or alternative solutions for better performance would be greatly appreciated."
+"I currently have a board attached to my raspberrypi with 2 spi devices on it. I looked at the source code of the library of this board found at:  https://github.com/abelectronicsuk/ABElectronics_Python_Libraries/blob/master/ADCDACPi/ADCDACPi.py 
+ The two devices use: 
+ spiADC.open(0,0)
+and 
+ spiDAC.open(0,1) 
+ I am adding a third spi device (call it INA). I have used GPIO 23 as the CS pin for that. But to use functions like xfer2 I need to use INA.open, otherwise I get errors. 
+ I attempted INA.open(0,2) but got the error: 
+ 
+ FileNotFoundError: [Errno 2] No such file or directory 
+ 
+ I have only seen examples with spidev.open(0,0) and spidev(0,1), so I don't know if there is a limit. I attempted to use INA.open(0,0) and INA.no_cs hoping this would not interfere with spiADC. But as expected it did. 
+ I have pulled GPIO23, which I was using as the CS line for the INA, low manually and then attempted xfer2 with INA: 
+ INA_cs_line.set_value(0)
+rec = INA.xfer2(sendTX)
+INA_cs_line.set_value(1)
+ 
+ I have verified with the oscilloscope that when using INA.xfer2 also the CS line of spiADC is pulled low as it is also at (0,0). 
+ Hence my question, how do I open an spidev connection with a specified a custom specified pin as CS. Or, if I pull the CS low for the third chip manually, how do I use INA.xfer2 (which it seems requires INA.open), without it interfering with the other SPI device's CS line."
+"I have eth0 with IP 192.168.0.10/24 with router IP 192.168.0.1 metric 10.
+I have eth1 with IP 192.168.1.20/24 with router IP 192.168.10.10 metric 200. 
+ When I do IP route I see two default route with different metric. 
+ My question is that when I do curl --interface 192.168.0.10  https://www.google.com  it works.
+But when I do curl --interface 192.168.1.20  https://www.google.com  it does not work. 
+ Anyone has idea how to configure route so that curl works on both?
+Thanks in advance."
+"I am using Pixhawk 6C hardware with firmware version Pixhawk13.2, a Raspberry Pi 3B as the onboard computer, and Dronekit as the software. 
+ I am trying to control the flight using only the laser sensor and the PX4 Flow optical flow sensor. Currently, I can use the remote controller to make the drone hover stably in the air. 
+ However, when controlling the aircraft with Dronekit, I can switch the flight mode using  vehicle.set_mode , but after sending the  set_position_target_local_ned  message to set the drone's vx, vy, vz, I cannot control the drone to move forward, backward, left, or right. 
+ Can I use Dronekit to control Pixhawk? Do I have to use MAVROS?"
+"The short story is that I need to develop apps for the Pi and I would like to have a similar environment on my Mac to test (configuration of the systemd services, setting up and running python the way I need it, etc.). 
+ I found out that the Raspberry Pi Desktop distro (2022-07-01-raspios-bullseye-i386) isn't of help because it's x86. I managed to run the ARM64 version on Qemu, but through emulation (not virtualisation), so it's too slow to be usable. Same with the i386 distribution above. I've seen Apple Virtualisation Framework and Rosetta mentioned a few times but I could not get it to boot using UTM or Parallels 20.2, no matter how I tried. 
+ I was thinking about starting with Debian, and I'd like some pointers for what I need to install in order to reproduce a good testing environment. A starter is to install LXDE for example. But is there a list?"
+"I’m using the Synexens CS20 dual-lens ToF LiDAR sensor with the SynexensSDK (v4.2.1.0, ARMv8) on a  Raspberry Pi 4 Model B  running Ubuntu 24.04 (64-bit). The device works fine once after a cold boot, but then fails on all subsequent runs with the following error: 
+ ioctl(UVCIOC_CTRL_SET) FAILED (-1)
+Open video device failed
+ 
+ I’ve ensured that I properly stop and release the device using the SDK’s recommended calls: 
+ SDK Documentation:  https://support.tofsensors.com/guide/code/closeExit.html 
+ 
+ StopStreaming() 
+ CloseDevice() 
+ UnInitSDK() 
+ 
+ But despite this, the device ends up in a locked/busy state. Only a full cold reboot makes it functional again. 
+ What I've tried: 
+ 
+ Unbinding and rebinding USB: 
+ echo '1-1.1' | sudo tee /sys/bus/usb/drivers/usb/unbind
+echo '1-1.1' | sudo tee /sys/bus/usb/drivers/usb/bind
+ 
+ 
+ Reloading kernel modules: 
+ sudo modprobe -r uvcvideo && sudo modprobe uvcvideo
+ 
+ 
+ Changing permissions of  /dev/videoX 
+ 
+ Resetting USB port power using  uhubctl : 
+ sudo uhubctl -l 1-1 -a off
+sleep 2
+sudo uhubctl -l 1-1 -a on
+ 
+ 
+ Confirmed  libSonixCamera.so  is correctly linked 
+ 
+ Checked  dmesg  for UVC-related errors (e.g.,  status -71 ) 
+ 
+ 
+ After the first run: 
+ 
+ v4l2-ctl  cannot open the device. 
+ The SDK reports  FindDevice errorcode:0 . 
+ Device is still visible in  lsusb  and  /dev/videoX  exists, but all access fails. 
+ 
+ Goal: 
+I want to stream depth data reliably from the CS20 device in a real-time loop, with the ability to gracefully shut down and restart the application  without having to reboot  the entire system each time. 
+ 
+ Questions: 
+ 
+ Is there a kernel-level way to forcefully release the video device? 
+ Is it a driver bug in  uvcvideo  or something SDK-specific? 
+ Any known workaround or patch for ARM64-based systems like Raspberry Pi? 
+ 
+ Any help, insights, or alternative ideas would be greatly appreciated! 
+ Specs: 
+ 
+ Device: Synexens CS20 Dual 
+ Board: Raspberry Pi 4B (8GB) 
+ OS: Ubuntu 24.04 (also tested on 22.04) 
+ SDK: SynexensSDK 4.2.1.0 (ARMv8) 
+ Kernel: 5.15.x (64-bit) 
+ 
+ Important Links : 
+ 
+ https://support.tofsensors.com/guide/access/raspberry-pi.html 
+ SDK Link"
+"Environment 
+ 
+ Raspberry Pi 5 
+ Geekworm USB-C Power Adapter PD 27W Type-C (compatible with Raspberry Pi 5 / Pi 4) 
+ Raspberry Pi OS 12.10 
+ Live Gamer Ultra GC553 
+ Nintendo Switch 
+ 
+ 
+ Goal 
+ I want to analyze gameplay footage from the Nintendo Switch using OpenCV in Python on the Raspberry Pi 5 by capturing it through the Live Gamer Ultra GC553. 
+ 
+ Questions 
+ 
+ Ultimately,  is it possible to capture video from the Live Gamer Ultra GC553 on the Raspberry Pi 5? 
+ How can I resolve the following issue? 
+ 
+ 
+ The Issue 
+ I ran the following Python code on the Raspberry Pi: 
+ import cv2
+
+cam_id = 0
+
+cap = cv2.VideoCapture(cam_id)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+
+while True:
+    ret, frame = cap.read()
+    print(frame)
+    if not ret:
+        print(""Failed to capture image"")
+        break
+    cv2.imshow(""Camera"", frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+ 
+ The output was: 
+ None  
+Failed to capture image
+ 
+ When I changed  cam_id  to 1 or higher, I got the following error: 
+ [ WARN:0@0.014] global cap_v4l.cpp:913 open VIDEOIO(V4L2:/dev/video1): can't open camera by index
+[ERROR:0@0.100] global obsensor_uvc_stream_channel.cpp:158 getStreamChannelGroup Camera index out of range
+None  
+Failed to capture image
+ 
+ 
+ What I’ve Tried 
+ After connecting the GC553 to the Raspberry Pi 5, the device lights up blue, so the USB connection seems fine. 
+Then, I ran the following command to check if the GC553 is recognized: 
+ v4l2-ctl --list-devices
+ 
+ Here’s the output: 
+ pispbe (platform:1000880000.pisp_be):
+    /dev/video20
+    /dev/video21
+    ...
+    /dev/video35
+    /dev/media0
+    /dev/media1
+
+rpi-hevc-dec (platform:rpi-hevc-dec):
+    /dev/video19
+    /dev/media2
+
+Live Gamer Ultra-Video: Live Ga (usb-xhci-hcd.1-1):
+    /dev/video0
+    /dev/video1
+    /dev/media3
+ 
+ So the GC553 is listed as  /dev/video0  and  /dev/video1 . 
+ Then, I tried to preview the video using  ffplay : 
+ ffplay /dev/video0
+ 
+ But I got the following error: 
+ xxx@raspberrypi:~ $ ffplay /dev/video0
+ffplay version 5.1.6-0+deb12u1+rpt3 Copyright (c) 2003-2024 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14)
+  configuration: --prefix=/usr --extra-version=0+deb12u1+rpt3 --toolchain=hardened --incdir=/usr/include/aarch64-linux-gnu --enable-gpl --disable-stripping --disable-mmal --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sand --enable-sdl2 --disable-sndio --enable-libjxl --enable-neon --enable-v4l2-request --enable-libudev --enable-epoxy --libdir=/usr/lib/aarch64-linux-gnu --arch=arm64 --enable-pocketsphinx --enable-librsvg --enable-libdc1394 --enable-libdrm --enable-vout-drm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared
+  libavutil      57. 28.100 / 57. 28.100
+  libavcodec     59. 37.100 / 59. 37.100
+  libavformat    59. 27.100 / 59. 27.100
+  libavdevice    59.  7.100 / 59.  7.100
+  libavfilter     8. 44.100 /  8. 44.100
+  libswscale      6.  7.100 /  6.  7.100
+  libswresample   4.  7.100 /  4.  7.100
+  libpostproc    56.  6.100 / 56.  6.100
+[video4linux2,v4l2 @ 0x7ffeb0000c20] ioctl(VIDIOC_STREAMON): No such file or directory
+/dev/video0: No such file or directory
+ 
+ 
+ Any ideas on how to solve this or whether capturing GC553 video on Raspberry Pi 5 is even possible? Thanks in advance!"
+"I have trained and quantised my models on  tensorflow==2.19.0  instead of a previous version and now am facing troubles in using the quantised models for inference on my Raspberry Pi (Raspbian GNU/Linux 11 Bullseye). The latest version of  tflite-runtime  seems to be  2.13.0  and I get the following error when I run invoke the interpreter: 
+ interpreter = tflite.Interpreter(model_content=tflite_model)
+ 
+ ValueError: Didn't find op for builtin opcode 'FULLY_CONNECTED' version '12'. An older version of this builtin might be supported. Are you using an old TFLite binary with a newer model?
+ 
+ I do understand that this issue can be resolved if I downgrade my tensorflow to 2.13 and train+quantise my models but I have 30 models which will take around 2 weeks to train and quantise on my resources. 
+ Is there a way I can use the latest  tflite-interpreter  on my Raspberry Pi? Any help in this regard would be great! 
+ PC"
+"My understanding is that tflite was developed to avoid installing the full package of Tensorflow in embedded system such Raspberry Pi, saving processing and power resources. 
+ Following the directions from  https://pypi.org/project/tflite/ , the documentation is linked to  https://ai.google.dev/edge/litert/models/convert_tf , but the examples shows the usage of Tensorflow full package. 
+ Additionally, Tensorflow API shows tf.lite ( https://www.tensorflow.org/api_docs/python/tf/lite ), so what would be the point of installing tflite if the whole Tensorflow package needs to be installed? 
+ What am I missing or misunderstanding? To use Tensorflow Lite, the full Tensorflow package needs to be installed anyway? If so, what resources would be host saved?"
+"iam using rfid to verify a card and then based on that sg90 is rotated 
+ from dotenv import load_dotenv
+import os
+from Read import readID
+import requests
+from time import sleep
+import RPi.GPIO as GPIO
+
+load_dotenv()
+room_id = os.getenv('roomID')
+name, password = os.getenv('name'), os.getenv('password')
+url = os.getenv('url')
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(18, GPIO.OUT)
+pwm = GPIO.PWM(18, 50)
+pwm.start(0)
+
+def open_doors():
+    pwm.ChangeDutyCycle(5)  
+    sleep(0.5)  
+    pwm.ChangeDutyCycle(0)  
+    sleep(2)  
+    pwm.ChangeDutyCycle(10) 
+    sleep(0.5)
+    pwm.ChangeDutyCycle(0) 
+
+token = requests.post(url+'/login', {'name': name, 'password': password}, headers={""Content-Type"": ""application/x-www-form-urlencoded""}).json()['token']
+headers = {
+        ""Authorization"": f""Bearer {token}"",
+        ""Content-Type"": ""application/x-www-form-urlencoded""   }
+
+while True:
+    id = readID()
+    response = requests.post(url+""/log"", {'employeeId': id, 'roomId': room_id}, headers=headers)
+    if response.status_code == 200:
+        print(""Access Successful, door opening..."")
+        open_doors()
+        sleep(2)
+    else:
+        print(""Access Denied"")
+        sleep(5)
+ 
+ the function open_doors works fine outside the loop, but for some reason the motor does not rotate when it is inside the loop, if there are any print statements in the functions they execute but the motor wont rotate"
+"Im trying to get going with SocketCAN. 
+ However, I want to have a extremely stable and functioning CAN backbone, and have something proven, that upon receiving a frame on ""can0"", will launch my script with that frame on the command line arguments or STDIN, and then my script can process that frame. (including, for example sending out packets on CAN interface or similiar). 
+ Basically how Xinetd works. 
+ However, trying to use Xinetd with SocketCAN seems not to be possible as Xinetd is IP-based and CAN doesn't use IP. 
+ So how can I process packets fron can0 in a xinetd fashion?"
+"I have recently purchased a  MAX30101 breakout board / sensor  and have been using it with a Raspberry Pi 4 and Python. I have been using the sparkfun-qwiic-max3010x library provided by Sparkfun to communicate with the sensor and collect data.  The GitHub page for the Python sparkfun-qwiic-max3010x library includes an example for calculating heart rate but not SpO2. The  Arduino library  includes an example for calculating heart rate and SpO2. 
+ I was wondering if there is an algorithm available or if it is possible to calculate SpO2 accurately in Python on the Raspberry Pi 4. 
+ I have seen an algorithm in the  user guide  of the MAX30101 sensor but have not been able to accurately get an SpO2 reading with it in Python in the following code. The SpO2 value sometimes goes in the negatives and will give extremely different consecutive values. 
+ import time
+import numpy as np
+import qwiic_max3010x
+
+# Initialize the MAX30101 sensor
+sensor = qwiic_max3010x.QwiicMax3010x()
+
+sensor.begin()
+sensor.setup()
+
+sensor.setPulseAmplitudeGreen(0)
+
+# Function to read raw values from the sensor
+def read_raw_values(num_samples=100):
+    red_values = []
+    ir_values = []
+
+    for _ in range(num_samples):
+            red = sensor.getRed()
+            ir = sensor.getIR()
+            red_values.append(red)
+            ir_values.append(ir)
+            time.sleep(0.01) # Adjust the delay as needed
+    
+    sensor.shutDown()
+    
+    return np.array(red_values), np.array(ir_values)
+
+
+# Function to calculate AC and DC components
+def calculate_ac_dc(raw_values):
+    dc = np.mean(raw_values)  # DC component
+    ac = raw_values - dc  # AC component
+    return ac, dc
+
+
+def calculate_spo2(red_ac, red_dc, ir_ac, ir_dc):
+    r = (np.mean(red_ac) / red_dc) / (np.mean(ir_ac) / ir_dc)
+    spo2 = 104 - (17 * r)
+    return spo2
+
+
+# Main loop
+try:
+    while True:
+        # Read raw values
+        red_raw, ir_raw = read_raw_values(num_samples=100)
+
+        # Calculate AC and DC components
+        red_ac, red_dc = calculate_ac_dc(red_raw)
+        ir_ac, ir_dc = calculate_ac_dc(ir_raw)
+
+        spo2 = calculate_spo2(red_ac, red_dc, ir_ac, ir_dc)
+
+        print(""Spo2: "", spo2)
+
+        # Wait for a bit before the next reading
+        time.sleep(1)  # Adjust the sleep time as needed
+
+except KeyboardInterrupt:
+    print(""Program stopped."")"
+"I'm running this on a Raspberry Pi.
+The application transitions through pages in the following order: Page1 → Page2 → Page3. 
+ On Page1, pressing a button takes you to Page2. 
+ On Page2, pressing a button starts communication. 
+ If the communication is successful, it moves to Page3. 
+ On Page3, after 20 seconds, it automatically returns to Page1. 
+ On Page1, there is periodic communication (once every few tens of seconds), and the received text is displayed scrolling at the bottom of the screen.
+Regardless of the current page, the app automatically returns to Page1 after 10 seconds. 
+ Everything works fine at first, but after about two weeks of continuous operation, the button on Page1 stops responding.
+However, even when the button is unresponsive, the text at the bottom of the screen still scrolls with the received communication data, so I don’t think the app is completely frozen. 
+ I've been thinking about the cause for a while, but I still can't figure it out. 
+ import sys
+import requests
+from PyQt5.QtCore import Qt, QTimer, QRect, QEvent
+from PyQt5.QtGui import QFont, QPixmap, QPainter, QPen, QBrush, QKeyEvent
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QStackedWidget,
+    QWidget,
+    QLabel,
+    QPushButton,
+    QVBoxLayout,
+    QHBoxLayout,
+    QMessageBox,
+)
+
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.stacked_widget = QStackedWidget(self)
+        self.setCentralWidget(self.stacked_widget)
+
+        self.screen_width = QApplication.desktop().width()
+        self.screen_height = QApplication.desktop().height()
+
+        self.pages = {}
+        for PageClass in (Page1, Page2, Page3):
+            page_instance = PageClass(self)
+            self.pages[PageClass.__name__] = page_instance
+            self.stacked_widget.addWidget(page_instance)
+
+        self.show_page(""Page1"")
+
+        self.input_data = """"
+
+        self.remaining_time = 20
+        self.inactivity_timer = QTimer(self)
+        self.inactivity_timer.timeout.connect(self.countdown)
+        self.inactivity_timer.start(1000)
+
+        self.installEventFilter(self)
+
+    def show_page(self, page_name):
+        page = self.pages.get(page_name)
+        if page is not None:
+            self.stacked_widget.setCurrentWidget(page)
+        self.reset_timer()
+
+        if page_name == ""Page2"":
+            self.input_data = """"
+            self.pages[""Page2""].reset_page()
+
+    def reset_timer(self):
+        self.remaining_time = 20
+
+    def countdown(self):
+        if self.remaining_time > 0:
+            self.remaining_time -= 1
+        else:
+            self.show_page(""Page1"")
+
+    def return_to_page1(self):
+        self.show_page(""Page1"")
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.KeyPress:
+            self.reset_timer()
+            key_event = event
+
+            current_page = self.stacked_widget.currentWidget()
+
+            if current_page == self.pages[""Page2""]:
+                if key_event.key() in (Qt.Key_Return, Qt.Key_Enter):
+                    p2 = self.pages[""Page2""]
+                    p2.process_text(self.input_data)
+                    self.input_data = """"
+                else:
+                    ch = key_event.text()
+                    if ch:
+                        self.input_data += ch
+
+            return super().eventFilter(obj, event)
+
+        elif event.type() == QEvent.MouseButtonPress:
+            self.reset_timer()
+
+        return super().eventFilter(obj, event)
+
+    def close_app(self):
+        
+        QApplication.quit()
+
+
+class BasePage(QWidget):
+    def __init__(self, main_window: MainWindow):
+        super().__init__()
+        self.main_window = main_window
+        self.setStyleSheet(""background-color: white;"")
+
+
+class Page1(BasePage):
+    def __init__(self, main_window: MainWindow):
+        super().__init__(main_window)
+
+        self.v_layout = QVBoxLayout(self)
+        self.setLayout(self.v_layout)
+
+        self.background_label = QLabel(self)
+        self.background_label.setGeometry(
+            0, 0, main_window.screen_width, main_window.screen_height
+        )
+        self.background_label.setStyleSheet(""background-color: white;"")
+        self.background_label.setScaledContents(True)
+
+        self.msg_label = QLabel(""Page1"", self)
+        self.msg_label.setStyleSheet(""background-color: transparent; font-size: 54px;"")
+        self.msg_label.setAlignment(Qt.AlignCenter)
+
+        self.start_button = QPushButton(""start"", self)
+        self.start_button.setStyleSheet(
+            """"""
+            font-size: 54px; 
+            width: 300px; 
+            height: 100px;
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 20px;
+        """"""
+        )
+        self.start_button.clicked.connect(lambda: self.main_window.show_page(""Page2""))
+
+        self.v_layout.addWidget(self.msg_label, 0, Qt.AlignCenter)
+        self.v_layout.addWidget(self.start_button, 0, Qt.AlignCenter)
+
+        self.news_container = QWidget(self)
+        self.news_container.setGeometry(
+            0, self.main_window.screen_height - 150, self.main_window.screen_width, 80
+        )
+        self.news_container.setStyleSheet(""background-color: transparent;"")
+        self.news_label = QLabel(self.news_container)
+        self.news_label.setGeometry(0, 0, 100, 80)
+        self.news_label.setStyleSheet(""background-color: transparent; font-size: 54px;"")
+        self.news_label.setAlignment(Qt.AlignVCenter | Qt.AlignLeft)
+
+        self.news_text = ""Test""
+        self.text_x = 0
+        self.text_width = 0
+        self.move_speed = 2
+
+        self.update_news_text()
+
+        self.scroll_timer = QTimer(self)
+        self.scroll_timer.timeout.connect(self.start_text_scroll)
+        self.scroll_timer.start(30)
+
+    def update_news_text(self):
+        try:
+            resp = requests.post(
+                ""https://..."",
+                timeout=3,
+            )
+            if resp.ok:
+                data = resp.json()
+                self.news_text = data.get(""news"", ""Failed"")
+            else:
+                self.news_text = ""Failed""
+        except Exception as e:
+            self.news_text = ""Failed""
+
+        self.news_label.setText(self.news_text)
+        self.news_label.adjustSize()
+        font_metrics = self.news_label.fontMetrics()
+        self.text_width = font_metrics.width(self.news_text)
+        self.news_label.setFixedWidth(self.text_width)
+        self.text_x = -self.text_width
+        self.news_label.move(self.text_x, 0)
+
+    def start_text_scroll(self):
+        if self.text_x + self.text_width < 0:
+            self.update_news_text()
+            self.text_x = self.main_window.screen_width
+            return
+
+        
+        self.text_x -= self.move_speed
+        self.news_label.move(self.text_x, 0)
+
+
+class Page2(BasePage):
+    def __init__(self, main_window: MainWindow):
+        super().__init__(main_window)
+        layout = QVBoxLayout(self)
+        self.setLayout(layout)
+        self.is_processing = False
+        self.label = QLabel(""Page2\nPlease enter text."", self)
+        self.label.setStyleSheet(""background-color: transparent; font-size: 54px;"")
+        layout.addWidget(self.label, 0, Qt.AlignCenter)
+
+    def process_text(self, text):
+        if self.is_processing:
+            return  
+        self.is_processing = True
+        try:
+            response = requests.post(
+                ""https://"",
+                timeout=3,
+            )
+
+            if response.status_code == 200:
+                result = response.text.split("","")
+            if result[0] == ""success"":
+
+                _ = requests.get(
+                    ""http://localhost/"",
+                    timeout=3,
+                )
+                self.main_window.show_page(""Page3"")
+        except Exception as e:
+            self.label = ""Please enter it again""
+        self.is_processing = False
+        # self.main_window.show_page(""Page3"")
+
+    def reset_page(self):
+        self.label.setText(""Please enter text"")
+        self.main_window.barcode_data = """"
+
+
+class Page3(BasePage):
+    def __init__(self, main_window: MainWindow):
+        super().__init__(main_window)
+        layout = QVBoxLayout(self)
+        self.setLayout(layout)
+
+        self.label = QLabel(""page3"", self)
+        self.label.setStyleSheet(""background-color: transparent; font-size: 54px;"")
+        layout.addWidget(self.label, 0, Qt.AlignCenter)
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        self.move_to_page1()
+
+    def move_to_page1(self):
+        QTimer.singleShot(10000, self.main_window.return_to_page1)
+
+
+def main():
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
+
+
+if __name__ == ""__main__"":
+    main()"
+"I programmed an Android app in Android Studio using Kotlin and I am able to establish a connection with a Raspberry Pi 5 using BLE. I have the Android device as the peripheral and it is successfully advertising its service and characteristics. They will connect to each other, but I can't get any data to be transferred between them. I have tried everything I can possibly think of to solve my issue. 
+ I created a write and read characteristic in Android Studio and I want to send the String over the read characteristic when the Rapsberry Pi requests to read over that characteristic. I want the user to be able to press any button and then for that corresponding string associated with the button to send to the service terminal of the Raspberry Pi. 
+ This is the BLE code from Kotlin: 
+ class BLEAdvertiser(private val context: Context) {
+
+    private val bluetoothManager: BluetoothManager = context.getSystemService(BluetoothManager::class.java) //Gets the BluetoothManager system service.
+    private val bluetoothAdapter : BluetoothAdapter = bluetoothManager.adapter //Gets the BluetoothAdapter instance.
+    private var bluetoothLeAdvertiser: BluetoothLeAdvertiser? = bluetoothAdapter.bluetoothLeAdvertiser //Creates the bluetoothLeAdvertiser variable.
+    var bluetoothGattServer: BluetoothGattServer? = null
+    private val connectedDevices = mutableSetOf<BluetoothDevice>()
+
+    companion object {
+        private const val TAG = ""BLEAdvertiser""
+        val APP_UUID: UUID = UUID.fromString(""00001101-0000-1000-8000-00805f9b34fb"".lowercase())
+        val RX_APP_UUID: UUID = UUID.fromString(""00002201-0000-1000-8000-00805f9b34fb"".lowercase())
+        val TX_APP_UUID: UUID = UUID.fromString(""00002202-0000-1000-8000-00805f9b34fb"".lowercase())
+    }
+
+    fun setupGattServer(): Boolean {
+
+        Log.d(TAG, ""setupGattServer() is being called!"")
+
+        if (bluetoothGattServer != null) {
+            Log.d(TAG, ""setupGattServer() has already been called! Skipping setup process."")
+            return true
+        }
+
+        bluetoothGattServer = bluetoothManager.openGattServer(context, gattServerCallback) //Starts the GATT server.
+
+        if (bluetoothGattServer == null) {
+            Log.e(TAG, ""❌ Failed to open GATT server!"")
+            Handler(Looper.getMainLooper()).postDelayed({
+                bluetoothGattServer = bluetoothManager.openGattServer(context, gattServerCallback)
+                if (bluetoothGattServer == null) {
+                    Log.e(TAG, ""❌ GATT server still null after retry! Restarting BLE..."")
+                    restartBLE()
+                } else {
+                    Log.d(TAG, ""✅ GATT server opened successfully after retry."")
+                }
+            }, 3000) // Retry after 3 seconds
+            return false
+        } else {
+            Log.d(TAG, ""✅ GATT server opened successfully."")
+        }
+
+        //Create the service object.
+        val elevatorService = BluetoothGattService(APP_UUID, BluetoothGattService.SERVICE_TYPE_PRIMARY)
+
+        //Create read request characteristic. (Pi writes data here, Android reads it.)
+        val rxCharacteristic = BluetoothGattCharacteristic(
+            RX_APP_UUID,
+            BluetoothGattCharacteristic.PROPERTY_READ or BluetoothGattCharacteristic.PROPERTY_NOTIFY,
+            BluetoothGattCharacteristic.PERMISSION_READ
+        )
+
+        //Set initial value
+        rxCharacteristic.value = byteArrayOf(0x12, 0x34)
+
+        //Create write request characteristic. (Pi writes '2' here.)
+        val txCharacteristic = BluetoothGattCharacteristic(
+            TX_APP_UUID,
+            BluetoothGattCharacteristic.PROPERTY_WRITE or BluetoothGattCharacteristic.PROPERTY_NOTIFY or BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE,
+            BluetoothGattCharacteristic.PERMISSION_WRITE or BluetoothGattCharacteristic.PERMISSION_READ
+        )
+
+        elevatorService.addCharacteristic(rxCharacteristic) //Adds the write characteristic to the service.
+        Log.d(TAG, ""Adding characteristic to service. ${rxCharacteristic.uuid}"")
+        elevatorService.addCharacteristic(txCharacteristic) //Adds the read characteristic to the service.
+        Log.d(TAG, ""Adding characteristic to service. ${txCharacteristic.uuid}"")
+
+        val result =
+            bluetoothGattServer?.addService(elevatorService) //Adds the service to the GATT server.
+        if (result == true) {
+            Log.d(TAG, ""✅ Service successfully added: ${elevatorService.uuid}"")
+        } else {
+            Log.e(TAG, ""❌ Failed to add service to GATT server!"")
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (bluetoothGattServer?.services.isNullOrEmpty()) {
+                Log.e(TAG, ""❌ No services registered in GATT server! (Delayed Check)"")
+            } else {
+                Log.d(TAG, ""✅ Services successfully registered. (Delayed Check)"")
+                bluetoothGattServer?.services?.forEach { s ->
+                    Log.d(TAG, ""✅ Service Registered: ${s.uuid}"")
+                    s.characteristics.forEach { c ->
+                        Log.d(TAG, ""   - Characteristic: ${c.uuid} (Properties: ${c.properties})"")
+                    }
+                }
+            }
+        }, 2000) //Wait for 2 seconds.
+
+        return result == true
+
+    }
+
+    //Create the GATT server callback.
+    val gattServerCallback = object : BluetoothGattServerCallback() {
+
+        override fun onConnectionStateChange(device: BluetoothDevice?, status: Int, newState: Int) {
+            super.onConnectionStateChange(device, status, newState)
+
+            if (device == null) {
+                Log.e(TAG, ""onConnectionStateChange: Device is null!"")
+                return
+            }
+
+            val stateDescription = when (newState) {
+                BluetoothProfile.STATE_CONNECTED -> ""CONNECTED""
+                BluetoothProfile.STATE_DISCONNECTED -> ""DISCONNECTED""
+                BluetoothProfile.STATE_CONNECTING -> ""CONNECTING""
+                BluetoothProfile.STATE_DISCONNECTING -> ""DISCONNECTING""
+                else -> ""UNKNOWN""
+            }
+
+            Log.d(TAG, ""🔄 Connection state changed: $stateDescription for ${device.address}"")
+
+            when (newState) {
+                BluetoothProfile.STATE_CONNECTED -> {
+                    Log.d(TAG, ""Device successfully connected: ${device.address}"")
+                    connectedDevices.add(device) // Store connected device
+                }
+                BluetoothProfile.STATE_DISCONNECTED -> {
+                    Log.d(TAG, ""Device disconnected: ${device.address}"")
+                    connectedDevices.remove(device) // Remove disconnected device
+                }
+            }
+        }
+
+        override fun onCharacteristicWriteRequest(
+            device: BluetoothDevice?,
+            requestId: Int,
+            characteristic: BluetoothGattCharacteristic?,
+            preparedWrite: Boolean,
+            responseNeeded: Boolean,
+            offset: Int,
+            value: ByteArray?
+        ) {
+            super.onCharacteristicWriteRequest(
+                device,
+                requestId,
+                characteristic,
+                preparedWrite,
+                responseNeeded,
+                offset,
+                value
+            )
+
+            if (characteristic?.uuid == TX_APP_UUID) {
+                val receivedCommand = value?.toString(Charsets.UTF_8) ?: ""Unknown""
+                Log.d(TAG, ""📩 Received command from Pi: $receivedCommand"")
+
+                // Send acknowledgment response if required
+                if (responseNeeded) {
+                    bluetoothGattServer?.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, value)
+                }
+
+                // Respond by setting RX characteristic value
+                val responseData = ""ACK: $receivedCommand"".toByteArray(Charsets.UTF_8)
+                val rxCharacteristic = bluetoothGattServer?.getService(APP_UUID)?.getCharacteristic(RX_APP_UUID)
+                rxCharacteristic?.value = responseData
+
+                // Notify Pi that new data is available
+                rxCharacteristic?.let {
+                    device?.let { dev ->
+                        bluetoothGattServer?.notifyCharacteristicChanged(dev, it, false)
+                    }
+                }
+                Log.d(TAG, ""📤 Sent ACK response to Pi: $receivedCommand"")
+            }
+        }
+
+        override fun onCharacteristicReadRequest(
+            device: BluetoothDevice?,
+            requestId: Int,
+            offset: Int,
+            characteristic: BluetoothGattCharacteristic?
+        ) {
+            Log.d(TAG, ""📩 Read request received for: ${characteristic?.uuid}"")
+
+            if (characteristic?.uuid == RX_APP_UUID) {
+                val responseData = characteristic.value ?: byteArrayOf(0x12, 0x34)
+                Log.d(TAG, ""📤 Pi read from RX_APP_UUID: ${responseData.contentToString()}"")
+
+                bluetoothGattServer?.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, 0, responseData)
+            } else {
+                Log.e(TAG, ""❌ Unknown characteristic for read request: ${characteristic?.uuid}"")
+                bluetoothGattServer?.sendResponse(device, requestId, BluetoothGatt.GATT_FAILURE, 0, null)
+            }
+        }
+
+        override fun onServiceAdded(status: Int, service: BluetoothGattService?) {
+            super.onServiceAdded(status, service)
+            Log.d(TAG, ""Service added: ${service?.uuid} (Status: $status)"")
+
+        }
+
+    }
+
+    //Function used to start advertising the device.
+    fun startAdvertising() {
+
+        Log.d(TAG, ""Starting BLE advertising..."")
+
+//        //Make sure the GATT services are properly set up first.
+//        if (!setupGattServer()) {
+//            Log.e(TAG, ""Failed to set up GATT server! Not advertising."")
+//            return
+//        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            //Check Bluetooth Adapter status before starting server.
+            if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled) {
+                Log.e(TAG, ""Bluetooth is disabled. Cannot start advertising."")
+            }
+
+            if (bluetoothAdapter == null || !bluetoothAdapter.isMultipleAdvertisementSupported) {
+                Log.e(TAG, ""BLE not supported on this device"")
+            }
+
+            val advertiseSettings = AdvertiseSettings.Builder()
+                .setAdvertiseMode(AdvertiseSettings.ADVERTISE_MODE_LOW_LATENCY)
+                .setTxPowerLevel(AdvertiseSettings.ADVERTISE_TX_POWER_HIGH)
+                .setConnectable(true)
+                .build()
+
+            val advertiseData = AdvertiseData.Builder()
+                .setIncludeDeviceName(true)
+                .addServiceUuid(ParcelUuid(APP_UUID)) //This ensures that the service UUID is advertised
+                .build()
+
+            bluetoothLeAdvertiser?.startAdvertising(
+                advertiseSettings,
+                advertiseData,
+                advertiseCallback
+            ) //Starts advertising.
+            Log.d(TAG, ""Starting BLE advertising."")
+        }, 2000) //Delay of 2 seconds to give the GATT server time to be ready.
+    }
+
+    fun stopAdvertising() {
+        bluetoothLeAdvertiser?.stopAdvertising(advertiseCallback) //Stops advertising.
+        Log.d(TAG, ""Stopping BLE advertising."")
+    }
+
+    private val advertiseCallback = object : AdvertiseCallback() {
+        override fun onStartSuccess(settingsInEffect: AdvertiseSettings?) {
+            super.onStartSuccess(settingsInEffect)
+            Log.d(TAG, ""BLE advertising started successfully."")
+            //startGattServer() //Starts the GATT server.
+        }
+
+        override fun onStartFailure(errorCode: Int) {
+            super.onStartFailure(errorCode)
+            Log.e(TAG, ""BLE advertising failed with error code: $errorCode."")
+        }
+    }
+
+
+    fun sendDataToPi(data: String): Boolean {
+        Log.d(TAG, ""📡 Attempting to send: $data"")
+
+        if (connectedDevices.isEmpty()) {
+            Log.e(TAG, ""No connected devices (tracked manually). Checking Bluetooth Manager..."")
+
+            val detectedDevices = bluetoothManager.getConnectedDevices(BluetoothProfile.GATT)
+            if (detectedDevices.isNotEmpty()) {
+                Log.d(TAG, ""🔄 Bluetooth Manager reports ${detectedDevices.size} connected devices. Updating manual list."")
+                connectedDevices.addAll(detectedDevices)
+            } else {
+                Log.e(TAG, ""Still no devices detected. Cannot send: $data"")
+                return false
+            }
+        }
+
+//        // Ensure the GATT server is still valid
+//        if (bluetoothGattServer == null) {
+//            Log.e(TAG, ""GATT server is null! Restarting BLE..."")
+//            val success = setupGattServer()
+//            if (!success) return false
+//        }
+
+        // Get updated GATT service
+        val service = bluetoothGattServer?.getService(APP_UUID)
+        if (service == null) {
+            Log.e(TAG, ""❌ Service $APP_UUID not found! Retrying..."")
+            bluetoothGattServer?.services?.forEach { Log.e(TAG, ""Registered Service: ${it.uuid}"") }
+            Handler(Looper.getMainLooper()).postDelayed({
+                val recheckedService = bluetoothGattServer?.getService(APP_UUID)
+                if (recheckedService == null) {
+                    Log.e(TAG, ""❌ Service still missing! Restarting BLE..."")
+                    restartBLE()
+                }
+            }, 2000) // Wait 2 seconds before retrying
+            return false
+        } else {
+            Log.d(TAG, ""Service $APP_UUID found."")
+        }
+
+        val characteristic = service.getCharacteristic(RX_APP_UUID)
+        if (characteristic == null) {
+            Log.e(TAG, ""❌ Characteristic not found! Restarting BLE...!"")
+            restartBLE()
+            return false
+        } else {
+            Log.d(TAG, ""Characteristic ${RX_APP_UUID} found."")
+        }
+
+        //Ensure that a device is connected before writing.
+        val devicesToSend = connectedDevices.toList()
+        if (devicesToSend.isEmpty()) {
+            Log.e(TAG, ""❌ No connected devices (tracked manually). Cannot send: $data"")
+            return false
+        }
+
+        devicesToSend.forEach { device ->
+            bluetoothGattServer?.notifyCharacteristicChanged(device, characteristic, false)
+            Log.d(TAG, ""📡 Sent to ${device.address}: $data"")
+        }
+
+        characteristic.value = data.toByteArray()
+
+        //Notify all connected devices.
+        connectedDevices.forEach { device ->
+            bluetoothGattServer?.notifyCharacteristicChanged(device, characteristic, false)
+            Log.d(TAG, ""📡 Sent to ${device.address}: $data"")
+        }
+
+        return true
+    }
+
+    fun restartBLE() {
+        Log.d(TAG, ""Restarting BLE services..."")
+
+        stopAdvertising() //Stop advertising.
+
+        bluetoothGattServer?.clearServices() //Clear old services.
+
+
+        startAdvertising() //Restart advertising.
+
+        Log.d(TAG, ""BLE services restarted."")
+    }
+
+}
+ 
+ This is the python code: 
+ #!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Int16, String
+from bluetooth_app_msgs.srv import SendValue, ConnectDevice  # ROS2 services
+import asyncio
+from bleak import BleakScanner, BleakClient
+import struct
+import time
+
+# UUIDs from the Android BLE server.
+ANDROID_DEVICE_NAME = ""Christopher's A14""  # Android device name
+ANDROID_MAC_ADDRESS = ""94:E1:29:E2:0B:51"" # Android MAC address.
+SERVICE_UUID = ""00001101-0000-1000-8000-00805f9b34fb"".lower()
+TX_CHAR_UUID = ""00002202-0000-1000-8000-00805f9b34fb"".lower()
+RX_CHAR_UUID = ""00002201-0000-1000-8000-00805f9b34fb"".lower()
+
+async def find_device():
+    """"""Scans for the Android BLE device and returns its address.""""""
+    print(""Scanning for BLE devices..."")
+
+    while True:  # Keep scanning until device is found
+        try:
+            devices = await BleakScanner.discover()
+
+            if not devices:
+                print(""No BLE devices found. Retrying in 5 seconds..."")
+                await asyncio.sleep(5)
+                continue
+
+            for device in devices:
+                print(f""Found: {device.name} - {device.address}"")
+                if device.name == ANDROID_DEVICE_NAME:
+                    print(f""Found target device: {device.name} at {device.address}"")
+                    return device.address
+                        
+        except Exception as e:
+            print(f""Error scanning for BLE device: {e}. Retrying in 5 seconds..."")
+            await asyncio.sleep(5)
+
+async def connect_to_device(device_address):
+    """"""Keeps the connection alive and continuously retries service discovery.""""""
+    print(""Attempting to connect to Android device..."")
+    print(f""Connecting to {device_address}..."")
+    
+    client = BleakClient(device_address)
+    
+    try:
+        await client.connect() # Explicitly try to connect.
+        if not client.is_connected:
+            print(""Connection failed!"")
+            await asyncio.sleep(5)
+            return
+            
+        print(""Successfully connected to the Android device!"")
+        
+        #Keep the connection alive and retry service discovery.
+        attempts = 0
+        while client.is_connected and attempts < 10:
+            print(f""Attempt {attempts + 1}: Discovering services..."")
+            services = await client.get_services()
+            found_services = [service.uuid for service in services]
+            
+            if SERVICE_UUID in found_services:
+                print(f""Found expected service: {SERVICE_UUID}."")
+                return
+            else:
+                print(f""Expected service {SERVICE_UUID} not found! Retrying..."")
+                await asyncio.sleep(2)
+                attempts += 1
+                
+        print(""Service discovery failed. Disconnecting..."")
+    finally:
+      await client.disconnect() #Explicitly disconnect when connection fails.
+      print(""Disconnected from the device."")
+
+async def communicate_with_android(device_address):
+    """"""Connects to the Android BLE device and exchanges data.""""""
+    while True:  # Keep retrying connection if it fails
+        try:
+            async with BleakClient(device_address) as client:
+                print(""Connected to Android BLE device!"")
+
+                # Wait before attempting to find services.
+                print(""Waiting 5 seconds for services to initialize..."")
+                await asyncio.sleep(5)
+    
+                # Ensure that the GATT service and characteristics exist.
+                services = await client.get_services()
+                print(""Available services:"")
+                found_services = []
+                for service in services:
+                    print(f"" - {service.uuid}"")
+                    found_services.append(service.uuid)
+                    for characteristic in service.characteristics:
+                        print(f"" - {characteristic.uuid} (Properties: {characteristic.properties})"")
+                        
+                #Validate service presence.          
+                if SERVICE_UUID not in found_services:
+                    print(f""Error: Service {SERVICE_UUID} not found!"")
+                    return
+                
+                # Get the expected service.
+                print(f""Waiting 5 seconds for services to initialize..."")
+                await asyncio.sleep(5)
+                service = client.services.get_service(SERVICE_UUID)
+                print(f""Found service {SERVICE_UUID}!"")
+            
+                # Print all characteristics of the found service.
+                for char in service.characteristics:
+                    print(f"" - Characteristic: {char.uuid} (Properties: {char.properties})"")    
+
+                # Check if characteristics exist
+                if TX_CHAR_UUID not in [char.uuid for char in service.characteristics]:
+                    print(""TX Characteristic not found!"")
+                    return
+
+                if RX_CHAR_UUID not in [char.uuid for char in service.characteristics]:
+                    print(""RX Characteristic not found!"")
+                    return
+                        
+                        #Discover services.
+                        await client.services #Ensure the services are loaded.
+                        print(""Services discovered!"")
+                        
+                        async def notification_handler(sender, data):
+                              received_command = data.decode(""utf-8"")
+                              print(f""Received command from Android: {received_command}."")
+                              
+                        print(f""Subscribing to the notifications for the RX Characteristic {RX_CHAR_UUID}..."")
+                        await client.start_notify(RX_CHAR_UUID, notification_handler)
+                        
+                        #Keep the connection open indefinitely.
+                        while client.is_connected:
+                              await asyncio.sleep(1) #Keeps the event loop alive.
+                        
+                
+        except Exception as e:
+            print(f""Connection failed: {e}. Retrying..."")
+            await asyncio.sleep(5)  # Retry after delay
+            continue
+
+async def main():
+    """"""Main function to find and connect to the Android BLE device.""""""
+    device_address = await find_device()
+    if device_address:
+        await connect_to_device(device_address)
+        await communicate_with_android(device_address)
+
+if __name__ == ""__main__"":
+    asyncio.run(main())"
+"I need to respond to a specific registry read over I2C on an RPi. 
+ Currently, following the usual instructions for the pigpio package here:  https://abyz.me.uk/rpi/pigpio/python.html#bsc_xfer  i can see the reads to the device address. I cannot however in the documentation see how to respond to a specific registry read on the device 
+ The master device (outside of my control) will read the Slave (RPi), on address 0x20. It will then look to access the register 0x1c5h (for example) to read any data stored there. I cannot see how to: 
+ 
+ Detect which register is being read 
+ See how to respond appropriately (i.e. with the data that should be ""stored"" at that address) 
+ 
+ Code used so far (ignore the prints for debug!). 
+ from decimal import Decimal
+
+import bitstring
+import time
+import pigpio
+
+I2C_ADDR = 0x50 #device address
+
+
+def i2c(id, tick):
+    global pi
+
+    #s, b, d = pi.bsc_i2c(I2C_ADDR)
+    #print(bitstring.BitArray(d).bin) #Print anything written
+
+    s, b, d = pi.bsc_i2c(I2C_ADDR, '1240') #respond to read
+
+#convert decimal to bytes
+def decimal_to_bytes(num):
+    x = Decimal(str(num))
+    a = x ** Decimal(1) / Decimal(7)
+    s = str(a)
+    b = s.encode('ascii')
+    return b;
+
+
+pi = pigpio.pi()
+
+if not pi.connected:
+    exit()
+
+e = pi.event_callback(pigpio.EVENT_BSC, i2c)
+
+pi.bsc_i2c(I2C_ADDR)  # Configure BSC as I2C slave
+
+time.sleep(600)
+
+e.cancel()
+
+pi.bsc_i2c(0)  # Disable BSC peripheral
+
+pi.stop()"
+"I have trained a DL model on matlab and exported it as an ONNX file, now I need to run it on a raspberry pi 4 model B with Raspberry Pi OS X64 bit (aarch64) and python 3.11.2, I have followed many guides but there is always a problem or something missing
+Please any one can help me with steps to install onnx runtime and run the code that loads the onnx model 
+ I have tried installing it using git clone but it fails due to running an old Cmake version, I couldn't update the cmake
+Also someone suggested using a virtual environment and it succeeded in installing a new cmake version but also struggles again installing the onnx runtime, any help? 
+ Below are some examples of errors I get: 
+ $ pip install onnxruntime
+ERROR: No matching distribution found for onnxruntime
+
+ERROR: Could not find a version that satisfies the requirement onnxruntime==1.15.0 (from versions: none)
+ERROR: No matching distribution found for onnxruntime==1.15.0
+ 
+ $ pip install https://github.com/microsoft/onnxruntime/releases/download/v1.15.0/onnxruntime-1.15.0-cp39-cp39-linux_aarch64.whl
+Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+ERROR: onnxruntime-1.15.0-cp39-cp39-linux_aarch64.whl is not a supported wheel on this platform.
+ 
+ $ ./build.sh --config Release --build_shared_lib --parallel --minimal_build
+
+CMake Error at CMakeLists.txt:6 (cmake_minimum_required):
+CMake 3.28 or higher is required.  You are running version 3.25.1
+ 
+ (venv) omarzpi@raspberrypi:~/onnxruntime/build $ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS=""-latomic""
+
+CMake Warning:
+
+Ignoring extra path from command line:
+
+
+
+""..""
+
+
+
+CMake Error: The source directory ""/home/omarzpi/onnxruntime"" does not appear to contain CMakeLists.txt.
+
+Specify --help for usage, or press the help button on the CMake GUI."
+"I have a problem, the lidar works through a TTL converter from USB to rasperri pi, but does not work through a gpio. I use ROS Kinetic and raspberry pi 4. 
+ Package  for rplidar. At ""rplidar_c1.launch"" file i replaced  ""serial_port""'s value from /dev/ttyUSB0 to /dev/tty/S0.I followed all these  instructions  for my ROS Kinetic. I remember once everything worked, but when I turned off the robot and left, and then came back and turned it on, nothing worked.
+If i try to start rplidar with ""roslaunch rplidar_ros rplidar_c1.launch"", I'll be stuck here. enter image description here 
+Every time I check all connections. Multimeter shows 4.69 volts on red and blue lidar wire. I read documentation and it says there that the minimum voltage should be 4.8 volts. How can i fix this problem?"

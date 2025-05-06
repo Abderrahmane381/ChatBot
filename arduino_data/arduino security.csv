@@ -1,0 +1,943 @@
+source,texte
+arduino security,Arduino secure communication
+arduino security,"i have a uni project where i needed to connect my arduino mega to the internet so i can control its behavior from a website, i bought a wemos d1 mini for that, i almost finishd the project , i can send http requests to my laravel app and vice versa , the problem is everyhting will stay local i will not host the app or use this project anywhere i will just use it to present it to my university, so my demo will be localy but the doctor need me to make a secure connection, so i wwas thinking about encrypting the data i am sending then decrypt it on both sides. but when i tried to implement this   when i am encrypting the data it is not returned as a ""String"" which makes sense but when i try to add it to a json and send it as a payload in a post request , the body of the received request on the laravel app is empty something  is going wrong , but without that encryption everything works fine (note: i did not try yet to encrypt the data that will be sent from the laravel app and received from the wemos which i'll need also)"
+arduino security,here is the working  code on the wemos (without encryption) i need your help to implement the encryption that will let me receive the body on my other app encrypted that i will add a specific token also to ensure that the request is comming from the wemos
+arduino security,"#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <ESP8266WebServer.h>
+#include <WiFiClient.h>
+
+const char* ssid = ""****"";
+const char* password = ""****"";
+
+// Laravel App Url
+String serverName = ""http://192.168.153.211:8000"";  // always add the ip address of the pc
+
+ESP8266WebServer server(80);
+
+// Function prototype
+String sendHttpRequest(String url, String payload);
+
+void setup() {
+  Serial.begin(9600);
+  delay(5000);
+
+  WiFi.begin(ssid, password);
+  Serial.println(""Connecting"");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(""."");
+  }
+  Serial.print(""\nConnected to WiFi network with IP Address: "");
+  Serial.println(WiFi.localIP());
+
+  server.on(""/open-door"", HTTP_POST, handlePost);
+
+  server.begin();
+  Serial.println(""HTTP server started"");
+}
+
+void loop() {
+  server.handleClient();
+  if (Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n');
+    if (input.startsWith(""{\""wemo_listen_phone_number\"":"")) {
+      String payload = input.substring(0);
+      String response = sendHttpRequest(serverName+""/api/send-otp"", payload);
+    }
+    if (input.startsWith(""{\""wemo_listen_otp\"":"")) {
+      String payload = input.substring(0);
+      String response = sendHttpRequest(serverName+""/api/open-door"", payload);
+    }
+  }
+}
+
+// Function definition
+String sendHttpRequest(String url, String payload) {
+  String response = """";
+
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println(""WiFi Disconnected"");
+    return response;
+  }
+
+  WiFiClient client;
+  HTTPClient http;
+
+  if (http.begin(client, url)) {
+
+    http.addHeader(""Content-Type"", ""application/json"");
+    int httpCode = http.POST(payload);
+
+    if (httpCode > 0) {
+      String response = http.getString();
+      Serial.println(response);
+    } else {
+      Serial.printf(""[HTTP] POST... failed, error: %s\n"", http.errorToString(httpCode).c_str());
+    }
+
+    http.end();
+  } else {
+    Serial.println(""[HTTP] Unable to connect"");
+  }
+  return response;
+}
+
+// handle encryption
+void handlePost() {
+  if (server.hasArg(""plain"")) {
+    String message = server.arg(""plain"");
+    Serial.println(""mega_listen_open_door"");
+    server.send(200, ""text/plain"", ""Received POST data: "" + message + ""\n"");
+  } else {
+    server.send(400, ""text/plain"", ""Bad Request: No POST data received"");
+  }
+}"
+arduino security,i know it is not clean code but i am new to this stuff
+arduino security,THANKS
+arduino security,Welcome to the forum
+arduino security,You started a topic in theUncategorisedcategory of the forum
+arduino security,Your topic has been moved to a relevant category.  Please be careful in future when deciding where to start new topics
+arduino security,Encrypted data is binary data. I would convert it to text using base64 and transfer that. At the other side you do the opposite (convert from base64 to binary) and next decrypt.
+arduino security,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security,Related topics
+arduino security,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security1,How to secure my Arduino sketch
+arduino security1,Hello mates
+arduino security1,"I am a bit confused about Arduino bit lock, what I need is simply as follow:"
+arduino security1,"1- I need to prevent others from making a copy of my program, the hex file should be secured as well2- My program needs to be able to read and store values in EEPROM3- I still need to update the program with new releases"
+arduino security1,My worries are the following:
+arduino security1,"1- I will brick the MCU and render it unusable, but can I get around that if I get  USBtinyISP programmer to completely erase the ATMega328B chip and reprogram it again?2- I will not be able to make updates to the program3- My program will not be able to read and write to EEPROM"
+arduino security1,"Can someone please direct me to the right path (which I believe is the bit lock) as the subject is really overwhelming to me despite that I have over 30 years programming experience in VB, but not in Arduino world to that extent, however my programming experience still helps me to write complicated Arduino sketches like the one I am trying to protect now which is actually my first sketch ever for a complicated Anti Carjacking system."
+arduino security1,I would really appreciate any help
+arduino security1,Cheers
+arduino security1,Is there some kind of password in the Anti Carjacking sketch ?There are security chips with encryption.
+arduino security1,"Your sketch is not in the Arduino board, only the compiled binary code.The compiler does extreme optimizations, it is almost impossible to reverse engineer the binary code back to source code."
+arduino security1,"After a reset, the Arduino software connects to the bootloader of a Arduino board. You can avoid that by burning the code with a programmer (such as your USBtinyISP)."
+arduino security1,"If you set the lock bit, then the Flash memory can no longer be read. I read that a full erase is possible, but I have never tried a full erase. It needs to be set in HV mode (by applying a High Voltage to the reset pin). Here is an example for that:https://www.instructables.com/ATMEGA328P-FUSE-RESET/"
+arduino security1,"If you make it possible in your circuit that the RESET pin can be lifted to 12V, and also connect the USBtinyISP, then the full erase should work."
+arduino security1,"The more security you add, the higher the chance that there is a bug and something does no longer work. That's just how it is."
+arduino security1,Are those ATmega328PB chips in stock at the moment ? Ormaybein half a year
+arduino security1,Hello mate
+arduino security1,"Thanks for your reply, yes there is a password to free the engine and it is stored in EEPROM (not encrypted currently), I am also using with the keypad, GROW R503 fingerprint reader which can be used as well"
+arduino security1,"I am not really worry about reverse engineering as it is so complicated that will be really hard to reverse engineer, I am more worried about cloning the hex file after they get it."
+arduino security1,"To be honest, I am really hesitant to use the lock bits, and now you made me even more hesitant  as I will take you advice on board due to the fact that there will be many releases and I will need to be able to update the boards with ease and no hassle, so I am thinking of an idea without messing with the fuses and lock bits through my programming and I would love to discuss it with you briefly and with your expertise you will be better to qualify"
+arduino security1,Here it is:
+arduino security1,"1- For every copy of the program there will be a serial number that is unique to each copy on each Arduino board, let's call it SN"
+arduino security1,2- The SN will be stored with each board on EEPROM (encrypted would be best)
+arduino security1,"3- The SN is also hard coded in the setup()  and whenever any board starts, it will check that hard codded SN in setup() and compares it with the decrypted SN value stored in EEPROM"
+arduino security1,"4- If they do not match, the program will halt or goes into an endless useless loop"
+arduino security1,"This way if the clone the hex file, firstly, if they try to understand it, I am hoping that it will be hexed enough that they will understand nothing, secondly, if they just try to install it on any other boards, it will not work because the other board does not have the unique value stored encrypted in EEPROM"
+arduino security1,"And finally if that works and secure enough, I do not need to mess with lock bits etc and go tough that complicated path. what do you think mate?"
+arduino security1,"One final question please, to completely erase the chip, how long I need to apply the 12 volt to the reset pin? And that amount of volts will not fry it?"
+arduino security1,Cheers
+arduino security1,almost impossible to reverse engineer the binary
+arduino security1,"But, one might give it a thwack."
+arduino security1,"The internal EEPROM of the ATmega chip or an external EEPROM ?The program avrdude is used to read and write the code andalso the eeprom. If someone can read the Flash code, then the EEPROM can be read as well.The communication with an external EEPROM via I2C can be captured with a Logic Analyzer."
+arduino security1,"You need two things: the main storage with a key and a small component with a matching key. I think that is how everyone does it. If the communication to the small component can be captured, then it should be encrypted."
+arduino security1,"You can apply 12V to the reset pin at any time. Apply it as long as you are working with the programming mode. You use the USBtinyISP in the same way, but then in HV mode for the extras."
+arduino security1,"Have you seen the schematic of the Arduino Nano ? It is missing a protection diode from RESET to 5V. When the RESET pin is at 5V and the DTR signals pushes it shortly to 10V with a pulse, then the HV mode is enabled. Perhaps some signals are needed at the programming (SPI) pins, but sometimes the bootloader gets corrupted during that very short time in HV mode."
+arduino security1,"During the manufacturing of the ATmega chips, data is written in the chip. For the ATmega32U4 there is a guaranteed unique identifier. The ATmega328P has them as well, without the guarantee.Search for: boot_signature_byte_get().The DS18B20 has a guaranteed unique identifier, but only if you buy a genuine DS18B20. Probably all the DS18B20 on Ebay/AliExpress/Amazon are counterfeit."
+arduino security1,"If you make a CRC that is a combination of the signature bytes and the identifier from the DS18B20. And then store it (encrypted) in the internal EEPROM and use the lock bit, then you have a good barrier for someone who wants to copy it. However, a encryption chip costs less than a dollar and creates a bigger barrier. Is a rolling code possible (the previous code is used to generate a new code)."
+arduino security1,I disagree: reverse engineering of a BIN file for an MCU is not so difficult (using a disassembler).
+arduino security1,"In order to protect your FW in a device, you need a processor with ""Trust Zone"":it will place sensitive code into a region of memory which cannot be read from the outside. Or: this code there can only be accessed, read and executed by a ""secure"" piece of code.And any debugger access is prohibited by HW."
+arduino security1,"Otherwise: everybody can connect a debugger and read out your MCU FW, even reading a QSPI flash."
+arduino security1,"PCs have some approaches to encrypt the entire hard disc: when reading from it - it has to be decrypted. But for an MCU way too much (and slowing down).If so: you could think about to encrypt all the code, with a key. A piece of SW in MCU reads such code, as data, from memory, decrypts it and places it into another memory, so that it is executed from there. But still not save: if somebody would trace your instructions done (from the outside) or read the memory content where the decrypted code is located (just stop MCU and read the memory with a debugger) - it can be still being stolen."
+arduino security1,"Aprocessor with ""Trust Zone"" seems to me the only reasonable option."
+arduino security1,"You could also think about to encrypt a little bit of your code. You have to force your users to enter a key. You decrypt now this code, place it into another memory and you jump to it.So, it makes it harder for ""bad guys"" to understand what your code will do, but potentially they will see still a lot of code open (read via a debugger)."
+arduino security1,"Or, to make it hard to attackers: you write ""self-modifying"" code: this is hard to disassemble, to change back to C-code. It needs understanding what happens during runtime (but still possible to figure out)."
+arduino security1,"Or: use a USB dongle, with an encrypted key on: your program just continues when dongle was seen and key was correct."
+arduino security1,"Everything can be hacked: you can just add barriers to make it harder for attackers to read your code.Otherwise you have to design a system which has a ""red"" and a ""white"" zone. The red is encrypted and no way to access it, to read it out (with external means)."
+arduino security1,"Or: you place your MCU into a shell, an enclosure: if somebody opens it, just to hook up a debugger - you have a switch to realize when it was opened. If so, you erase all your data, maybe also your MCU ROM flash (the code itself).But it might need an internal battery, self-powered to realize: otherwise, the hacker will disconnect any power, your protection switch does not work anymore and all the time for the hacker to open your device."
+arduino security1,How does Nano33IoT's crypto chip work?
+arduino security1,"I am not really worry about reverse engineering as it is so complicated that will be really hard to reverse engineer, I am more worried about cloning the hex file after they get it."
+arduino security1,"At some point the question becomes, is it easier to write new code from scratch, or attempt to reverse-engineer the code?"
+arduino security1,"My guess (no familiar with this one, my home is Portenta H7, also having a similar crypto chip):it takes data (some bytes), with a key and can convert into an encrypted result (or decrypt).It is not related to do something automatically, e.g. encrypt memory."
+arduino security1,"It is used to ""key negotation"", to encrypt/decrypt any data, as sequence of bytes. But you have to send it to the chip. The chip contains the algorithm (and is faster as in SW)."
+arduino security1,This chip does not protect anything (if you do not use it via SW).
+arduino security1,"You can clone easily: use debugger, read flash content, copy it to exact the same board - and done!"
+arduino security1,"For a developer: they would never reverse engineer in a way to convert BIN code back to source code. They would try to find your GitHub project. It is too time consuming.Anyway, as an engineer I would love to have nice source code with comments, hints ..."
+arduino security1,"Without ""TrustZone"" - everybody can connect debugger and duplicate your setup (by read and flash on another board)."
+arduino security1,"I agree that is why I said ""Almost"""
+arduino security1,"I will watch the videos, thanks"
+arduino security1,Cheers
+arduino security1,I guess it will be much easier to write a code from scratch than trying to hack other one's hex converted code
+arduino security1,Cheers
+arduino security1,"Thanks mate, would you please elaborate a bit or direct me to where I can find detailed info about what you are suggesting"
+arduino security1,Cheers
+arduino security1,"Thanks mate for all the proposed solutions, obviously I need to do a lot of homework to get around that, I actually thought about your last proposal of opening the box which can trigger something to do something else, like as you said removing all content from the MCU"
+arduino security1,Cheers
+arduino security1,"Thanks koepel, it is stored in the internal EEPROM, so it can be read and decrypted as you stated, well, I have to find the best and easiest to implement solution that may just make it harder to hack the code but surely will not prevent it"
+arduino security1,Cheers
+arduino security1,"If this is for a commercial product, keep in mind that when using Arduino and gcc tools that you are using open source and by using that open source you are subject the licensing requirements of those modules.gcc startup, runtime libraries, and the Arduino core library are all LGPL 2.0+Many Arduino libraries are also LGPL 2.0+ but not all of them.Some of the other most common licenses for Arduino libraries are BSD, MIT, GPL 2.0 and GPL 3.0"
+arduino security1,"While LGPL 2.0+ does allow creating closed source products, it is pretty much impossible to fully comply with the LGPL 2.0 license requirements when using Arduino.This is because when using LGPL 2.0 or GPL 2.0 licensed components in your image, the user has the right to be able to modify any of the open source modules and rebuild the image using the modified code which means you must provide a way for them to do this.This is next to impossible to do when using Arduino if not also providing the source code to the sketch since, as far as I know, the Arduino IDE does not provide a way to rebuild a f/w image with a pre-compiled sketch object."
+arduino security1,"If using any component licensed as GPL 3.0 to build your image,  then the f/w image must licensed as GPL 3.0 which means that that the user/customer is entitled get access to your source code if he asks for it.i.e. you can't create a closed source product when using GPL 3.0 licensed components/libraries in your f/w image / program."
+arduino security1,Make sure you fully understand the open source license agreements involved if you wanting to use Arduino to create your f/w image and are wanting to keep your source code closed source.
+arduino security1,--- bill
+arduino security1,"Oh YES - good point!If you are based on Open Source - you cannot commercialize and ""hide"". And you should not frustrate people using your system, when they know it is Open Source - but you prohibit insights (even make debugging impossible)."
+arduino security1,Very good point!
+arduino security1,"If you are based on Open Source - you cannot commercialize and ""hide""."
+arduino security1,"But it is possible to create a commercial product using open source components and keep your source code closed.For example, there are many products and devices from companies like Apple, Microsoft, Samsung, GoPro, and many others that use open source in their products.When doing so, you  have have to provide a way for users to rebuild the executable images with prepcompiled objects for the closed source components.This allows them to modify the open source components without having to provide the source code to the ""secret"" proprietary modules."
+arduino security1,This is easy to do if using a  *nix OS with gcc tools and build tools like make and/or automake to do the build.
+arduino security1,Apple uses BSD licensed code since it is much more liberal than GPL/LGPL.i.e. BSD is nearly freeware.
+arduino security1,"I'm very familiar with Samsung phones, GoPro cameras, and TomTom GPS devices as I have contacted each company about LGPL licensing issues.All of them were quick to respond and address the issues."
+arduino security1,"Yes there are instances of companies and developers blatantly cheating and violating the LGPL/GPL license agreements in their programs/products, but they run the risk that at some point it may catch up with them."
+arduino security1,--- bill
+arduino security1,GPL 3.0 which means that that the user/customer is entitled get access to your source code if he asks for it
+arduino security1,So anyone who ever wrote anything for profit with LibreOffice owes somebody something?
+arduino security1,(sort of tongue-in-cheek)
+arduino security1,@xfpdI Guess I'm missing something or the humor.GPL/LGPL open source licenses apply to using the open source code as part of a larger work or when making a derivative work.i.e. using open source code or an open source library to build an executable image like a program or f/w image.It does not apply to anything created by using an executable that happens to contain open source components.
+arduino security1,"In the case of LibreOffice, it is licensed for free for any use including commercial use under the terms of MPL 2.0"
+arduino security1,"So no issues using LibreOffice for creating works, including for commercial purposes.Now, for anybody creating or writing code for LibreOffice or creating extensions, or distributing modified versions of LibreOffice in source code form, they will need to comply with the LibreOffice MPL 2.0 license.And then to complicate things depending on how it is linked, it may revert to GPL/LGPL since there are GPL and LGPL components involved."
+arduino security1,--- bill
+arduino security1,Related topics
+arduino security1,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security2,Arduino through airport security
+arduino security2,"Hello everyone. In a few weeks, I am planning to take an international flight to Canada from Europe, and I would like to bring my arduinos with me."
+arduino security2,"I would like to bring a project (wireless weather station) that uses NRF24l01 radio modules to transmit the sensors' data, well, without wires. Also, I would like to take other types of hardware (boards, leds, resistors, sensors, motors, etc) and tools (screwdrivers, soldering irons...)."
+arduino security2,"I have fears that the X-Ray damages the Arduinos and the sensors, since after all it is radiation, albeit in low quantities. And, more importantly, I fear that airport security might think that I carry a bomb or something similar."
+arduino security2,"I do carry checked bagagge, so most of the hardware and tools would go there. However, the weather station is kind of different. Many posts on the internet suggest to put the electronics on the checked lugagge, but they also recommend not to carry anything that resembeled an antenna."
+arduino security2,"This is a problem for me, since I will carry two 10 cm antenna. My idea was to put them on the hand luggage, because if my checked suitcase is retained without me able to explain, I would lose the project. If I put them on my handbag, I will get stopped, but I would be able to explain the officers what I do carry."
+arduino security2,Anyone would be kind to give me some advice? Thanks to everyone.
+arduino security2,"I have had no problems with electronics in my carry on. I even went early in case I had to explain/demo the items. I didn't have any external antennas, just the on board squiggle types. Even the bright red SparkFun board wasn't interesting to them. Your experience may vary."
+arduino security2,I have fears that the X-Ray damages the Arduinos and the sensors
+arduino security2,Nah. No.
+arduino security2,"But if your prototype looks like a bomb, well...Pack a granola bar for your time in the special queue..."
+arduino security2,Hello there!
+arduino security2,"I read your post about your trip. It took some fears away. However, one of the replies said to avoid antenna looking things. And I'm carrying the same antennas you can find on Wi-Fi routers. Hence my worry."
+arduino security2,Take the antennas off?
+arduino security2,"I have taken a fully working copy of a satellite that was orbiting the Earth through airport security, no problems."
+arduino security2,I did check beforehand as to what was allowed or had to be declared in backage and there was nothing about satellites.
+arduino security2,Why do you need it in flight?
+arduino security2,real working earth orbiting satellite
+arduino security2,!!!Wow!How big?
+arduino security2,Ask them to inspect it manually and not Xray it.
+arduino security2,Hello.
+arduino security2,Thanks for the reply. I was worried about radiation (although I am sometimes kind of paranoic with those subjects).
+arduino security2,"About the bomb thing, my project doesn't look like a bombper se, but cables and an lcd screen don't usually look good on a security check."
+arduino security2,One friend of mine once got stopped because police confused his power bank wrapped with  a phone charger wire with a bomb.
+arduino security2,So who knows
+arduino security2,Look at my Avatar. Coke can with working satellite.
+arduino security2,"It was circa 206g, and the lightest, cheapest satellite with two way comms at the time."
+arduino security2,"I don't need it In flight, but I do need to carry it to my destination"
+arduino security2,Why? Is your baggage not going to the same place?
+arduino security2,Maybe I take the antennas off and put them on the checekd bag. I think that will avoid confusion
+arduino security2,"Nah, it looks more like a bomb with no antennas."
+arduino security2,"Sorry for the missunderstanding. I want it to fly with me to Canada. Not exactly by my side, but yes in any of my bags (I don't care if it is checked lugagge, handbag or in cabin)"
+arduino security2,"Welcome to Canada! Weather is killer now, though..."
+arduino security2,Thanks! The climate was a motivation in doing this project (test the weather station on a rough climate sounds appealing).
+arduino security2,"About the security, I think I'll just explain what the project is when I arrive there, to avoid confusion.Thanks for the replies!"
+arduino security2,Just assure them it won't affect the autopilot.image1920×1080 108 KB
+arduino security2,"Hahaha, thanks for the advice!"
+arduino security2,Related topics
+arduino security2,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security3,"Need help for Security System with Arduino UNO, RFID Reader, PIR Sensor, buzzer, and leds"
+arduino security3,"Hi, I wanted to create a security system in which there is an RFID reader that when you swipe the card the green LED goes off, the red one lights up, and when it detects movement it makes the buzzer sound at 1Khz intermittently every second"
+arduino security3,"tone(buzzer, 1000); // Send 1KHz sound signal...
+  delay(1000); // ...for 1 sec
+  noTone(buzzer); // Stop sound...
+  delay(1000); // ...for 1sec"
+arduino security3,"and to return to the previous mode (green led on, red led off and even if there is movement it does not sound) the RFID card must be swiped.therefore in practice to turn the security system off or on pass the RFID card."
+arduino security3,"Concerning the 16x2 I2C LCD screen When you swipe the RFID card it gives you ""UID: AA AA AA AAAccess Granted""or ""UID: AA AA AA AAAccess Denied""Screenshot 2023-07-15 at 14-37-36 Circuit Design App for Makers- circuito.io1073×667 134 KBCould anyone help me with the code?"
+arduino security3,"No. You have to make an attempt, if you want help. Post an entire sketch."
+arduino security3,Could anyone help me with the code?
+arduino security3,You can drop your request here:
+arduino security3,Jobs and Paid Consultancy
+arduino security3,Are you making a project and need people to help out? Calls for projects for exhibitions or faires.
+arduino security3,"Proceed like this:Use example code for the display. When it works, add example code for one more device, and make it work......There are plenty of projects done for all of Your devices but no one exactly like Your project.Learning and doing it Yourself puts You in a very good position when/if something malfunctions. Else, You have a real problem."
+arduino security3,"Hi@marcozan,"
+arduino security3,welcome to the arduino-forum.When I was reading your description I was asking myselfIs this a rephrased assigment for school / university or not?Could be but must not be.
+arduino security3,Anyway: Your project has a certain complexity because it uses 6 components.This requires more than just 20 lines of code.
+arduino security3,Your question is pretty general.
+arduino security3,Could anyone help me with the code?
+arduino security3,"This question does not specifiy what you see as ""help""This sentence can be interpreted as"
+arduino security3,"""please can somebody write the whole code for me?"""
+arduino security3,"""can somebody write down a full blown tutorial about all 6 components that I am using?"""
+arduino security3,"""can somebody post links to tutorials where I can learn from?"""
+arduino security3,and a lot of more different ways.
+arduino security3,Yor are working on an informatic project. And what is needed most in an informatic project is guess what?information.
+arduino security3,So a short answer to your question
+arduino security3,Could anyone help me with the code?
+arduino security3,Is:  Yes we (the other users) can.The morespecificyou ask the better the help will be.user@Railroaderhas given an example how to start.
+arduino security3,To expand a little more on his suggestionThere are example-codes that demonstrate how to get a LC-Display to show characters.Take such an example-code and try to make it work. Whatever might not work
+arduino security3,if you describe:
+arduino security3,you will be helped 101% sure.
+arduino security3,best regards Stefan
+arduino security3,"Here you go:A short, but good, LCD example link.A short, but good, PIR example link.A short, but good, LED example link.How to make your buzzer sing link.Some sage advice on RFID, plus a folder-full of examples."
+arduino security3,"Except for the RFID and transistor, you can practice with the devices in your project on theWokwi platform."
+arduino security3,Looking forward to your progress.
+arduino security3,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security3,Related topics
+arduino security3,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security4,Secure MQTT in arduino uno + esp 8266
+arduino security4,"Hi everyone,"
+arduino security4,"I am building an IoT project to send some sensor data to a server. Presently I am using a DHT11 for temperature data. I'll expand later to include more sensors. So for this project, I have got my hands on an arduino UNO, a DHT11 and an esp8266 module."
+arduino security4,I want to send this data to the server using mqtt protocol with SSL.
+arduino security4,Presently I am using my uno to read data from DHT and print it on serial. Here's the code for that
+arduino security4,"#include <dht.h>        // Include library
+#define outPin 8        // Defines pin number to which the sensor is connected
+
+dht DHT;                // Creates a DHT object
+
+void setup() {
+	Serial.begin(9600);
+}
+
+void loop() {
+	int readData = DHT.read11(outPin);
+
+	float t = DHT.temperature;        // Read temperature
+	float h = DHT.humidity;           // Read humidity
+
+	Serial.println(t);
+	
+	delay(2000); // wait two seconds
+}"
+arduino security4,and I have made a python code to read data from the serial and write send it through mqtt. here's the code:
+arduino security4,"import random
+from paho.mqtt import client as mqtt_client
+import json
+import serial
+from time import sleep
+
+broker = 'something.something.com'
+port = 8883
+topic = 'dataset'
+client_id = f'python-mqtt-{random.randint(0, 1000)}'
+username = 'username'
+password = 'password'
+
+
+def connect_mqtt():
+    def on_connect(client, userdata, flags, rc):
+        if rc == 0:
+            print(""Connected to MQTT Broker!"")
+        else:
+            print(""Failed to connect, return code %d\n"", rc)
+    # Set Connecting Client ID
+    client = mqtt_client.Client(client_id)
+    # Set CA certificate
+    client.tls_set(ca_certs='certificate.crt')
+    client.username_pw_set(username, password)
+    client.on_connect = on_connect
+    client.connect(broker, port)
+    return client
+
+
+def publish(client):
+    arduino = serial.Serial('COM4', 9800, timeout=1)
+    sleep(2)
+    while True:
+        data=arduino.readline()
+        if data:
+            data=data.decode().strip()
+            #print(data)
+            dict={""sensor_id"": 52647892, #some random int for now
+                    ""data"": {""temp"":float(data)},
+                    ""time"": ""14:30"",
+                    ""month"": f""2023-06-22""}
+            print(dict)
+            json_data=json.dumps(dict)
+            result = client.publish(topic, json_data)
+            if result[0] == 0:
+                print(f""published"")
+            else:
+                print(f""Failed to send message to topic {topic}"")
+
+
+def run():
+    client = connect_mqtt()
+    client.loop_start()
+    publish(client)
+
+
+if __name__ == '__main__':
+    run()"
+arduino security4,"I have a file that contains the SSL certificate that this code is using. This thing works perfectly, the data is going to the server properly. I came up with this methodology (of sending data through serial and then through python) as the esp was still on its way. now the esp has been delivered."
+arduino security4,I want to wire my esp8266 module to my arduino uno and then send data through it to my mqtt server using SSL certificate. I have to have use this sever only and it will not work without this SSL certificate. I searched on the internet but couldn't find anything. I saw tutorials using nodemcu directly but I have already ordered these and even if I order the nodemcu it will take some time to arrive (I am short on time). Can anyone help on how can I do this with the UNO and esp8266 module that I currently have?
+arduino security4,Thanks for the help
+arduino security4,one option. put Jiri Bilek's 'fake' AT firmware in the esp8266. it allows to add your own certificate.use my WiFiEspAT library with PubSubClient in the Uno
+arduino security4,GitHub - JAndrassy/WiFiEspAT: Arduino networking library. Standard Arduino...
+arduino security4,Arduino networking library. Standard Arduino WiFi networking API over ESP8266 or ESP32 AT commands. - GitHub - JAndrassy/WiFiEspAT: Arduino networking library. Standard Arduino WiFi networking API ...
+arduino security4,Is there any other way than this?Is there any method (or library) where i won't have to modify esp8266 firmware?
+arduino security4,and what version of AT firmware is in your esp8266?
+arduino security4,@JurajRunning AT+GMR returned this
+arduino security4,AT version:1.2.0.0(Jul 1 2016 20:04:45)SDK version:1.5.4.1(39cb9a32)v1.0.0Mar 11 2018 18:27:31
+arduino security4,thanks
+arduino security4,the old WiFiEsp library should work with that old AT firmware
+arduino security4,WiFiEsp library
+arduino security4,Do you mean thishttps://github.com/bportaluri/WiFiEsp?
+arduino security4,How can I establish an SSL connection using this library and my certificate?
+arduino security4,there is no way to use your certificate (not signed by a well known CA) without programming the esp8266
+arduino security4,"So finally, I got my hands on a NodeMCU for my project and created the below code for nodemcu."
+arduino security4,"#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+#include <WiFiClientSecure.h>
+
+// Wi-Fi settings
+const char* ssid = ""ssid"";
+const char* password = ""pass"";
+
+// MQTT broker settings
+const char* mqttServer = ""mqtt.myserver.com"";
+const int mqttPort = 8883;  // MQTT over SSL/TLS default port
+
+// MQTT authentication
+const char* mqttUsername = ""guest"";
+const char* mqttPassword = ""guest"";
+
+// Sensor pin
+const int sensorPin = A0;
+
+// Create an instance of WiFiClientSecure
+WiFiClientSecure wifiClient;
+
+// Create an instance of PubSubClient
+PubSubClient mqttClient(wifiClient);
+
+// Root CA certificate
+const char* rootCACertificate = R""(
+-----BEGIN CERTIFICATE-----
+My certificate goes here
+-----END CERTIFICATE-----
+)"";
+
+void setup() {
+  Serial.begin(9600);
+  delay(10);
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println(""Connecting to WiFi..."");
+  }
+  Serial.println(""Connected to WiFi!"");
+
+  // Configure MQTT server and set SSL/TLS options
+  mqttClient.setServer(mqttServer, mqttPort);
+  mqttClient.setCallback(callback);
+
+  // Load root CA certificate into WiFiClientSecure object
+  wifiClient.setTrustAnchors(new BearSSL::X509List(rootCACertificate));
+  
+  // Connect to MQTT broker
+  connectToMqtt();
+}
+
+void loop() {
+  if (!mqttClient.connected()) {
+    // If MQTT connection is lost, try to reconnect
+    reconnect();
+  }
+
+  // Read sensor data
+  int sensorValue = 22;
+
+  // Convert sensor value to a string
+  String payload = String(sensorValue);
+
+  // Publish the sensor data to the MQTT topic
+  mqttClient.publish(""sensor_data_topic"", payload.c_str());
+
+  // Wait for some time before publishing the next sensor data
+  delay(5000);
+}
+
+void connectToMqtt() {
+  // Loop until connected to MQTT broker
+  while (!mqttClient.connected()) {
+    Serial.println(""Connecting to MQTT server..."");
+    if (mqttClient.connect(""ESP8266Client"", mqttUsername, mqttPassword)) {
+      Serial.println(""Connected to MQTT server!"");
+      // Subscribe to MQTT topics, if needed
+      // mqttClient.subscribe(""topic_name"");
+    } else {
+      Serial.print(""Failed to connect to MQTT server. Retrying in 5 seconds..."");
+      delay(5000);
+    }
+  }
+}
+
+void reconnect() {
+  // Disconnect if already connected
+  if (mqttClient.connected()) {
+    mqttClient.disconnect();
+  }
+
+  // Attempt to reconnect
+  connectToMqtt();
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  // Handle MQTT subscription messages, if needed
+  // ...
+}"
+arduino security4,but I am not able to connect to my server through this server even though my code in the first post is able to connect and send data properly.
+arduino security4,I tried using a public mqtt server that does not use SSL and was able to connect my nodemcu to it and send the data properly.
+arduino security4,Am I making any mistake in adding my certificate? or is it something else?
+arduino security4,Please helpThanks
+arduino security4,I also tried this example:https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/examples/HTTPSRequest/HTTPSRequest.ino
+arduino security4,"But got ""Connection failed"""
+arduino security4,Please helpThanks
+arduino security4,for a test try to set wifiClient.setInsecure()
+arduino security4,I used
+arduino security4,wifiClient.setInsecure()
+arduino security4,and both the example and my code work now. Thank you so much@Juraj.
+arduino security4,But does including this line make my data transmission insecure? can you please help me understand what did this line of code do?
+arduino security4,Thanks
+arduino security4,setInsecure skips checking validity of the servers certificate. it is good to test if the problem is with the connection or with the certificate evaluation.so now you know that the problem is with the certificates. but I have no experience with this part.
+arduino security4,the problem is with the certificates
+arduino security4,Can you please elaborate which certificate are you talking about? is it my rootCACertificate?  But python code in the first post is sending data properly (and now the nodemcu is also able to send it properly)
+arduino security4,Thanks
+arduino security4,I don't know.maybe create a new topic for this problem so more people see it
+arduino security4,maybe create a new topic for this problem so more people see it
+arduino security4,OK.
+arduino security4,We don't really need duplicate topics that need to be merged again....
+arduino security4,it is not duplicate. the topic shifted from Uno to esp8266 Arduino and from possibility to provide own CA certificate for Uno+esp8266 to solve certificate validation in esp8266 Arduino
+arduino security4,"Righto....Start a new topic then if that will get the necessary help,   I guess if there are any problems you can point to the end of this thread."
+arduino security4,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security4,Related topics
+arduino security4,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security5,Security Breach in Arduino IDE 1.8.19
+arduino security5,"Hello,"
+arduino security5,I had a VERY concerning thing happen when I rebooted my PC tonight.
+arduino security5,After it rebooted Arduino IDE Automatically opened the Last Sketch I was using and the Previous Sketch I was using.
+arduino security5,This is VERY Strange.
+arduino security5,The last Sketch I was using had a NEW LINE added to the top of it. I did not add it and I have never used this Library. This is what was added
+arduino security5,#include<SpacebrewYun.h>
+arduino security5,Does anyone know how my PC was hacked and how that was added to the last Sketch I was using ?
+arduino security5,Should I removed Arduino IDE and NEVER use it again ?
+arduino security5,This is VERY concerning that a remote person can add an item to one of my Sketches.
+arduino security5,"nothingin what you say is proof that there was a remote access performed. You are jumping very fast to conclusions... Although I never saw that, it could just be a bug in the IDE adding a library (there is a menu that does just that, add an include ) or a feature because the IDE noticed it was missing"
+arduino security5,If you did not save the file ➜ check if the line is actually in the file
+arduino security5,Fair comment. I never considered a bug in IDE.
+arduino security5,"After the PC rebooted and IDE came up, when I noticed the#Includehad been added to the Sketch I deleted the line and saved it."
+arduino security5,Are you aware of any menu that might add that Library Automatically ?
+arduino security5,I am just concerned about a line being added to my Sketch after the PC was rebooted.
+arduino security5,I googled that Library and to be honest i am not sure I would trust them. They do have a web sit atspacebrew.cc
+arduino security5,I don't have that Library installed. First thing I did was search my PC for any signs of it.
+arduino security5,I googled that Library and to be honest i am not sure I would trust them. They do have a web site atspacebrew.cc
+arduino security5,the library is documented hereSpacebrewYun - Arduino Referenceand you can see the wholesource code here(no longer be maintained by Arduino) if you want to dig into what it does.
+arduino security5,Spacebrew does not seem to be active anymore for years...
+arduino security5,Are you aware of any menu that might add that Library Automatically ?
+arduino security5,"automatically no, especially if it's not installed on your machine"
+arduino security5,I had a VERY concerning thing happen when I rebooted my PC tonight.
+arduino security5,After it rebooted Arduino IDE Automatically opened the Last Sketch I was using and the Previous Sketch I was using.
+arduino security5,This is VERY Strange.
+arduino security5,Arduino IDE opening the previous sketches is the normal and intended  behavior.
+arduino security5,"It is not clear to me whether you also are saying that Arduino IDE itself started automatically after reboot. Arduino IDE itself should not do that, but the operating system can restore the previous session after rebooting."
+arduino security5,I don't have that Library installed. First thing I did was search my PC for any signs of it.
+arduino security5,"Unless you manually deleted it, you do have the library installed because it is part of the Arduino IDE 18.19 installation. You will find it at thelibraries/SpacebrewYunsubfolder of your Arduino IDE installation folder. It has been part of all Arduino IDE 1.x installations for the last 9 years:"
+arduino security5,Are you aware of any menu that might add that Library Automatically ?
+arduino security5,"It depends on what you mean by ""add"" and by ""automatically""."
+arduino security5,"If you selectSketch > Include Library > SpacebrewYunfrom the Arduino IDE menus, the IDE adds this to the top of the sketch you have open:"
+arduino security5,#include <SpacebrewYun.h>
+arduino security5,But it should only do that if you select that item from the menus. The IDE should not ever add this line to your sketch without any direct action on your part.
+arduino security5,I googled that Library and to be honest i am not sure I would trust them.
+arduino security5,"I suspect Arduino had some sort of a partnership (not necessarily in a business sense) with them at the time the library was added to the IDE. At that time, theArduino Yunboard was Arduino's primary offering in the network connected/Internet of things space."
+arduino security5,"I would not be suspicious about the Spacebrew company specifically. Perhaps you could be suspicious that some malicious actor without any involvement in the company is trying to sneak this library into your sketch so that they can do something naughty with your Arduino board. They would have to do quite a bit more than simply get the#includedirective into your sketch though, and even that alone would only cause your sketch to no longer compile unless you happened to be using a Yun."
+arduino security5,I am aware that when running IDE it always opens the last Sketch used. I have been using IDE for a long time. Many hundreds of hours with it. I Published my most recent project on the project Hub about a week ago.
+arduino security5,You might be correct that IDE was already open and after the reboot Windows re-opened IDE. I am not sure about that though.
+arduino security5,I have not manually deleted that Library. I did do a Windows Search for SpacebrewYun.h but it was not found. Maybe the search failed. I will check tonight when I get home from work and check the Library folder under the IDE Install folders. I did check the ZIP download from work and it is included. But I used the MSI Install files at home.
+arduino security5,What has me concerned is that SpacebrewYun.h is not just an Arduino project anymore. From what I can tell from the Spacebrew.cc web page is that it now supports many OS's.
+arduino security5,SpacebrewYun.h is not just for the YUN anymore. On the Github page it says it supports almost all the Arduino boards now.
+arduino security5,If this was just a glitch in IDE then i would not be concerned. But I don't have any proof either way. An IDE Glitch or a Hacker got in thru IDE.
+arduino security5,SpacebrewYun.h is not just an Arduino project anymore. From what I can tell from the Spacebrew.cc web page is that it now supports many OS's.
+arduino security5,Please provide a link to where I can find that information. I did a quick browse ofhttp://docs.spacebrew.cc/and didn't find it.
+arduino security5,SpacebrewYun.h is not just for the YUN anymore. On the Github page it says it supports almost all the Arduino boards now.
+arduino security5,Please tell me where I can find that information. I just looked at the library's GitHub repository and I see this:
+arduino security5,https://github.com/arduino-libraries/SpacebrewYun#spacebrew-library-for-arduino
+arduino security5,This library allows an Arduino Yun to connect to the Spacebrew service.
+arduino security5,https://github.com/arduino-libraries/SpacebrewYun/blob/master/library.properties#L4
+arduino security5,sentence=Enables the communication between interactive objects using WebSockets.For Arduino Yún only.
+arduino security5,It's actually a bit vague on their web site. My assumption is based on the Java Scripts they use as samples. I am pretty sure Arduino doesn't use Java.
+arduino security5,I can't go to that web site from my Internet connection at work. I get a warning that it's an unsafe web site. I will have a better look tonight when I get home.
+arduino security5,"It's under the ""Compatibilty"" Item"" on this page"
+arduino security5,"It says Compatible with Micro, Leonardo, Mega, Nano, Uno, Yun."
+arduino security5,"It's under the ""Compatibilty"" Item"" on this page"
+arduino security5,"It says Compatible with Micro, Leonardo, Mega, Nano, Uno, Yun."
+arduino security5,Thanks for the clarification. That list is automatically generated based on this line of the library's metadata:
+arduino security5,https://github.com/arduino-libraries/SpacebrewYun/blob/master/library.properties#L8
+arduino security5,architectures=avr
+arduino security5,"The metadata specifies compatibility with theavrarchitecture, so the library reference generation program simply lists all the active official boards that use an AVR-based microcontroller. There is no way for a machine to determine compatibility on a board level granularity though because the library metadata system only provides architecture level granularity, and there may be significant variation among the boards of that architecture."
+arduino security5,"This variation is very significant when it comes to the Yun. The Yun does have an AVR ATmega32U4 microcontroller, but it uses an Atheros AR9331 module running Linux for its network communication capability. Other than the other Yun variants (e.g.,Yun Mini,Industrial 101) which aren't even on that list due to being long retired, none of the AVR boards have this module, and so can't be used with the library."
+arduino security5,I can't go to that web site from my Internet connection at work. I get a warning that it's an unsafe web site
+arduino security5,Most of the time it means they use https with an issue with their  certificate or plain http and no encryption for login/pwd. Because such sites are more fragile (you can pretend your are them if you manage to trick the DNS and point elsewhere) modern browsers do warn you.
+arduino security5,As said above including a deprecated library targeting boards that are obsolete in many ways and which code is in public domain and pre installed through a signed process with the IDE offers limited hijacking capabilities…
+arduino security5,If I were a hacker that’s not were I would spend my time…
+arduino security5,Most of the time it means they use https with an issue with their  certificate or plain http and no encryption for login/pwd. Because such sites are more fragile (you can pretend your are them if you manage to trick the DNS and point elsewhere) modern browsers do warn you.
+arduino security5,As said above including a deprecated library targeting boards that are obsolete in many ways and which code is in public domain and pre installed through a signed process with the IDE offers limited hijacking capabilities…
+arduino security5,If I were a hacker that’s not were I would spend my time…
+arduino security5,"Looks like you are correct. The Error message from Chrome says the Certificate ""Common Name Invalid"""
+arduino security5,At home I use Firefox and it doesn't have the warning.
+arduino security5,"I suspect you connected using HTTPS  at work ➜https://spacebrew.ccthen you should get the warning as they are not using https correctly, their certificate is issued forspacesquare.comwhich is not the domain you are visiting."
+arduino security5,if you connect using HTTP ➜http://spacebrew.ccthen your browser should lightly mention that HTTP is not secure
+arduino security5,it does on my Macimage963×44 3.58 KB
+arduino security5,this does not mean they have been hijacked. In my opinion it means that spacebrew is just obsolete and no one maintains or care for this anymore.
+arduino security5,You are correct. When I use a secure connection that message comes up. When I use a normal connection it goes to the webpage with a minor warning that it's not secure. No idea why the work connection is trying to use a secure connection by default.
+arduino security5,This is interesting. I tried to go tospacesquare.comand it's been blocked by my company Internet Policy . The company I work for claims it's a SPAM site.
+arduino security5,I tried several times to go tospacesquare.comand it is indeed a spam site. After several tries it did get thru the companies Firewall Policy.  This is what came up.
+arduino security5,Spam657×511 64.7 KB
+arduino security5,No idea why the work connection is trying to use a secure connection by default.
+arduino security5,"your IT team might have done that, rewriting all outgoing http connexion to https and not allow http anymore"
+arduino security5,the certificate is registered in the Grand Cayman Islands so indeed not something to be trusted
+arduino security5,"Registry Registrant ID: Not Available From Registry
+Registrant Name: PrivacyDotLink Customer 4563522
+Registrant Organization: 
+Registrant Street: PO Box 30485
+Registrant City: Seven Mile Beach
+Registrant State/Province: Grand Cayman
+Registrant Postal Code: KY1-1202
+Registrant Country: KY"
+arduino security5,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security5,Related topics
+arduino security5,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security6,ESP32 Secure boot stops arduino-esp32 built binary to execute with the error
+arduino security6,"I wrote and compiled an application code in arduino ide for esp32 board and generated application.bin file. In the esp-idf source code i enabled secure boot and in thepartition table enabled CONFIG_PARTITION_TABLE_MD5 and generated bootloader.bin and partitions.bin.When i flashed the application.bin, bootloader.bin and partitions.bin on the esp32 board, the board is restarting continuously with the error as belowE (584) partition: No MD5 found in partition tableE (585) partition: load_partitions returned 0x105E (585) esp_core_dump_flash: No core dump partition found!E (588) partition: No MD5 found in partition tableE (593) partition: load_partitions returned 0x105E (597) esp_core_dump_flash: No core dump partition found!E (606) partition: No MD5 found in partition tableE (608) partition: load_partitions returned 0x105"
+arduino security6,assert failed: esp_ota_get_running_partition esp_ota_ops.c:553 (it != NULL)
+arduino security6,I also tried by disabling CONFIG_PARTITION_TABLE_MD5 in partition table section in esp-idf. But still the same error as above.
+arduino security6,"If i run the firmware binary file generated in the esp-idf instead of binary file generated in arduino ide, then that binary is executing without errors on the esp32 board."
+arduino security6,Please guide me to solve this Md5 issue with binaries generated in arduino ide.error1600×900 56.6 KB
+arduino security6,Related topics
+arduino security6,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security7,How to use Arduino IDE to perform security update for ESP32 Device?
+arduino security7,"Can you use the Desktop IDE to make changes to a sketch connected to a device/thing in the cloud and keep the connected status as OK? I ask because I updated a sketch using the Cloud IDE and that caused the security warning to go away. Then I downloaded the sketch to the desktop IDE, re-uploaded to my ESP32-based device using the desktop IDE and then the associated device was AGAIN tagged with the security warning in the list of devices.Screenshot 2025-02-04 at 11.40.09 AM2550×212 18 KB"
+arduino security7,The device does show as connected still.
+arduino security7,Any ideas/suggestions? I like to use the Desktop IDE because its faster.
+arduino security7,I had an older version of the ArduinoIoTCloud library installed than the latest (2.3.1). Updating the library got the security warning to go away!
+arduino security7,Great work on identifying the cause of the problem@jjs3579! Thanks for taking the time to post an update with your findings.
+arduino security7,"Thanks for the credit. Also, with the latest library, you DON'T need to use the Cloud IDE. I had a local copy of my sketch associated with a different thing for which the device security alert was in effect. I re-compiled and re-uploaded the sketch and the device was then not flagged for a security violation and the dashboard for that thing was working as expected.I think the docs for correcting security alerts need some improvement!"
+arduino security7,"Although performing the security update for an ESP32 board is a simple as updating the ArduinoIoTCloud library and then uploading the Thing sketch again, it is more complicated for Arduino boards that use a separate network connectivity module (e.g.,Nano 33 IoT). For those boards, it is also necessary to perform an update of the firmware on the module. You cando that using Arduino IDE, but it is easier with Arduino Cloud because Arduino Cloud will automatically perform the firmware update when you upload a Thing sketch to a Device that requires the update."
+arduino security7,"So I think that the approach of only mentioning the most friendly solution in the instructions provided in the email notification is reasonable, since the average Arduino user might get overwhelmed by the quantity of documentation that would be required to cover the update procedure using Arduino IDE in addition to Arduino Cloud."
+arduino security7,"Thanks for splitting out a new topic.Yes, I guess the case for ESP32 is not the same as for Arduino boards and so caution is necessary. Adding a few words about how more savvy ESP32 thing/device users can take a short cut could cause confusion?"
+arduino security7,Related topics
+arduino security7,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security8,Arduino Uno 3 way security door lock need help
+arduino security8,171331939574210262387005263870371920×2560 325 KB
+arduino security8,Help pleasez my Arduino project won't work if I combine all code in one
+arduino security8,"It consists of: RFID, Keypad password, GSM Module"
+arduino security8,"Everything is working well except for the module, it won't sent a message through my cellphone"
+arduino security8,"Welcome! I will take a guess and say you did not read the forum guidelines.  Guidelines: Please read the advice in the topic ""How to get the best from this forum"".How to get the best out of this forumAparently you did not use the correct code combiner. The one requires you to post your code as we are not clairvoyant so we do not have a clue as to what you have."
+arduino security8,"I can see a PP3 9V battery… that won’t run either of your lock, or cell modem for more than a few seconds."
+arduino security8,Start again - after reading asking and testing.
+arduino security8,if I combine all code in one
+arduino security8,"Yes, this is the problem.  You should start with one device and make it work.  Next you should add a second device and make the two devices work.  Continue this until you are finished."
+arduino security8,That's what I've been doing but when I get to the Gsm module it doesn't work
+arduino security8,You should show your working program and its wiring diagram.
+arduino security8,"So I'll be specific on what I did earlier,"
+arduino security8,"First I made the Keypad and Servo motor work, next was the LED and Buzzer work, everything was working well, but after is the Infrared Sensor and GSM Module, now the Gsm module doesn't send message through my cellphone,"
+arduino security8,"IR sensor's role is to detect if someone is trying to force enter the door and if it does detect something it should be sending signal to my Gsm module and send me a message, in my serial monitor it says It has sent me a message but I don't receive it. note: my Gsm sim has prepaid load as well, and is connected to the network."
+arduino security8,If anyone needs images that I could send or my code I did pls tell me.
+arduino security8,Here's my code for the project
+arduino security8,#include<SPI.h>#include<MFRC522.h>#include<Keypad.h>#include<Servo.h>#include<SoftwareSerial.h>
+arduino security8,#defineSS_PIN 10#defineRST_PIN 9#defineSERVO_PIN 8#defineGREEN_LED_PIN A1#defineRED_LED_PIN A2#defineBUZZER_PIN A3#defineIR_SENSOR_PIN A5
+arduino security8,"MFRC522 mfrc522(SS_PIN, RST_PIN);String authorizedRFID = ""43c74c25"";const byte ROWS = 4;const byte COLS = 3;char keys[ROWS][COLS] = {{'1', '2', '3'},{'4', '5', '6'},{'7', '8', '9'},{'*', '0', '#'}};byte rowPins[ROWS] = {A0, 2, 3, 4};byte colPins[COLS] = {5, 6, 7};Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);Servo myServo;SoftwareSerial gsmSerial(0, 1);String phoneNumber = ""+639658158281"";bool RFIDScanned = false;bool infraredEnabled = true;"
+arduino security8,"void setup() {Serial.begin(9600);Serial.println(""System Ready."");"
+arduino security8,SPI.begin();mfrc522.PCD_Init();
+arduino security8,"myServo.attach(SERVO_PIN);pinMode(GREEN_LED_PIN, OUTPUT);pinMode(RED_LED_PIN, OUTPUT);pinMode(BUZZER_PIN, OUTPUT);pinMode(IR_SENSOR_PIN, INPUT);gsmSerial.begin(9600);gsmSerial.println(""AT+CMGF=1"");}"
+arduino security8,void loop() {
+arduino security8,"if (mfrc522.PICC_IsNewCardPresent()) {if (mfrc522.PICC_ReadCardSerial()) {RFIDScanned = true;infraredEnabled = false;String rfidTag = getRFIDTag();Serial.println(""RFID Card Detected: "" + rfidTag);"
+arduino security8,"if (rfidTag.equals(authorizedRFID)) {
+
+    Serial.println(""Authorized RFID Card Detected."");
+    digitalWrite(GREEN_LED_PIN, HIGH);
+    tone(BUZZER_PIN, 1000);
+    delay(1000);
+    digitalWrite(GREEN_LED_PIN, LOW);
+    noTone(BUZZER_PIN);
+
+    String passcode = getPasscode(keypad);
+    Serial.println(""Entered Passcode: "" + passcode);
+
+    if (passcode.equals(""3333"")) {
+
+      Serial.println(""Passcode Correct. Access Granted!"");
+      digitalWrite(GREEN_LED_PIN, HIGH);
+      tone(BUZZER_PIN, 1000);
+      delay(1000);
+      digitalWrite(GREEN_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      rotateServo(180);
+      delay(1000);
+      rotateServo(0);
+      delay(2000);
+      digitalWrite(GREEN_LED_PIN, LOW);
+      infraredEnabled = true; 
+    } else {
+
+      Serial.println(""Incorrect Passcode. Access Denied!"");
+
+      digitalWrite(RED_LED_PIN, HIGH);
+      tone(BUZZER_PIN, 200);
+      delay(300);
+      digitalWrite(RED_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      delay(300);
+      digitalWrite(RED_LED_PIN, HIGH);
+      tone(BUZZER_PIN, 200);
+      delay(300);
+      digitalWrite(RED_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+    }
+  } else {
+
+    Serial.println(""Unauthorized RFID Card Detected. Access Denied!"");
+    for (int i = 0; i < 4; i++) {
+      digitalWrite(RED_LED_PIN, HIGH);
+      tone(BUZZER_PIN, 200);
+      delay(300);
+      digitalWrite(RED_LED_PIN, LOW);
+      noTone(BUZZER_PIN);
+      delay(300);
+    }
+  }
+
+  delay(1000);
+}"
+arduino security8,}
+arduino security8,"if (infraredEnabled && detectObject()) {Serial.println(""Object Detected by IR Sensor!"");sendSMSAlert();delay(5000);}}"
+arduino security8,bool detectObject() {return digitalRead(IR_SENSOR_PIN) == LOW;}
+arduino security8,"String getRFIDTag() {String tag = """";for (byte i = 0; i < mfrc522.uid.size; i++) {tag.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? ""0"" : """"));tag.concat(String(mfrc522.uid.uidByte[i], HEX));}mfrc522.PICC_HaltA();Serial.println(""RFID Tag: "" + tag);return tag;}"
+arduino security8,"String getPasscode(Keypad &keypad) {String pass = """";while (pass.length() < 4) {char key = keypad.getKey();if (key && isDigit(key)) {pass += key;Serial.print(key);}}Serial.println();return pass;}"
+arduino security8,"void rotateServo(int angle) {myServo.write(angle);delay(5000);Serial.println(""Servo rotated to "" + String(angle) + "" degrees."");}"
+arduino security8,"void sendSMSAlert() {Serial.println(""Sending SMS Alert..."");"
+arduino security8,"String phoneNumber = ""+639658158281"";String message = ""Intruder Alert"";"
+arduino security8,"gsmSerial.print(""AT+CMGS="""");gsmSerial.print(phoneNumber);gsmSerial.println("""""");"
+arduino security8,delay(500);
+arduino security8,"Serial.println(""Sending message: "" + message);"
+arduino security8,gsmSerial.print(message);gsmSerial.write(26);delay(500);
+arduino security8,"Serial.println(""SMS sent successfully!"");}"
+arduino security8,If anyone needs images that I could send or my code I did pls tell me.
+arduino security8,"I did, also, and still need your wiring diagram."
+arduino security8,"Gsm module doesn't send message through my cellphone,"
+arduino security8,Get the GSM working how you need it to work first.
+arduino security8,"My GSM Module works fine when I upload only the code for Gsm module, but it doesn't if I upload the code for all of them."
+arduino security8,Cool.  Add that to the drawing.
+arduino security8,I'm sorry but I don't have a wiring diagram for it yet.
+arduino security8,I'll wait.
+arduino security8,That's what I've been doing but when I get to the Gsm module it doesn't work
+arduino security8,Please confirm that all works properly and ONLY the GSM module has problems.  There is no need to work on tested and proven code.
+arduino security8,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security8,Related topics
+arduino security8,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security9,Does Arduino OPTA WiFi have WiFi Secure library of any sort?
+arduino security9,Does any of you experienced Arduino professionals have any idea about how to use the Arduino OPTA WiFi connecting via HTTPS to a site?
+arduino security9,"All examples I have found use port 80, and I have not been able to find out if there is a library (ie. I have tried WiFiNINA without success) for making HTTPS connections (with TLS/SSL)."
+arduino security9,"It is not because of that I want the HTTPS. It is because of that the server we are using have stopped offering HTTP on port 80. We get an error 301 - when trying to access thehttp://domain.com/opta.phpfile, we are told that it has moved tohttps://domain.com/opta.php- in effect meaning that the http on port 80 is unavailable."
+arduino security9,"So, we would indeed need a port 443 based WiFi library for the Arduino OPTA WiFi model."
+arduino security9,My code looks like this here:
+arduino security9,"#include <WiFi.h>
+#include <WiFiClient.h>  // For HTTPS connections
+
+
+const char* ssid = ""xxxx"";          // Your WiFi network name
+const char* password = ""xxxx"";  // Your WiFi network password
+const char* serverHost = ""xxxxxx.xxxxxx"";  // Your server's host URL (without http:// or https://)
+const int serverPort = 443;               // Server port (usually 80 for HTTP)
+const String postPath = ""/xxxx.php"";          // The API endpoint path
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+  digitalWrite(LED_D0, HIGH);
+  delay(1000);
+  digitalWrite(LED_D0, LOW);
+
+  // Connect to WiFi
+  WiFi.begin(ssid, password);
+  Serial.print(""Connecting to WiFi..."");
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(""."");
+  }
+  
+  Serial.println(""\nConnected to WiFi!"");
+}
+
+void sendPostRequest() {
+  WiFiClient client;
+  // client.setInsecure();  // Bypass certificate verification for testing
+
+  // Connect to the server with HTTPS
+  if (!client.connect(serverHost, serverPort)) {
+    Serial.println(""Connection to server failed!"");
+    return;
+  }
+  
+  Serial.println(""Connected to server"");
+
+  // Manually create the JSON string
+  String jsonPayload = ""{\""Command\"":\""Cadence\""}"";
+
+  // Construct HTTPS POST request
+  client.println(""POST "" + postPath + "" HTTP/1.1"");
+  client.println(""Host: "" + String(serverHost));
+  client.println(""Content-Type: application/json"");
+  client.println(""Connection: close"");
+  client.print(""Content-Length: "");
+  client.println(jsonPayload.length());
+  client.println();
+  client.println(jsonPayload);  // Send JSON payload
+
+  // Wait for a response from the server
+  while (!client.available()) {
+    delay(10);
+  }
+
+  // Read and display the response
+  String response = client.readString();
+  Serial.println(""Response:"");
+  Serial.println(response);
+
+  // Parse the JSON response manually
+  parseResponse(response);
+
+  // Close the connection
+  client.stop();
+}
+
+void parseResponse(String response) {
+  int statusIndex = response.indexOf(""\""Status\"":\"""");
+  int statusEnd = response.indexOf(""\"""", statusIndex + 10);
+  String statusValue = response.substring(statusIndex + 9, statusEnd);
+
+  int codeIndex = response.indexOf(""\""Code\"":"");
+  int codeEnd = response.indexOf("","", codeIndex);
+  String codeValue = response.substring(codeIndex + 7, codeEnd);
+
+  int messageIndex = response.indexOf(""\""Message\"":\"""");
+  int messageEnd = response.indexOf(""\"""", messageIndex + 11);
+  String messageValue = response.substring(messageIndex + 10, messageEnd);
+
+  Serial.println(""Parsed JSON response:"");
+  Serial.println(""Status: "" + statusValue);
+  Serial.println(""Code: "" + codeValue);
+  Serial.println(""Message: "" + messageValue);
+}
+
+void loop() {
+  sendPostRequest();
+  delay(10000);  // Send the request every 10 seconds
+}"
+arduino security9,skriv eller indsæt kode her
+arduino security9,skriv eller indsæt kode her
+arduino security9,const int serverPort = 443;               // Server port (usually 80
+arduino security9,It looks like you did specify 443.
+arduino security9,Related topics
+arduino security9,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security10,Arduino r4 WIFI IOT Device Security key
+arduino security10,"Hi i am trying to add my second uno r4 wifi, after adding uno r4 wifi to iot devices it does not provide device id and security key altho my other r4 did provide me with device id and security key is there something i could be doing wrong??"
+arduino security10,"Hi@er4a_boy. It is no longer necessary for you to manage a security key in order to use anUNO R4 WiFiboard as anArduino CloudDevice. The reason is that the security key is now stored in the Wi-Fi radio ""bridge"" module on theUNO R4 WiFihardware:"
+arduino security10,- This module emulates what an hardware secure element does. It is not really se…cure. Data is stored in plaintext
+arduino security10,"So just carry on with your project. You will find that when you create a Thing usingUNO R4 WiFi-based devices you will not be prompted for a key so it won't be any problem that you don't have one. If you have any problems or questions, just let us know and we'll try to provide assistance."
+arduino security10,"Thanks for your reply, any library am using requires security code, any way of getting it or is there new library optimized for new way?"
+arduino security10,Thanks
+arduino security10,"I have created new device with the default sketch connection to iot it seems to connect and will try to adopt the old sketch to this new one, the only thing is i have bought one for testing purpose and the other uno is about 2500km away from me sitting out on the lake feeding fish and scared to upload sketch that doesnt work over air, hopefully i will not make mistakes :)))"
+arduino security10,"I seem to have adopted old sketch to new connection method as long as it will connect to cloud with older board am fine and we can close this thread, Thanks"
+arduino security10,You are welcome. Great work on successfully porting your sketch to the new system!
+arduino security10,"Regards,Per"
+arduino security10,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security10,Related topics
+arduino security10,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security11,MQTT Secure Connection Issue (Port 8883) with ESP8266 and Arduino IoT Cloud
+arduino security11,"Hello,"
+arduino security11,"I am facing an issue connecting my ESP8266 to Arduino IoT Cloud via MQTT over a secure connection (port 8883). My goal is to publish data to my web page using Arduino IoT Cloud, but my ESP8266 fails to establish the MQTT connection."
+arduino security11,"🔹 Connecting to WiFi...
+✅ Connected to WiFi!
+IP Address: 192.168.1.16
+
+🔹 Connecting to secure MQTT server (Arduino Cloud)...
+❌ Secure MQTT connection failed with Arduino IoT Cloud.
+⚠️ Retrying connection..."
+arduino security11,Thanks in advance for your help!
+arduino security11,Related topics
+arduino security11,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security12,How can I configure my Arduino UNO R4 Wi-Fi web server to use HTTPS for secure communication?
+arduino security12,"I am working on a project where I have set up an Arduino UNO R4 Wi-Fi as a web server, and I am accessing it from a browser app (Blazor WebAssembly Standalone). I encountered a 'mixed content' error because the browser is running on HTTPS and cannot access the Arduino server, which is using HTTP. I would like to secure the communication by switching to HTTPS for accessing the Arduino web server. How can I achieve this?"
+arduino security12,Related topics
+arduino security12,"Powered byDiscourse, best viewed with JavaScript enabled"
+arduino security13,Fatal error: Arduino_SecureElement.h How to solve?
+arduino security13,"Hello, everyone!"
+arduino security13,I tried compiling the code below and I got this error message:
+arduino security13,"""In file included from /Users/fernandograngeiro/Documents/Arduino/libraries/ArduinoIoTCloud/src/ArduinoIoTCloud.h:177:0,from /Users/fernandograngeiro/Library/Arduino15/RemoteSketchbook/ArduinoCloud/289f7cdc-a1c8-4640-810b-713e937118f0/Contador_jul16a/thingProperties.h:3,from /Users/fernandograngeiro/Library/Arduino15/RemoteSketchbook/ArduinoCloud/289f7cdc-a1c8-4640-810b-713e937118f0/Contador_jul16a/Contador_jul16a.ino:2:/Users/fernandograngeiro/Documents/Arduino/libraries/ArduinoIoTCloud/src/ArduinoIoTCloudTCP.h:30:12: fatal error: Arduino_SecureElement.h: No such file or directory#include<Arduino_SecureElement.h>^~~~~~~~~~~~~~~~~~~~~~~~~compilation terminated.exit status 1"
+arduino security13,"Compilation error: exit status 1"""
+arduino security13,"Can anybody help me, please?"
+arduino security13,"#include ""arduino_secrets.h""
+#include ""thingProperties.h""
+#define TRIG_PIN 9
+#define ECHO_PIN 10
+#define RESET_BUTTON_PIN 7
+
+int counter = 0;
+long duration;
+int distance;
+int threshold = 10; // Distância em cm para detectar um objeto
+int buttonState;
+int lastButtonState = LOW; // Estado anterior do botão
+
+void setup() {
+  Serial.begin(9600);
+  delay(1500);
+  initProperties();
+  ArduinoCloud.begin(ArduinoIoTPreferredConnection);
+  setDebugMessageLevel(2);
+  ArduinoCloud.printDebugInfo();
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  pinMode(RESET_BUTTON_PIN, INPUT);
+  Serial.print(""Contador de Passagens: "");
+  Serial.println(counter);
+}
+void loop() {
+  ArduinoCloud.update();
+  // Leitura do botão de reset
+  buttonState = digitalRead(RESET_BUTTON_PIN);
+
+  // Se o botão for pressionado, zera o contador
+  if (buttonState == HIGH && lastButtonState == LOW) {
+    counter = 0;
+    Serial.println(""Contador reiniciado!"");
+    Serial.print(""Contador de Passagens: "");
+    Serial.println(counter);
+    delay(200); // Debounce para o botão de reset
+  }
+  lastButtonState = buttonState;
+
+  // Gera um pulso de 10us no pino Trig
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  // Lê a duração do pulso no pino Echo
+  duration = pulseIn(ECHO_PIN, HIGH);
+
+  // Calcula a distância em cm
+  distance = duration * 0.034 / 2;
+
+  // Se a distância for menor que o limiar, incrementa o contador
+  if (distance < threshold) {
+    counter++;
+    Serial.print(""Contador de Passagens: "");
+    Serial.println(counter);
+    delay(1300); // Debounce para evitar múltiplas contagens para a mesma passagem, 128cm deu 6,5 segundos
+  }
+
+  delay(100); // Atraso para evitar leituras rápidas demais
+}"
+arduino security13,"No such file or directory
+#include <Arduino_SecureElement.h>"
+arduino security13,Have you installed the Arduino_SecureElement library ?  It is available in the IDE Library Manager
+arduino security13,"Thanks a lot. In fact, I haven't installed. I'm sorry. Now, it came up with another error. It seems like a I had declared the variable counter twice, but I don't know what's wrong."
+arduino security13,/Users/fernandograngeiro/Library/Arduino15/RemoteSketchbook/ArduinoCloud/289f7cdc-a1c8-4640-810b-713e937118f0/Contador_jul16a/Contador_jul16a.ino:7:5: error: redefinition of 'int counter'int counter = 0;^~~~~~~In file included from /Users/fernandograngeiro/Library/Arduino15/RemoteSketchbook/ArduinoCloud/289f7cdc-a1c8-4640-810b-713e937118f0/Contador_jul16a/Contador_jul16a.ino:2:0:/Users/fernandograngeiro/Library/Arduino15/RemoteSketchbook/ArduinoCloud/289f7cdc-a1c8-4640-810b-713e937118f0/Contador_jul16a/thingProperties.h:14:5: note: 'int counter' previously declared hereint counter;^~~~~~~
+arduino security13,exit status 1
+arduino security13,Compilation error: redefinition of 'int counter'
+arduino security13,thingProperties.h:14:5: note: 'int counter' previously declared here
+arduino security13,The counter variable is declared in the library which causes an error when you declare a global variable of the same name
+arduino security13,Change the name of your counter variable throughout your sketch
+arduino security13,This topic was automatically closed 180 days after the last reply. New replies are no longer allowed.
+arduino security13,Related topics
+arduino security13,"Powered byDiscourse, best viewed with JavaScript enabled"

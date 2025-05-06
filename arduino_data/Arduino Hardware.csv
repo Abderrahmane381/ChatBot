@@ -1,0 +1,36 @@
+Titre,Contenu
+Arduino Hardware,"Table of Contents
+Arduino Hardware
+Arduino has over the years released over 100 hardware products: boards, shields, carriers, kits and other accessories. In this page, you will find an overview of all active Arduino hardware, including the Nano, MKR and Classic families.
+Kits
+Kits are a great way to get started with Arduino. The classic
+Starter Kit
+includes an Arduino UNO R3, a large set of electronic components, and a physical book with 15 chapters to help you get started.
+The
+OplÃ  IoT Kit
+includes the components needed to build amazing IoT projects, the
+Sensor Kit
+includes a variety of sensors and actuators, and the
+Plug and Make Kit
+includes a set of easy-to-use plug and make nodes that can be combined in any way. These kits also have their own dedicated content platform, with several cool projects to follow step by step.
+Nano Family
+The Nano Family is a set of boards with a tiny footprint, packed with features. It ranges from the inexpensive, basic Nano Every, to the more feature-packed Nano 33 BLE Sense / Nano RP2040 Connect that has BluetoothÂ® / Wi-FiÂ® radio modules. These boards also have a set of embedded sensors, such as temperature/humidity, pressure, gesture, microphone and more. They can also be programmed with MicroPython and supports Machine Learning.
+Want to know more about the Nano Family? Click the link below to discover all boards in more detail, along with a comparison table!
+MKR Family
+Discover all MKR products in the
+The MKR Family is a series of boards, shields & carriers that can be combined to create amazing projects without any additional circuitry. Each board is equipped with a radio module (except MKR Zero), that enables Wi-FiÂ®, BluetoothÂ®, LoRaÂ®, SigfoxÂ®, NB-IoT communication. All boards in the family are based on the
+low power processor, and are equipped with a crypto chip for secure communication.
+The MKR Family shields & carriers are designed to extend the functions of the board: such as environmental sensors, GPS, Ethernet, motor control and RGB matrix.
+Boards
+Shields
+Classic Family
+In the Classic Family, you will find boards such as the legendary Arduino UNO and other classics such as the Leonardo & Micro. These boards are considered the backbone of the Arduino project, and have been a success for many years (and more to come).
+Boards
+Shields
+Mega Family
+In the Mega family, you will find the boards for the projects that demand lots of computing power and GPIO pins.
+Retired
+To view all retired Arduino products, please visit our
+page. This includes all legacy products, getting started guides and other documentation that is considered legacy.
+Last revision
+April 11, 2022, at 11:16 PM"
